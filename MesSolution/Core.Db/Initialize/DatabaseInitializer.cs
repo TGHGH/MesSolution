@@ -20,7 +20,7 @@ namespace GMF.Demo.Core.Data.Initialize
         public static void Initialize( )
         {
             Database.SetInitializer(new SampleData());
-            using (var db = new DemoDbContext())
+            using (var db = new MesContext())
             {
                 db.Database.Initialize(false);
             }

@@ -13,9 +13,9 @@ namespace GMF.Demo.Core.Data.Initialize
     /// <summary>
     /// 数据库初始化策略
     /// </summary>
-    public class SampleData : CreateDatabaseIfNotExists<DemoDbContext>
+    public class SampleData : CreateDatabaseIfNotExists<MesContext>
     {
-        protected override void Seed(DemoDbContext context)
+        protected override void Seed(MesContext context)
         {
             List<Member> members = new List<Member>
             {

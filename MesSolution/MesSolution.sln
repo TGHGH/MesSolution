@@ -27,6 +27,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4- Presentation (展现层)
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation.Consoles", "Presentation.Consoles\Presentation.Consoles.csproj", "{A4BB9411-3734-4533-9484-CB36EF2ECF47}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{82B1942A-1D13-46B8-91FC-568102F2EA80}"
+	ProjectSection(SolutionItems) = preProject
+		1.png = 1.png
+		CodeMap1.dgml = CodeMap1.dgml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

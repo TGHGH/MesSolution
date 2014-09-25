@@ -119,7 +119,7 @@ namespace Presentation.Consoles
             Program program = _container.GetExportedValue<Program>();
             Console.WriteLine(program.AccountContract.GetType().FullName);
 
-            LoginInfo loginInfo = new LoginInfo { Access = "gmfcn", Password = "123456" };
+            LoginInfo loginInfo = new LoginInfo { Access = "gmfcn", Password = "123456", IpAddress="127.0.0.1" };
             OperationResult result = program.AccountContract.Login(loginInfo);
             Console.WriteLine(result.Message);
             Console.WriteLine();

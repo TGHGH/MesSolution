@@ -15,20 +15,20 @@ namespace Core.Db.Context
     ///     Demo项目数据访问上下文
     /// </summary>
     [Export(typeof (DbContext))]
-    public class DemoDbContext : DbContext
+    public class MesContext : DbContext
     {
         #region 构造函数
 
         /// <summary>
         ///     初始化一个 使用连接名称为“default”的数据访问上下文类 的新实例
         /// </summary>
-        public DemoDbContext()
-            : base("default") { }
+        public MesContext()
+            : base("MesSolution") { }
 
         /// <summary>
         /// 初始化一个 使用指定数据连接名称或连接串 的数据访问上下文类 的新实例
         /// </summary>
-        public DemoDbContext(string nameOrConnectionString)
+        public MesContext(string nameOrConnectionString)
             : base(nameOrConnectionString) {  }
 
         #endregion
