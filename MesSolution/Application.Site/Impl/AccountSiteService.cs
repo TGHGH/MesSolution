@@ -29,7 +29,7 @@ namespace Application.Site.Impl
     ///     账户模块站点业务实现
     /// </summary>
     [Export(typeof (IAccountSiteContract))]
-    public class AccountSiteService : AccountService, IAccountSiteContract
+    internal class AccountSiteService : AccountService, IAccountSiteContract
     {
         /// <summary>
         ///     用户登录
