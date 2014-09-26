@@ -27,6 +27,14 @@ namespace Core.Service.Impl
         protected IMemberRepository MemberRepository { get; set; }
 
         /// <summary>
+        /// 开发给展现层的接口
+        /// </summary>
+        public IQueryable<Member> Merbers()
+        {
+            return MemberRepository.Entities;
+        }
+
+        /// <summary>
         /// 获取或设置 登录记录信息数据访问对象
         /// </summary>
         [Import]
