@@ -62,7 +62,7 @@ namespace Core.Service.Impl
                 return new OperationResult(OperationResultType.Warning, "登录密码不正确。");
             }
             LoginLog loginLog = new LoginLog { IpAddress = loginInfo.IpAddress, Member = member };
-            LoginLogRepository.Insert(loginLog);
+            LoginLogRepository.Insert(loginLog);            
             return new OperationResult(OperationResultType.Success, "登录成功。", member);
         }
     }

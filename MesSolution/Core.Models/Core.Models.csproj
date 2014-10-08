@@ -40,13 +40,94 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LoginInfo.cs" />
-    <Compile Include="LoginLog.cs" />
-    <Compile Include="Member.cs" />
-    <Compile Include="MemberExtend.cs" />
+    <Compile Include="Craft\ItemRoute2Op.cs" />
+    <Compile Include="Craft\ItemRouteOp2Ecsg.cs" />
+    <Compile Include="Craft\Op.cs" />
+    <Compile Include="Craft\OpBom.cs" />
+    <Compile Include="Craft\OpBomDetail.cs" />
+    <Compile Include="Craft\Route.cs" />
+    <Compile Include="Craft\Sbom.cs" />
+    <Compile Include="ItemAndMaterial\Item.cs" />
+    <Compile Include="ItemAndMaterial\Item2Ckdinfo.cs" />
+    <Compile Include="ItemAndMaterial\Material.cs" />
+    <Compile Include="ItemAndMaterial\Model.cs" />
+    <Compile Include="Location\Factory.cs" />
+    <Compile Include="Location\Org.cs" />
+    <Compile Include="Manufacture\Down.cs" />
+    <Compile Include="Manufacture\Item2SnCheck.cs" />
+    <Compile Include="Manufacture\Mo.cs" />
+    <Compile Include="Manufacture\Mo2Sap.cs" />
+    <Compile Include="Manufacture\MoBom.cs" />
+    <Compile Include="Manufacture\MoBomLog.cs" />
+    <Compile Include="Manufacture\MoRcard.cs" />
+    <Compile Include="Manufacture\OffMoCard.cs" />
+    <Compile Include="Manufacture\RcardChange.cs" />
+    <Compile Include="Manufacture\Mo2SapDetail.cs" />
+    <Compile Include="Manufacture\WorkingError.cs" />
+    <Compile Include="OQC\Frozen.cs" />
+    <Compile Include="OQC\Item2OqcCkList.cs" />
+    <Compile Include="OQC\ItemOp2OqcCkList.cs" />
+    <Compile Include="OQC\Lot.cs" />
+    <Compile Include="OQC\Lot2Card.cs" />
+    <Compile Include="OQC\Lot2CardCheck.cs" />
+    <Compile Include="OQC\OqcCardLotCkList.cs" />
+    <Compile Include="OQC\OqcCkGroup.cs" />
+    <Compile Include="OQC\OqcCkGroup2List.cs" />
+    <Compile Include="OQC\OqcCkList.cs" />
+    <Compile Include="OQC\OqcLot2CkGroup.cs" />
+    <Compile Include="OQC\OqcLot2ErrorCode.cs" />
+    <Compile Include="OQC\OqcLotCard2ErrorCode.cs" />
+    <Compile Include="OQC\OqcLotCkList.cs" />
+    <Compile Include="Privage\Mdl.cs" />
+    <Compile Include="Location\Res.cs" />
+    <Compile Include="Location\Seg.cs" />
+    <Compile Include="Location\Ss.cs" />
+    <Compile Include="Processing\CartonInfo.cs" />
+    <Compile Include="Processing\MinNo.cs" />
+    <Compile Include="Processing\MkeyPart.cs" />
+    <Compile Include="Processing\MkeyPartDetail.cs" />
+    <Compile Include="Processing\OnWip.cs" />
+    <Compile Include="Processing\OnWipCardTrans.cs" />
+    <Compile Include="Processing\OnWipItem.cs" />
+    <Compile Include="Processing\PackingChk.cs" />
+    <Compile Include="Processing\Pallet.cs" />
+    <Compile Include="Processing\Pallet2Rcard.cs" />
+    <Compile Include="Processing\Pallet2RcardLog.cs" />
+    <Compile Include="Processing\Simulation.cs" />
+    <Compile Include="Processing\SimulationReport.cs" />
+    <Compile Include="Processing\SubCarton2Rcard.cs" />
+    <Compile Include="Test\LoginInfo.cs" />
+    <Compile Include="Test\LoginLog.cs" />
+    <Compile Include="Test\Member.cs" />
+    <Compile Include="Test\MemberExtend.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Role.cs" />
-    <Compile Include="RoleType.cs" />
+    <Compile Include="Test\Role.cs" />
+    <Compile Include="Test\RoleType.cs" />
+    <Compile Include="Privage\User.cs" />
+    <Compile Include="Privage\UserGroup.cs" />
+    <Compile Include="Ts2\Ts.cs" />
+    <Compile Include="Ts2\TsErrorCause.cs" />
+    <Compile Include="Ts2\TsErrorCause2Com.cs" />
+    <Compile Include="Ts2\TsErrorCause2Loc.cs" />
+    <Compile Include="Ts2\TsErrorCode.cs" />
+    <Compile Include="Ts2\TsErrorCode2Loc.cs" />
+    <Compile Include="Ts2\TsItem.cs" />
+    <Compile Include="Ts2\TsSplitItem.cs" />
+    <Compile Include="Ts\Duty.cs" />
+    <Compile Include="Ts\Ec.cs" />
+    <Compile Include="Ts\Ec2OpRework.cs" />
+    <Compile Include="Ts\Ecg.cs" />
+    <Compile Include="Ts\Ecg2Ec.cs" />
+    <Compile Include="Ts\EcItem2Route.cs" />
+    <Compile Include="Ts\Ecs.cs" />
+    <Compile Include="Ts\Ecsg.cs" />
+    <Compile Include="Ts\Ecsg2Ecs.cs" />
+    <Compile Include="Ts\Model2Ecg.cs" />
+    <Compile Include="Ts\Model2Ecs.cs" />
+    <Compile Include="Ts\Model2Ecsg.cs" />
+    <Compile Include="Ts\Model2Solution.cs" />
+    <Compile Include="Ts\Solution.cs" />
+    <Compile Include="Ts\TSErrorInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Component.Tools\Component.Tools.csproj">
@@ -54,6 +135,7 @@
       <Name>Component.Tools</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

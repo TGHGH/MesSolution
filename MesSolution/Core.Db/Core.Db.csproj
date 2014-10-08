@@ -51,11 +51,6 @@
     <Compile Include="Context\RepositoryContext.cs" />
     <Compile Include="Initialize\DatabaseInitializer.cs" />
     <Compile Include="Initialize\SampleData.cs" />
-    <Compile Include="Migrations\201409251235163_AddUrl.cs" />
-    <Compile Include="Migrations\201409251235163_AddUrl.Designer.cs">
-      <DependentUpon>201409251235163_AddUrl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ILoginLogRepository.cs" />
     <Compile Include="Repositories\IMemberExtendRepository.cs" />
@@ -63,7 +58,9 @@
     <Compile Include="Repositories\Impl\LoginLogRepository.cs" />
     <Compile Include="Repositories\Impl\MemberExtendRepository.cs" />
     <Compile Include="Repositories\Impl\MemberRepository.cs" />
+    <Compile Include="Repositories\Impl\UserRepository.cs" />
     <Compile Include="Repositories\Impl\RoleRepository.cs" />
+    <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\IRoleRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -83,11 +80,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201409251235163_AddUrl.resx">
-      <DependentUpon>201409251235163_AddUrl.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

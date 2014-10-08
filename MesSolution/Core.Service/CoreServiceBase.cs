@@ -7,7 +7,7 @@ using System.Text;
 using Component.Data;
 
 
-namespace Core.Service.Impl
+namespace Core.Service
 {
     /// <summary>
     /// 核心业务实现基类

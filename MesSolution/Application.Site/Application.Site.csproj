@@ -43,8 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helper\Ioc\MefDependencySolver.cs" />
-    <Compile Include="IAccountSiteContract.cs" />
-    <Compile Include="Impl\AccountSiteService.cs" />
+    <Compile Include="Test\IAccountSiteContract.cs" />
+    <Compile Include="Test\Impl\AccountSiteService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
