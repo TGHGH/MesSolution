@@ -140,7 +140,7 @@ namespace Presentation.Consoles
             user.IsDeleted = false;
             user.mdate = DateTime.Now;
             user.muser = "123";
-            user.usercode = "65128042";
+            user.usercode = "65128046";
             user.userdepart = "123";
             user.useremail = "123";
             user.username = "lg";
@@ -164,8 +164,7 @@ namespace Presentation.Consoles
         private static void Method05()
         {
             Program program = _container.GetExportedValue<Program>();
-            OperationResult result = program.UserContract.QueryUser("65128042");
-            
+            OperationResult result = program.UserContract.QueryUser("65128043");            
             User user = (User)result.AppendData;
             user.userpwd = "456";
             program.UserContract.UpdateUser(user);
