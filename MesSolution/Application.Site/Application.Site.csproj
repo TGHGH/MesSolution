@@ -43,9 +43,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helper\Ioc\MefDependencySolver.cs" />
+    <Compile Include="IUserSiteContract.cs" />
     <Compile Include="Test\IAccountSiteContract.cs" />
     <Compile Include="Test\Impl\AccountSiteService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserSiteContract.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Application.Site.Models\Application.Site.Models.csproj">

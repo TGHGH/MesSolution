@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Component.Tools;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Core.Models
 {
-    public class UserGroup
+    public class UserGroup:Entity
     {
         [Key]
         public string usergroupcode { get; set; }

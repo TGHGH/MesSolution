@@ -32,6 +32,7 @@ namespace Application.Site
         /// <returns>业务操作结果</returns>
         OperationResult Login(LoginModel model);
 
+        
         /// <summary>
         ///     用户退出
         /// </summary>

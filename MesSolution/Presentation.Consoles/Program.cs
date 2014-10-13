@@ -22,6 +22,8 @@ namespace Presentation.Consoles
 
         [Import]
         public IAccountSiteContract AccountContract { get; set; }
+        [Import]
+        public IUserSiteContract UserContract { get; set; }
 
         #region 主程序
 
@@ -131,17 +133,44 @@ namespace Presentation.Consoles
 
         private static void Method03()
         {
-            throw new NotImplementedException();
+            Program program = _container.GetExportedValue<Program>();
+            User user = new User();
+            user.AddDate = DateTime.Now;
+            user.eattribute1 = "123";
+            user.IsDeleted = false;
+            user.mdate = DateTime.Now;
+            user.muser = "123";
+            user.usercode = "65128042";
+            user.userdepart = "123";
+            user.useremail = "123";
+            user.username = "lg";
+            user.userpwd = "123";
+            user.userstat = "123";
+            user.usertel = "123";
+            OperationResult result = program.UserContract.AddUser(user);
+            Console.WriteLine(result.Message);
+            Console.WriteLine();
         }
 
         private static void Method04()
         {
-            throw new NotImplementedException();
+            Program program = _container.GetExportedValue<Program>();           
+            OperationResult result = program.UserContract.QueryUser("65128042");
+            User user = (User)result.AppendData;
+            Console.WriteLine(user.useremail);
+            Console.WriteLine();
         }
 
         private static void Method05()
         {
-            throw new NotImplementedException();
+            Program program = _container.GetExportedValue<Program>();
+            OperationResult result = program.UserContract.QueryUser("65128042");
+            
+            User user = (User)result.AppendData;
+            user.userpwd = "456";
+            program.UserContract.UpdateUser(user);
+            Console.WriteLine(user.userpwd);
+            Console.WriteLine();
         }
 
         private static void Method06()

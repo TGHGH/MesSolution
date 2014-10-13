@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Component.Tools;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Core.Models
 {
-    public class User
+    public class User:Entity
     {
         [Key]
         public string usercode { get; set; }
