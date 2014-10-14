@@ -131,6 +131,7 @@ namespace Presentation.Consoles
             Console.WriteLine(_container.GetExportedValue<IMemberRepository>().GetType());
         }
 
+        //添加
         private static void Method03()
         {
             Program program = _container.GetExportedValue<Program>();
@@ -151,7 +152,7 @@ namespace Presentation.Consoles
             Console.WriteLine(result.Message);
             Console.WriteLine();
         }
-
+        //查询
         private static void Method04()
         {
             Program program = _container.GetExportedValue<Program>();           
@@ -161,10 +162,11 @@ namespace Presentation.Consoles
             Console.WriteLine();
         }
 
+        //修改
         private static void Method05()
         {
             Program program = _container.GetExportedValue<Program>();
-            OperationResult result = program.UserContract.QueryUser("65128043");            
+            OperationResult result = program.UserContract.QueryUser("65128043");           
             User user = (User)result.AppendData;
             user.userpwd = "456";
             program.UserContract.UpdateUser(user);

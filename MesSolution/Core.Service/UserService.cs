@@ -38,7 +38,7 @@ namespace Core.Service
         public virtual OperationResult QueryUser(string key)
         {
             PublicHelper.CheckArgument(key, "user");
-            Models.User testUser= UserRepository.Entities.Single(u => u.usercode == key);
+            Models.User testUser= UserRepository.Entities.Single(u => u.usercode == key);            
             if (testUser != null)
             {
                 return new OperationResult(OperationResultType.Success, "查询成功。", testUser);
