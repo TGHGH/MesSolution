@@ -60,6 +60,10 @@
       <Project>{c9152aed-dcbb-41b3-9177-2eb90e155be3}</Project>
       <Name>Component.Tools</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Core.Models\Core.Models.csproj">
+      <Project>{95901119-0a36-4fe7-9884-5bbf08e92db0}</Project>
+      <Name>Core.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

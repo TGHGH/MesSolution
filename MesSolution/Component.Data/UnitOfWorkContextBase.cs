@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 
 using Component.Tools;
+using Core.Models;
 
 
 namespace Component.Data
@@ -39,7 +40,7 @@ namespace Component.Data
             }
             try
             {
-                int result = Context.SaveChanges();
+                int result = Context.SaveChanges();                
                 IsCommitted = true;
                 return result;
             }
@@ -106,6 +107,7 @@ namespace Component.Data
         {
             try
             {
+              
                 Context.Configuration.AutoDetectChangesEnabled = false;
                 foreach (TEntity entity in entities)
                 {

@@ -1,5 +1,6 @@
 ﻿using Component.Tools;
 using Core.Db.Repositories;
+using Core.Models;
 using Core.Service.Impl;
 using System;
 using System.Collections.Generic;
@@ -14,11 +15,25 @@ namespace Core.Service
     {
         [Import]
         protected IUserRepository UserRepository { get; set; }
+        public IQueryable<User> Users()
+        {
+            return UserRepository.Entities;
+        }
         public virtual OperationResult AddUser(Models.User user)
         {
             PublicHelper.CheckArgument(user, "user");
-            UserRepository.Insert(user, true);            
-            return new OperationResult(OperationResultType.Success, "添加成功。", user);
+            User testUser = UserRepository.Entities.SingleOrDefault(u => u.usercode == user.usercode);
+            if (testUser == null)
+            {
+                UserRepository.Insert(user, true);
+                return new OperationResult(OperationResultType.Success, "添加成功。", user);
+
+            }
+            else
+            {
+                return new OperationResult(OperationResultType.IllegalOperation, "已存在。", user);
+            }
+            
         }
 
 
@@ -38,7 +53,8 @@ namespace Core.Service
         public virtual OperationResult QueryUser(string key)
         {
             PublicHelper.CheckArgument(key, "user");
-            Models.User testUser= UserRepository.Entities.Single(u => u.usercode == key);            
+            
+            Models.User testUser= UserRepository.Entities.SingleOrDefault(u => u.usercode == key);            
             if (testUser != null)
             {
                 return new OperationResult(OperationResultType.Success, "查询成功。", testUser);
@@ -47,16 +63,36 @@ namespace Core.Service
                 return new OperationResult(OperationResultType.QueryNull, "指定参数的数据不存在。", key);
         }
 
-        public virtual OperationResult UpdateUser(Models.User user)
+        public virtual OperationResult UpdateUser(string usercode,string pwd)
         {
-            PublicHelper.CheckArgument(user, "user");
-            int a = UserRepository.Update(user, true);
-            if (a > 0)
+           // PublicHelper.CheckArgument(user, "user");
+            Models.User testUser = UserRepository.Entities.SingleOrDefault(u => u.usercode == usercode);            
+            if (testUser == null)
             {
-                return new OperationResult(OperationResultType.Success, "更改成功。", a);
+                 return new OperationResult(OperationResultType.Success, "更改失败。", null);
+            }
+            else{
+                testUser.userpwd = pwd;
+                this.UnitOfWork.Commit(); 
+                return new OperationResult(OperationResultType.Success, "更改成功。", testUser);
+            }                    
+                        
+        }
+        public virtual OperationResult UpdateUser2(string usercode, string pwd)
+        {
+            // PublicHelper.CheckArgument(user, "user");
+            Models.User testUser = UserRepository.Entities.SingleOrDefault(u => u.usercode == usercode);
+            if (testUser == null)
+            {
+                return new OperationResult(OperationResultType.Success, "更改失败。", null);
             }
             else
-                return new OperationResult(OperationResultType.Success, "更改失败。", a);
+            {
+                testUser.userpwd = pwd;
+                this.UnitOfWork.Rollback();
+                return new OperationResult(OperationResultType.Success, "更改成功。", testUser);
+            }
+
         }
     }
 }

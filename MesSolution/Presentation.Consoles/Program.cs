@@ -141,7 +141,7 @@ namespace Presentation.Consoles
             user.IsDeleted = false;
             user.mdate = DateTime.Now;
             user.muser = "123";
-            user.usercode = "65128046";
+            user.usercode = "65128043";
             user.userdepart = "123";
             user.useremail = "123";
             user.username = "lg";
@@ -162,21 +162,24 @@ namespace Presentation.Consoles
             Console.WriteLine();
         }
 
-        //修改
+        //修改,提交
         private static void Method05()
         {
             Program program = _container.GetExportedValue<Program>();
-            OperationResult result = program.UserContract.QueryUser("65128043");           
-            User user = (User)result.AppendData;
-            user.userpwd = "456";
-            program.UserContract.UpdateUser(user);
+            OperationResult result = program.UserContract.UpdateUser("65128043","222");
+            User user =(User) result.AppendData;
             Console.WriteLine(user.userpwd);
             Console.WriteLine();
         }
-
+        //修改，回滚
         private static void Method06()
         {
-            throw new NotImplementedException();
+            Program program = _container.GetExportedValue<Program>();
+            OperationResult result = program.UserContract.UpdateUser("65128043", "12345");
+            OperationResult result2 = program.UserContract.UpdateUser2("65128042", "12345");
+            User user = (User)result.AppendData;
+            Console.WriteLine(user.userpwd);
+            Console.WriteLine();
         }
 
         private static void Method07()

@@ -13,6 +13,7 @@ namespace Core.Service
         OperationResult AddUser(User user);
         OperationResult DeleteUser(User user);
         OperationResult QueryUser(string key);
-        OperationResult UpdateUser(User user);
+        OperationResult UpdateUser(string usercode,string pwd);
+        OperationResult UpdateUser2(string usercode, string pwd);
     }
 }
