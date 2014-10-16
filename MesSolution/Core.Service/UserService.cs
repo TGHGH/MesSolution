@@ -70,7 +70,7 @@ namespace Core.Service
         public virtual OperationResult UpdateUser(string usercode,string pwd)
         {
            // PublicHelper.CheckArgument(user, "user");
-            Models.User testUser = UserRepository.Entities.SingleOrDefault(u => u.usercode == usercode);            
+            Models.User testUser = UserRepository.GetByKey("65128044");           
             if (testUser == null)
             {
                  return new OperationResult(OperationResultType.Success, "更改失败。", null);

@@ -42,9 +42,9 @@ namespace Component.Tools
         /// <summary>
         ///     获取或设置 版本控制标识，用于处理并发
         /// </summary>
-        [ConcurrencyCheck]
-        [Timestamp]
-        public byte[] Timestamp { get; set; }
+        //[ConcurrencyCheck]
+        //[Timestamp]
+        //public byte[] Timestamp { get; set; }
 
         #endregion
     }

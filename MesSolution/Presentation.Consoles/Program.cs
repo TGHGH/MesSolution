@@ -145,7 +145,7 @@ namespace Presentation.Consoles
             user.IsDeleted = false;
             user.mdate = DateTime.Now;
             user.muser = "123";
-            user.usercode = "65128043";
+            user.usercode = "65128044";
             user.userdepart = "123";
             user.useremail = "123";
             user.username = "lg";
@@ -213,22 +213,13 @@ namespace Presentation.Consoles
         private static void Method07()
         {
             Program program = _container.GetExportedValue<Program>();
-            User user=program.MesContext.Set<User>().SingleOrDefault(u => u.usercode == "65128044");            
-            //user.userpwd = "Current121";          
+            User user = program.MesContext.Set<User>().Find("65128044");    
             
-          //  string a = program.MesContext.Entry<User>(user).CurrentValues["userpwd"].ToString();
-          //  string b = program.MesContext.Entry<User>(user).GetDatabaseValues()["userpwd"].ToString();
-          ////  program.MesContext.Entry<User>(user).State = EntityState.Modified;
-          //  //program.MesContext.Entry<User>(user).Reload();
-          //  if (!a.Equals(b))
-          //      user.userpwd = "Current123";
-          //  else
-          //      user.userpwd = "Current222";
-          //  program.MesContext.SaveChanges();
             program.MesContext.Entry<User>(user).CurrentValues.SetValues(program.MesContext.Entry<User>(user).GetDatabaseValues());
+           // user.userpwd = "111";
             PrintChangeTrackingInfo(program.MesContext, user);
-            program.MesContext.SaveChanges();
-            Console.WriteLine(user.userpwd);
+            Console.WriteLine(user.userpwd);           
+            program.MesContext.SaveChanges();            
             Console.WriteLine();
         }
 
