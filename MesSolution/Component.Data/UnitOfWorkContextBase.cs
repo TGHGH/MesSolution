@@ -9,6 +9,7 @@ using System.Text;
 
 using Component.Tools;
 using Core.Models;
+using System.ComponentModel.Composition;
 
 
 namespace Component.Data
@@ -16,12 +17,13 @@ namespace Component.Data
     /// <summary>
     ///     单元操作实现基类
     /// </summary>
+   
     public abstract class UnitOfWorkContextBase : IUnitOfWorkContext
     {
         /// <summary>
         /// 获取 当前使用的数据访问上下文对象
         /// </summary>
-        protected abstract DbContext Context { get; }
+        public abstract DbContext Context { get; }
 
         /// <summary>
         ///     获取 当前单元操作是否已被提交
@@ -165,6 +167,12 @@ namespace Component.Data
             {
                 Context.Configuration.AutoDetectChangesEnabled = true;
             }
+        }
+
+
+        public DbContext GetContext()
+        {
+            return this.Context;
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 
 using Component.Tools;
+using System.Data.Entity;
 
 
 namespace Component.Data
@@ -88,6 +89,8 @@ namespace Component.Data
         /// <param name="key"> 指定主键 </param>
         /// <returns> 符合编号的记录，不存在返回null </returns>
         TEntity GetByKey(object key);
+
+        DbContext GetDbContext();
 
         #endregion
     }

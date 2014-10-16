@@ -55,5 +55,6 @@ namespace Component.Data
         /// <typeparam name="TEntity"> 要注册的类型 </typeparam>
         /// <param name="entities"> 要注册的对象集合 </param>
         void RegisterDeleted<TEntity>(IEnumerable<TEntity> entities) where TEntity : Entity;
+        
     }
 }

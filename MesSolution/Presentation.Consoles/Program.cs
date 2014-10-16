@@ -11,6 +11,8 @@ using Component.Tools;
 using Core.Db.Repositories;
 using Core.Models;
 using Application.Site;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 
 
 namespace Presentation.Consoles
@@ -24,6 +26,8 @@ namespace Presentation.Consoles
         public IAccountSiteContract AccountContract { get; set; }
         [Import]
         public IUserSiteContract UserContract { get; set; }
+        [Import]
+        public DbContext MesContext { get; set; }
 
         #region 主程序
 
@@ -166,7 +170,7 @@ namespace Presentation.Consoles
         private static void Method05()
         {
             Program program = _container.GetExportedValue<Program>();
-            OperationResult result = program.UserContract.UpdateUser("65128043","222");
+            OperationResult result = program.UserContract.UpdateUser("65128044","222");
             User user =(User) result.AppendData;
             Console.WriteLine(user.userpwd);
             Console.WriteLine();
@@ -182,9 +186,50 @@ namespace Presentation.Consoles
             Console.WriteLine();
         }
 
+        private static void PrintChangeTrackingInfo(DbContext context, User entity)
+        {
+            var entry = context.Entry(entity);
+            Console.WriteLine(entry.Entity.userpwd);
+            Console.WriteLine("State: {0}", entry.State);
+
+            Console.WriteLine("\nCurrent Values:");
+            PrintPropertyValues(entry.CurrentValues);
+
+            Console.WriteLine("\nOriginal Values:");
+            PrintPropertyValues(entry.OriginalValues);
+
+            Console.WriteLine("\nDatabase Values:");
+            PrintPropertyValues(entry.GetDatabaseValues());
+        }
+        private static void PrintPropertyValues(DbPropertyValues values)
+        {
+            foreach (var propertyName in values.PropertyNames)
+            {
+                if (propertyName.ToString().Equals("userpwd"))
+                Console.WriteLine(" - {0}: {1}", propertyName, values[propertyName]);
+            }
+        }
+
         private static void Method07()
         {
-            throw new NotImplementedException();
+            Program program = _container.GetExportedValue<Program>();
+            User user=program.MesContext.Set<User>().SingleOrDefault(u => u.usercode == "65128044");            
+            //user.userpwd = "Current121";          
+            
+          //  string a = program.MesContext.Entry<User>(user).CurrentValues["userpwd"].ToString();
+          //  string b = program.MesContext.Entry<User>(user).GetDatabaseValues()["userpwd"].ToString();
+          ////  program.MesContext.Entry<User>(user).State = EntityState.Modified;
+          //  //program.MesContext.Entry<User>(user).Reload();
+          //  if (!a.Equals(b))
+          //      user.userpwd = "Current123";
+          //  else
+          //      user.userpwd = "Current222";
+          //  program.MesContext.SaveChanges();
+            program.MesContext.Entry<User>(user).CurrentValues.SetValues(program.MesContext.Entry<User>(user).GetDatabaseValues());
+            PrintChangeTrackingInfo(program.MesContext, user);
+            program.MesContext.SaveChanges();
+            Console.WriteLine(user.userpwd);
+            Console.WriteLine();
         }
 
         private static void Method08()

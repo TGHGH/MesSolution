@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 
@@ -32,6 +33,8 @@ namespace Component.Data
         ///     把当前单元操作回滚成未提交状态
         /// </summary>
         void Rollback();
+
+        DbContext GetContext();
 
         #endregion
     }

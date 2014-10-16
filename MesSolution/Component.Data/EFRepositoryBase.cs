@@ -25,6 +25,11 @@ namespace Component.Data
         [Import]
         public IUnitOfWork UnitOfWork { get; set; }
 
+        public DbContext GetDbContext()
+        {
+            return this.UnitOfWork.GetContext();
+        }
+
         /// <summary>
         ///     获取或设置 EntityFramework的数据仓储上下文
         /// </summary>

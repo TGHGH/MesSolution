@@ -5,6 +5,8 @@ using Core.Service.Impl;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +24,7 @@ namespace Core.Service
         public virtual OperationResult AddUser(Models.User user)
         {
             PublicHelper.CheckArgument(user, "user");
+            
             User testUser = UserRepository.Entities.SingleOrDefault(u => u.usercode == user.usercode);
             if (testUser == null)
             {
@@ -52,9 +55,10 @@ namespace Core.Service
 
         public virtual OperationResult QueryUser(string key)
         {
-            PublicHelper.CheckArgument(key, "user");
+            PublicHelper.CheckArgument(key, "user");            
+           
+            Models.User testUser= UserRepository.Entities.SingleOrDefault(u => u.usercode == key);
             
-            Models.User testUser= UserRepository.Entities.SingleOrDefault(u => u.usercode == key);            
             if (testUser != null)
             {
                 return new OperationResult(OperationResultType.Success, "查询成功。", testUser);
@@ -72,7 +76,12 @@ namespace Core.Service
                  return new OperationResult(OperationResultType.Success, "更改失败。", null);
             }
             else{
-                testUser.userpwd = pwd;
+                
+              //  UserRepository.GetDbContext().Entry<User>(testUser).State = EntityState.Modified;
+              //  DbPropertyValues databaseValues =UserRepository.GetDbContext().Entry<User>(testUser).GetDatabaseValues();
+                UserRepository.GetDbContext().Entry<User>(testUser).CurrentValues["userpwd"] = "456";
+              //  UserRepository.GetDbContext().Entry<User>(testUser).Reload();
+              //  testUser.userpwd = pwd;
                 this.UnitOfWork.Commit(); 
                 return new OperationResult(OperationResultType.Success, "更改成功。", testUser);
             }                    
@@ -88,6 +97,7 @@ namespace Core.Service
             }
             else
             {
+                UserRepository.GetDbContext().Entry<User>(testUser).GetDatabaseValues();
                 testUser.userpwd = pwd;
                 this.UnitOfWork.Rollback();
                 return new OperationResult(OperationResultType.Success, "更改成功。", testUser);
