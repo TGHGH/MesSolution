@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 
 using Component.Tools;
+using System.Data.Entity.Infrastructure;
 
 
 namespace Component.Data
@@ -20,6 +21,14 @@ namespace Component.Data
         /// <typeparam name="TEntity"> 应为其返回一个集的实体类型。 </typeparam>
         /// <returns> 给定实体类型的 System.Data.Entity.DbSet 实例。 </returns>
         DbSet<TEntity> Set<TEntity>() where TEntity : Entity;
+
+        /// <summary>
+        /// 为指定的上下文实体返回 System.Data.Entity.Infrastructure.DbEntityEntry，这将允许对上下文中的给定实体执行 从数据库更新 操作。
+        /// </summary>
+        /// <typeparam name="TEntity">要更新的实体类型</typeparam>
+        /// <param name="entity">要更新的实体</param>
+        /// <returns></returns>
+        DbEntityEntry<TEntity> Entity<TEntity>(TEntity entity) where TEntity : Entity;
 
         /// <summary>
         ///   注册一个新的对象到仓储上下文中

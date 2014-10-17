@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Data.Entity;
+using System.Data.Entity.Core;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
@@ -25,7 +26,8 @@ namespace Core.Service
         {
             PublicHelper.CheckArgument(user, "user");
             
-            User testUser = UserRepository.Entities.SingleOrDefault(u => u.usercode == user.usercode);
+            User testUser = UserRepository.Entities.SingleOrDefault(u => u.usercode == user.usercode);                   
+                       
             if (testUser == null)
             {
                 UserRepository.Insert(user, true);
@@ -58,7 +60,7 @@ namespace Core.Service
             PublicHelper.CheckArgument(key, "user");            
            
             Models.User testUser= UserRepository.Entities.SingleOrDefault(u => u.usercode == key);
-            
+            UserRepository.Entity(testUser).Reload();
             if (testUser != null)
             {
                 return new OperationResult(OperationResultType.Success, "查询成功。", testUser);
@@ -75,34 +77,29 @@ namespace Core.Service
             {
                  return new OperationResult(OperationResultType.Success, "更改失败。", null);
             }
-            else{
+            else{            
+                try
+                {
+                    testUser.userpwd = pwd;
+                    this.UnitOfWork.Commit();
+                    this.UnitOfWork.Rollback();
+                }
+                catch (DataAccessException e)
+                {
+                    if (e.Message.Equals("数据访问层异常：提交数据更新时发生同步异常："))
+                    {
+                        UserRepository.Entity(testUser).Reload();
+                        testUser.userpwd = pwd;
+                        this.UnitOfWork.Commit();
+                        this.UnitOfWork.Rollback();
+                    }
+                   
+                }
                 
-              //  UserRepository.GetDbContext().Entry<User>(testUser).State = EntityState.Modified;
-              //  DbPropertyValues databaseValues =UserRepository.GetDbContext().Entry<User>(testUser).GetDatabaseValues();
-                UserRepository.GetDbContext().Entry<User>(testUser).CurrentValues["userpwd"] = "456";
-              //  UserRepository.GetDbContext().Entry<User>(testUser).Reload();
-              //  testUser.userpwd = pwd;
-                this.UnitOfWork.Commit(); 
                 return new OperationResult(OperationResultType.Success, "更改成功。", testUser);
             }                    
                         
         }
-        public virtual OperationResult UpdateUser2(string usercode, string pwd)
-        {
-            // PublicHelper.CheckArgument(user, "user");
-            Models.User testUser = UserRepository.Entities.SingleOrDefault(u => u.usercode == usercode);
-            if (testUser == null)
-            {
-                return new OperationResult(OperationResultType.Success, "更改失败。", null);
-            }
-            else
-            {
-                UserRepository.GetDbContext().Entry<User>(testUser).GetDatabaseValues();
-                testUser.userpwd = pwd;
-                this.UnitOfWork.Rollback();
-                return new OperationResult(OperationResultType.Success, "更改成功。", testUser);
-            }
-
-        }
+        
     }
 }

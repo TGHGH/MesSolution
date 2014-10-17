@@ -10,6 +10,7 @@ using System.Text;
 using Component.Tools;
 using Core.Models;
 using System.ComponentModel.Composition;
+using System.Data.Entity.Core;
 
 
 namespace Component.Data
@@ -18,6 +19,8 @@ namespace Component.Data
     ///     单元操作实现基类
     /// </summary>
    
+
+
     public abstract class UnitOfWorkContextBase : IUnitOfWorkContext
     {
         /// <summary>
@@ -44,15 +47,22 @@ namespace Component.Data
             {
                 int result = Context.SaveChanges();                
                 IsCommitted = true;
+                //注销Context
+                //this.Context.Dispose();
                 return result;
             }
-            catch (DbUpdateException e)
+            catch (Exception e)
             {
                 if (e.InnerException != null && e.InnerException.InnerException is SqlException)
                 {
                     SqlException sqlEx = e.InnerException.InnerException as SqlException;
                     string msg = DataHelper.GetSqlExceptionMessage(sqlEx.Number);
                     throw PublicHelper.ThrowDataAccessException("提交数据更新时发生异常：" + msg, sqlEx);
+                }
+                if (e.InnerException != null && e.InnerException is OptimisticConcurrencyException)
+                {
+                    
+                    throw PublicHelper.ThrowDataAccessException("提交数据更新时发生同步异常：" , e.InnerException);
                 }
                 throw;
             }
@@ -83,6 +93,17 @@ namespace Component.Data
         public DbSet<TEntity> Set<TEntity>() where TEntity : Entity
         {
             return Context.Set<TEntity>();
+        }
+
+        /// <summary>
+        /// 为指定的上下文实体返回 System.Data.Entity.Infrastructure.DbEntityEntry，这将允许对上下文中的给定实体执行 从数据库更新 操作。
+        /// </summary>
+        /// <typeparam name="TEntity">要更新的实体类型</typeparam>
+        /// <param name="entity">要更新的实体</param>
+        /// <returns></returns>
+        public DbEntityEntry<TEntity> Entity<TEntity>(TEntity entity) where TEntity : Entity
+        {
+            return Context.Entry<TEntity>(entity);
         }
 
         /// <summary>

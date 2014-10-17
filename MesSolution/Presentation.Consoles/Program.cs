@@ -179,8 +179,7 @@ namespace Presentation.Consoles
         private static void Method06()
         {
             Program program = _container.GetExportedValue<Program>();
-            OperationResult result = program.UserContract.UpdateUser("65128043", "12345");
-            OperationResult result2 = program.UserContract.UpdateUser2("65128042", "12345");
+            OperationResult result = program.UserContract.UpdateUser("65128043", "12345");           
             User user = (User)result.AppendData;
             Console.WriteLine(user.userpwd);
             Console.WriteLine();
@@ -213,9 +212,9 @@ namespace Presentation.Consoles
         private static void Method07()
         {
             Program program = _container.GetExportedValue<Program>();
-            User user = program.MesContext.Set<User>().Find("65128044");    
-            
-            program.MesContext.Entry<User>(user).CurrentValues.SetValues(program.MesContext.Entry<User>(user).GetDatabaseValues());
+            User user = program.MesContext.Set<User>().Find("65128044");
+
+            program.MesContext.Entry<User>(user).Reload();
            // user.userpwd = "111";
             PrintChangeTrackingInfo(program.MesContext, user);
             Console.WriteLine(user.userpwd);           

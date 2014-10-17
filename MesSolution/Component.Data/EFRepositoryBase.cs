@@ -7,6 +7,7 @@ using System.Linq.Expressions;
 using System.Text;
 
 using Component.Tools;
+using System.Data.Entity.Infrastructure;
 
 
 namespace Component.Data
@@ -53,9 +54,23 @@ namespace Component.Data
             get { return EFContext.Set<TEntity>(); }
         }
 
+       
+
+      
+
         #endregion
 
         #region 公共方法
+
+        /// <summary>
+        /// 为指定的上下文实体返回 System.Data.Entity.Infrastructure.DbEntityEntry，这将允许对上下文中的给定实体执行 从数据库更新 操作。
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public virtual DbEntityEntry<TEntity> Entity(TEntity entity)
+        {
+            return EFContext.Entity<TEntity>(entity);
+        }
 
         /// <summary>
         ///     插入实体记录
