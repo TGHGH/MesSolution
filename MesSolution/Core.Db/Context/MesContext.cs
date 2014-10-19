@@ -101,8 +101,8 @@ namespace Core.Db.Context
             modelBuilder.Entity<Item2SnCheck>().HasKey(t => new { t.ITEMCODE, t.TYPE });
             modelBuilder.Entity<WorkingError>().HasKey(t => new { t.RESCODE, t.CUSER, t.CDATE, t.CTIME });
             modelBuilder.Entity<Mo2Sap>().HasKey(t => new { t.MOCODE, t.POSTSEQ });
-           
-            
+
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();//移除复数表名的契约
             //移除一对多的级联删除约定，想要级联删除可以在 EntityTypeConfiguration<TEntity>的实现类中进行控制
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             //多对多启用级联删除约定，不想级联删除可以在删除前判断关联的数据进行拦截

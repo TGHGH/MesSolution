@@ -21,7 +21,7 @@ namespace Core.Service
         public IQueryable<User> Users()
         {
             return UserRepository.Entities;
-        }
+        } 
         public virtual OperationResult AddUser(Models.User user)
         {
             PublicHelper.CheckArgument(user, "user");
@@ -99,6 +99,20 @@ namespace Core.Service
                 return new OperationResult(OperationResultType.Success, "更改成功。", testUser);
             }                    
                         
+        }
+
+        public virtual OperationResult UpdateUser2(string usercode, string pwd)
+        {
+            Models.User testUser = UserRepository.GetByKey(usercode);            
+            if (testUser != null)
+            {
+                testUser.userpwd = pwd;
+                this.UnitOfWork.Commit();
+                return new OperationResult(OperationResultType.Success, "更改成功。", testUser);
+            }
+            else
+                return new OperationResult(OperationResultType.Error, "没有此帐号。", testUser);
+            
         }
         
     }

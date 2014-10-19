@@ -13,6 +13,7 @@ using Core.Models;
 using Application.Site;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using GMF.Demo.Core.Data.Initialize;
 
 
 namespace Presentation.Consoles
@@ -21,6 +22,7 @@ namespace Presentation.Consoles
     internal class Program
     {
         private static CompositionContainer _container;
+        private static AggregateCatalog catalog;
 
         [Import]
         public IAccountSiteContract AccountContract { get; set; }
@@ -28,17 +30,21 @@ namespace Presentation.Consoles
         public IUserSiteContract UserContract { get; set; }
         [Import]
         public DbContext MesContext { get; set; }
+      
+       
 
         #region 主程序
 
         private static void Main(string[] args)
         {
+            //初始化数据库，如果存在且模型改变，删除重新建
+            DatabaseInitializer.DropCreateDatabaseIfModelChanges();
+            
             //初始化MEF组合容器
-            AggregateCatalog catalog = new AggregateCatalog();
+            catalog = new AggregateCatalog();
             catalog.Catalogs.Add(new DirectoryCatalog(Directory.GetCurrentDirectory()));
             catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
-            _container = new CompositionContainer(catalog);
-
+             
             bool exit = false;
             while (true)
             {
@@ -159,6 +165,7 @@ namespace Presentation.Consoles
         //查询
         private static void Method04()
         {
+            _container = new CompositionContainer(catalog);
             Program program = _container.GetExportedValue<Program>();           
             OperationResult result = program.UserContract.QueryUser("65128042");
             User user = (User)result.AppendData;
@@ -179,7 +186,8 @@ namespace Presentation.Consoles
         private static void Method06()
         {
             Program program = _container.GetExportedValue<Program>();
-            OperationResult result = program.UserContract.UpdateUser("65128043", "12345");           
+            OperationResult result = program.UserContract.UpdateUser("65128043", "12345");  
+            
             User user = (User)result.AppendData;
             Console.WriteLine(user.userpwd);
             Console.WriteLine();
@@ -211,7 +219,7 @@ namespace Presentation.Consoles
 
         private static void Method07()
         {
-            Program program = _container.GetExportedValue<Program>();
+            Program program = _container.GetExportedValue<Program>();           
             User user = program.MesContext.Set<User>().Find("65128044");
 
             program.MesContext.Entry<User>(user).Reload();
@@ -224,12 +232,25 @@ namespace Presentation.Consoles
 
         private static void Method08()
         {
-            throw new NotImplementedException();
+            
+            _container = new CompositionContainer(catalog);           
+            Program program = _container.GetExportedValue<Program>();
+            program.UserContract.UpdateUser2("65128044","333");           
         }
 
         private static void Method09()
         {
-            throw new NotImplementedException();
+            AggregateCatalog catalog = new AggregateCatalog();
+            catalog.Catalogs.Add(new DirectoryCatalog(Directory.GetCurrentDirectory()));
+            catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
+            _container = new CompositionContainer(catalog);
+            _container.Dispose();
+            _container = new CompositionContainer(catalog);
+            Program pro  = _container.GetExportedValue<Program>();                   
+            if (pro.MesContext == null)
+                Console.WriteLine("MesContext null");
+            else
+                Console.WriteLine("MesContext not null");
         }
 
         private static void Method10()

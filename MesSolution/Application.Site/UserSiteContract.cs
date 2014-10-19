@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Application.Site
 {
     [Export(typeof(IUserSiteContract))]
-    internal class UserSiteContract:UserService,IUserSiteContract
+    public class UserSiteContract:UserService,IUserSiteContract
     {             
 
     

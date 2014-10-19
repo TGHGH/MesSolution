@@ -14,6 +14,8 @@ namespace Core.Service
         OperationResult DeleteUser(User user);
         OperationResult QueryUser(string key);
         OperationResult UpdateUser(string usercode,string pwd);
+
+        OperationResult UpdateUser2(string usercode, string pwd);
        
     }
 }

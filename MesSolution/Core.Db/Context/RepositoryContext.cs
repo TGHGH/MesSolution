@@ -22,10 +22,10 @@ namespace Core.Db.Context
         /// </summary>
         public override DbContext Context
         {
-            get { return MContext; }
+            get { return MContext; }            
             
         }
-
+        
         /// <summary>
         ///     获取或设置 默认的Demo项目数据访问上下文对象
         /// </summary>

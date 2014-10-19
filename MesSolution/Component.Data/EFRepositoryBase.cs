@@ -43,6 +43,7 @@ namespace Component.Data
                     return UnitOfWork as IUnitOfWorkContext;
                 }
                 throw new DataAccessException(string.Format("数据仓储上下文对象类型不正确，应为IRepositoryContext，实际为 {0}", UnitOfWork.GetType().Name));
+               
             }
         }
 
