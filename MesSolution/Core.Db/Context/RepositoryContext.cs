@@ -24,7 +24,7 @@ namespace Core.Db.Context
         {
             get { return MContext; }            
             
-        }
+        }        
         
         /// <summary>
         ///     获取或设置 默认的Demo项目数据访问上下文对象

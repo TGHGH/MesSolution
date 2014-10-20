@@ -57,9 +57,9 @@ namespace Core.Service
 
         public virtual OperationResult QueryUser(string key)
         {
-            PublicHelper.CheckArgument(key, "user");            
+            PublicHelper.CheckArgument(key, "user");
            
-            Models.User testUser= UserRepository.Entities.SingleOrDefault(u => u.usercode == key);
+            Models.User testUser= UserRepository.GetByKey("65128044");
             UserRepository.Entity(testUser).Reload();
             if (testUser != null)
             {
@@ -92,8 +92,7 @@ namespace Core.Service
                         testUser.userpwd = pwd;
                         this.UnitOfWork.Commit();
                         this.UnitOfWork.Rollback();
-                    }
-                   
+                    }                   
                 }
                 
                 return new OperationResult(OperationResultType.Success, "更改成功。", testUser);

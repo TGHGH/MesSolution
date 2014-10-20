@@ -23,15 +23,10 @@ namespace Presentation.Consoles
     {
         private static CompositionContainer _container;
         private static AggregateCatalog catalog;
+     //   [Import(RequiredCreationPolicy = CreationPolicy.NonShared)]
+     //   public ContainerIn cin { get; set; }
 
-        [Import]
-        public IAccountSiteContract AccountContract { get; set; }
-        [Import]
-        public IUserSiteContract UserContract { get; set; }
-        [Import]
-        public DbContext MesContext { get; set; }
-      
-       
+
 
         #region 主程序
 
@@ -39,12 +34,13 @@ namespace Presentation.Consoles
         {
             //初始化数据库，如果存在且模型改变，删除重新建
             DatabaseInitializer.DropCreateDatabaseIfModelChanges();
-            
+
             //初始化MEF组合容器
             catalog = new AggregateCatalog();
             catalog.Catalogs.Add(new DirectoryCatalog(Directory.GetCurrentDirectory()));
             catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
-             
+            _container = new CompositionContainer(catalog);
+
             bool exit = false;
             while (true)
             {
@@ -128,12 +124,7 @@ namespace Presentation.Consoles
 
         private static void Method01()
         {
-            Program program = _container.GetExportedValue<Program>();
-            Console.WriteLine(program.AccountContract.GetType().FullName);
-            LoginInfo loginInfo = new LoginInfo { Access = "gmfcn", Password = "123456", IpAddress="127.0.0.1" };
-            OperationResult result = program.AccountContract.Login(loginInfo);
-            Console.WriteLine(result.Message);
-            Console.WriteLine();
+
         }
 
         private static void Method02()
@@ -144,53 +135,46 @@ namespace Presentation.Consoles
         //添加
         private static void Method03()
         {
-            Program program = _container.GetExportedValue<Program>();
+
             User user = new User();
             user.AddDate = DateTime.Now;
             user.eattribute1 = "123";
             user.IsDeleted = false;
             user.mdate = DateTime.Now;
             user.muser = "123";
-            user.usercode = "65128044";
+            user.usercode = "65128047";
             user.userdepart = "123";
             user.useremail = "123";
             user.username = "lg";
             user.userpwd = "123";
             user.userstat = "123";
             user.usertel = "123";
-            OperationResult result = program.UserContract.AddUser(user);
+            OperationResult result = _container.GetExportedValue<IUserSiteContract>().AddUser(user);
             Console.WriteLine(result.Message);
             Console.WriteLine();
         }
         //查询
         private static void Method04()
         {
-            _container = new CompositionContainer(catalog);
-            Program program = _container.GetExportedValue<Program>();           
-            OperationResult result = program.UserContract.QueryUser("65128042");
+
+            OperationResult result = _container.GetExportedValueOrDefault<ContainerIn>().UserContract.QueryUser("65128044");
             User user = (User)result.AppendData;
-            Console.WriteLine(user.useremail);
+            Console.WriteLine(user.userpwd);
             Console.WriteLine();
         }
 
         //修改,提交
         private static void Method05()
         {
-            Program program = _container.GetExportedValue<Program>();
-            OperationResult result = program.UserContract.UpdateUser("65128044","222");
-            User user =(User) result.AppendData;
+            OperationResult result = _container.GetExportedValueOrDefault<ContainerIn>().UserContract.UpdateUser("65128044", "222");
+            User user = (User)result.AppendData;
             Console.WriteLine(user.userpwd);
             Console.WriteLine();
         }
         //修改，回滚
         private static void Method06()
         {
-            Program program = _container.GetExportedValue<Program>();
-            OperationResult result = program.UserContract.UpdateUser("65128043", "12345");  
             
-            User user = (User)result.AppendData;
-            Console.WriteLine(user.userpwd);
-            Console.WriteLine();
         }
 
         private static void PrintChangeTrackingInfo(DbContext context, User entity)
@@ -213,49 +197,44 @@ namespace Presentation.Consoles
             foreach (var propertyName in values.PropertyNames)
             {
                 if (propertyName.ToString().Equals("userpwd"))
-                Console.WriteLine(" - {0}: {1}", propertyName, values[propertyName]);
+                    Console.WriteLine(" - {0}: {1}", propertyName, values[propertyName]);
             }
         }
 
         private static void Method07()
         {
-            Program program = _container.GetExportedValue<Program>();           
-            User user = program.MesContext.Set<User>().Find("65128044");
-
-            program.MesContext.Entry<User>(user).Reload();
-           // user.userpwd = "111";
-            PrintChangeTrackingInfo(program.MesContext, user);
-            Console.WriteLine(user.userpwd);           
-            program.MesContext.SaveChanges();            
-            Console.WriteLine();
+           
         }
 
         private static void Method08()
         {
-            
-            _container = new CompositionContainer(catalog);           
-            Program program = _container.GetExportedValue<Program>();
-            program.UserContract.UpdateUser2("65128044","333");           
+
+           
         }
 
         private static void Method09()
         {
-            AggregateCatalog catalog = new AggregateCatalog();
-            catalog.Catalogs.Add(new DirectoryCatalog(Directory.GetCurrentDirectory()));
-            catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
-            _container = new CompositionContainer(catalog);
-            _container.Dispose();
-            _container = new CompositionContainer(catalog);
-            Program pro  = _container.GetExportedValue<Program>();                   
-            if (pro.MesContext == null)
+            //_container.Dispose();
+            
+            //_container = new CompositionContainer(catalog);
+            
+            ContainerIn pro = _container.GetExportedValue<ContainerIn>();
+            CompositionBatch batch = new CompositionBatch();           
+            if (pro.UserContract == null)
                 Console.WriteLine("MesContext null");
             else
                 Console.WriteLine("MesContext not null");
+        
         }
 
         private static void Method10()
         {
-            throw new NotImplementedException();
+            Program program = new Program();
+            Program progarm2 = new Program();
+           // Console.WriteLine(ReferenceEquals(program.cin, progarm2.cin));
+            Console.WriteLine(ReferenceEquals(_container.GetExportedValue<ContainerIn>().UserContract, _container.GetExportedValue<ContainerIn>().UserContract));
+
+            Console.WriteLine(_container.GetExportedValue<ContainerIn>().UserContract.Equals(_container.GetExportedValue<ContainerIn>().UserContract));
         }
 
         private static void Method11()
