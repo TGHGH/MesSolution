@@ -14,6 +14,8 @@ using Application.Site;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using GMF.Demo.Core.Data.Initialize;
+using Component.Data;
+using Core.Db.Context;
 
 
 namespace Presentation.Consoles
@@ -124,7 +126,12 @@ namespace Presentation.Consoles
 
         private static void Method01()
         {
-
+            var studentManager1 = _container.GetExportedValue<ContainerIn>();
+            var studentManager2 = _container.GetExportedValue<ContainerIn>();
+            Console.WriteLine(object.ReferenceEquals(studentManager1, studentManager2));
+            var studentManager3 = _container.GetExportedValue<MesContext>();
+            var studentManager4 = _container.GetExportedValue<MesContext>();
+            Console.WriteLine(object.ReferenceEquals(studentManager3, studentManager4));
         }
 
         private static void Method02()
@@ -174,7 +181,10 @@ namespace Presentation.Consoles
         //修改，回滚
         private static void Method06()
         {
-            
+            OperationResult result = _container.GetExportedValueOrDefault<ContainerIn>().UserContract.UpdateUser2("65128044", "222");
+            User user = (User)result.AppendData;
+            Console.WriteLine(user.userpwd);
+            Console.WriteLine();
         }
 
         private static void PrintChangeTrackingInfo(DbContext context, User entity)

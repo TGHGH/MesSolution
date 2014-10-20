@@ -14,7 +14,7 @@ namespace Core.Db.Context
     /// <summary>
     ///     Demo项目单元操作类
     /// </summary>
-    [Export(typeof (IUnitOfWork))]
+    [Export(typeof(IUnitOfWork))]
     public class RepositoryContext : UnitOfWorkContextBase
     {
         /// <summary>
