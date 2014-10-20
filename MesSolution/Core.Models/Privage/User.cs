@@ -23,7 +23,7 @@ namespace Core.Models
         public string eattribute1 { get; set; }
         public string userstat { get; set; }
       
-        public virtual ICollection<UserGroup> UserGroups { get; set; }
+        public virtual List<UserGroup> UserGroups { get; set; }
         public virtual ICollection<Res> Reses { get; set; }
     }
 }

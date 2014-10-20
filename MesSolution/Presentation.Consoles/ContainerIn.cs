@@ -9,8 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Presentation.Consoles
-{
-    [PartCreationPolicy(CreationPolicy.NonShared)]
+{   
     [Export]
     public class ContainerIn
     {

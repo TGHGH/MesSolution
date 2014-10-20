@@ -19,6 +19,9 @@ using System.Text;
 
 using Core.Db.Context;
 using Core.Models;
+using Component.Tools;
+using System.Reflection;
+using System.Collections.ObjectModel;
 
 
 namespace GMF.Demo.Core.Data.Initialize
@@ -26,11 +29,13 @@ namespace GMF.Demo.Core.Data.Initialize
     /// <summary>
     /// 数据库初始化策略
     /// </summary>
-    public class SampleData2 : DropCreateDatabaseIfModelChanges<MesContext>
+    public class SampleData2 : DropCreateDatabaseIfModelChanges<MesContext> 
     {
         protected override void Seed(MesContext context)
         {
+            context.Configuration.AutoDetectChangesEnabled = false;
             List<User> users = new List<User>
+            
             {
                 new User{usercode = "65128041",userpwd = "123",AddDate = DateTime.Now,eattribute1 = "123",IsDeleted = false,mdate = DateTime.Now,muser = "123",userdepart = "123",useremail = "123",username = "lg",userstat = "123",usertel = "123"},
                 new User{usercode = "65128042",userpwd = "123",AddDate = DateTime.Now,eattribute1 = "123",IsDeleted = false,mdate = DateTime.Now,muser = "123",userdepart = "123",useremail = "123",username = "lg",userstat = "123",usertel = "123"},
@@ -40,15 +45,76 @@ namespace GMF.Demo.Core.Data.Initialize
             };
             DbSet<User> userSet = context.Set<User>();
             users.ForEach(u => userSet.Add(u));
+            //List<User> users2 = Infial();
+            //users2.ForEach(u => userSet.Add(u));
 
-            List<Member> members = new List<Member>
+            List<UserGroup> userGroups = new List<UserGroup>
             {
-                new Member { UserName = "admin", Password = "123456", Email = "admin@gmfcn.net", NickName = "管理员" },
-                new Member { UserName = "gmfcn", Password = "123456", Email = "mf.guo@qq.com", NickName = "郭明锋" }
+                new UserGroup{usergroupcode="usergroupcode1",usergroupdesc="usergroupdesc1",usergrouptype="usergrouptype1",muser="muser1",mdate=DateTime.Now,eattribute1="eattribute1"},
+                new UserGroup{usergroupcode="usergroupcode2",usergroupdesc="usergroupdesc2",usergrouptype="usergrouptype2",muser="muser2",mdate=DateTime.Now,eattribute1="eattribute2"}
             };
-            DbSet<Member> memberSet = context.Set<Member>();
-            members.ForEach(m => memberSet.Add(m));
+            DbSet<UserGroup> userGroup = context.Set<UserGroup>();
+            userGroups.ForEach(u => userGroup.Add(u));
+            var userGroupList= userSet.Find("65128044").UserGroups;
+            userGroupList.Add(userGroup.First());
+            
+            context.Configuration.AutoDetectChangesEnabled = true;
             context.SaveChanges();
         }
+        public  List<User> Infial() 
+        {
+            List<User> users = new List<User>();
+            User userType = new User();
+            Type t = userType.GetType();           
+            for(int i=1;i<1001;i++)
+            {
+                User user = new User();
+                user.AddDate = DateTime.Now;
+                user.eattribute1 = "123";
+                user.IsDeleted = false;
+                user.mdate = DateTime.Now;
+                user.muser = "123";
+                user.usercode = "65128047";
+                user.userdepart = "123";
+                user.useremail = "123";
+                user.username = "lg";
+                user.userpwd = "123";
+                user.userstat = "123";
+                user.usertel = "123";
+                foreach (PropertyInfo pi in t.GetProperties())
+                {                    
+                    object value1 = pi.GetValue(user, null);//用pi.GetValue获得值
+                    string name = pi.Name;//获得属性的名字,后面就可以根据名字判断来进行些自己想要的操作
+                    //获得属性的类型,进行判断然后进行以后的操作,例如判断获得的属性是整数  
+                    if (value1 == null)
+                    {
+                        continue;
+                    }
+                    if (value1.GetType() == typeof(string))
+                    {
+                        pi.SetValue(user, name+i, null);
+                    }
+                    if (value1.GetType() == typeof(DateTime))
+                    {
+                        pi.SetValue(user, DateTime.Now, null);
+                    }
+                    if (value1.GetType() == typeof(bool))
+                    {
+                        pi.SetValue(user, false, null);
+                    }
+                    object value2 = pi.GetValue(user, null);//用pi.GetValue获得值                
+                  //  Console.WriteLine(name + ":" + value2);
+                   
+                }
+                if (user.usercode != null)
+                    users.Add(user);                
+            }           
+           
+            
+            return users;
+            
+        }
+
+    
     }
 }

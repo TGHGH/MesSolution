@@ -14,7 +14,7 @@ namespace Core.Db.Context
     /// <summary>
     ///     Demo项目数据访问上下文
     /// </summary>
-    [Export(typeof(DbContext)), PartCreationPolicy(CreationPolicy.NonShared)]
+    [Export(typeof(DbContext))]
     public class MesContext : DbContext
     {
         #region 构造函数
