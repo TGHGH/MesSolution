@@ -32,8 +32,8 @@ namespace BreakAwayConsole
             Database.SetInitializer(new DbContexts.DataAccess.InitializeDBWithSeedData());
 
             //第一章：
-            PrintAllDestinations();   //如需重新生成测试数据：取消注释本方法和【初始化数据】方法
-            PrintAllDestinationsSorted();
+            //PrintAllDestinations();   //如需重新生成测试数据：取消注释本方法和【初始化数据】方法
+            //PrintAllDestinationsSorted();
             //FindDestination();
             //PrintDestinationNameOnly();
             //TestFindLocalData();
