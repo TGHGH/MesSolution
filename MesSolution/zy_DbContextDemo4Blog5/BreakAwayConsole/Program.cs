@@ -104,7 +104,7 @@ namespace BreakAwayConsole
             //ValidateNewPerson();
             //ValidateDestination();
             //ValidatePropertyOnDemand();
-            //ValidateTrip();
+            ValidateTrip();
             //ValidateEverything();
 
 
