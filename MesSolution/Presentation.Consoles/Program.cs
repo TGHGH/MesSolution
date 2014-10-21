@@ -136,7 +136,8 @@ namespace Presentation.Consoles
 
         private static void Method02()
         {
-            Console.WriteLine(_container.GetExportedValue<IMemberRepository>().GetType());
+            OperationResult result = _container.GetExportedValue<IUserSiteContract>().DeleteUser("65128047");
+            Console.WriteLine(result.Message);
         }
 
         //添加
@@ -259,16 +260,7 @@ namespace Presentation.Consoles
 
         private static void Method08()
         {
-            User user = new User();
-            Type t = user.GetType();
-            foreach (PropertyInfo pi in t.GetProperties())
-            {         
-                
-                if (pi.GetValue(pi.Name,null).GetType() == typeof(int))
-                {
-                    pi.SetValue(pi, pi.Name, null);//用pi.GetValue获得值
-                }
-            }
+            
            
         }
 

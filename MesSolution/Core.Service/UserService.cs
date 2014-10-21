@@ -43,26 +43,29 @@ namespace Core.Service
 
 
 
-        public virtual OperationResult DeleteUser(Models.User user)
+        public virtual OperationResult DeleteUser(string key)
         {
-            PublicHelper.CheckArgument(user, "user");
-            int a=UserRepository.Delete(user, true);
+            PublicHelper.CheckArgument(key, "user");
+            int a = UserRepository.Delete(key, true);
             if (a >0)
             {
+                this.UnitOfWork.Commit();
+                this.UnitOfWork.Rollback();
                 return new OperationResult(OperationResultType.Success, "删除成功。", a);
             }
             else
-                return new OperationResult(OperationResultType.Success, "删除失败。", a);
+                return new OperationResult(OperationResultType.Error, "删除失败。", a);
         }
 
         public virtual OperationResult QueryUser(string key)
         {
             PublicHelper.CheckArgument(key, "user");
            
-            Models.User testUser= UserRepository.GetByKey("65128044");
-            UserRepository.Entity(testUser).Reload();
+            Models.User testUser= UserRepository.GetByKey(key);
+            
             if (testUser != null)
             {
+                UserRepository.Entity(testUser).Reload();
                 return new OperationResult(OperationResultType.Success, "查询成功。", testUser);
             }
             else
@@ -72,7 +75,7 @@ namespace Core.Service
         public virtual OperationResult UpdateUser(string usercode,string pwd)
         {
            // PublicHelper.CheckArgument(user, "user");
-            Models.User testUser = UserRepository.GetByKey("65128044");           
+            Models.User testUser = UserRepository.GetByKey(usercode);           
             if (testUser == null)
             {
                  return new OperationResult(OperationResultType.Success, "更改失败。", null);

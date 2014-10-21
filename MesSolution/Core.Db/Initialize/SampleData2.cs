@@ -56,7 +56,7 @@ namespace GMF.Demo.Core.Data.Initialize
             DbSet<UserGroup> userGroup = context.Set<UserGroup>();
             userGroups.ForEach(u => userGroup.Add(u));
             var userGroupList= userSet.Find("65128044").UserGroups;
-            userGroupList.Add(userGroup.First());
+          //  userGroupList.Add(userGroup.First());
             
             context.Configuration.AutoDetectChangesEnabled = true;
             context.SaveChanges();

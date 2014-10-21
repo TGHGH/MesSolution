@@ -11,7 +11,7 @@ namespace Core.Service
     public interface IUserService
     {
         OperationResult AddUser(User user);
-        OperationResult DeleteUser(User user);
+        OperationResult DeleteUser(string key);
         OperationResult QueryUser(string key);
         OperationResult UpdateUser(string usercode,string pwd);
 
