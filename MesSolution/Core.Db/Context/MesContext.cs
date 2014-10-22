@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 
 using Core.Models;
+using System.Data.Entity.Infrastructure;
 
 
 namespace Core.Db.Context
@@ -108,6 +109,66 @@ namespace Core.Db.Context
             //多对多启用级联删除约定，不想级联删除可以在删除前判断关联的数据进行拦截
             //modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
 
+        }
+        //标识
+        public bool LogChangesDuringSave { get; set; }
+
+        /// <summary>
+        /// 记录帮助类
+        /// </summary>
+        private void PrintPropertyValues(DbPropertyValues values, IEnumerable<string> propertiesToPrint, int indent = 1)
+        {
+            foreach (var propertyName in propertiesToPrint)
+            {
+                var value = values[propertyName];
+                if (value is DbPropertyValues)
+                {
+                    Console.WriteLine("{0}- Complex Property: {1}", string.Empty.PadLeft(indent), propertyName);
+                    var complexPropertyValues = (DbPropertyValues)value;
+                    PrintPropertyValues(complexPropertyValues, complexPropertyValues.PropertyNames, indent + 1);
+                }
+                else
+                {
+                    Console.WriteLine("{0}- {1}: {2}", string.Empty.PadLeft(indent), propertyName, values[propertyName]);
+                }
+            }
+        }
+        public override int SaveChanges()
+        {
+            this.LogChangesDuringSave = true;
+            if (LogChangesDuringSave)  //根据表示判断用重写的SaveChanges方法，还是普通的上下文SaveChanges方法
+            {
+                var entries = from e in this.ChangeTracker.Entries()
+                              where e.State != EntityState.Unchanged
+                              select e;   //过滤所有修改了的实体，包括：增加 / 修改 / 删除
+                foreach (var entry in entries)
+                {
+                    switch (entry.State)
+                    {
+                        case EntityState.Added:
+                            Console.WriteLine("Adding a {0}", entry.Entity.GetType());
+                            PrintPropertyValues(entry.CurrentValues, entry.CurrentValues.PropertyNames);
+                            break;
+                        case EntityState.Deleted:
+                            Console.WriteLine("Deleting a {0}", entry.Entity.GetType());
+                            PrintPropertyValues(entry.OriginalValues, GetKeyPropertyNames(entry.Entity));
+                            break;
+                        case EntityState.Modified:
+                            Console.WriteLine("Modifying a {0}", entry.Entity.GetType());
+                            var modifiedPropertyNames = from n in entry.CurrentValues.PropertyNames
+                                                        where entry.Property(n).IsModified
+                                                        select n;
+                            PrintPropertyValues(entry.CurrentValues, GetKeyPropertyNames(entry.Entity).Concat(modifiedPropertyNames));
+                            break;
+                    }
+                }
+            }
+            return base.SaveChanges();  //返回普通的上下文SaveChanges方法
+        }
+        private IEnumerable<string> GetKeyPropertyNames(object entity)
+        {
+            var objectContext = ((IObjectContextAdapter)this).ObjectContext;
+            return objectContext.ObjectStateManager.GetObjectStateEntry(entity).EntityKey.EntityKeyValues.Select(k => k.Key);
         }
     }
 }

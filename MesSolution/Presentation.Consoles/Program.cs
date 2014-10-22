@@ -150,7 +150,7 @@ namespace Presentation.Consoles
             user.IsDeleted = false;
             user.mdate = DateTime.Now;
             user.muser = "123";
-            user.usercode = "65128047";
+            user.usercode = "65128047651280476512804765128047651280476512804765128047";
             user.userdepart = "123";
             user.useremail = "123";
             user.username = "lg";
