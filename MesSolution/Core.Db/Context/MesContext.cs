@@ -135,34 +135,40 @@ namespace Core.Db.Context
         }
         public override int SaveChanges()
         {
-            this.LogChangesDuringSave = true;
-            if (LogChangesDuringSave)  //根据表示判断用重写的SaveChanges方法，还是普通的上下文SaveChanges方法
+            //this.LogChangesDuringSave = true;
+            //if (LogChangesDuringSave)  //根据表示判断用重写的SaveChanges方法，还是普通的上下文SaveChanges方法
+            //{
+            //    var entries = from e in this.ChangeTracker.Entries()
+            //                  where e.State != EntityState.Unchanged
+            //                  select e;   //过滤所有修改了的实体，包括：增加 / 修改 / 删除
+            //    foreach (var entry in entries)
+            //    {
+            //        switch (entry.State)
+            //        {
+            //            case EntityState.Added:
+            //                Console.WriteLine("Adding a {0}", entry.Entity.GetType());
+            //                PrintPropertyValues(entry.CurrentValues, entry.CurrentValues.PropertyNames);
+            //                break;
+            //            case EntityState.Deleted:
+            //                Console.WriteLine("Deleting a {0}", entry.Entity.GetType());
+            //                PrintPropertyValues(entry.OriginalValues, GetKeyPropertyNames(entry.Entity));
+            //                break;
+            //            case EntityState.Modified:
+            //                Console.WriteLine("Modifying a {0}", entry.Entity.GetType());
+            //                var modifiedPropertyNames = from n in entry.CurrentValues.PropertyNames
+            //                                            where entry.Property(n).IsModified
+            //                                            select n;
+            //                PrintPropertyValues(entry.CurrentValues, GetKeyPropertyNames(entry.Entity).Concat(modifiedPropertyNames));
+            //                break;
+            //        }
+            //    }
+            //}
+            if (this.GetValidationErrors().Count() > 0)
             {
-                var entries = from e in this.ChangeTracker.Entries()
-                              where e.State != EntityState.Unchanged
-                              select e;   //过滤所有修改了的实体，包括：增加 / 修改 / 删除
-                foreach (var entry in entries)
-                {
-                    switch (entry.State)
-                    {
-                        case EntityState.Added:
-                            Console.WriteLine("Adding a {0}", entry.Entity.GetType());
-                            PrintPropertyValues(entry.CurrentValues, entry.CurrentValues.PropertyNames);
-                            break;
-                        case EntityState.Deleted:
-                            Console.WriteLine("Deleting a {0}", entry.Entity.GetType());
-                            PrintPropertyValues(entry.OriginalValues, GetKeyPropertyNames(entry.Entity));
-                            break;
-                        case EntityState.Modified:
-                            Console.WriteLine("Modifying a {0}", entry.Entity.GetType());
-                            var modifiedPropertyNames = from n in entry.CurrentValues.PropertyNames
-                                                        where entry.Property(n).IsModified
-                                                        select n;
-                            PrintPropertyValues(entry.CurrentValues, GetKeyPropertyNames(entry.Entity).Concat(modifiedPropertyNames));
-                            break;
-                    }
-                }
+                Console.WriteLine(this.GetValidationErrors().First().ValidationErrors.First().ErrorMessage);
+                return -1;
             }
+            else
             return base.SaveChanges();  //返回普通的上下文SaveChanges方法
         }
         private IEnumerable<string> GetKeyPropertyNames(object entity)

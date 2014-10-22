@@ -22,7 +22,7 @@ namespace Component.Data
         /// <summary>
         ///     获取 当前实体的查询数据集
         /// </summary>
-        IQueryable<TEntity> Entities { get; }
+        IQueryable<TEntity> Entities { get; }       
 
         #endregion
 

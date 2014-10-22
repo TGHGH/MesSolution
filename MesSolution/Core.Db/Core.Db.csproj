@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Context\MesContext.cs" />
     <Compile Include="Context\RepositoryContext.cs" />
+    <Compile Include="EntityCheck.cs" />
     <Compile Include="Initialize\DatabaseInitializer.cs" />
     <Compile Include="Initialize\SampleData.cs" />
     <Compile Include="Initialize\SampleData2.cs" />

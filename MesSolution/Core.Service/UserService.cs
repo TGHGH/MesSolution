@@ -1,5 +1,6 @@
 ﻿using Component.Tools;
 using Core.Db.Repositories;
+using Core.Help;
 using Core.Models;
 using Core.Service.Impl;
 using System;
@@ -8,6 +9,7 @@ using System.ComponentModel.Composition;
 using System.Data.Entity;
 using System.Data.Entity.Core;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,19 +20,27 @@ namespace Core.Service
     {
         [Import]
         protected IUserRepository UserRepository { get; set; }
+        [Import]
+        protected DbContext MesContext { get; set; }
         public IQueryable<User> Users()
         {
             return UserRepository.Entities;
         } 
         public virtual OperationResult AddUser(Models.User user)
         {
-            PublicHelper.CheckArgument(user, "user");
             
+            DbEntityValidationResult dbEntityValidationResult = EntityCheck.CheckEntity<User>(MesContext, user);
+            if (!dbEntityValidationResult.IsValid)
+            {
+                return new OperationResult(OperationResultType.Error, dbEntityValidationResult.ValidationErrors.First().ErrorMessage, user);
+            }
+
             User testUser = UserRepository.Entities.SingleOrDefault(u => u.usercode == user.usercode);                   
                        
             if (testUser == null)
             {
                 UserRepository.Insert(user, true);
+                
                 return new OperationResult(OperationResultType.Success, "添加成功。", user);
 
             }
@@ -40,6 +50,25 @@ namespace Core.Service
             }
             
         }
+
+        //public virtual OperationResult AddUser(Models.User user)
+        //{
+        //    PublicHelper.CheckArgument(user, "user");
+
+        //    User testUser = UserRepository.Entities.SingleOrDefault(u => u.usercode == user.usercode);
+
+        //    if (testUser == null)
+        //    {
+        //        UserRepository.Insert(user, true);
+        //        return new OperationResult(OperationResultType.Success, "添加成功。", user);
+
+        //    }
+        //    else
+        //    {
+        //        return new OperationResult(OperationResultType.IllegalOperation, "已存在。", user);
+        //    }
+
+        //}
 
 
 

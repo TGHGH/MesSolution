@@ -157,8 +157,10 @@ namespace Presentation.Consoles
             user.userpwd = "123";
             user.userstat = "123";
             user.usertel = "123";
-            OperationResult result = _container.GetExportedValue<IUserSiteContract>().AddUser(user);
-            Console.WriteLine(result.Message);
+           
+            _container.GetExportedValue<IUserSiteContract>().AddUser(user);
+              
+           
             Console.WriteLine();
         }
         //查询
