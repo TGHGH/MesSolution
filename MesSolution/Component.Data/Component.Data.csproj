@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="DataHelper.cs" />
     <Compile Include="EFRepositoryBase.cs" />
+    <Compile Include="EntityCheck.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="IUnitOfWorkContext.cs" />

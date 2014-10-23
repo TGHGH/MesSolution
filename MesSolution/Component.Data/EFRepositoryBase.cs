@@ -8,6 +8,7 @@ using System.Text;
 
 using Component.Tools;
 using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 
 
 namespace Component.Data
@@ -79,11 +80,32 @@ namespace Component.Data
         /// <param name="entity"> 实体对象 </param>
         /// <param name="isSave"> 是否执行保存 </param>
         /// <returns> 操作影响的行数 </returns>
-        public virtual int Insert(TEntity entity, bool isSave = true)
+        public virtual OperationResult Insert(TEntity entity, bool isSave = true)
         {
-            PublicHelper.CheckArgument(entity, "entity");
-            EFContext.RegisterNew(entity);
-            return isSave ? EFContext.Commit() : 0;
+            //PublicHelper.CheckArgument(entity, "entity");
+            OperationResult operationResult = EntityCheck.CheckEntity<TEntity>(GetDbContext(), entity);
+            if (operationResult.ResultType == OperationResultType.Success)
+            {
+                try
+                {
+                    EFContext.RegisterNew(entity);
+                    operationResult.Message = "添加成功：" + (isSave ? EFContext.Commit() : 0) + "条数据";
+                }
+                catch (DataAccessException e)
+                {
+                    //判断数据是否存在
+                    if (e.Message == "数据访问层异常：提交数据更新时发生异常：主键重复，无法插入数据。")
+                    {
+                        operationResult.Message = "已存在";
+                        operationResult.ResultType = OperationResultType.Error;
+                    }
+                    else
+                        throw;
+                }
+                
+            }
+
+            return operationResult;
         }
 
         /// <summary>
@@ -105,11 +127,21 @@ namespace Component.Data
         /// <param name="id"> 实体记录编号 </param>
         /// <param name="isSave"> 是否执行保存 </param>
         /// <returns> 操作影响的行数 </returns>
-        public virtual int Delete(object id, bool isSave = true)
+        public virtual OperationResult Delete(object id, bool isSave = true)
         {
             PublicHelper.CheckArgument(id, "id");
-            TEntity entity = EFContext.Set<TEntity>().Find(id);
-            return entity != null ? Delete(entity, isSave) : 0;
+            OperationResult operationResult=new OperationResult(OperationResultType.Success,"删除成功");
+            TEntity entity = GetByKey(id);
+            if (entity == null)
+            {
+                operationResult.ResultType = OperationResultType.Error;
+                operationResult.Message = id + "不存在";
+            }
+            else
+            {                
+                Delete(entity, isSave);
+            }            
+            return operationResult;
         }
 
         /// <summary>
@@ -157,11 +189,32 @@ namespace Component.Data
         /// <param name="entity"> 实体对象 </param>
         /// <param name="isSave"> 是否执行保存 </param>
         /// <returns> 操作影响的行数 </returns>
-        public virtual int Update(TEntity entity, bool isSave = true)
+        public virtual OperationResult Update(TEntity entity, bool isSave = true)
         {
-            PublicHelper.CheckArgument(entity, "entity");
-            EFContext.RegisterModified(entity);
-            return isSave ? EFContext.Commit() : 0;
+            //PublicHelper.CheckArgument(entity, "entity");
+            OperationResult operationResult = EntityCheck.CheckEntity<TEntity>(GetDbContext(), entity);
+            if (operationResult.ResultType == OperationResultType.Success)
+            {
+                try
+                {
+                    EFContext.RegisterModified(entity);
+                    operationResult.Message = "修改成功：" + (isSave ? EFContext.Commit() : 0) + "条数据";
+                }
+                catch (DataAccessException e)
+                {
+                    if (e.Message.Equals("数据访问层异常：提交数据更新时发生同步异常："))
+                    {
+                        GetDbContext().Entry(entity).Reload();
+                        operationResult.Message = "同步问题，修改失败！请再执行一次!";
+                        operationResult.ResultType = OperationResultType.Error;
+                    }
+                    else
+                        throw;
+                }
+                                
+            }
+
+            return operationResult;
         }
 
         /// <summary>

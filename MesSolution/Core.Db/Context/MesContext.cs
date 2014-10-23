@@ -163,12 +163,7 @@ namespace Core.Db.Context
             //        }
             //    }
             //}
-            if (this.GetValidationErrors().Count() > 0)
-            {
-                Console.WriteLine(this.GetValidationErrors().First().ValidationErrors.First().ErrorMessage);
-                return -1;
-            }
-            else
+            
             return base.SaveChanges();  //返回普通的上下文SaveChanges方法
         }
         private IEnumerable<string> GetKeyPropertyNames(object entity)

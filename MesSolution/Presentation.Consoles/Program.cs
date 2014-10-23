@@ -136,7 +136,7 @@ namespace Presentation.Consoles
 
         private static void Method02()
         {
-            OperationResult result = _container.GetExportedValue<IUserSiteContract>().DeleteUser("65128047");
+            OperationResult result = _container.GetExportedValue<IUserSiteContract>().DeleteEntity("65128047");
             Console.WriteLine(result.Message);
         }
 
@@ -149,42 +149,46 @@ namespace Presentation.Consoles
             user.eattribute1 = "123";
             user.IsDeleted = false;
             user.mdate = DateTime.Now;
-            user.muser = "123";
-            user.usercode = "65128047651280476512804765128047651280476512804765128047";
+            user.muser = "65128047";
+            user.usercode = "65128047";
             user.userdepart = "123";
             user.useremail = "123";
             user.username = "lg";
             user.userpwd = "123";
             user.userstat = "123";
             user.usertel = "123";
-           
-            _container.GetExportedValue<IUserSiteContract>().AddUser(user);
-              
+            Console.WriteLine(_container.GetExportedValue<IUserSiteContract>().AddEntity(user).Message);
+            
+  
            
             Console.WriteLine();
         }
-        //查询
+        //删除
         private static void Method04()
         {
 
-            OperationResult result = _container.GetExportedValueOrDefault<ContainerIn>().UserContract.QueryUser("65128044");
-            User user = (User)result.AppendData;
-            Console.WriteLine(user.userpwd);
+            OperationResult result = _container.GetExportedValueOrDefault<ContainerIn>().UserContract.DeleteEntity("65128047");
+            Console.WriteLine(result.Message);
             Console.WriteLine();
         }
 
-        //修改,提交
+        //同步修改
         private static void Method05()
         {
-            OperationResult result = _container.GetExportedValueOrDefault<ContainerIn>().UserContract.UpdateUser("65128044", "222");
-            User user = (User)result.AppendData;
-            Console.WriteLine(user.userpwd);
+            OperationResult result2 = _container.GetExportedValueOrDefault<ContainerIn>().UserContract.FindEntity("65128044");
+            User user = (User)result2.AppendData;
+            user.userpwd = "444";
+            using (var mesContext=new MesContext()){
+                mesContext.Database.ExecuteSqlCommand("update Users set userpwd='333' where usercode='65128044'");
+            }
+            OperationResult result = _container.GetExportedValueOrDefault<ContainerIn>().UserContract.UpdateEntity(user);
+            Console.WriteLine(result.Message);
             Console.WriteLine();
         }
         //修改，回滚
         private static void Method06()
         {
-            OperationResult result = _container.GetExportedValueOrDefault<ContainerIn>().UserContract.UpdateUser2("65128044", "222");
+            OperationResult result = _container.GetExportedValueOrDefault<ContainerIn>().UserContract.FindEntity("65128044");
             User user = (User)result.AppendData;
             Console.WriteLine(user.userpwd);
             Console.WriteLine();

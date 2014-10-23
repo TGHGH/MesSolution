@@ -32,7 +32,7 @@ namespace BreakAwayConsole
             Database.SetInitializer(new DbContexts.DataAccess.InitializeDBWithSeedData());
 
             //第一章：
-            PrintAllDestinations();   //如需重新生成测试数据：取消注释本方法和【初始化数据】方法
+            //PrintAllDestinations();   //如需重新生成测试数据：取消注释本方法和【初始化数据】方法
             //PrintAllDestinationsSorted();
             //FindDestination();
             //PrintDestinationNameOnly();
@@ -94,7 +94,7 @@ namespace BreakAwayConsole
             //WorkingWithPropertyMethod();
             //FindModifiedProperties();
             //WorkingWithReferenceMethod();
-            //WorkingWithCollectionMethod();
+           WorkingWithCollectionMethod();
             //ReloadLodging();
             //PrintChangeTrackerEntries();
             //ConcurrencyDemo();
@@ -104,7 +104,7 @@ namespace BreakAwayConsole
             //ValidateNewPerson();
             //ValidateDestination();
             //ValidatePropertyOnDemand();
-            ValidateTrip();
+            //ValidateTrip();
             //ValidateEverything();
 
             //第六章
@@ -1695,7 +1695,7 @@ namespace BreakAwayConsole
                             where t.Description == "Trip from the database"
                             select t).Single();
                 trip.Description = "Getaway in Vermont";
-                context.Database.ExecuteSqlCommand(@"UPDATE dbo.Trips SET CostUSD = 400 WHERE Description = 'Trip from the database'");
+                context.Database.ExecuteSqlCommand(@"UPDATE dbo.Trips SET CostUSD = 400 WHERE Description = 'Trip from the database'");                
                 SaveWithConcurrencyResolution(context);
             }
         }

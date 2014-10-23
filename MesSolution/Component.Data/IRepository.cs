@@ -41,7 +41,7 @@ namespace Component.Data
         /// <param name="entity"> 实体对象 </param>
         /// <param name="isSave"> 是否执行保存 </param>
         /// <returns> 操作影响的行数 </returns>
-        int Insert(TEntity entity, bool isSave = true);
+        OperationResult Insert(TEntity entity, bool isSave = true);
 
         /// <summary>
         ///     批量插入实体记录集合
@@ -57,7 +57,7 @@ namespace Component.Data
         /// <param name="id"> 实体记录编号 </param>
         /// <param name="isSave"> 是否执行保存 </param>
         /// <returns> 操作影响的行数 </returns>
-        int Delete(object id, bool isSave = true);
+        OperationResult Delete(object id, bool isSave = true);
 
         /// <summary>
         ///     删除实体记录
@@ -89,7 +89,7 @@ namespace Component.Data
         /// <param name="entity"> 实体对象 </param>
         /// <param name="isSave"> 是否执行保存 </param>
         /// <returns> 操作影响的行数 </returns>
-        int Update(TEntity entity, bool isSave = true);
+        OperationResult Update(TEntity entity, bool isSave = true);
 
         /// <summary>
         ///     查找指定主键的实体记录
