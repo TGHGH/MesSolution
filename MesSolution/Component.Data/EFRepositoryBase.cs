@@ -88,8 +88,15 @@ namespace Component.Data
             {
                 try
                 {
-                    EFContext.RegisterNew(entity);
-                    operationResult.Message = "添加成功：" + (isSave ? EFContext.Commit() : 0) + "条数据";
+                    
+                    TEntity entity2= EFContext.Entity<TEntity>(entity).Entity;
+                    if (entity2 == null)
+                    {
+                        EFContext.RegisterNew(entity);
+                        operationResult.Message = "添加成功：" + (isSave ? EFContext.Commit() : 0) + "条数据";
+                    }
+                    else
+                        operationResult.Message = "已存在";
                 }
                 catch (DataAccessException e)
                 {
@@ -153,7 +160,7 @@ namespace Component.Data
         public virtual int Delete(TEntity entity, bool isSave = true)
         {
             PublicHelper.CheckArgument(entity, "entity");
-            EFContext.RegisterDeleted(entity);
+            EFContext.RegisterDeleted(entity);                        
             return isSave ? EFContext.Commit() : 0;
         }
 

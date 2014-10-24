@@ -131,7 +131,7 @@ namespace Presentation.Consoles
             Console.WriteLine(object.ReferenceEquals(studentManager1, studentManager2));
             var studentManager3 = _container.GetExportedValue<MesContext>();
             var studentManager4 = _container.GetExportedValue<MesContext>();
-            Console.WriteLine(object.ReferenceEquals(studentManager3, studentManager4));
+            Console.WriteLine(object.ReferenceEquals(studentManager3, studentManager4));                   
         }
 
         private static void Method02()
@@ -143,12 +143,12 @@ namespace Presentation.Consoles
         //添加
         private static void Method03()
         {
-
+            DateTime dt = new DateTime(2014,10,24,11,11,11);
             User user = new User();
-            user.AddDate = DateTime.Now;
+            user.AddDate = dt;
             user.eattribute1 = "123";
             user.IsDeleted = false;
-            user.mdate = DateTime.Now;
+            user.mdate = dt;
             user.muser = "65128047";
             user.usercode = "65128047";
             user.userdepart = "123";
