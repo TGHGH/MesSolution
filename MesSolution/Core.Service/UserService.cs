@@ -28,7 +28,11 @@ namespace Core.Service
         }
         public virtual OperationResult AddEntity(Models.User user)
         {
-            return UserRepository.Insert(user, true);
+            User testUser = (User)FindEntity(user.usercode).AppendData;
+            if (testUser==null)
+                return UserRepository.Insert(user, true);           
+            else
+                return new OperationResult(OperationResultType.Success, "操作失败，数据已存在", user);
         }
 
 
@@ -39,17 +43,10 @@ namespace Core.Service
 
         public virtual OperationResult FindEntity(string key)
         {
-            PublicHelper.CheckArgument(key, "user");
+           PublicHelper.CheckArgument(key, "user");
 
-            Models.User testUser = UserRepository.GetByKey(key);
-
-            if (testUser != null)
-            {
-                UserRepository.Entity(testUser).Reload();
-                return new OperationResult(OperationResultType.Success, "查询成功。", testUser);
-            }
-            else
-                return new OperationResult(OperationResultType.QueryNull, "指定参数的数据不存在。", key);
+           return UserRepository.GetByKey(key);
+            
         }
 
         public virtual OperationResult UpdateEntity(User user)

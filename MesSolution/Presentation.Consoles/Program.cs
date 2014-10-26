@@ -16,6 +16,7 @@ using System.Data.Entity.Infrastructure;
 using GMF.Demo.Core.Data.Initialize;
 using Component.Data;
 using Core.Db.Context;
+using System.Data.Entity.Validation;
 
 
 namespace Presentation.Consoles
@@ -150,18 +151,16 @@ namespace Presentation.Consoles
             user.IsDeleted = false;
             user.mdate = dt;
             user.muser = "65128047";
-            user.usercode = "65128047";
+            user.usercode = "6512804765128047651280476512804765128047651280476512804765128047";
             user.userdepart = "123";
             user.useremail = "123";
             user.username = "lg";
             user.userpwd = "123";
             user.userstat = "123";
             user.usertel = "123";
-            Console.WriteLine(_container.GetExportedValue<IUserSiteContract>().AddEntity(user).Message);
-            
-  
            
-            Console.WriteLine();
+            Console.WriteLine(_container.GetExportedValue<IUserSiteContract>().AddEntity(user).Message);
+         
         }
         //删除
         private static void Method04()

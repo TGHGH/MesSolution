@@ -71,7 +71,7 @@ namespace BreakAwayConsole
             //RemovePrimaryContactReference();
 
             //第三章
-            //GetOneEntityToSeeEntityState();
+            GetOneEntityToSeeEntityState();
             //TestAddDestination();
             //TestAttachDestination();
             //TestUpdateDestination();
@@ -94,7 +94,7 @@ namespace BreakAwayConsole
             //WorkingWithPropertyMethod();
             //FindModifiedProperties();
             //WorkingWithReferenceMethod();
-           WorkingWithCollectionMethod();
+            //WorkingWithCollectionMethod();
             //ReloadLodging();
             //PrintChangeTrackerEntries();
             //ConcurrencyDemo();
@@ -1982,7 +1982,7 @@ namespace BreakAwayConsole
                     Console.WriteLine("Save Successful");
                 }
                 catch (DbEntityValidationException ex)
-                {
+                {                    
                     Console.WriteLine("Save Failed: ");
                     foreach (var error in ex.EntityValidationErrors)
                     {

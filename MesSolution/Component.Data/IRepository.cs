@@ -96,7 +96,7 @@ namespace Component.Data
         /// </summary>
         /// <param name="key"> 指定主键 </param>
         /// <returns> 符合编号的记录，不存在返回null </returns>
-        TEntity GetByKey(object key);
+        OperationResult GetByKey(object key);
 
         DbContext GetDbContext();
 

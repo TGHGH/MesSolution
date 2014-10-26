@@ -82,36 +82,14 @@ namespace Component.Data
         /// <returns> 操作影响的行数 </returns>
         public virtual OperationResult Insert(TEntity entity, bool isSave = true)
         {
-            //PublicHelper.CheckArgument(entity, "entity");
-            OperationResult operationResult = EntityCheck.CheckEntity<TEntity>(GetDbContext(), entity);
-            if (operationResult.ResultType == OperationResultType.Success)
+            PublicHelper.CheckArgument(entity, "entity");
+            OperationResult operationResult = EntityCheck.CheckEntity<TEntity>(GetDbContext(), entity); 
+           // OperationResult operationResult = new OperationResult(OperationResultType.Success);
+            if (operationResult.ResultType==OperationResultType.Success)
             {
-                try
-                {
-                    
-                    TEntity entity2= EFContext.Entity<TEntity>(entity).Entity;
-                    if (entity2 == null)
-                    {
-                        EFContext.RegisterNew(entity);
-                        operationResult.Message = "添加成功：" + (isSave ? EFContext.Commit() : 0) + "条数据";
-                    }
-                    else
-                        operationResult.Message = "已存在";
-                }
-                catch (DataAccessException e)
-                {
-                    //判断数据是否存在
-                    if (e.Message == "数据访问层异常：提交数据更新时发生异常：主键重复，无法插入数据。")
-                    {
-                        operationResult.Message = "已存在";
-                        operationResult.ResultType = OperationResultType.Error;
-                    }
-                    else
-                        throw;
-                }
-                
-            }
-
+                EFContext.RegisterNew(entity);
+                operationResult.Message = "添加成功：" + (isSave ? EFContext.Commit() : 0) + "条数据"; 
+            }           
             return operationResult;
         }
 
@@ -138,7 +116,7 @@ namespace Component.Data
         {
             PublicHelper.CheckArgument(id, "id");
             OperationResult operationResult=new OperationResult(OperationResultType.Success,"删除成功");
-            TEntity entity = GetByKey(id);
+            TEntity entity = (TEntity)GetByKey(id).AppendData;
             if (entity == null)
             {
                 operationResult.ResultType = OperationResultType.Error;
@@ -208,7 +186,7 @@ namespace Component.Data
                     operationResult.Message = "修改成功：" + (isSave ? EFContext.Commit() : 0) + "条数据";
                 }
                 catch (DataAccessException e)
-                {
+                {                    
                     if (e.Message.Equals("数据访问层异常：提交数据更新时发生同步异常："))
                     {
                         GetDbContext().Entry(entity).Reload();
@@ -229,10 +207,17 @@ namespace Component.Data
         /// </summary>
         /// <param name="key"> 指定主键 </param>
         /// <returns> 符合编号的记录，不存在返回null </returns>
-        public virtual TEntity GetByKey(object key)
+        public virtual OperationResult GetByKey(object key)
         {
             PublicHelper.CheckArgument(key, "key");
-            return EFContext.Set<TEntity>().Find(key);
+            TEntity entity=EFContext.Set<TEntity>().Find(key);
+            if (entity != null)
+            {
+                return new OperationResult(OperationResultType.Success, "查询成功。", entity);
+            }
+            else
+                return new OperationResult(OperationResultType.Error, key+"不存在。", null);
+             
         }
 
         #endregion
