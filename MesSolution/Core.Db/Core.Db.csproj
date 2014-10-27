@@ -62,8 +62,10 @@
     <Compile Include="Repositories\Impl\LoginLogRepository.cs" />
     <Compile Include="Repositories\Impl\MemberExtendRepository.cs" />
     <Compile Include="Repositories\Impl\MemberRepository.cs" />
+    <Compile Include="Repositories\Impl\UserGroupRepository.cs" />
     <Compile Include="Repositories\Impl\UserRepository.cs" />
     <Compile Include="Repositories\Impl\RoleRepository.cs" />
+    <Compile Include="Repositories\IUserGroupRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\IRoleRepository.cs" />
   </ItemGroup>

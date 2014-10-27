@@ -25,6 +25,7 @@ namespace Presentation.Consoles
     internal class Program
     {
         private static CompositionContainer _container;
+        private static CompositionContainer _container2;
         private static AggregateCatalog catalog;
      //   [Import(RequiredCreationPolicy = CreationPolicy.NonShared)]
      //   public ContainerIn cin { get; set; }
@@ -43,7 +44,7 @@ namespace Presentation.Consoles
             catalog.Catalogs.Add(new DirectoryCatalog(Directory.GetCurrentDirectory()));
             catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
             _container = new CompositionContainer(catalog);
-
+            _container2 = new CompositionContainer(catalog);
             bool exit = false;
             while (true)
             {
@@ -128,11 +129,13 @@ namespace Presentation.Consoles
         private static void Method01()
         {
             var studentManager1 = _container.GetExportedValue<ContainerIn>();
-            var studentManager2 = _container.GetExportedValue<ContainerIn>();
-            Console.WriteLine(object.ReferenceEquals(studentManager1, studentManager2));
-            var studentManager3 = _container.GetExportedValue<MesContext>();
-            var studentManager4 = _container.GetExportedValue<MesContext>();
-            Console.WriteLine(object.ReferenceEquals(studentManager3, studentManager4));                   
+            var studentManager2 = _container2.GetExportedValue<ContainerIn>();
+            Console.WriteLine(object.ReferenceEquals(studentManager1, studentManager2));            
+            var studentManager3 = _container.GetExportedValue<DbContext>();
+            var studentManager4 = _container2.GetExportedValue<DbContext>();
+            Console.WriteLine(object.ReferenceEquals(studentManager3, studentManager4));  
+            
+     
         }
 
         private static void Method02()
@@ -150,16 +153,24 @@ namespace Presentation.Consoles
             user.eattribute1 = "123";
             user.IsDeleted = false;
             user.mdate = dt;
-            user.muser = "65128047";
-            user.usercode = "6512804765128047651280476512804765128047651280476512804765128047";
+            user.muser = "651280476512804765128047651280476512804765128047651280476512804765128047";
+            user.usercode = "65128047";
             user.userdepart = "123";
             user.useremail = "123";
             user.username = "lg";
             user.userpwd = "123";
             user.userstat = "123";
             user.usertel = "123";
-           
-            Console.WriteLine(_container.GetExportedValue<IUserSiteContract>().AddEntity(user).Message);
+
+            try
+            {
+                Console.WriteLine(_container.GetExportedValue<IUserSiteContract>().AddEntity(user).Message);
+            }
+            catch(DbEntityValidationException e)
+            {
+                Console.WriteLine(e.EntityValidationErrors.First().ValidationErrors.First().ErrorMessage);
+            }
+            
          
         }
         //删除
@@ -184,7 +195,7 @@ namespace Presentation.Consoles
             Console.WriteLine(result.Message);
             Console.WriteLine();
         }
-        //修改，回滚
+        //查询
         private static void Method06()
         {
             OperationResult result = _container.GetExportedValueOrDefault<ContainerIn>().UserContract.FindEntity("65128044");
@@ -265,22 +276,20 @@ namespace Presentation.Consoles
 
         private static void Method08()
         {
-            
-           
+
+            OperationResult result = _container2.GetExportedValueOrDefault<ContainerIn>().UserContract.FindEntity("65128044");
+            User user = (User)result.AppendData;
+            Console.WriteLine(user.userpwd);
+            Console.WriteLine();           
         }
 
         private static void Method09()
         {
-            //_container.Dispose();
+            User user = (User)_container.GetExportedValue<IUserSiteContract>().FindEntity("65128044").AppendData;
+            UserGroup userGroup = (UserGroup)_container.GetExportedValue<IUserGroupSiteContract>().FindEntity("usergroupcode1").AppendData;
             
-            //_container = new CompositionContainer(catalog);
-            
-            ContainerIn pro = _container.GetExportedValue<ContainerIn>();
-            CompositionBatch batch = new CompositionBatch();           
-            if (pro.UserContract == null)
-                Console.WriteLine("MesContext null");
-            else
-                Console.WriteLine("MesContext not null");
+            _container.GetExportedValue<DbContext>().SaveChanges();
+            Console.WriteLine(user.UserGroups.ToList().Count);
         
         }
 

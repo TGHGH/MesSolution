@@ -82,14 +82,12 @@ namespace Component.Data
         /// <returns> 操作影响的行数 </returns>
         public virtual OperationResult Insert(TEntity entity, bool isSave = true)
         {
-            PublicHelper.CheckArgument(entity, "entity");
-            OperationResult operationResult = EntityCheck.CheckEntity<TEntity>(GetDbContext(), entity); 
-           // OperationResult operationResult = new OperationResult(OperationResultType.Success);
-            if (operationResult.ResultType==OperationResultType.Success)
-            {
-                EFContext.RegisterNew(entity);
-                operationResult.Message = "添加成功：" + (isSave ? EFContext.Commit() : 0) + "条数据"; 
-            }           
+            PublicHelper.CheckArgument(entity, "entity");           
+            OperationResult operationResult = new OperationResult(OperationResultType.Success);           
+            EFContext.RegisterNew(entity);
+            int number = (isSave ? EFContext.Commit() : 0);
+            operationResult.Message = "添加成功：" + number + "条数据";
+            operationResult.AppendData = number;
             return operationResult;
         }
 
@@ -99,11 +97,15 @@ namespace Component.Data
         /// <param name="entities"> 实体记录集合 </param>
         /// <param name="isSave"> 是否执行保存 </param>
         /// <returns> 操作影响的行数 </returns>
-        public virtual int Insert(IEnumerable<TEntity> entities, bool isSave = true)
+        public virtual OperationResult Insert(IEnumerable<TEntity> entities, bool isSave = true)
         {
             PublicHelper.CheckArgument(entities, "entities");
+            OperationResult operationResult = new OperationResult(OperationResultType.Success);
             EFContext.RegisterNew(entities);
-            return isSave ? EFContext.Commit() : 0;
+            int number = (isSave ? EFContext.Commit() : 0);
+            operationResult.Message = "添加成功：" +number  + "条数据";
+            operationResult.AppendData = number;
+            return operationResult;
         }
 
         /// <summary>
@@ -124,7 +126,7 @@ namespace Component.Data
             }
             else
             {                
-                Delete(entity, isSave);
+                return Delete(entity, isSave);
             }            
             return operationResult;
         }
@@ -135,11 +137,15 @@ namespace Component.Data
         /// <param name="entity"> 实体对象 </param>
         /// <param name="isSave"> 是否执行保存 </param>
         /// <returns> 操作影响的行数 </returns>
-        public virtual int Delete(TEntity entity, bool isSave = true)
+        public virtual OperationResult Delete(TEntity entity, bool isSave = true)
         {
             PublicHelper.CheckArgument(entity, "entity");
-            EFContext.RegisterDeleted(entity);                        
-            return isSave ? EFContext.Commit() : 0;
+            OperationResult operationResult = new OperationResult(OperationResultType.Success);
+            EFContext.RegisterDeleted(entity);
+            int number = (isSave ? EFContext.Commit() : 0);
+            operationResult.Message = "删除成功：" + number + "条数据";
+            operationResult.AppendData = number;
+            return operationResult;
         }
 
         /// <summary>
@@ -148,11 +154,15 @@ namespace Component.Data
         /// <param name="entities"> 实体记录集合 </param>
         /// <param name="isSave"> 是否执行保存 </param>
         /// <returns> 操作影响的行数 </returns>
-        public virtual int Delete(IEnumerable<TEntity> entities, bool isSave = true)
+        public virtual OperationResult Delete(IEnumerable<TEntity> entities, bool isSave = true)
         {
-            PublicHelper.CheckArgument(entities, "entities");
+            PublicHelper.CheckArgument(entities, "entity");
+            OperationResult operationResult = new OperationResult(OperationResultType.Success);
             EFContext.RegisterDeleted(entities);
-            return isSave ? EFContext.Commit() : 0;
+            int number = isSave ? EFContext.Commit() : 0;
+            operationResult.Message = "删除成功：" + number + "条数据";
+            operationResult.AppendData = number;
+            return operationResult;
         }
 
         /// <summary>
@@ -161,11 +171,11 @@ namespace Component.Data
         /// <param name="predicate"> 查询条件谓语表达式 </param>
         /// <param name="isSave"> 是否执行保存 </param>
         /// <returns> 操作影响的行数 </returns>
-        public virtual int Delete(Expression<Func<TEntity, bool>> predicate, bool isSave = true)
+        public virtual OperationResult Delete(Expression<Func<TEntity, bool>> predicate, bool isSave = true)
         {
             PublicHelper.CheckArgument(predicate, "predicate");
             List<TEntity> entities = EFContext.Set<TEntity>().Where(predicate).ToList();
-            return entities.Count > 0 ? Delete(entities, isSave) : 0;
+            return entities.Count > 0 ? Delete(entities, isSave) : new OperationResult(OperationResultType.Error,"没有符合条件的删除数据");
         }
 
         /// <summary>
@@ -176,29 +186,11 @@ namespace Component.Data
         /// <returns> 操作影响的行数 </returns>
         public virtual OperationResult Update(TEntity entity, bool isSave = true)
         {
-            //PublicHelper.CheckArgument(entity, "entity");
-            OperationResult operationResult = EntityCheck.CheckEntity<TEntity>(GetDbContext(), entity);
-            if (operationResult.ResultType == OperationResultType.Success)
-            {
-                try
-                {
-                    EFContext.RegisterModified(entity);
-                    operationResult.Message = "修改成功：" + (isSave ? EFContext.Commit() : 0) + "条数据";
-                }
-                catch (DataAccessException e)
-                {                    
-                    if (e.Message.Equals("数据访问层异常：提交数据更新时发生同步异常："))
-                    {
-                        GetDbContext().Entry(entity).Reload();
-                        operationResult.Message = "同步问题，修改失败！请再执行一次!";
-                        operationResult.ResultType = OperationResultType.Error;
-                    }
-                    else
-                        throw;
-                }
-                                
-            }
-
+            PublicHelper.CheckArgument(entity, "entity");            
+            OperationResult operationResult = new OperationResult(OperationResultType.Success);           
+            EFContext.RegisterModified(entity);
+            operationResult.Message = "修改成功：" + (isSave ? EFContext.Commit() : 0) + "条数据";
+            operationResult.AppendData = entity;
             return operationResult;
         }
 
