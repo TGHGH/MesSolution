@@ -17,6 +17,7 @@ using GMF.Demo.Core.Data.Initialize;
 using Component.Data;
 using Core.Db.Context;
 using System.Data.Entity.Validation;
+using System.Data.Entity.SqlServer;
 
 
 namespace Presentation.Consoles
@@ -283,29 +284,36 @@ namespace Presentation.Consoles
             Console.WriteLine();           
         }
 
+        //添加主表跟从表的关系
         private static void Method09()
         {
-            User user = (User)_container.GetExportedValue<IUserSiteContract>().FindEntity("65128044").AppendData;
-            UserGroup userGroup = (UserGroup)_container.GetExportedValue<IUserGroupSiteContract>().FindEntity("usergroupcode1").AppendData;
-            
+            //User user = (User)_container.GetExportedValue<IUserSiteContract>().FindEntity("65128044").AppendData;
+            User user=_container.GetExportedValue<IUserSiteContract>().Users().Single(r=>r.usercode=="65128044");
+            List<UserGroup> userGroup = _container.GetExportedValue<IUserGroupSiteContract>().UserGroups().Where(u => u.usergroupcode.StartsWith("u")).ToList();
+            foreach (var a in userGroup)
+            {
+                user.UserGroups.Add(a);     
+            }
+                
+
+          
+                       
             _container.GetExportedValue<DbContext>().SaveChanges();
-            Console.WriteLine(user.UserGroups.ToList().Count);
-        
+            Console.WriteLine(user.UserGroups.Count);        
         }
 
         private static void Method10()
-        {
-            Program program = new Program();
-            Program progarm2 = new Program();
-           // Console.WriteLine(ReferenceEquals(program.cin, progarm2.cin));
-            Console.WriteLine(ReferenceEquals(_container.GetExportedValue<ContainerIn>().UserContract, _container.GetExportedValue<ContainerIn>().UserContract));
-
-            Console.WriteLine(_container.GetExportedValue<ContainerIn>().UserContract.Equals(_container.GetExportedValue<ContainerIn>().UserContract));
+        {            
+            User user = (User)_container.GetExportedValue<IUserSiteContract>().FindEntity("65128044").AppendData;
+           // _container.GetExportedValue<DbContext>().Entry(user).Collection(r => r.UserGroups).Load();
+            Console.WriteLine(user.UserGroups.First().usergroupcode);
         }
 
+        //取数据库时间
         private static void Method11()
         {
-            throw new NotImplementedException();
+
+            Console.WriteLine(_container.GetExportedValue<IUserSiteContract>().Users().Select(u => SqlFunctions.GetDate()).First().Value);
         }
 
         private static void Method12()
