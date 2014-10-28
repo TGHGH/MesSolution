@@ -148,14 +148,14 @@ namespace Presentation.Consoles
         //添加
         private static void Method03()
         {
-            DateTime dt = new DateTime(2014,10,24,11,11,11);
+            DateTime dt = _container.GetExportedValue<IUserSiteContract>().Users().Select(u => SqlFunctions.GetDate()).First().Value;
             User user = new User();
             user.AddDate = dt;
             user.eattribute1 = "123";
             user.IsDeleted = false;
             user.mdate = dt;
-            user.muser = "651280476512804765128047651280476512804765128047651280476512804765128047";
-            user.usercode = "65128047";
+            user.muser = "65128044";
+            user.usercode = "65128044";
             user.userdepart = "123";
             user.useremail = "123";
             user.username = "lg";
@@ -178,9 +178,10 @@ namespace Presentation.Consoles
         private static void Method04()
         {
 
-            OperationResult result = _container.GetExportedValueOrDefault<ContainerIn>().UserContract.DeleteEntity("65128047");
+            OperationResult result = _container.GetExportedValueOrDefault<ContainerIn>().UserContract.DeleteEntity("65128044");
             Console.WriteLine(result.Message);
             Console.WriteLine();
+            //有外键约束时不能删除
         }
 
         //同步修改
@@ -293,37 +294,52 @@ namespace Presentation.Consoles
             foreach (var a in userGroup)
             {
                 user.UserGroups.Add(a);     
-            }
-                
-
-          
+            }                
                        
             _container.GetExportedValue<DbContext>().SaveChanges();
             Console.WriteLine(user.UserGroups.Count);        
         }
 
+        //查询
         private static void Method10()
         {            
             User user = (User)_container.GetExportedValue<IUserSiteContract>().FindEntity("65128044").AppendData;
-           // _container.GetExportedValue<DbContext>().Entry(user).Collection(r => r.UserGroups).Load();
+
+            //显示加载
+            //_container.GetExportedValue<DbContext>().Entry(user).Collection(r => r.UserGroups).Query().Where(r=>r.usergroupcode=="usergroupcode1") .Load();
+            //贪婪加载
+            //_container.GetExportedValue<IUserSiteContract>().Users().Include("UserGroups");
+
+            //延迟加载
             Console.WriteLine(user.UserGroups.First().usergroupcode);
         }
 
         //取数据库时间
         private static void Method11()
         {
-
             Console.WriteLine(_container.GetExportedValue<IUserSiteContract>().Users().Select(u => SqlFunctions.GetDate()).First().Value);
         }
-
+        //删除关系
         private static void Method12()
         {
-            throw new NotImplementedException();
-        }
+            //User user = (User)_container.GetExportedValue<IUserSiteContract>().FindEntity("65128044").AppendData;
+            User user = _container.GetExportedValue<IUserSiteContract>().Users().Single(r => r.usercode == "65128044");
+            UserGroup userGroup = _container.GetExportedValue<IUserGroupSiteContract>().UserGroups().SingleOrDefault(u => u.usergroupcode=="usergroupcode2");
+            user.UserGroups.Remove(userGroup);        
 
+            _container.GetExportedValue<DbContext>().SaveChanges();
+            Console.WriteLine(user.UserGroups.Count);    
+        }
+        //修改从表的数据
         private static void Method13()
         {
-            throw new NotImplementedException();
+            //User user = (User)_container.GetExportedValue<IUserSiteContract>().FindEntity("65128044").AppendData;
+            User user = _container.GetExportedValue<IUserSiteContract>().Users().Single(r => r.usercode == "65128044");
+            UserGroup userGroup = _container.GetExportedValue<IUserGroupSiteContract>().UserGroups().SingleOrDefault(u => u.usergroupcode == "usergroupcode1");
+            userGroup.usergroupdesc = "usergroupdesc";
+
+            _container.GetExportedValue<DbContext>().SaveChanges();
+            Console.WriteLine(user.UserGroups.Count);     
         }
 
         private static void Method14()

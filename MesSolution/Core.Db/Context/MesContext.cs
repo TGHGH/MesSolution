@@ -107,7 +107,7 @@ namespace Core.Db.Context
             //移除一对多的级联删除约定，想要级联删除可以在 EntityTypeConfiguration<TEntity>的实现类中进行控制
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             //多对多启用级联删除约定，不想级联删除可以在删除前判断关联的数据进行拦截
-            //modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
 
         }
         //标识
