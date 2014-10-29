@@ -53,8 +53,9 @@
     <Compile Include="Context\MesContext.cs" />
     <Compile Include="Context\RepositoryContext.cs" />
     <Compile Include="Initialize\DatabaseInitializer.cs" />
-    <Compile Include="Initialize\SampleData.cs" />
-    <Compile Include="Initialize\SampleData2.cs" />
+    <Compile Include="Initialize\CreateDatabaseIfNotExist.cs" />
+    <Compile Include="Initialize\DropCreateDatabaseIfModel.cs" />
+    <Compile Include="Initialize\Initialize.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ILoginLogRepository.cs" />
     <Compile Include="Repositories\IMemberExtendRepository.cs" />
@@ -85,7 +86,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

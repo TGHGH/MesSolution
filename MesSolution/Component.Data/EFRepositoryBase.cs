@@ -69,7 +69,7 @@ namespace Component.Data
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public virtual DbEntityEntry<TEntity> Entity(TEntity entity)
+        public virtual DbEntityEntry<TEntity> Entry(TEntity entity)
         {
             return EFContext.Entity<TEntity>(entity);
         }

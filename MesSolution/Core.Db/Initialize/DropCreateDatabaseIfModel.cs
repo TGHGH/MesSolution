@@ -22,6 +22,7 @@ using Core.Models;
 using Component.Tools;
 using System.Reflection;
 using System.Collections.ObjectModel;
+using Core.Db.Initialize;
 
 
 namespace GMF.Demo.Core.Data.Initialize
@@ -29,11 +30,12 @@ namespace GMF.Demo.Core.Data.Initialize
     /// <summary>
     /// 数据库初始化策略
     /// </summary>
-    public class SampleData2 : DropCreateDatabaseIfModelChanges<MesContext> 
+    public class DropCreateDatabaseIfModel : DropCreateDatabaseAlways<MesContext> 
     {
         protected override void Seed(MesContext context)
         {
             context.Configuration.AutoDetectChangesEnabled = false;
+            int num = 11;
             List<User> users = new List<User>
             
             {
@@ -45,28 +47,33 @@ namespace GMF.Demo.Core.Data.Initialize
             };
             DbSet<User> userSet = context.Set<User>();
             users.ForEach(u => userSet.Add(u));
-            //List<User> users2 = Infial();
-            //users2.ForEach(u => userSet.Add(u));
 
-            List<UserGroup> userGroups = new List<UserGroup>
-            {
-                new UserGroup{usergroupcode="usergroupcode1",usergroupdesc="usergroupdesc1",usergrouptype="usergrouptype1",muser="muser1",mdate=DateTime.Now,eattribute1="eattribute1"},
-                new UserGroup{usergroupcode="usergroupcode2",usergroupdesc="usergroupdesc2",usergrouptype="usergrouptype2",muser="muser2",mdate=DateTime.Now,eattribute1="eattribute2"}
-            };
-            DbSet<UserGroup> userGroup = context.Set<UserGroup>();
-            userGroups.ForEach(u => userGroup.Add(u));
-            var userGroupList= userSet.Find("65128044").UserGroups;
-          //  userGroupList.Add(userGroup.First());
+            Initialize<User>.Infial(num).ForEach(u => context.Set<User>().Add(u));
+            Initialize<UserGroup>.Infial(num).ForEach(u => context.Set<UserGroup>().Add(u));
+            Initialize<Res>.Infial(num).ForEach(u => context.Set<Res>().Add(u));
+            Initialize<Mdl>.Infial(num).ForEach(u => context.Set<Mdl>().Add(u));
+
+
+            //List<UserGroup> userGroups = new List<UserGroup>
+            //{
+            //    new UserGroup{usergroupcode="usergroupcode1",usergroupdesc="usergroupdesc1",usergrouptype="usergrouptype1",muser="muser1",mdate=DateTime.Now,eattribute1="eattribute1"},
+            //    new UserGroup{usergroupcode="usergroupcode2",usergroupdesc="usergroupdesc2",usergrouptype="usergrouptype2",muser="muser2",mdate=DateTime.Now,eattribute1="eattribute2"}
+            //};
+            //DbSet<UserGroup> userGroup = context.Set<UserGroup>();
+            //userGroups.ForEach(u => userGroup.Add(u));
+            //var userGroupList = userSet.Find("65128044").UserGroups;
+            //userGroupList.Add(userGroup.First());
             
             context.Configuration.AutoDetectChangesEnabled = true;
             context.SaveChanges();
         }
-        public  List<User> Infial() 
+        #region 用户初始化
+        public List<User> UserInfial()
         {
             List<User> users = new List<User>();
             User userType = new User();
-            Type t = userType.GetType();           
-            for(int i=1;i<1001;i++)
+            Type t = userType.GetType();
+            for (int i = 1; i < 11; i++)
             {
                 User user = new User();
                 user.AddDate = DateTime.Now;
@@ -82,8 +89,10 @@ namespace GMF.Demo.Core.Data.Initialize
                 user.userstat = "123";
                 user.usertel = "123";
                 foreach (PropertyInfo pi in t.GetProperties())
-                {                    
-                    object value1 = pi.GetValue(user, null);//用pi.GetValue获得值
+                {
+                    pi.Attributes.GetType();
+                    //object value1 = pi.GetValue(user, null);//用pi.GetValue获得值
+                    object value1 = pi.PropertyType;
                     string name = pi.Name;//获得属性的名字,后面就可以根据名字判断来进行些自己想要的操作
                     //获得属性的类型,进行判断然后进行以后的操作,例如判断获得的属性是整数  
                     if (value1 == null)
@@ -92,7 +101,7 @@ namespace GMF.Demo.Core.Data.Initialize
                     }
                     if (value1.GetType() == typeof(string))
                     {
-                        pi.SetValue(user, name+i, null);
+                        pi.SetValue(user, name + i, null);
                     }
                     if (value1.GetType() == typeof(DateTime))
                     {
@@ -103,18 +112,23 @@ namespace GMF.Demo.Core.Data.Initialize
                         pi.SetValue(user, false, null);
                     }
                     object value2 = pi.GetValue(user, null);//用pi.GetValue获得值                
-                  //  Console.WriteLine(name + ":" + value2);
-                   
+                    //  Console.WriteLine(name + ":" + value2);
+
                 }
                 if (user.usercode != null)
-                    users.Add(user);                
-            }           
-           
-            
-            return users;
-            
-        }
+                    users.Add(user);
+            }
 
-    
+
+            return users;
+
+        }
+        #endregion
+        #region 用户组初始化
+
+        #endregion
+
+
+
     }
 }

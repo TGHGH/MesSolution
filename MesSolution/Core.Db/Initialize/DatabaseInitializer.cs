@@ -21,7 +21,7 @@ namespace GMF.Demo.Core.Data.Initialize
         public static void CreateDatabaseIfNotExists( )
         {
             //运行的时候
-            Database.SetInitializer(new SampleData());
+            Database.SetInitializer(new CreateDatabaseIfNotExist());
            
             using (var mesContext = new MesContext())
             {
@@ -33,7 +33,7 @@ namespace GMF.Demo.Core.Data.Initialize
             //运行的时候
             //Database.SetInitializer(new SampleData());
             //开发的时候
-            Database.SetInitializer(new SampleData2());
+            Database.SetInitializer(new DropCreateDatabaseIfModel());
             using (var mesContext = new MesContext())
             {
                 mesContext.Database.Initialize(false);

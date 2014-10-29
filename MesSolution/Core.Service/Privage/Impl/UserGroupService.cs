@@ -16,44 +16,41 @@ using System.Threading.Tasks;
 
 namespace Core.Service
 {
-    public abstract class UserService : CoreServiceBase, IUserService
+    public abstract class UserGroupService : CoreServiceBase, IUserGroupService
     {
         [Import]
-        protected IUserRepository UserRepository { get; set; }      
-        public IQueryable<User> Users()
+        protected IUserGroupRepository userGroupRepository { get; set; }      
+        public IQueryable<UserGroup> UserGroups()
         {
-            return UserRepository.Entities;
+            return userGroupRepository.Entities;
         }
-        public virtual OperationResult AddEntity(Models.User user)
+        public virtual OperationResult AddEntity(Models.UserGroup userGroup)
         {
            
-            return UserRepository.Insert(user, true);        
+            return userGroupRepository.Insert(userGroup, true);        
            
         }
 
 
         public virtual OperationResult DeleteEntity(string key)
         {
-            return UserRepository.Delete(key, true);
+            return userGroupRepository.Delete(key, true);
         }
 
         public virtual OperationResult FindEntity(string key)
         {
-           PublicHelper.CheckArgument(key, "user");
+           PublicHelper.CheckArgument(key, "userGroup");
 
-           return UserRepository.GetByKey(key);
+           return userGroupRepository.GetByKey(key);
             
         }
 
-        public virtual OperationResult UpdateEntity(User user)
+        public virtual OperationResult UpdateEntity(UserGroup userGroup)
         {
-            return UserRepository.Update(user, true);           
+            return userGroupRepository.Update(userGroup, true);           
 
         }
-        public void test()
-        {
-
-        }
+   
     }
 
 }

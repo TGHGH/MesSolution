@@ -96,6 +96,7 @@
     <Compile Include="Processing\Simulation.cs" />
     <Compile Include="Processing\SimulationReport.cs" />
     <Compile Include="Processing\SubCarton2Rcard.cs" />
+    <Compile Include="Privage\LoginInfo2.cs" />
     <Compile Include="Test\LoginInfo.cs" />
     <Compile Include="Test\LoginLog.cs" />
     <Compile Include="Test\Member.cs" />

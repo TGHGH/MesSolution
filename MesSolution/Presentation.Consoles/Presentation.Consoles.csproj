@@ -89,6 +89,14 @@
       <Project>{97b4cc5d-5069-4ed5-932b-19bf87478e57}</Project>
       <Name>Core.Service</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Form.Models\FormApplication.Models.csproj">
+      <Project>{2ff18615-ab59-4bed-b8e6-f24782f7d695}</Project>
+      <Name>FormApplication.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Form.Service\FormApplication.Service.csproj">
+      <Project>{8e44ef54-d6b1-4f95-818b-372debd4e1cd}</Project>
+      <Name>FormApplication.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

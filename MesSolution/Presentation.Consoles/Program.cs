@@ -10,7 +10,8 @@ using System.Text;
 using Component.Tools;
 using Core.Db.Repositories;
 using Core.Models;
-using Application.Site;
+//using Application.Site;
+using FormApplication.Service;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using GMF.Demo.Core.Data.Initialize;
@@ -278,11 +279,34 @@ namespace Presentation.Consoles
 
         private static void Method08()
         {
+            
+            
+            for (int i=1;i<11;i++)
+            {
+                User user = new User();
+                Type t = user.GetType();
+                foreach (PropertyInfo pi in t.GetProperties())
+                {
+                    object value1 = pi.PropertyType.Name;                    
+                    if (value1.Equals("String"))
+                    {
+                        pi.SetValue(user, pi.Name + i, null);
+                    }
+                    if (value1.Equals("DateTime"))
+                    {
+                        pi.SetValue(user, DateTime.Now, null);
+                    }
+                    if (value1.Equals("Boolean"))
+                    {
+                        pi.SetValue(user, false, null);
+                    }
+                    Console.WriteLine(pi.Name);
+                }
+               // Console.WriteLine(user.usercode);
+                
+            }
+            
 
-            OperationResult result = _container2.GetExportedValueOrDefault<ContainerIn>().UserContract.FindEntity("65128044");
-            User user = (User)result.AppendData;
-            Console.WriteLine(user.userpwd);
-            Console.WriteLine();           
         }
 
         //添加主表跟从表的关系
@@ -344,7 +368,10 @@ namespace Presentation.Consoles
 
         private static void Method14()
         {
-            throw new NotImplementedException();
+            LoginInfo2 logoninfo=new LoginInfo2();
+            logoninfo.Access="65128044";
+            logoninfo.Password="1234";
+            Console.WriteLine(_container.GetExportedValue<IUserSiteContract>().Login(logoninfo).Message);
         }
 
         #endregion

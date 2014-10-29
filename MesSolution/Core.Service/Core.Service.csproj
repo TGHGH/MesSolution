@@ -50,14 +50,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Privage\Impl\IUserGroupService.cs" />
-    <Compile Include="Privage\Impl\IUserService.cs" />
+    <Compile Include="Privage\IUserGroupService.cs" />
+    <Compile Include="Privage\IUserService.cs" />
     <Compile Include="Test\IAccountService.cs" />
     <Compile Include="Test\Impl\AccountService.cs" />
     <Compile Include="CoreServiceBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserGroupService.cs" />
-    <Compile Include="UserService.cs" />
+    <Compile Include="Privage\Impl\UserGroupService.cs" />
+    <Compile Include="Privage\Impl\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Component.Data\Component.Data.csproj">
@@ -79,7 +79,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

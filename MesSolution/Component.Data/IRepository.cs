@@ -33,7 +33,7 @@ namespace Component.Data
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        DbEntityEntry<TEntity> Entity(TEntity entity);
+        DbEntityEntry<TEntity> Entry(TEntity entity);
 
         /// <summary>
         ///     插入实体记录

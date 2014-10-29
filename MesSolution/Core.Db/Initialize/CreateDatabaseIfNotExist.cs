@@ -13,7 +13,7 @@ namespace GMF.Demo.Core.Data.Initialize
     /// <summary>
     /// 数据库初始化策略
     /// </summary>
-    public class SampleData : CreateDatabaseIfNotExists<MesContext>
+    public class CreateDatabaseIfNotExist : CreateDatabaseIfNotExists<MesContext>
     {
         protected override void Seed(MesContext context)
         {
