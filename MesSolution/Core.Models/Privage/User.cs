@@ -35,6 +35,6 @@ namespace Core.Models
         public string userstat { get; set; }
 
         public virtual ICollection<UserGroup> UserGroups { get; set; }
-        public virtual ICollection<Res> Reses { get; set; }
+       
     }
 }

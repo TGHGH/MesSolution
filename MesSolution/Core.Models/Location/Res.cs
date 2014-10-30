@@ -38,7 +38,7 @@ namespace Core.Models
         public string DCTCODE { get; set; }
 
         public virtual Ss Ss { get; set; }
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<UserGroup> UserGroups { get; set; }
         public virtual Op Op { get; set; }
     }
 }

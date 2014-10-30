@@ -142,14 +142,14 @@ namespace Presentation.Consoles
 
         private static void Method02()
         {
-            OperationResult result = _container.GetExportedValue<IUserSiteContract>().DeleteEntity("65128047");
+            OperationResult result = _container.GetExportedValue<IUserFormContract>().DeleteEntity("65128047");
             Console.WriteLine(result.Message);
         }
 
         //添加
         private static void Method03()
         {
-            DateTime dt = _container.GetExportedValue<IUserSiteContract>().Users().Select(u => SqlFunctions.GetDate()).First().Value;
+            DateTime dt = _container.GetExportedValue<IUserFormContract>().Users().Select(u => SqlFunctions.GetDate()).First().Value;
             User user = new User();
             user.AddDate = dt;
             user.eattribute1 = "123";
@@ -166,7 +166,7 @@ namespace Presentation.Consoles
 
             try
             {
-                Console.WriteLine(_container.GetExportedValue<IUserSiteContract>().AddEntity(user).Message);
+                Console.WriteLine(_container.GetExportedValue<IUserFormContract>().AddEntity(user).Message);
             }
             catch(DbEntityValidationException e)
             {
@@ -313,7 +313,7 @@ namespace Presentation.Consoles
         private static void Method09()
         {
             //User user = (User)_container.GetExportedValue<IUserSiteContract>().FindEntity("65128044").AppendData;
-            User user=_container.GetExportedValue<IUserSiteContract>().Users().Single(r=>r.usercode=="65128044");
+            User user=_container.GetExportedValue<IUserFormContract>().Users().Single(r=>r.usercode=="65128044");
             List<UserGroup> userGroup = _container.GetExportedValue<IUserGroupSiteContract>().UserGroups().Where(u => u.usergroupcode.StartsWith("u")).ToList();
             foreach (var a in userGroup)
             {
@@ -327,7 +327,7 @@ namespace Presentation.Consoles
         //查询
         private static void Method10()
         {            
-            User user = (User)_container.GetExportedValue<IUserSiteContract>().FindEntity("65128044").AppendData;
+            User user = (User)_container.GetExportedValue<IUserFormContract>().FindEntity("65128044").AppendData;
 
             //显示加载
             //_container.GetExportedValue<DbContext>().Entry(user).Collection(r => r.UserGroups).Query().Where(r=>r.usergroupcode=="usergroupcode1") .Load();
@@ -341,13 +341,13 @@ namespace Presentation.Consoles
         //取数据库时间
         private static void Method11()
         {
-            Console.WriteLine(_container.GetExportedValue<IUserSiteContract>().Users().Select(u => SqlFunctions.GetDate()).First().Value);
+            Console.WriteLine(_container.GetExportedValue<IUserFormContract>().Users().Select(u => SqlFunctions.GetDate()).First().Value);
         }
         //删除关系
         private static void Method12()
         {
             //User user = (User)_container.GetExportedValue<IUserSiteContract>().FindEntity("65128044").AppendData;
-            User user = _container.GetExportedValue<IUserSiteContract>().Users().Single(r => r.usercode == "65128044");
+            User user = _container.GetExportedValue<IUserFormContract>().Users().Single(r => r.usercode == "65128044");
             UserGroup userGroup = _container.GetExportedValue<IUserGroupSiteContract>().UserGroups().SingleOrDefault(u => u.usergroupcode=="usergroupcode2");
             user.UserGroups.Remove(userGroup);        
 
@@ -358,7 +358,7 @@ namespace Presentation.Consoles
         private static void Method13()
         {
             //User user = (User)_container.GetExportedValue<IUserSiteContract>().FindEntity("65128044").AppendData;
-            User user = _container.GetExportedValue<IUserSiteContract>().Users().Single(r => r.usercode == "65128044");
+            User user = _container.GetExportedValue<IUserFormContract>().Users().Single(r => r.usercode == "65128044");
             UserGroup userGroup = _container.GetExportedValue<IUserGroupSiteContract>().UserGroups().SingleOrDefault(u => u.usergroupcode == "usergroupcode1");
             userGroup.usergroupdesc = "usergroupdesc";
 
@@ -371,7 +371,7 @@ namespace Presentation.Consoles
             LoginInfo2 logoninfo=new LoginInfo2();
             logoninfo.Access="65128044";
             logoninfo.Password="1234";
-            Console.WriteLine(_container.GetExportedValue<IUserSiteContract>().Login(logoninfo).Message);
+            Console.WriteLine(_container.GetExportedValue<IUserFormContract>().Login(logoninfo).Message);
         }
 
         #endregion

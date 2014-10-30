@@ -19,5 +19,7 @@ namespace Core.Models
         public string eattribute1 { get; set; }
         public virtual ICollection<User> Users { get; set; }
         public virtual ICollection<Mdl> Mdls { get; set; }
+        
+        public virtual ICollection<Res> Ress { get; set; }
     }
 }

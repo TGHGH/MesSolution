@@ -11,8 +11,8 @@ using System.Threading.Tasks;
 
 namespace FormApplication.Service
 {
-    [Export(typeof(IUserSiteContract))]
-    public class UserSiteContract:UserService,IUserSiteContract
+    [Export(typeof(IUserFormContract))]
+    public class UserSiteContract:UserService,IUserFormContract
     {
         /// <summary>
         ///     用户登录
@@ -36,7 +36,12 @@ namespace FormApplication.Service
                 List<Res> reses=new List<Res>();                
                 foreach (var a in usergroups)
                 {
-                    reses.AddRange((List<Res>)a.Mdls);
+                    reses.AddRange((List<Res>)a.Ress);
+                }
+                if (reses.SingleOrDefault(r=>r.RESCODE==model.ResCode)==null)
+                {
+                    result.ResultType = OperationResultType.Error;
+                    result.Message = "用户没有该资源的权限";
                 }
             }
             return result;

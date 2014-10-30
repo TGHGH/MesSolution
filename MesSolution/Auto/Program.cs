@@ -9,25 +9,26 @@ namespace Auto
 {
     class Program
     {
-        public static readonly string namespaceString = "Core.Db.Repositories";
-        public static readonly string namespaceString_BLL = "MESBll3";
-        public static readonly string rn = "\r\n";
-        public static readonly string space = "    ";
+        //public static readonly string namepaceRepositorie"Core.Db.Repositories";
+        //public static readonly string name = "MESBll3";
+        //public static readonly string rn = "\r\n";
+        //public static readonly string "\t" = "    ";
         static void Main(string[] args)
         {
 
             //Console.WriteLine(ToFirstLower("UserGroup"));
            // writeFile("Mdl");
            // writeFileBLL("UserGroup2Res");
-            writeFileCoreIService("Mdl");
-            writeFileCoreService("Mdl");
-           
+            writeFileCoreIService("Res");
+            writeFileCoreService("Res");          
 
         }
-        public static void writeFile(string calssString)
+        public static void writeFile(string classString)
         {
-            writeFileIDAL(calssString);
-            writeFileDAL(calssString);
+            writeFileIDAL(classString);
+            writeFileDAL(classString);
+            writeFileCoreIService(classString);
+            writeFileCoreService(classString);
         }
         public static void writeFileIDAL(string classString)
         {
@@ -37,25 +38,25 @@ namespace Auto
             char[] charData;
             try
             {
-                string s = "using System;" + rn;
-                s = s + "using System.Collections.Generic;" + rn;
-                s = s + "using System.Linq;" + rn;
-                s = s + "using System.Text;" + rn;
+                StringBuilder s =new StringBuilder( "using System;" );
+                s.AppendLine( "using System.Collections.Generic;" );
+                s.AppendLine( "using System.Linq;" );
+                s.AppendLine( "using System.Text;" );
 
-                s = s + "using Component.Data;" + rn;
-                s = s + "using Core.Models;" + rn;
-                s = s + rn;
-                s = s + "namespace " + namespaceString + rn;
-                s = s + "{" + rn;
-                s = s + rn;
-                s = s + space + "public interface I" + classString + "Repository : IRepository<" + classString + ">" + rn;
+                s.AppendLine( "using Component.Data;" );
+                s.AppendLine( "using Core.Models;" );
+                s.AppendLine();
+                s.AppendLine( "namespace Core.Db.Repositories" );
+                s.AppendLine( "{" );
+                s.AppendLine();
+                s.AppendLine( "\t" + "public interface I" + classString + "Repository : IRepository<" + classString + ">" );
 
-                s = s + space + "{" + rn;
-                s = s + space + "}" + rn;
-                s = s + "}" + rn;
+                s.AppendLine( "\t" + "{" );
+                s.AppendLine( "\t" + "}" );
+                s.AppendLine( "}" );
 
 
-                charData = s.ToCharArray();
+                charData = s.ToString().ToCharArray();
                 byData = new byte[charData.Length];
                 Encoder e = Encoding.UTF8.GetEncoder();
                 e.GetBytes(charData, 0, charData.Length, byData, 0, true);
@@ -80,27 +81,27 @@ namespace Auto
             char[] charData;
             try
             {
-                string s = "using System;" + rn;
-                s = s + "using System.Collections.Generic;" + rn;
-                s = s + "using System.ComponentModel.Composition;" + rn;
-                s = s + "using System.Linq;" + rn;
-                s = s + "using System.Text;" + rn;
+                StringBuilder s =new StringBuilder ("using System;" );
+                s.AppendLine( "using System.Collections.Generic;" );
+                s.AppendLine( "using System.ComponentModel.Composition;" );
+                s.AppendLine( "using System.Linq;" );
+                s.AppendLine( "using System.Text;" );
               
-                s = s + "using Component.Data;" + rn;
-                s = s + "using Core.Models;" + rn;
-                s = s + rn;
-                s = s + "namespace " + namespaceString + rn;
-                s = s + "{" + rn;
-                s = s + rn;
-                s = s + space + "[Export(typeof(I" + classString + "Repository))]" + rn;
-                s = s + space + "public class " + classString + "Repository : EFRepositoryBase<" + classString + ">,I" + classString + "Repository" + rn;
+                s.AppendLine( "using Component.Data;" );
+                s.AppendLine( "using Core.Models;" );
+                s.AppendLine();
+                s.AppendLine( "namespace Core.Db.Repositories");
+                s.AppendLine( "{" );
+                s.AppendLine();
+                s.AppendLine( "\t" + "[Export(typeof(I" + classString + "Repository))]" );
+                s.AppendLine( "\t" + "public class " + classString + "Repository : EFRepositoryBase<" + classString + ">,I" + classString + "Repository" );
 
-                s = s + space + "{" + rn;
-                s = s + space + "}" + rn;
-                s = s + "}" + rn;
+                s.AppendLine( "\t" + "{" );
+                s.AppendLine( "\t" + "}" );
+                s.AppendLine( "}" );
 
 
-                charData = s.ToCharArray();
+                charData = s.ToString().ToCharArray();
                 byData = new byte[charData.Length];
                 Encoder e = Encoding.UTF8.GetEncoder();
                 e.GetBytes(charData, 0, charData.Length, byData, 0, true);
@@ -124,35 +125,36 @@ namespace Auto
         public static void writeFileCoreIService(string classString)
         {
 
-            FileStream aFile = new FileStream("../../../" + "Core.Service" + "/" + classString + "Service" + ".cs", FileMode.Create);
+            FileStream aFile = new FileStream("../../../" + "Core.Service" + "/I" + classString + "Service" + ".cs", FileMode.Create);
             byte[] byData;
             char[] charData;
             try
             {
-                string s = "using System;" + rn;
-                s = s + "using Component.Tools;" + rn;
-                s = s + "using System.Linq;" + rn;
-                s = s + "using System.Text;" + rn;
-                s = s + "using Core.Models;" + rn;
-              
-                s = s + rn;
-                s = s + "namespace " + "Core.Service" + rn;
-                s = s + "{" + rn;
-                s = s + rn;
+                StringBuilder s =new StringBuilder ("using System;") ;
+                s.AppendLine();
+                s.AppendLine("using Component.Tools;");
+                s.AppendLine("using System.Linq;");
+                s.AppendLine("using System.Text;");
+                s.AppendLine("using Core.Models;");
+
+                s.AppendLine();
+                s.AppendLine("namespace " + "Core.Service");
+                s.AppendLine( "{");
+                s.AppendLine();
 
                 //有参数构造函数
-                s = s + space + "public interface I" + classString + "Service" + rn;
-                s = s + space + "{" + rn;
-                s = s + space + space + " OperationResult AddEntity("+classString+" "+classString.ToLower()+");"+  rn;
-                s = s + space + space + " OperationResult DeleteEntity(string key);"  + rn;
-                s = s + space + space + " OperationResult FindEntity(string key);" + rn;
-                s = s + space + space + " OperationResult UpdateEntity(" + classString + " " + classString.ToLower() + ");" + rn;
-                s = s + space + space + "IQueryable<"+classString+">"+ classString+"+s();" + rn;
-                s = s + space + "}" + rn;
-                s = s + "}" + rn;
+                s.AppendLine("\t"+"public interface I" + classString + "Service") ;
+                s.AppendLine( "\t" + "{" );
+                s.AppendLine( "\t" + "\t" + " OperationResult AddEntity("+classString+" "+ToFirstLower(classString)+");");
+                s.AppendLine( "\t" + "\t" + " OperationResult DeleteEntity(string key);"  );
+                s.AppendLine( "\t" + "\t" + " OperationResult FindEntity(string key);" );
+                s.AppendLine( "\t" + "\t" + " OperationResult UpdateEntity(" + classString + " " + ToFirstLower(classString) + ");" );
+                s.AppendLine( "\t" + "\t" + " IQueryable<"+classString+">"+ classString+"s( );" );
+                s.AppendLine( "\t" + "}" );
+                s.AppendLine( "}" );
+                
 
-
-                charData = s.ToCharArray();
+                charData = s.ToString().ToCharArray();
                 byData = new byte[charData.Length];
                 Encoder e = Encoding.UTF8.GetEncoder();
                 e.GetBytes(charData, 0, charData.Length, byData, 0, true);
@@ -181,54 +183,55 @@ namespace Auto
             char[] charData;
             try
             {
-                string s = "using System.ComponentModel.Composition;" + rn;
-                s = s + "using Component.Tools;" + rn;
-                s = s + "using System.Linq;" + rn;
-                s = s + "using Core.Db.Repositories;" + rn;
-                s = s + "using Core.Models;" + rn;
-
-                s = s + rn;
-                s = s + "namespace " + "Core.Service" + rn;
-                s = s + "{" + rn;
-                s = s + rn;
+                StringBuilder s =new StringBuilder ("using System.ComponentModel.Composition;" );
+                s.AppendLine();
+                s.AppendLine( "using Component.Tools;" );
+                s.AppendLine( "using System.Linq;" );
+                s.AppendLine( "using Core.Db.Repositories;" );
+                s.AppendLine( "using Core.Models;" );
 
                
-                s = s + space + "public abstract class " + classString + "Service" +" : CoreServiceBase,I"+classString+"Service"+ rn;
-                s = s + space + "{" + rn;
-                s = s + space + space + "[Import]" + rn;
-                s = s + s + "protected I"+classString+"Repository "+classString.ToLower()+"Repository { get; set; } " + rn;
+                s.AppendLine( "namespace " + "Core.Service" );
+                s.AppendLine( "{" );
+                 s.AppendLine();
 
-                s = s + s + "public IQueryable<" + classString + "> " + classString + "s()" + rn;
-                s = s + s + "{" + rn;
-                s = s + s + "return "+classString.ToLower()+"Repository.Entities;" + rn;
-                s = s + s + "}" + rn;
+               
+                s.AppendLine( "\t" + "public abstract class " + classString + "Service" +" : CoreServiceBase,I"+classString+"Service");
+                s.AppendLine( "\t" + "{" );
+                s.AppendLine( "\t" + "\t" + "[Import]" );
+                s.AppendLine( "\t" + "\t" + "protected I" + classString + "Repository " + ToFirstLower(classString) + "Repository { get; set; } ");
 
-                s = s + s + "public virtual OperationResult AddEntity("+classString+" " +classString.ToLower()+")" + rn;
-                s = s + s + "{" + rn;
-                s = s + s + "return "+classString.ToLower()+".Insert("+classString.ToLower()+",true);" + rn;
-                s = s + s + "}" + rn;
+                s.AppendLine( "\t" + "\t" + "public IQueryable<" + classString + "> " + classString + " s()");
+                s.AppendLine( "\t" + "\t" + "{");
+                s.AppendLine("\t" + "\t" + "\t" + "return " +ToFirstLower(classString) + "Repository.Entities;");
+                s.AppendLine( "\t" + "\t" + "}");
 
-                s = s + s + "public virtual OperationResult DeleteEntity(string key);" + rn;
-                s = s + s + "{" + rn;
-                s = s + s + "return " + classString.ToLower() + ".Delete(key,true);" + rn;
-                s = s + s + "}" + rn;
+                s.AppendLine("\t" + "\t" + "public virtual OperationResult AddEntity(" + classString + " " + ToFirstLower(classString) + ")");
+                s.AppendLine("\t" + "\t" + "{");
+                s.AppendLine("\t" + "\t" + "\t" + "return " + ToFirstLower(classString) + "Repository.Insert(" + ToFirstLower(classString) + ",true);");
+                s.AppendLine("\t" + "\t" + "}");
 
-                s = s + s + "public virtual OperationResult FindEntity(string key);" + rn;
-                s = s + s + "{" + rn;
-                s = s + s +"PublicHelper.CheckArgument(key, \""+classString.ToLower()+"\");"+ rn;
-                s = s + s + "return " + classString.ToLower() + ".GetByKey(key);" + rn;
-                s = s + s + "}" + rn;
+                s.AppendLine("\t" + "\t" + "public virtual OperationResult DeleteEntity(string key)");
+                s.AppendLine("\t" + "\t" + "{");
+                s.AppendLine("\t" + "\t" + "\t" + "return " + ToFirstLower(classString) + "Repository.Delete(key,true);");
+                s.AppendLine("\t" + "\t" + "}");
 
-                s = s + s + "public virtual OperationResult UpdateEntity(" + classString + " " + classString.ToLower() + ")" + rn;
-                s = s + s + "{" + rn;
-                s = s + s + "return " + classString.ToLower() + ".Update(" + classString.ToLower() + ",true);" + rn;
-                s = s + s + "}" + rn;                
+                s.AppendLine("\t" + "\t" + "public virtual OperationResult FindEntity(string key)");
+                s.AppendLine("\t" + "\t" + "{");
+                s.AppendLine("\t" + "\t" + "\t" + "PublicHelper.CheckArgument(key, \"" + ToFirstLower(classString) + "\");");
+                s.AppendLine("\t" + "\t" + "\t" + "return " + ToFirstLower(classString) + "Repository.GetByKey(key);");
+                s.AppendLine("\t" + "\t" + "}");
+
+                s.AppendLine("\t" + "\t" + "public virtual OperationResult UpdateEntity(" + classString + " " + ToFirstLower(classString) + ")");
+                s.AppendLine("\t" + "\t" + "{");
+                s.AppendLine("\t" + "\t" + "\t" + "return " + ToFirstLower(classString) + "Repository.Update(" + ToFirstLower(classString) + ",true);");
+                s.AppendLine("\t" + "\t" + "}");                
                 
-                s = s + space + "}" + rn;
-                s = s + "}" + rn;
+                s.AppendLine( "\t" + "}" );
+                s.AppendLine( "}" );
 
 
-                charData = s.ToCharArray();
+                charData = s.ToString().ToCharArray();
                 byData = new byte[charData.Length];
                 Encoder e = Encoding.UTF8.GetEncoder();
                 e.GetBytes(charData, 0, charData.Length, byData, 0, true);

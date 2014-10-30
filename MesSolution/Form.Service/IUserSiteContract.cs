@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace FormApplication.Service
 {
-    public interface IUserSiteContract:IUserService
+    public interface IUserFormContract:IUserService
     {
         /// <summary>
         ///     用户登录

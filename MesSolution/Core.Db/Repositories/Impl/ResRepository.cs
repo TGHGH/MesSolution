@@ -15,5 +15,5 @@ namespace Core.Db.Repositories
     ///     仓储操作实现——角色信息
     /// </summary>
     [Export(typeof(IResRepository))]
-    public class ResRepository : EFRepositoryBase<UserGroup>, IResRepository { }
+    public class ResRepository : EFRepositoryBase<Res>, IResRepository { }
 }
