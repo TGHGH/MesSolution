@@ -1,18 +1,10 @@
 ﻿using Component.Tools;
 using Core.Db.Repositories;
 using Core.Models;
-using Core.Service.Impl;
-using Component.Data;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Data.Entity;
-using System.Data.Entity.Core;
-using System.Data.Entity.Infrastructure;
-using System.Data.Entity.Validation;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+
 
 namespace Core.Service
 {

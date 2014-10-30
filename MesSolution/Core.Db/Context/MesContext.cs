@@ -108,6 +108,7 @@ namespace Core.Db.Context
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             //多对多启用级联删除约定，不想级联删除可以在删除前判断关联的数据进行拦截
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
+            //modelBuilder.Conventions.Remove<OneToOneConstraintIntroductionConvention>();
 
         }
         //标识
