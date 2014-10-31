@@ -41,11 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IUserGroupSiteContract.cs" />
-    <Compile Include="IUserSiteContract.cs" />
+    <Compile Include="IResFormService.cs" />
+    <Compile Include="IUserGroupFormService.cs" />
+    <Compile Include="IUserFormService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserGroupSiteContract.cs" />
-    <Compile Include="UserSiteContract.cs" />
+    <Compile Include="ResFormService.cs" />
+    <Compile Include="UserGroupFormService.cs" />
+    <Compile Include="UserFormService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Component.Tools\Component.Tools.csproj">
@@ -60,9 +62,9 @@
       <Project>{97b4cc5d-5069-4ed5-932b-19bf87478e57}</Project>
       <Name>Core.Service</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Form.Models\FormApplication.Models.csproj">
+    <ProjectReference Include="..\Form.Models\Form.Models.csproj">
       <Project>{2ff18615-ab59-4bed-b8e6-f24782f7d695}</Project>
-      <Name>FormApplication.Models</Name>
+      <Name>Form.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -19,10 +19,15 @@ namespace Auto
             //Console.WriteLine(ToFirstLower("UserGroup"));
            // writeFile("Mdl");
            // writeFileBLL("UserGroup2Res");
-            writeFileCoreIService("Res");
-            writeFileCoreService("Res");          
+            writeFileFormIService("Res");
+            writeFileFormService("Res");          
 
         }
+        # region  writeFile自动生成DAL文件
+        /// <summary>
+        /// 同时生产多个文件函数
+        /// </summary>
+        /// <param name="classString"></param>
         public static void writeFile(string classString)
         {
             writeFileIDAL(classString);
@@ -30,6 +35,12 @@ namespace Auto
             writeFileCoreIService(classString);
             writeFileCoreService(classString);
         }
+        #endregion
+        #region writeFileIDAL自动生成DAL文件
+        /// <summary>
+        /// 自动生成IDAL文件
+        /// </summary>
+        /// <param name="classString"></param>
         public static void writeFileIDAL(string classString)
         {
 
@@ -73,6 +84,12 @@ namespace Auto
                 return;
             }
         }
+        #endregion
+        #region writeFileDAL自动生成DAL文件
+        /// <summary>
+        /// 自动生成DAL文件
+        /// </summary>
+        /// <param name="classString"></param>
         public static void writeFileDAL(string classString)
         {
 
@@ -118,6 +135,8 @@ namespace Auto
                 return;
             }
         }
+        #endregion
+        #region writeFileCoreIService自动生成业务层核心接口
         /// <summary>
         /// 自动生成业务层核心接口
         /// </summary>
@@ -171,6 +190,9 @@ namespace Auto
                 return;
             }
         }
+        #endregion
+        #region writeFileCoreService自动生成业务核心层服务
+
         /// <summary>
         /// 自动生成业务核心层服务
         /// </summary>
@@ -248,6 +270,8 @@ namespace Auto
                 return;
             }
         }
+        #endregion
+        #region ToFirstLower转换单词函数（第一个字母变小写）
 
         /// <summary>
         /// 把字符串的第一个字母改成小写
@@ -258,6 +282,101 @@ namespace Auto
         {
             return classString.Substring(0, 1).ToLower()+classString.Substring(1);
         }
+        #endregion
+
+        #region writeFileFormIService自动生成FormIService函数
+
+        public static void writeFileFormIService(string classString)
+        {
+            FileStream aFile = new FileStream("../../../" + "Form.Service" + "/I" + classString + "FormService" + ".cs", FileMode.Create);
+            byte[] byData;
+            char[] charData;           
+
+            try
+            {
+                StringBuilder s = new StringBuilder("using Core.Service;");
+                s.AppendLine();
+                s.AppendLine("using System;");              
+
+                s.AppendLine();
+                s.AppendLine("namespace " + "FormApplication.Service");
+                s.AppendLine("{");
+                s.AppendLine();
+
+                //有参数构造函数
+                s.AppendLine("\t" + "public interface I" + classString + "FormService : I" + classString+"Service");
+                s.AppendLine("\t" + "{");
+                s.AppendLine();
+                s.AppendLine("\t" + "}");
+                s.AppendLine("}");
+
+
+                charData = s.ToString().ToCharArray();
+                byData = new byte[charData.Length];
+                Encoder e = Encoding.UTF8.GetEncoder();
+                e.GetBytes(charData, 0, charData.Length, byData, 0, true);
+
+                // Move file pointer to beginning of file.
+                aFile.Seek(0, SeekOrigin.Begin);
+                aFile.Write(byData, 0, byData.Length);
+            }
+            catch (IOException ex)
+            {
+                Console.WriteLine("An IO exception has been thrown!");
+                Console.WriteLine(ex.ToString());
+                Console.ReadKey();
+                return;
+            }
+        }
+
+        #endregion
+
+        #region writeFileFormService自动生成FormService函数
+        private static void writeFileFormService(string classString)
+        {
+            FileStream aFile = new FileStream("../../../" + "Form.Service" + "/" + classString + "FormService" + ".cs", FileMode.Create);
+            byte[] byData;
+            char[] charData;
+
+            try
+            {
+                StringBuilder s = new StringBuilder("using Core.Service;");
+                s.AppendLine();
+                s.AppendLine("using System;");
+                s.AppendLine("using System.ComponentModel.Composition;");
+
+                s.AppendLine();
+                s.AppendLine("namespace " + "FormApplication.Service");
+                s.AppendLine("{");
+                s.AppendLine();
+                s.AppendLine("\t" +"[Export(typeof(I"+classString+"FormService))]");
+                //有参数构造函数
+                s.AppendLine("\t" + "public class " + classString + "FormService : " + classString + "Service ,I" + classString + "FormService");
+                s.AppendLine("\t" + "{");
+                s.AppendLine();
+                s.AppendLine("\t" + "}");
+                s.AppendLine("}");
+
+
+                charData = s.ToString().ToCharArray();
+                byData = new byte[charData.Length];
+                Encoder e = Encoding.UTF8.GetEncoder();
+                e.GetBytes(charData, 0, charData.Length, byData, 0, true);
+
+                // Move file pointer to beginning of file.
+                aFile.Seek(0, SeekOrigin.Begin);
+                aFile.Write(byData, 0, byData.Length);
+            }
+            catch (IOException ex)
+            {
+                Console.WriteLine("An IO exception has been thrown!");
+                Console.WriteLine(ex.ToString());
+                Console.ReadKey();
+                return;
+            }
+        }
+        #endregion
+
     }
 
 }

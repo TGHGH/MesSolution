@@ -105,6 +105,15 @@ namespace Presentation.Consoles
                         case "14":
                             Method14();
                             break;
+                        case "15":
+                            Method15();
+                            break;
+                        case "16":
+                            Method16();
+                            break;
+                        case "17":
+                            Method17();
+                            break;
                     }
                     if (exit)
                     {
@@ -142,14 +151,14 @@ namespace Presentation.Consoles
 
         private static void Method02()
         {
-            OperationResult result = _container.GetExportedValue<IUserFormContract>().DeleteEntity("65128047");
+            OperationResult result = _container.GetExportedValue<IUserFormService>().DeleteEntity("65128047");
             Console.WriteLine(result.Message);
         }
 
         //添加
         private static void Method03()
         {
-            DateTime dt = _container.GetExportedValue<IUserFormContract>().Users().Select(u => SqlFunctions.GetDate()).First().Value;
+            DateTime dt = _container.GetExportedValue<IUserFormService>().Users().Select(u => SqlFunctions.GetDate()).First().Value;
             User user = new User();
             user.AddDate = dt;
             user.eattribute1 = "123";
@@ -166,7 +175,7 @@ namespace Presentation.Consoles
 
             try
             {
-                Console.WriteLine(_container.GetExportedValue<IUserFormContract>().AddEntity(user).Message);
+                Console.WriteLine(_container.GetExportedValue<IUserFormService>().AddEntity(user).Message);
             }
             catch(DbEntityValidationException e)
             {
@@ -313,8 +322,8 @@ namespace Presentation.Consoles
         private static void Method09()
         {
             //User user = (User)_container.GetExportedValue<IUserSiteContract>().FindEntity("65128044").AppendData;
-            User user=_container.GetExportedValue<IUserFormContract>().Users().Single(r=>r.usercode=="65128044");
-            List<UserGroup> userGroup = _container.GetExportedValue<IUserGroupSiteContract>().UserGroups().Where(u => u.usergroupcode.StartsWith("u")).ToList();
+            User user=_container.GetExportedValue<IUserFormService>().Users().Single(r=>r.usercode=="65128044");
+            List<UserGroup> userGroup = _container.GetExportedValue<IUserGroupFormService>().UserGroups().Where(u => u.usergroupcode.StartsWith("u")).ToList();
             foreach (var a in userGroup)
             {
                 user.UserGroups.Add(a);     
@@ -327,7 +336,7 @@ namespace Presentation.Consoles
         //查询
         private static void Method10()
         {            
-            User user = (User)_container.GetExportedValue<IUserFormContract>().FindEntity("65128044").AppendData;
+            User user = (User)_container.GetExportedValue<IUserFormService>().FindEntity("65128044").AppendData;
 
             //显示加载
             //_container.GetExportedValue<DbContext>().Entry(user).Collection(r => r.UserGroups).Query().Where(r=>r.usergroupcode=="usergroupcode1") .Load();
@@ -341,14 +350,14 @@ namespace Presentation.Consoles
         //取数据库时间
         private static void Method11()
         {
-            Console.WriteLine(_container.GetExportedValue<IUserFormContract>().Users().Select(u => SqlFunctions.GetDate()).First().Value);
+            Console.WriteLine(_container.GetExportedValue<IUserFormService>().Users().Select(u => SqlFunctions.GetDate()).First().Value);
         }
         //删除关系
         private static void Method12()
         {
             //User user = (User)_container.GetExportedValue<IUserSiteContract>().FindEntity("65128044").AppendData;
-            User user = _container.GetExportedValue<IUserFormContract>().Users().Single(r => r.usercode == "65128044");
-            UserGroup userGroup = _container.GetExportedValue<IUserGroupSiteContract>().UserGroups().SingleOrDefault(u => u.usergroupcode=="usergroupcode2");
+            User user = _container.GetExportedValue<IUserFormService>().Users().Single(r => r.usercode == "65128044");
+            UserGroup userGroup = _container.GetExportedValue<IUserGroupFormService>().UserGroups().SingleOrDefault(u => u.usergroupcode=="usergroupcode2");
             user.UserGroups.Remove(userGroup);        
 
             _container.GetExportedValue<DbContext>().SaveChanges();
@@ -358,8 +367,8 @@ namespace Presentation.Consoles
         private static void Method13()
         {
             //User user = (User)_container.GetExportedValue<IUserSiteContract>().FindEntity("65128044").AppendData;
-            User user = _container.GetExportedValue<IUserFormContract>().Users().Single(r => r.usercode == "65128044");
-            UserGroup userGroup = _container.GetExportedValue<IUserGroupSiteContract>().UserGroups().SingleOrDefault(u => u.usergroupcode == "usergroupcode1");
+            User user = _container.GetExportedValue<IUserFormService>().Users().Single(r => r.usercode == "65128044");
+            UserGroup userGroup = _container.GetExportedValue<IUserGroupFormService>().UserGroups().SingleOrDefault(u => u.usergroupcode == "usergroupcode1");
             userGroup.usergroupdesc = "usergroupdesc";
 
             _container.GetExportedValue<DbContext>().SaveChanges();
@@ -371,7 +380,32 @@ namespace Presentation.Consoles
             LoginInfo2 logoninfo=new LoginInfo2();
             logoninfo.Access="65128044";
             logoninfo.Password="1234";
-            Console.WriteLine(_container.GetExportedValue<IUserFormContract>().Login(logoninfo).Message);
+            Console.WriteLine(_container.GetExportedValue<IUserFormService>().Login(logoninfo).Message);
+        }
+
+        private static void Method15()
+        {
+            UserGroup userGroup = (UserGroup)_container.GetExportedValue<IUserGroupFormService>().FindEntity("usergroupcode1").AppendData;
+            User user = (User)_container.GetExportedValue<IUserFormService>().FindEntity("usercode1").AppendData;
+            Res res = (Res)_container.GetExportedValue<IResFormService>().FindEntity("RESCODE1").AppendData;
+            userGroup.Users.Add(user);
+            userGroup.Ress.Add(res);
+
+            User user2 = (User)_container.GetExportedValue<IUserFormService>().FindEntity("usercode2").AppendData;
+            Res res2 = (Res)_container.GetExportedValue<IResFormService>().FindEntity("RESCODE2").AppendData;
+            userGroup.Users.Add(user2);
+            userGroup.Ress.Add(res2);
+            _container.GetExportedValue<DbContext>().SaveChanges();
+
+        }
+
+        private static void Method16()
+        {
+
+        }
+        private static void Method17()
+        {
+
         }
 
         #endregion

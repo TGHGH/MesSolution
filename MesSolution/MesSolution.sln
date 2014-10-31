@@ -53,9 +53,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{3F30C7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3-Form(应用层)", "3-Form(应用层)", "{E7D25E5B-AB44-46C2-8B3A-1DAA01760938}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormApplication.Service", "Form.Service\FormApplication.Service.csproj", "{8E44EF54-D6B1-4F95-818B-372DEBD4E1CD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Form.Service", "Form.Service\Form.Service.csproj", "{8E44EF54-D6B1-4F95-818B-372DEBD4E1CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormApplication.Models", "Form.Models\FormApplication.Models.csproj", "{2FF18615-AB59-4BED-B8E6-F24782F7D695}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Form.Models", "Form.Models\Form.Models.csproj", "{2FF18615-AB59-4BED-B8E6-F24782F7D695}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auto", "Auto\Auto.csproj", "{A3D0CE61-9D9E-4C66-85AD-2251293F2BDB}"
 EndProject

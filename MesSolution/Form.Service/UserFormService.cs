@@ -11,8 +11,8 @@ using System.Threading.Tasks;
 
 namespace FormApplication.Service
 {
-    [Export(typeof(IUserFormContract))]
-    public class UserSiteContract:UserService,IUserFormContract
+    [Export(typeof(IUserFormService))]
+    public class UserFormService:UserService,IUserFormService
     {
         /// <summary>
         ///     用户登录
@@ -32,11 +32,11 @@ namespace FormApplication.Service
             {
                 
                 User user = (User)result.AppendData;
-                List<UserGroup> usergroups=(List<UserGroup>) user.UserGroups;
-                List<Res> reses=new List<Res>();                
+                List<UserGroup> usergroups =user.UserGroups.ToList();
+                List<Res> reses = new List<Res>();                
                 foreach (var a in usergroups)
                 {
-                    reses.AddRange((List<Res>)a.Ress);
+                    reses.AddRange(a.Ress);
                 }
                 if (reses.SingleOrDefault(r=>r.RESCODE==model.ResCode)==null)
                 {

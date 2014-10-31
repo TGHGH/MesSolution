@@ -29,28 +29,21 @@ namespace Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            CompositionContainer _container = new CompositionContainer(catalog);
-            try
+            using (CompositionContainer _container = new CompositionContainer(catalog))
             {
-                
                 LoginModel loginModel = new LoginModel();
                 loginModel.Account = textBox1.Text;
                 loginModel.Password = textBox2.Text;
                 loginModel.ResCode = textBox3.Text;
-                string operationResult = _container.GetExportedValue<IUserFormContract>().Login(loginModel).Message;
-                _container.Dispose();
+                textBox4.Text = _container.GetExportedValue<IUserFormService>().Login(loginModel).Message;                
             }
-            catch (Exception e1)
-            {
-
-            }
-            finally
-            {
-               
-            }    
-            
+                           
+                
+          
            
            
         }
+
+    
     }
 }

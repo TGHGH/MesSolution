@@ -66,6 +66,18 @@ namespace GMF.Demo.Core.Data.Initialize
             
             context.Configuration.AutoDetectChangesEnabled = true;
             context.SaveChanges();
+
+
+            //UserGroup userGroup = context.Set<UserGroup>().Find("usergroupcode1");
+            //User user = context.Set<User>().Find("usercode1");
+            //Res res = context.Set<Res>().Find("RESCODE1");
+            //User user2 = context.Set<User>().Find("usercode2");
+            //Res res2 = context.Set<Res>().Find("RESCODE2");
+            //userGroup.Users.Add(user);
+            //userGroup.Users.Add(user2);
+            //userGroup.Ress.Add(res);
+            //userGroup.Ress.Add(res2);
+            //context.SaveChanges();
         }
       
      
