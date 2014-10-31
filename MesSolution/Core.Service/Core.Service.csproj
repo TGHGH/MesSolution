@@ -54,8 +54,8 @@
     <Compile Include="Privage\IMdlService.cs" />
     <Compile Include="Privage\Impl\MdlService.cs" />
     <Compile Include="Privage\IUserGroupService.cs" />
-    <Compile Include="Privage\IUserService.cs" />
     <Compile Include="Privage\Impl\ResService.cs" />
+    <Compile Include="Privage\IUserService.cs" />
     <Compile Include="Test\IAccountService.cs" />
     <Compile Include="Test\Impl\AccountService.cs" />
     <Compile Include="CoreServiceBase.cs" />
