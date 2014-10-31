@@ -35,13 +35,29 @@ namespace Forms
                 loginModel.Account = textBox1.Text;
                 loginModel.Password = textBox2.Text;
                 loginModel.ResCode = textBox3.Text;
-                textBox4.Text = _container.GetExportedValue<IUserFormService>().Login(loginModel).Message;                
+                OperationResult operationResult = _container.GetExportedValue<IUserFormService>().Login(loginModel);
+                if (operationResult.ResultType == OperationResultType.Success)
+                {
+                    FrmMain frmMain = new FrmMain();
+                    frmMain.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    textBox4.Text = operationResult.Message;
+                }
+                  
             }
                            
                 
           
            
            
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
 
     
