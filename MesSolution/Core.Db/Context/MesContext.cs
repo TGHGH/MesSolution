@@ -137,7 +137,7 @@ namespace Core.Db.Context
         }
         public override int SaveChanges()
         {
-            this.LogChangesDuringSave = true;
+            this.LogChangesDuringSave = false;
             if (LogChangesDuringSave)  //根据表示判断用重写的SaveChanges方法，还是普通的上下文SaveChanges方法
             {
                 var entries = from e in this.ChangeTracker.Entries()
@@ -173,6 +173,6 @@ namespace Core.Db.Context
         {
             var objectContext = ((IObjectContextAdapter)this).ObjectContext;
             return objectContext.ObjectStateManager.GetObjectStateEntry(entity).EntityKey.EntityKeyValues.Select(k => k.Key);
-        }
+        }     
     }
 }

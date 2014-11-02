@@ -21,7 +21,7 @@ namespace Forms
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.ThreadException += new ThreadExceptionEventHandler(Program.otherException);
-                Application.Run(new FormLogin());
+                Application.Run(new FrmMain());
             }
             catch (Exception e)
             {

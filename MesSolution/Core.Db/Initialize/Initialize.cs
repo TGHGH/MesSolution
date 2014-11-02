@@ -27,7 +27,7 @@ namespace Core.Db.Initialize
                     object value1 = pi.PropertyType.Name;
                     if (value1.Equals("String"))
                     {
-                        pi.SetValue(entity, pi.Name + i, null);
+                        pi.SetValue(entity, pi.Name.ToLower() + i, null);
                     }
                     if (value1.Equals("DateTime"))
                     {

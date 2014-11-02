@@ -11,9 +11,9 @@ namespace Core.Models
     public class Mdl:Entity
     {
         [Key]
-        public string usergroupcode { get; set; }
+        public string mdlcode { get; set; }
         public string usergroupdesc { get; set; }
-        public string usergrouptype { get; set; }
+        public string parentcode { get; set; }
         public string muser { get; set; }
         public DateTime mdate { get; set; }
         public string eattribute1 { get; set; }

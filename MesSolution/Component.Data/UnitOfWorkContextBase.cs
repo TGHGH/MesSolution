@@ -46,9 +46,7 @@ namespace Component.Data
             try
             {
                 int result = Context.SaveChanges();                
-                IsCommitted = true;
-                //注销Context
-                //this.Context.Dispose();
+                IsCommitted = true;              
                 return result;
             }
             catch (Exception e)
@@ -61,8 +59,8 @@ namespace Component.Data
                 }
                 if (e.InnerException != null && e.InnerException is OptimisticConcurrencyException)
                 {
-                    
-                    throw PublicHelper.ThrowDataAccessException("提交数据更新时发生同步异常：" , e.InnerException);
+
+                    throw PublicHelper.ThrowDataAccessException("提交数据更新时发生同步异常：", e.InnerException);
                 }
                 throw;
             }
@@ -78,10 +76,10 @@ namespace Component.Data
 
         public void Dispose()
         {
-            if (!IsCommitted)
-            {
-                Commit();
-            }
+            //if (!IsCommitted)
+            //{
+            //    Commit();
+            //}
             Context.Dispose();
         }
 

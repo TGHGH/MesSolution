@@ -33,16 +33,19 @@ namespace FormApplication.Service
                 
                 User user = (User)result.AppendData;
                 List<UserGroup> usergroups =user.UserGroups.ToList();
-                List<Res> reses = new List<Res>();                
+                List<Res> reses = new List<Res>();
+                List<Mdl> mdls = new List<Mdl>();
                 foreach (var a in usergroups)
                 {
                     reses.AddRange(a.Ress);
+                    mdls.AddRange(a.Mdls);
                 }
                 if (reses.SingleOrDefault(r=>r.RESCODE==model.ResCode)==null)
                 {
                     result.ResultType = OperationResultType.Error;
                     result.Message = "用户没有该资源的权限";
                 }
+                result.AppendData = mdls;
             }
             return result;
         }
