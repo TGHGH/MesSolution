@@ -14,6 +14,8 @@ namespace FormApplication.Service
     [Export(typeof(IUserFormService))]
     public class UserFormService:UserService,IUserFormService
     {
+        [Import]
+        public IMoFormService iMoFormService { get; set; }
         /// <summary>
         ///     用户登录
         /// </summary>
@@ -25,7 +27,7 @@ namespace FormApplication.Service
             LoginInfo2 loginInfo = new LoginInfo2
             {
                 Access = model.Account,
-                Password = model.Password,               
+                Password = model.Password,  
             };
             OperationResult result = base.Login(loginInfo);
             if (result.ResultType == OperationResultType.Success)
@@ -45,7 +47,7 @@ namespace FormApplication.Service
                     result.ResultType = OperationResultType.Error;
                     result.Message = "用户没有该资源的权限";
                 }
-                result.AppendData = mdls;
+                result.AppendData = mdls;                    
             }
             return result;
         }

@@ -79,7 +79,7 @@ namespace Forms
             TreeNode tn1 = new TreeNode("0");
             Mdl mdl = mdls.Single(m => m.parentcode == "0");
             tn1.Tag = mdl;
-            tn1.Text = mdl.usergroupdesc;      
+            tn1.Text = mdl.form;      
             treeView1.Nodes.Add(tn1);
             this.Bind(tn1);
             treeView1.Font = new Font("宋体", 15, FontStyle.Bold);
@@ -94,7 +94,7 @@ namespace Forms
             {
                 TreeNode n = new TreeNode();
                 n.Tag = dr;
-                n.Text = dr.usergroupdesc;                
+                n.Text = dr.form;                
                 node.Nodes.Add(n);
                 this.Bind(n);
             }
@@ -110,16 +110,22 @@ namespace Forms
         {
             Mdl mdl=(Mdl)((TreeView)sender).SelectedNode.Tag;
             this.panel4.Controls.Clear();
-            switch (mdl.usergroupdesc)
+            switch (mdl.form)
             {
-                case "usergroupdesc2":
+                case "FormLogin":
                     FormLogin formLogin = _container.GetExportedValue<FormLogin>();
                     formLogin.TopLevel = false;
                     formLogin.Dock = DockStyle.Fill;
                     formLogin.Show();
                     this.panel4.Controls.Add(formLogin);
                     break;
-                    
+                case "FrmGoodNG":
+                    FrmGoodNG frmGoodNG = _container.GetExportedValue<FrmGoodNG>();
+                    frmGoodNG.TopLevel = false;
+                    frmGoodNG.Dock = DockStyle.Fill;
+                    frmGoodNG.Show();
+                    this.panel4.Controls.Add(frmGoodNG);
+                    break;  
             }            
             
         }

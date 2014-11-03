@@ -8,6 +8,7 @@ using System.Text;
 
 using Core.Models;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 
 
 namespace Core.Db.Context
@@ -166,13 +167,37 @@ namespace Core.Db.Context
                     }
                 }                
             }
-           
             return base.SaveChanges();  //返回普通的上下文SaveChanges方法
+            //try
+            //{
+            //    return base.SaveChanges();  //返回普通的上下文SaveChanges方法
+            //}
+            //catch (DbEntityValidationException e)
+            //{
+
+            //    DisplayErrors(e.EntityValidationErrors);
+            //}
+            //return 0;
         }
         private IEnumerable<string> GetKeyPropertyNames(object entity)
         {
             var objectContext = ((IObjectContextAdapter)this).ObjectContext;
             return objectContext.ObjectStateManager.GetObjectStateEntry(entity).EntityKey.EntityKeyValues.Select(k => k.Key);
-        }     
+        }
+
+        private static void DisplayErrors(IEnumerable<DbEntityValidationResult> results)
+        {
+            int counter = 0;
+            foreach (DbEntityValidationResult result in results)
+            {
+                counter++;
+                Console.WriteLine("Failed Object #{0}: Type is {1}", counter, result.Entry.Entity.GetType().Name);
+                Console.WriteLine(" Number of Problems: {0}", result.ValidationErrors.Count);
+                foreach (DbValidationError error in result.ValidationErrors)
+                {
+                    Console.WriteLine(" - {0}", error.ErrorMessage);
+                }
+            }
+        }
     }
 }

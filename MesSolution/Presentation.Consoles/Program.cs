@@ -39,6 +39,7 @@ namespace Presentation.Consoles
         private static void Main(string[] args)
         {
             //初始化数据库，如果存在且模型改变，删除重新建
+
             DatabaseInitializer.DropCreateDatabaseIfModelChanges();
 
             //初始化MEF组合容器
@@ -164,7 +165,7 @@ namespace Presentation.Consoles
             user.eattribute1 = "123";
             user.IsDeleted = false;
             user.mdate = dt;
-            user.muser = "65128044";
+            user.muser = "65128047";
             user.usercode = "65128044";
             user.userdepart = "123";
             user.useremail = "123";
@@ -204,7 +205,7 @@ namespace Presentation.Consoles
                 mesContext.Database.ExecuteSqlCommand("update Users set userpwd='333' where usercode='65128044'");
             }
             OperationResult result = _container.GetExportedValueOrDefault<ContainerIn>().UserContract.UpdateEntity(user);
-            Console.WriteLine(result.Message);
+            Console.WriteLine(result.Message);            
             Console.WriteLine();
         }
         //查询

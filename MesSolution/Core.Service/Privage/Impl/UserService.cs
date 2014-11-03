@@ -25,17 +25,17 @@ namespace Core.Service
         {
             return UserRepository.Entities;
         }
-        public virtual OperationResult AddEntity(Models.User user)
+        public virtual OperationResult AddEntity(Models.User user, bool isSave = true)
         {
-           
-            return UserRepository.Insert(user, true);   
+
+            return UserRepository.Insert(user, isSave);   
            
         }
 
 
-        public virtual OperationResult DeleteEntity(string key)
+        public virtual OperationResult DeleteEntity(string key, bool isSave = true)
         {
-            return UserRepository.Delete(key, true);
+            return UserRepository.Delete(key, isSave);
         }
 
         public virtual OperationResult FindEntity(string key)
@@ -46,9 +46,9 @@ namespace Core.Service
             
         }
 
-        public virtual OperationResult UpdateEntity(User user)
+        public virtual OperationResult UpdateEntity(User user, bool isSave = true)
         {
-            return UserRepository.Update(user, true);           
+            return UserRepository.Update(user, isSave);           
 
         }
 

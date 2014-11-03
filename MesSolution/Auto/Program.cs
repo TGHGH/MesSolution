@@ -19,8 +19,8 @@ namespace Auto
             //Console.WriteLine(ToFirstLower("UserGroup"));
            // writeFile("Mdl");
            // writeFileBLL("UserGroup2Res");
-            writeFileFormIService("Res");
-            writeFileFormService("Res");          
+            writeFile("Item2SnCheck");
+           
 
         }
         # region  writeFile自动生成DAL文件
@@ -34,6 +34,8 @@ namespace Auto
             writeFileDAL(classString);
             writeFileCoreIService(classString);
             writeFileCoreService(classString);
+            writeFileFormIService(classString);
+            writeFileFormService(classString);
         }
         #endregion
         #region writeFileIDAL自动生成DAL文件
@@ -164,10 +166,10 @@ namespace Auto
                 //有参数构造函数
                 s.AppendLine("\t"+"public interface I" + classString + "Service") ;
                 s.AppendLine( "\t" + "{" );
-                s.AppendLine( "\t" + "\t" + " OperationResult AddEntity("+classString+" "+ToFirstLower(classString)+");");
-                s.AppendLine( "\t" + "\t" + " OperationResult DeleteEntity(string key);"  );
+                s.AppendLine("\t" + "\t" + " OperationResult AddEntity(" + classString + " " + ToFirstLower(classString) + ",bool isSave=true);");
+                s.AppendLine("\t" + "\t" + " OperationResult DeleteEntity(string key,bool isSave=true);");
                 s.AppendLine( "\t" + "\t" + " OperationResult FindEntity(string key);" );
-                s.AppendLine( "\t" + "\t" + " OperationResult UpdateEntity(" + classString + " " + ToFirstLower(classString) + ");" );
+                s.AppendLine("\t" + "\t" + " OperationResult UpdateEntity(" + classString + " " + ToFirstLower(classString) + ",bool isSave=true);");
                 s.AppendLine( "\t" + "\t" + " IQueryable<"+classString+">"+ classString+"s( );" );
                 s.AppendLine( "\t" + "}" );
                 s.AppendLine( "}" );
@@ -223,19 +225,19 @@ namespace Auto
                 s.AppendLine( "\t" + "\t" + "[Import]" );
                 s.AppendLine( "\t" + "\t" + "protected I" + classString + "Repository " + ToFirstLower(classString) + "Repository { get; set; } ");
 
-                s.AppendLine( "\t" + "\t" + "public IQueryable<" + classString + "> " + classString + " s()");
+                s.AppendLine( "\t" + "\t" + "public IQueryable<" + classString + "> " + classString + "s()");
                 s.AppendLine( "\t" + "\t" + "{");
                 s.AppendLine("\t" + "\t" + "\t" + "return " +ToFirstLower(classString) + "Repository.Entities;");
                 s.AppendLine( "\t" + "\t" + "}");
 
-                s.AppendLine("\t" + "\t" + "public virtual OperationResult AddEntity(" + classString + " " + ToFirstLower(classString) + ")");
+                s.AppendLine("\t" + "\t" + "public virtual OperationResult AddEntity(" + classString + " " + ToFirstLower(classString) + ",bool isSave=true)");
                 s.AppendLine("\t" + "\t" + "{");
-                s.AppendLine("\t" + "\t" + "\t" + "return " + ToFirstLower(classString) + "Repository.Insert(" + ToFirstLower(classString) + ",true);");
+                s.AppendLine("\t" + "\t" + "\t" + "return " + ToFirstLower(classString) + "Repository.Insert(" + ToFirstLower(classString) + ",isSave);");
                 s.AppendLine("\t" + "\t" + "}");
 
-                s.AppendLine("\t" + "\t" + "public virtual OperationResult DeleteEntity(string key)");
+                s.AppendLine("\t" + "\t" + "public virtual OperationResult DeleteEntity(string key,bool isSave=true)");
                 s.AppendLine("\t" + "\t" + "{");
-                s.AppendLine("\t" + "\t" + "\t" + "return " + ToFirstLower(classString) + "Repository.Delete(key,true);");
+                s.AppendLine("\t" + "\t" + "\t" + "return " + ToFirstLower(classString) + "Repository.Delete(key,isSave);");
                 s.AppendLine("\t" + "\t" + "}");
 
                 s.AppendLine("\t" + "\t" + "public virtual OperationResult FindEntity(string key)");
@@ -244,9 +246,9 @@ namespace Auto
                 s.AppendLine("\t" + "\t" + "\t" + "return " + ToFirstLower(classString) + "Repository.GetByKey(key);");
                 s.AppendLine("\t" + "\t" + "}");
 
-                s.AppendLine("\t" + "\t" + "public virtual OperationResult UpdateEntity(" + classString + " " + ToFirstLower(classString) + ")");
+                s.AppendLine("\t" + "\t" + "public virtual OperationResult UpdateEntity(" + classString + " " + ToFirstLower(classString) + ",bool isSave=true)");
                 s.AppendLine("\t" + "\t" + "{");
-                s.AppendLine("\t" + "\t" + "\t" + "return " + ToFirstLower(classString) + "Repository.Update(" + ToFirstLower(classString) + ",true);");
+                s.AppendLine("\t" + "\t" + "\t" + "return " + ToFirstLower(classString) + "Repository.Update(" + ToFirstLower(classString) + ",isSave);");
                 s.AppendLine("\t" + "\t" + "}");                
                 
                 s.AppendLine( "\t" + "}" );

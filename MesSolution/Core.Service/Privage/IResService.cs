@@ -9,10 +9,10 @@ namespace Core.Service
 
 	public interface IResService
 	{
-		 OperationResult AddEntity(Res res);
-		 OperationResult DeleteEntity(string key);
+		 OperationResult AddEntity(Res res,bool isSave=true);
+		 OperationResult DeleteEntity(string key,bool isSave=true);
 		 OperationResult FindEntity(string key);
-		 OperationResult UpdateEntity(Res res);
-		 IQueryable<Res> Ress( );
+		 OperationResult UpdateEntity(Res res,bool isSave=true);
+		 IQueryable<Res>Ress( );
 	}
 }

@@ -1,0 +1,31 @@
+﻿insert into UserUserGroups
+ values('usercode1','usergroupcode1'); 
+insert into UserUserGroups
+ values('usercode2','usergroupcode1');
+
+update Mdls set parentcode='mdlcode1';
+update Mdls set parentcode='0' where mdlcode='mdlcode1';
+update Mdls set form='FormLogin' where mdlcode='mdlcode2';
+update Mdls set form='FrmGoodNG' where mdlcode='mdlcode3';
+
+ insert into MdlUserGroups values('mdlcode1','usergroupcode1');   
+ insert into MdlUserGroups values('mdlcode2','usergroupcode1');   
+ insert into MdlUserGroups values('mdlcode3','usergroupcode1');   
+ insert into MdlUserGroups values('mdlcode4','usergroupcode1');
+ insert into MdlUserGroups values('mdlcode5','usergroupcode1');   
+ insert into MdlUserGroups values('mdlcode6','usergroupcode1');   
+ insert into MdlUserGroups values('mdlcode7','usergroupcode1');   
+ insert into MdlUserGroups values('mdlcode8','usergroupcode1');
+ insert into MdlUserGroups values('mdlcode9','usergroupcode1'); 
+
+
+   insert into UserGroupRes values('usergroupcode1','rescode1');
+  insert into UserGroupRes values('usergroupcode1','rescode2');
+  insert into UserGroupRes values('usergroupcode1','rescode3');
+  insert into UserGroupRes values('usergroupcode1','rescode4');
+  insert into UserGroupRes values('usergroupcode1','rescode5');
+  insert into UserGroupRes values('usergroupcode1','rescode6');
+  insert into UserGroupRes values('usergroupcode1','rescode7');
+  insert into UserGroupRes values('usergroupcode1','rescode8');
+  insert into UserGroupRes values('usergroupcode1','rescode9');
+  insert into UserGroupRes values('usergroupcode1','rescode10');

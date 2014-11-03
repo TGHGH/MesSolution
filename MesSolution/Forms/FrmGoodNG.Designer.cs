@@ -66,7 +66,6 @@
             this.txtRuningCard.Name = "txtRuningCard";
             this.txtRuningCard.Size = new System.Drawing.Size(239, 21);
             this.txtRuningCard.TabIndex = 1;
-            this.txtRuningCard.Text = "fgd";
             this.txtRuningCard.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRuningCard_KeyPress);
             // 
             // checkBoxMo
@@ -124,6 +123,10 @@
             this.txtPrefix.Name = "txtPrefix";
             this.txtPrefix.Size = new System.Drawing.Size(100, 21);
             this.txtPrefix.TabIndex = 7;
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             // 
             // groupBox1
             // 

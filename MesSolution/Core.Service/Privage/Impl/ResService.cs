@@ -14,22 +14,22 @@ namespace Core.Service
 		{
 			return resRepository.Entities;
 		}
-		public virtual OperationResult AddEntity(Res res)
+		public virtual OperationResult AddEntity(Res res,bool isSave=true)
 		{
-			return resRepository.Insert(res,true);
+			return resRepository.Insert(res,isSave);
 		}
-		public virtual OperationResult DeleteEntity(string key)
+		public virtual OperationResult DeleteEntity(string key,bool isSave=true)
 		{
-			return resRepository.Delete(key,true);
+			return resRepository.Delete(key,isSave);
 		}
 		public virtual OperationResult FindEntity(string key)
 		{
 			PublicHelper.CheckArgument(key, "res");
 			return resRepository.GetByKey(key);
 		}
-		public virtual OperationResult UpdateEntity(Res res)
+		public virtual OperationResult UpdateEntity(Res res,bool isSave=true)
 		{
-			return resRepository.Update(res,true);
+			return resRepository.Update(res,isSave);
 		}
 	}
 }

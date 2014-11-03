@@ -9,10 +9,10 @@ namespace Core.Service
 
 	public interface IMdlService
 	{
-		 OperationResult AddEntity(Mdl mdl);
-		 OperationResult DeleteEntity(string key);
+         OperationResult AddEntity(Mdl mdl, bool isSave = true);
+         OperationResult DeleteEntity(string key, bool isSave = true);
 		 OperationResult FindEntity(string key);
-		 OperationResult UpdateEntity(Mdl mdl);
+         OperationResult UpdateEntity(Mdl mdl, bool isSave = true);
 		 IQueryable<Mdl>Mdls( );
 	}
 }

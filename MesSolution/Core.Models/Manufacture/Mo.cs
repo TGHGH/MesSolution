@@ -9,13 +9,14 @@
 
 namespace Core.Models
 {
+    using Component.Tools;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
    
-    public partial class Mo
+    public partial class Mo:Entity
     {
         [Key,MaxLength(40)]
         public string MOCODE { get; set; }
@@ -78,12 +79,12 @@ namespace Core.Models
         [MaxLength(40), Required]
 
         public string MOVER { get; set; }
-        [MaxLength(1), Required]
+        [Required]
         
-        public string ISCONINPUT { get; set; }
-        [MaxLength(1), Required]
+        public int ISCONINPUT { get; set; }
+        [Required]
 
-        public string ISBOMPASS { get; set; }
+        public int ISBOMPASS { get; set; }
 
         [Required]
         public int IDMERGERULE { get; set; }

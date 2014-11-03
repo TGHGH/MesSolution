@@ -52,6 +52,11 @@ namespace GMF.Demo.Core.Data.Initialize
             Initialize<UserGroup>.Infial(num).ForEach(u => context.Set<UserGroup>().Add(u));
             Initialize<Res>.Infial(num).ForEach(u => context.Set<Res>().Add(u));
             Initialize<Mdl>.Infial(num).ForEach(u => context.Set<Mdl>().Add(u));
+            Initialize<Mo>.Infial(num).ForEach(u => context.Set<Mo>().Add(u));
+            Initialize<Item>.Infial(num).ForEach(u => context.Set<Item>().Add(u));
+            Initialize<Op>.Infial(num).ForEach(u => context.Set<Op>().Add(u));
+            Initialize<Route>.Infial(num).ForEach(u => context.Set<Route>().Add(u));
+            Initialize<Item2SnCheck>.Infial(num).ForEach(u => context.Set<Item2SnCheck>().Add(u));
 
 
             //List<UserGroup> userGroups = new List<UserGroup>

@@ -36,8 +36,11 @@ namespace Core.Db.Initialize
                     if (value1.Equals("Boolean"))
                     {
                         pi.SetValue(entity, false, null);
+                    }   
+                     if (value1.Equals("Int32"))
+                    {
+                        pi.SetValue(entity, 0, null);
                     }                    
-                    
                 }
 
                 list.Add(entity);

@@ -9,13 +9,14 @@
 
 namespace Core.Models
 {
+    using Component.Tools;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
   
-    public partial class Op 
+    public partial class Op:Entity
     {
         [Key,MaxLength(40)]
         public string OPCODE { get; set; }

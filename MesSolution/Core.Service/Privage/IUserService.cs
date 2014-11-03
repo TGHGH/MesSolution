@@ -6,10 +6,10 @@ namespace Core.Service
 {
     public interface IUserService
     {
-        OperationResult AddEntity(User user);
-        OperationResult DeleteEntity(string key);
-        OperationResult FindEntity(string key);      
-        OperationResult UpdateEntity(User user);
+        OperationResult AddEntity(User user, bool isSave = true);
+        OperationResult DeleteEntity(string key, bool isSave = true);
+        OperationResult FindEntity(string key);
+        OperationResult UpdateEntity(User user, bool isSave = true);
         IQueryable<User> Users();
 
         OperationResult Login(LoginInfo2 loginInfo);

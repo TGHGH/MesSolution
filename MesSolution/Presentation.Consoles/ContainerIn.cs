@@ -17,6 +17,7 @@ namespace Presentation.Consoles
         public IAccountSiteContract AccountContract { get; set; }
         [Import]
         public IUserSiteContract UserContract { get; set; }
+       
         
     }
 }

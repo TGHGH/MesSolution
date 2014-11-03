@@ -9,13 +9,14 @@
 
 namespace Core.Models
 {
+    using Component.Tools;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     
-    public partial class Route 
+    public partial class Route :Entity
     {
         [Key,MaxLength(40)]
         public string ROUTECODE { get; set; }
@@ -34,9 +35,8 @@ namespace Core.Models
         [Required]
         public int MTIME { get; set; }
         [MaxLength(40)]
-        public string EATTRIBUTE1 { get; set; }
-        [MaxLength(1)]
-        public string ENABLED { get; set; }
+        public string EATTRIBUTE1 { get; set; }      
+        public Nullable<int> ENABLED { get; set; }
         public virtual ICollection<Op> Ops { get; set; }
         public virtual ICollection<Item> Items { get; set; }
         public virtual ICollection<Mo> Moes { get; set; }

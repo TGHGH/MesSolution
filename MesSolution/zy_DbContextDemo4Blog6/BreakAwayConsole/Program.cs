@@ -105,7 +105,7 @@ namespace BreakAwayConsole
             //ValidateDestination();
             //ValidatePropertyOnDemand();
             //ValidateTrip();
-            //ValidateEverything();
+            ValidateEverything();
 
             //第六章
             //CreateDuplicateLodging();

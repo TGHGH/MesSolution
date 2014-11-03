@@ -15,7 +15,7 @@ using System.Windows.Forms;
 
 namespace Forms
 {
-    public partial class FormStart : Form
+    public partial class FormStart :Form
     {
         public AggregateCatalog catalog;
         public FormStart()
@@ -35,7 +35,7 @@ namespace Forms
             {
                 Console.WriteLine(_container.GetExportedValue<IUserFormService>().FindEntity("123").Message);
                 this.timer1.Start();//启动计时器
-                this.timer1.Interval = 5000;//设置启动窗体停留时间
+                this.timer1.Interval = 1000;//设置启动窗体停留时间
             }            
            
         }

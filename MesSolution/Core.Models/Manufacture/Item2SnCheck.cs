@@ -9,13 +9,14 @@
 
 namespace Core.Models
 {
+    using Component.Tools;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("TBLITEM2SNCHECK")]
-    public partial class Item2SnCheck
+    public partial class Item2SnCheck:Entity
     {
         [MaxLength(40),Required]
         public string ITEMCODE { get; set; }

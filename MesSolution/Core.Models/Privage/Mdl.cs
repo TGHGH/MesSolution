@@ -12,7 +12,7 @@ namespace Core.Models
     {
         [Key]
         public string mdlcode { get; set; }
-        public string usergroupdesc { get; set; }
+        public string form { get; set; }
         public string parentcode { get; set; }
         public string muser { get; set; }
         public DateTime mdate { get; set; }
