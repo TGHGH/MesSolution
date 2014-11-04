@@ -9,34 +9,35 @@
 
 namespace Core.Models
 {
+    using Component.Tools;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
    
-    public partial class MoRcard
+    public partial class MoRcard:Entity
     {
         //[Key]
         public int MoRcardID { get; set; }
         [MaxLength(40),Required]
-        public string MOCODE { get; set; }
+        public string MoCode { get; set; }
         [Required]
-        public int SEQ { get; set; }
+        public int Seq { get; set; }
         [MaxLength(40)]
-        public string MORCARDSTART { get; set; }
+        public string MoCardStart { get; set; }
         [MaxLength(30)]
-        public string MORCARDEND { get; set; }
+        public string MoCardEnd { get; set; }
         [MaxLength(100)]
-        public string MORCARDMEMO { get; set; }
+        public string MoRcardMemo { get; set; }
         [MaxLength(40)]
-        public string MUSER { get; set; }
+        public string Muser { get; set; }
         [Required]
-        public int MTIME { get; set; }
+        public int Mtime { get; set; }
         [Required]
-        public int MDATE { get; set; }
+        public int Mdate { get; set; }
         [MaxLength(40)]
-        public string EATTRIBUTE1 { get; set; }
-        public Nullable<int> MOSEQ { get; set; }
+        public string eatTribute1 { get; set; }
+        public Nullable<int> MoSeq { get; set; }
     }
 }

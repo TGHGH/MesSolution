@@ -50,6 +50,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IMoRcardService.cs" />
+    <Compile Include="ISimulationReportService.cs" />
+    <Compile Include="ISimulationService.cs" />
+    <Compile Include="MoRcardService.cs" />
     <Compile Include="Privage\IItem2SnCheckService.cs" />
     <Compile Include="Privage\Impl\Item2SnCheckService.cs" />
     <Compile Include="Privage\IItemService.cs" />
@@ -66,6 +70,8 @@
     <Compile Include="Privage\IUserService.cs" />
     <Compile Include="Privage\Impl\ResService.cs" />
     <Compile Include="Privage\Impl\RouteService.cs" />
+    <Compile Include="SimulationReportService.cs" />
+    <Compile Include="SimulationService.cs" />
     <Compile Include="Test\IAccountService.cs" />
     <Compile Include="Test\Impl\AccountService.cs" />
     <Compile Include="CoreServiceBase.cs" />

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -32,23 +33,21 @@ namespace Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            using (CompositionContainer _container = new CompositionContainer(catalog))
+            using (CompositionContainer container = new CompositionContainer(catalog))
             {
-                LoginModel loginModel = new LoginModel();
+                LoginModel loginModel = new LoginModel();   
                 loginModel.Account = textBox1.Text;
                 loginModel.Password = textBox2.Text;
-                loginModel.ResCode = textBox3.Text;
-                OperationResult operationResult = _container.GetExportedValue<IUserFormService>().Login(loginModel);
-                FrmMain frmMain = ((FrmMain)this.FindForm().Parent.FindForm());
+                loginModel.ResCode = textBox3.Text;                
+                OperationResult operationResult = container.GetExportedValue<IUserFormService>().Login(loginModel);
+                FrmMain frmMain = Program._container.GetExportedValue<FrmMain>();
                 if (operationResult.ResultType == OperationResultType.Success)
                 {
                     frmMain.mdls = (List<Mdl>)operationResult.AppendData;
-                    frmMain.MdlInitialize();
-                    //FrmMain frmMain = new FrmMain();
-                    //frmMain.mdls =(List<Mdl>) operationResult.AppendData;
-                    //frmMain.Show();
-                    //this.Hide();
+                    frmMain.MdlInitialize();                
                     frmMain.richTextBox1.AppendText("登录成功！");
+                    Program.usercode = loginModel.Account;
+                    Program.rescode  = loginModel.ResCode;
                 }
                 else
                 {

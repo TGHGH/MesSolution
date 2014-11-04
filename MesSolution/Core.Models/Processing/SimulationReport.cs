@@ -9,15 +9,15 @@
 
 namespace Core.Models
 {
+    using Component.Tools;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-
-    [Table("TBLSIMULATIONREPORT")]
-    public partial class SimulationReport
+   
+    public partial class SimulationReport:Entity
     {
-        public int ID { get; set; }
+        public Int64 SimulationReportID { get; set; }
 
         [MaxLength(40), Required]
         public string RCARD { get; set; }

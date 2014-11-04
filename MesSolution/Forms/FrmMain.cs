@@ -20,14 +20,14 @@ namespace Forms
     {
         public List<Mdl> mdls { get; set; }
         public AggregateCatalog catalog;
-        public CompositionContainer _container;
+       // public CompositionContainer _container;
         public FrmMain()
         {
             InitializeComponent();
             catalog = new AggregateCatalog();
             catalog.Catalogs.Add(new DirectoryCatalog(Directory.GetCurrentDirectory()));
             catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
-            _container = new CompositionContainer(catalog);
+        //    _container = new CompositionContainer(catalog);
             
         }
         
@@ -50,7 +50,7 @@ namespace Forms
             frm.ShowDialog();//显示Form2窗体           
           //  MdlInitialize();
             this.WindowState = FormWindowState.Maximized;
-            FormLogin formLogin = _container.GetExportedValue<FormLogin>();
+            FormLogin formLogin = Program._container.GetExportedValue<FormLogin>();
             formLogin.TopLevel = false;
             formLogin.Dock = DockStyle.Fill;
             formLogin.Show();
@@ -113,14 +113,14 @@ namespace Forms
             switch (mdl.form)
             {
                 case "FormLogin":
-                    FormLogin formLogin = _container.GetExportedValue<FormLogin>();
+                    FormLogin formLogin = Program._container.GetExportedValue<FormLogin>();
                     formLogin.TopLevel = false;
                     formLogin.Dock = DockStyle.Fill;
                     formLogin.Show();
                     this.panel4.Controls.Add(formLogin);
                     break;
                 case "FrmGoodNG":
-                    FrmGoodNG frmGoodNG = _container.GetExportedValue<FrmGoodNG>();
+                    FrmGoodNG frmGoodNG = Program._container.GetExportedValue<FrmGoodNG>();
                     frmGoodNG.TopLevel = false;
                     frmGoodNG.Dock = DockStyle.Fill;
                     frmGoodNG.Show();

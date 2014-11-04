@@ -32,6 +32,9 @@ namespace FormApplication.Models
         /// 资源代码
         /// </summary>
         [Required]
+        [Display(Name = "资源代码")]
         public string ResCode { get; set; }
+
+      
     }
 }

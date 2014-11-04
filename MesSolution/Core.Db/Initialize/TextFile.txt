@@ -19,7 +19,7 @@ update Mdls set form='FrmGoodNG' where mdlcode='mdlcode3';
  insert into MdlUserGroups values('mdlcode9','usergroupcode1'); 
 
 
-   insert into UserGroupRes values('usergroupcode1','rescode1');
+  insert into UserGroupRes values('usergroupcode1','rescode1');
   insert into UserGroupRes values('usergroupcode1','rescode2');
   insert into UserGroupRes values('usergroupcode1','rescode3');
   insert into UserGroupRes values('usergroupcode1','rescode4');
@@ -29,3 +29,27 @@ update Mdls set form='FrmGoodNG' where mdlcode='mdlcode3';
   insert into UserGroupRes values('usergroupcode1','rescode8');
   insert into UserGroupRes values('usergroupcode1','rescode9');
   insert into UserGroupRes values('usergroupcode1','rescode10');
+
+  update Moes set Route_ROUTECODE='routecode1'
+
+  insert into RouteOps values('routecode1','opcode1');
+  insert into RouteOps values('routecode1','opcode2');
+  insert into RouteOps values('routecode1','opcode3');
+  insert into RouteOps values('routecode1','opcode4');
+  insert into RouteOps values('routecode1','opcode5');
+  insert into RouteOps values('routecode2','opcode1');
+  insert into RouteOps values('routecode2','opcode2');
+  insert into RouteOps values('routecode2','opcode3');
+  insert into RouteOps values('routecode2','opcode4');
+  insert into RouteOps values('routecode2','opcode5');
+
+  update res set Op_OPCODE='opcode1' where RESCODE='rescode1';
+  update res set Op_OPCODE='opcode2' where RESCODE='rescode2';
+  update res set Op_OPCODE='opcode3' where RESCODE='rescode3';
+  update res set Op_OPCODE='opcode4' where RESCODE='rescode4';
+  update res set Op_OPCODE='opcode5' where RESCODE='rescode5';
+  update res set Op_OPCODE='opcode6' where RESCODE='rescode6';
+  update res set Op_OPCODE='opcode7' where RESCODE='rescode7';
+  update res set Op_OPCODE='opcode8' where RESCODE='rescode8';
+  update res set Op_OPCODE='opcode9' where RESCODE='rescode9';
+  update res set Op_OPCODE='opcode10' where RESCODE='rescode10';

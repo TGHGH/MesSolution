@@ -57,7 +57,9 @@ namespace GMF.Demo.Core.Data.Initialize
             Initialize<Op>.Infial(num).ForEach(u => context.Set<Op>().Add(u));
             Initialize<Route>.Infial(num).ForEach(u => context.Set<Route>().Add(u));
             Initialize<Item2SnCheck>.Infial(num).ForEach(u => context.Set<Item2SnCheck>().Add(u));
-
+            Initialize<MoRcard>.Infial(num).ForEach(u => context.Set<MoRcard>().Add(u));
+            Initialize<Simulation>.Infial(num).ForEach(u => context.Set<Simulation>().Add(u));
+            Initialize<SimulationReport>.Infial(num).ForEach(u => context.Set<SimulationReport>().Add(u));
 
             //List<UserGroup> userGroups = new List<UserGroup>
             //{

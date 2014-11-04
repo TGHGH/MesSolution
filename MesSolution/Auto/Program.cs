@@ -19,9 +19,9 @@ namespace Auto
             //Console.WriteLine(ToFirstLower("UserGroup"));
            // writeFile("Mdl");
            // writeFileBLL("UserGroup2Res");
-            writeFile("Item2SnCheck");
-           
-
+            writeFile("Simulation");
+            writeFile("SimulationReport");
+            writeFile("MoRcard");
         }
         # region  writeFile自动生成DAL文件
         /// <summary>

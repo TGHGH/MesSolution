@@ -47,19 +47,25 @@
     <Compile Include="IItem2SnCheckFormService.cs" />
     <Compile Include="IItemFormService.cs" />
     <Compile Include="IMoFormService.cs" />
+    <Compile Include="IMoRcardFormService.cs" />
     <Compile Include="IOpFormService.cs" />
     <Compile Include="IResFormService.cs" />
     <Compile Include="IRouteFormService.cs" />
+    <Compile Include="ISimulationFormService.cs" />
+    <Compile Include="ISimulationReportFormService.cs" />
     <Compile Include="Item2SnCheckFormService.cs" />
     <Compile Include="ItemFormService.cs" />
     <Compile Include="IUserGroupFormService.cs" />
     <Compile Include="IUserFormService.cs" />
     <Compile Include="FrmGoodNG\FrmGoodNGService.cs" />
     <Compile Include="MoFormService.cs" />
+    <Compile Include="MoRcardFormService.cs" />
     <Compile Include="OpFormService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResFormService.cs" />
     <Compile Include="RouteFormService.cs" />
+    <Compile Include="SimulationFormService.cs" />
+    <Compile Include="SimulationReportFormService.cs" />
     <Compile Include="UserGroupFormService.cs" />
     <Compile Include="UserFormService.cs" />
   </ItemGroup>
