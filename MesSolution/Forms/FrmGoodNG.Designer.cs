@@ -222,7 +222,7 @@
             this.richTextBox1.AutoWordSelection = true;
             this.richTextBox1.Location = new System.Drawing.Point(4, 259);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(464, 96);
+            this.richTextBox1.Size = new System.Drawing.Size(464, 61);
             this.richTextBox1.TabIndex = 14;
             this.richTextBox1.Text = "";
             // 

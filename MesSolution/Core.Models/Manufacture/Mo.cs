@@ -19,7 +19,7 @@ namespace Core.Models
     public partial class Mo:Entity
     {
         [Key,MaxLength(40)]
-        public string MOCODE { get; set; }
+        public string MoCode { get; set; }
         [MaxLength(100)]
         public string MOMEMO { get; set; }
         [MaxLength(40),Required]

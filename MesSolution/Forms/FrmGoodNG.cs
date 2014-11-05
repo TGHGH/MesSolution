@@ -45,9 +45,9 @@ namespace Forms
         {
             if (e.KeyChar == '\r')
             {
-                using (CompositionContainer _container = new CompositionContainer(catalog))
-                {
-                    OperationResult operationResult = _container.GetExportedValue<IFrmGoodNGService>().FindSnCheck(tetMo.Text);
+                using (CompositionContainer container = new CompositionContainer(catalog))
+                {                   
+                    OperationResult operationResult = container.GetExportedValue<IFrmGoodNGService>().FindSnCheck(tetMo.Text);
                     if (operationResult.ResultType == OperationResultType.Success)
                     {
                         if (operationResult.AppendData != null)
@@ -78,6 +78,7 @@ namespace Forms
                     using (CompositionContainer _container = new CompositionContainer(catalog))
                     {
                         OperationResult operationResult = _container.GetExportedValue<IFrmGoodNGService>().CardGoMo(tetMo.Text, txtLength.Text, txtPrefix.Text,txtRuningCard.Text , Program.rescode, Program.usercode);
+                        richTextBox1.AppendText("\n" + operationResult.Message);
                     }
                 }
             } 

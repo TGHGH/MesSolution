@@ -108,6 +108,8 @@ namespace Forms
 
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
+            if (((TreeView)sender).SelectedNode == null)
+                return;
             Mdl mdl=(Mdl)((TreeView)sender).SelectedNode.Tag;
             this.panel4.Controls.Clear();
             switch (mdl.form)

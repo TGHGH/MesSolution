@@ -41,7 +41,7 @@ namespace Presentation.Consoles
         {
             //初始化数据库，如果存在且模型改变，删除重新建
 
-            DatabaseInitializer.DropCreateDatabaseIfModelChanges();
+          //  DatabaseInitializer.DropCreateDatabaseIfModelChanges();
 
             //初始化MEF组合容器
             catalog = new AggregateCatalog();
@@ -402,12 +402,12 @@ namespace Presentation.Consoles
         }
 
         private static void Method16()
-        {           
-           
+        {
+            _container.GetExportedValue<IFrmGoodNGService>().FindSnCheck("mocode1");
         }
         private static void Method17()
         {
-
+            _container.GetExportedValue<IUserFormService>().FindEntity("usercode1");
         }
 
         #endregion
