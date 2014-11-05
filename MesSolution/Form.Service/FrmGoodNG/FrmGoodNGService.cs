@@ -48,7 +48,7 @@ namespace FormApplication.Service
             Validator.ValidateObject(model, new ValidationContext(model));
             OperationResult operationResult = new OperationResult(OperationResultType.Error);
 
-            Mo mo = iMoFormService.Mos().SingleOrDefault(m => m.MoCode == moString);
+            Mo mo =(Mo) iMoFormService.FindEntity(moString).AppendData;
             if (mo == null)
             {
                 operationResult.Message = moString + "工单不存在！";
@@ -115,7 +115,7 @@ namespace FormApplication.Service
             if (operationResult.ResultType == OperationResultType.Error)
                 return operationResult;
 
-            Mo mo = iMoFormService.Mos().SingleOrDefault(m => m.MoCode == moString);
+            Mo mo = (Mo)iMoFormService.FindEntity(moString).AppendData;
             Simulation nowSimulation = simulationFormService.Simulations().SingleOrDefault(s => s.RCARD == card && s.MOCODE == mo.MoCode);
             SimulationReport simulationReport = new SimulationReport();
             Item item = itemFormService.Items().SingleOrDefault(i => i.ITEMCODE == mo.ITEMCODE);

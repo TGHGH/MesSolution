@@ -60,7 +60,7 @@ namespace GMF.Demo.Core.Data.Initialize
             Initialize<MoRcard>.Infial(num).ForEach(u => context.Set<MoRcard>().Add(u));
             Initialize<Simulation>.Infial(num).ForEach(u => context.Set<Simulation>().Add(u));
             Initialize<SimulationReport>.Infial(num).ForEach(u => context.Set<SimulationReport>().Add(u));
-
+            Initialize<Model>.Infial(num).ForEach(u => context.Set<Model>().Add(u));
             //List<UserGroup> userGroups = new List<UserGroup>
             //{
             //    new UserGroup{usergroupcode="usergroupcode1",usergroupdesc="usergroupdesc1",usergrouptype="usergrouptype1",muser="muser1",mdate=DateTime.Now,eattribute1="eattribute1"},

@@ -9,13 +9,14 @@
 
 namespace Core.Models
 {
+    using Component.Tools;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
   
-    public partial class Model
+    public partial class Model:Entity
     {
         [Key,MaxLength(40)]
         public string MODELCODE { get; set; }
@@ -29,15 +30,15 @@ namespace Core.Models
         public int MTIME { get; set; }
         [MaxLength(40)]
         public string EATTRIBUTE1 { get; set; }
-        [MaxLength(1)]
-        public string ISINV { get; set; }
-        [MaxLength(1)]
-        public string ISREFLOW { get; set; }
-        [MaxLength(1)]
-        public string ISCHECKDATALINK { get; set; }
+       
+        public int ISINV { get; set; }
+      
+        public int ISREFLOW { get; set; }
+       
+        public int ISCHECKDATALINK { get; set; }
         public Nullable<int> DATALINKQTY { get; set; }
-        [MaxLength(1)]
-        public string ISDIM { get; set; }
+      
+        public int ISDIM { get; set; }
         public Nullable<int> DIMQTY { get; set; }
         
         public virtual ICollection<Item> Items { get; set; }

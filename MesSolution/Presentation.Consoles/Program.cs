@@ -41,7 +41,7 @@ namespace Presentation.Consoles
         {
             //初始化数据库，如果存在且模型改变，删除重新建
 
-          //  DatabaseInitializer.DropCreateDatabaseIfModelChanges();
+            //DatabaseInitializer.DropCreateDatabaseIfModelChanges();
 
             //初始化MEF组合容器
             catalog = new AggregateCatalog();
@@ -403,11 +403,13 @@ namespace Presentation.Consoles
 
         private static void Method16()
         {
-            _container.GetExportedValue<IFrmGoodNGService>().FindSnCheck("mocode1");
+            _container.GetExportedValue<DbContext>().Set<User>().Find("usercode1");
         }
         private static void Method17()
         {
-            _container.GetExportedValue<IUserFormService>().FindEntity("usercode1");
+           var query=from u in  _container.GetExportedValue<DbContext>().Set<User>() where u.usercode=="usercode2" select u;
+           //Console.WriteLine(query.);
+          // query.SingleOrDefault();
         }
 
         #endregion

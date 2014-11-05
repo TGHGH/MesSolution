@@ -1,4 +1,5 @@
-﻿insert into UserUserGroups
+﻿USE [Mes]
+insert into UserUserGroups
  values('usercode1','usergroupcode1'); 
 insert into UserUserGroups
  values('usercode2','usergroupcode1');
@@ -30,7 +31,8 @@ update Mdls set form='FrmGoodNG' where mdlcode='mdlcode3';
   insert into UserGroupRes values('usergroupcode1','rescode9');
   insert into UserGroupRes values('usergroupcode1','rescode10');
 
-  update Moes set Route_ROUTECODE='routecode1'
+  
+  update Moes set Route_ROUTECODE='routecode1',MOSTATUS='mostatus_open',ISCONINPUT=1,MOPLANQTY=10;
 
   insert into RouteOps values('routecode1','opcode1');
   insert into RouteOps values('routecode1','opcode2');
@@ -53,3 +55,6 @@ update Mdls set form='FrmGoodNG' where mdlcode='mdlcode3';
   update res set Op_OPCODE='opcode8' where RESCODE='rescode8';
   update res set Op_OPCODE='opcode9' where RESCODE='rescode9';
   update res set Op_OPCODE='opcode10' where RESCODE='rescode10';
+
+    
+  update Items set Model_MODELCODE='modelcode1';

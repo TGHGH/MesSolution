@@ -108,7 +108,7 @@ namespace Core.Models
         public string MOPENDINGCAUSE { get; set; }
         public Nullable<int> MOIMPORTDATE { get; set; }
         public Nullable<int> MOIMPORTTIME { get; set; }
-        public Nullable<int> OFFMOQTY { get; set; }
+        public int OFFMOQTY { get; set; }
         public Nullable<short> ISCOMPARESOFT { get; set; }
         [MaxLength(40)]
         public string RMABILLCODE { get; set; }
