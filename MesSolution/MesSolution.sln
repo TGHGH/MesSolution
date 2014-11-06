@@ -61,6 +61,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auto", "Auto\Auto.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Forms", "Forms\Forms.csproj", "{24F693D1-A520-4308-9E37-5EC9C3AC2B2C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestForm.Service", "UnitTestForm.Service\UnitTestForm.Service.csproj", "{4793102D-86A3-4658-9BA1-F1EF374A4769}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -221,6 +223,16 @@ Global
 		{24F693D1-A520-4308-9E37-5EC9C3AC2B2C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{24F693D1-A520-4308-9E37-5EC9C3AC2B2C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{24F693D1-A520-4308-9E37-5EC9C3AC2B2C}.Release|x86.ActiveCfg = Release|Any CPU
+		{4793102D-86A3-4658-9BA1-F1EF374A4769}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4793102D-86A3-4658-9BA1-F1EF374A4769}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4793102D-86A3-4658-9BA1-F1EF374A4769}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{4793102D-86A3-4658-9BA1-F1EF374A4769}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{4793102D-86A3-4658-9BA1-F1EF374A4769}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4793102D-86A3-4658-9BA1-F1EF374A4769}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4793102D-86A3-4658-9BA1-F1EF374A4769}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4793102D-86A3-4658-9BA1-F1EF374A4769}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{4793102D-86A3-4658-9BA1-F1EF374A4769}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{4793102D-86A3-4658-9BA1-F1EF374A4769}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -242,5 +254,6 @@ Global
 		{8E44EF54-D6B1-4F95-818B-372DEBD4E1CD} = {E7D25E5B-AB44-46C2-8B3A-1DAA01760938}
 		{2FF18615-AB59-4BED-B8E6-F24782F7D695} = {E7D25E5B-AB44-46C2-8B3A-1DAA01760938}
 		{24F693D1-A520-4308-9E37-5EC9C3AC2B2C} = {E7D25E5B-AB44-46C2-8B3A-1DAA01760938}
+		{4793102D-86A3-4658-9BA1-F1EF374A4769} = {E7D25E5B-AB44-46C2-8B3A-1DAA01760938}
 	EndGlobalSection
 EndGlobal
