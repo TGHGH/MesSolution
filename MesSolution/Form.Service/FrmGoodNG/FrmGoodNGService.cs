@@ -3,6 +3,8 @@ using Core.Models;
 using Core.Service;
 using FormApplication.Models;
 using System;
+using System.Collections.Generic;
+//using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -14,9 +16,9 @@ namespace FormApplication.Service
     public class FrmGoodNGService :IFrmGoodNGService  
 	{
         [Import]
-        public IMoFormService iMoFormService { get; set; }
+        public IMoFormService moFormService { get; set; }
         [Import]
-        public IItem2SnCheckFormService iItem2SnCheckFormService { get; set; }
+        public IItem2SnCheckFormService item2SnCheckFormService { get; set; }
         [Import]
         public IMoRcardFormService moRcardFormService { get; set; }
         [Import]
@@ -25,30 +27,35 @@ namespace FormApplication.Service
         public IItemFormService itemFormService { get; set; }
         [Import]
         public ISimulationReportFormService simulationReportFormService { get; set; }
-
+        [Import]
+        public IResFormService resFormService { get; set; }
+        [Import]
+        public IRouteFormService routeFormService { get; set; }
+        [Import]
+        public IRoute2OpFormService route2OpFormService { get;set; }
 
         public OperationResult FindSnCheck(string moString)
         {
             if (moString == null)
                 return new OperationResult(OperationResultType.Error, "工单号不能为空");
 
-            OperationResult operationResult = iMoFormService.FindEntity(moString);
+            OperationResult operationResult = moFormService.FindEntity(moString);
             if (operationResult.ResultType == OperationResultType.Success)
             {
                 Mo mo = (Mo)operationResult.AppendData;
-                Item2SnCheck item2SnCheck = iItem2SnCheckFormService.Item2SnChecks().SingleOrDefault(i => i.ITEMCODE == mo.ITEMCODE);
+                Item2SnCheck item2SnCheck = item2SnCheckFormService.Item2SnChecks().SingleOrDefault(i => i.ITEMCODE == mo.ITEMCODE);
                 operationResult.AppendData = item2SnCheck;
             }
             return operationResult;
         }
 
-        public OperationResult CheckCardFristOp(string moString, string lengthString, string prefixString, string card, string rescode, string usercode)
+        public OperationResult CardGoMoCheck(string moString, string lengthString, string prefixString, string card, string rescode, string usercode)
         {
             GoMoModel model = new GoMoModel { moString = moString, lengthString = lengthString, prefixString = prefixString, card = card, rescode = rescode, usercode = usercode };
             Validator.ValidateObject(model, new ValidationContext(model));
             OperationResult operationResult = new OperationResult(OperationResultType.Error);
 
-            Mo mo =(Mo) iMoFormService.FindEntity(moString).AppendData;
+            Mo mo =(Mo) moFormService.FindEntity(moString).AppendData;
             if (mo == null)
             {
                 operationResult.Message = moString + "工单不存在！";
@@ -110,12 +117,12 @@ namespace FormApplication.Service
         {
             bool Tbag = false;
 
-            OperationResult operationResult = CheckCardFristOp(moString, lengthString, prefixString, card, rescode, usercode);
+            OperationResult operationResult = CardGoMoCheck(moString, lengthString, prefixString, card, rescode, usercode);
 
             if (operationResult.ResultType == OperationResultType.Error)
                 return operationResult;
 
-            Mo mo = (Mo)iMoFormService.FindEntity(moString).AppendData;
+            Mo mo = (Mo)moFormService.FindEntity(moString).AppendData;
             Simulation nowSimulation = simulationFormService.Simulations().SingleOrDefault(s => s.RCARD == card && s.MOCODE == mo.MoCode);
             SimulationReport simulationReport = new SimulationReport();
             Item item = itemFormService.Items().SingleOrDefault(i => i.ITEMCODE == mo.ITEMCODE);
@@ -129,7 +136,7 @@ namespace FormApplication.Service
 
             //TBLSimulation               
             nowSimulation.ROUTECODE = mo.Route.ROUTECODE;
-            nowSimulation.OPCODE = mo.Route.Ops.First().OPCODE;
+            nowSimulation.OpCode = mo.Route.Ops.First().OPCODE;
             nowSimulation.LACTION = "GOMO";
             nowSimulation.ACTIONLIST = ";GOMO;";
             nowSimulation.RCARD = card;
@@ -193,7 +200,7 @@ namespace FormApplication.Service
             moRcard.Muser = usercode;
             moRcard.MoSeq = mo.MOSEQ;
 
-            iMoFormService.UpdateEntity(mo, false);
+            moFormService.UpdateEntity(mo, false);
             simulationReportFormService.AddEntity(simulationReport, false);
             moRcardFormService.AddEntity(moRcard, false);
             if (Tbag)
@@ -202,7 +209,76 @@ namespace FormApplication.Service
                 simulationFormService.UpdateEntity(nowSimulation);
 
             operationResult.ResultType = OperationResultType.Success;
-            operationResult.Message = card + "添加成功";
+            operationResult.Message = card + "采集成功";
+            return operationResult;
+        }
+        public OperationResult ActionGoodCheck(string usercode, string rescode, string card)
+        {
+            ActionGoodModel model = new ActionGoodModel { userCode = usercode, resCode = rescode, card = card };
+            Validator.ValidateObject(model, new ValidationContext(model));
+            OperationResult operationResult = new OperationResult(OperationResultType.Error);
+            Simulation lastSimulation = simulationFormService.Simulations().SingleOrDefault(s=>s.RCARD==card);
+            if (lastSimulation == null)
+            {
+                operationResult.Message =card+ "该产品没有归属工单";
+                return operationResult;
+            }
+            if (lastSimulation.ISCOM == "1")
+            {
+                operationResult.Message = card + "产品已完工";
+                return operationResult;           
+            }
+            Res res = resFormService.Ress().SingleOrDefault(r=>r.RESCODE==rescode);
+            if (res != null)
+            {
+                if (res.Op == null)
+                {
+                    operationResult.Message = rescode + "该资源岗位没有归属工序";
+                    return operationResult;       
+                }              
+            }
+            //throw new Exception("产品维修中");
+           // List<Route2Op> list = route2OpFormService.Route2Ops().Where(r => r.routeCodes == lastSimulation.ROUTECODE).ToList();
+               int nowOp= route2OpFormService.Route2Ops().SingleOrDefault(r => r.routeCode == lastSimulation.ROUTECODE && r.opCode == lastSimulation.OpCode).seq;
+            Route2Op nextOp = ((Route)routeFormService.FindEntity(lastSimulation.ROUTECODE).AppendData).Ops.Where(r => r.routeCode == lastSimulation.ROUTECODE && r.seq > nowOp).OrderBy(r => r.seq).FirstOrDefault();
+               //route2OpFormService.Route2Ops().Where(r => r.routeCode == lastSimulation.ROUTECODE && r.seq > nowOp).OrderBy(r=>r.seq).FirstOrDefault();
+                      
+            if (nextOp.opCode!=res.Op.OPCODE)
+            {
+                operationResult.Message = "当前工序为" + res.Op.OPCODE + ",产品下道工序为" + nextOp.opCode;
+                return operationResult;                
+            }
+            operationResult.Message =card+ "采集成功";
+            operationResult.ResultType = OperationResultType.Success;
+            return operationResult;
+        }
+
+        public OperationResult ActionGood(string usercode, string rescode, string card)
+        {
+            OperationResult operationResult = ActionGoodCheck(usercode, rescode, card);
+            if (operationResult.ResultType ==OperationResultType.Error)
+                return operationResult;
+            Simulation lastSimulation = simulationFormService.Simulations().SingleOrDefault(s => s.RCARD == card);
+            Res res = (Res)resFormService.FindEntity(rescode).AppendData;
+            lastSimulation.OpCode = res.Op.OPCODE;
+            lastSimulation.LACTION = "Good";
+            lastSimulation.ACTIONLIST = "Good";
+            lastSimulation.MUSER = usercode;
+            int nowOp = route2OpFormService.Route2Ops().SingleOrDefault(r => r.routeCode == lastSimulation.ROUTECODE && r.opCode == lastSimulation.OpCode).seq;
+            Route2Op nextOp = route2OpFormService.Route2Ops().Where(r => r.routeCode == lastSimulation.ROUTECODE&&r.seq>nowOp ).OrderByDescending(r => r.seq).FirstOrDefault();
+            //是最后一道工序
+            if (nextOp.opCode == res.Op.OPCODE)
+            {
+                lastSimulation.ISCOM = "1";                
+                Mo mo =(Mo) moFormService.FindEntity(lastSimulation.MOCODE).AppendData;
+                mo.MOACTQTY += 1;
+                simulationReportFormService.AddEntity(new SimulationReport(lastSimulation));
+            }
+            else
+            {
+                simulationReportFormService.AddEntity(new SimulationReport(lastSimulation));
+            }
+            operationResult.Message = card + "采集成功";
             return operationResult;
         }
     }

@@ -40,12 +40,12 @@ namespace Forms
                 loginModel.Password = textBox2.Text;
                 loginModel.ResCode = textBox3.Text;                
                 OperationResult operationResult = container.GetExportedValue<IUserFormService>().Login(loginModel);
-                FrmMain frmMain = Program._container.GetExportedValue<FrmMain>();
+                FrmMain frmMain = Program.programContainer.GetExportedValue<FrmMain>();
                 if (operationResult.ResultType == OperationResultType.Success)
                 {
                     frmMain.mdls = (List<Mdl>)operationResult.AppendData;
                     frmMain.MdlInitialize();                
-                    frmMain.richTextBox1.AppendText("登录成功！");
+                    frmMain.richTextBox1.AppendText("登录成功！"+"\n");
                     Program.usercode = loginModel.Account;
                     Program.rescode  = loginModel.ResCode;
                 }

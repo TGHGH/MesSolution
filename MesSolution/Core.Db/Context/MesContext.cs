@@ -55,6 +55,7 @@ namespace Core.Db.Context
         public DbSet<OpBomDetail> OpBomDetails { get; set; }
         public DbSet<Route> Routes { get; set; }
         public DbSet<Sbom> Sboms { get; set; }
+        public DbSet<Route2Op> Route2Ops { get; set; }
         
 
         //ItemAndMaterial

@@ -46,6 +46,7 @@
     <Compile Include="Craft\OpBom.cs" />
     <Compile Include="Craft\OpBomDetail.cs" />
     <Compile Include="Craft\Route.cs" />
+    <Compile Include="Craft\Route2Op.cs" />
     <Compile Include="Craft\Sbom.cs" />
     <Compile Include="ItemAndMaterial\Item.cs" />
     <Compile Include="ItemAndMaterial\Item2Ckdinfo.cs" />

@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IMoRcardService.cs" />
+    <Compile Include="IRoute2OpService.cs" />
     <Compile Include="ISimulationReportService.cs" />
     <Compile Include="ISimulationService.cs" />
     <Compile Include="MoRcardService.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Privage\IUserService.cs" />
     <Compile Include="Privage\Impl\ResService.cs" />
     <Compile Include="Privage\Impl\RouteService.cs" />
+    <Compile Include="Route2OpService.cs" />
     <Compile Include="SimulationReportService.cs" />
     <Compile Include="SimulationService.cs" />
     <Compile Include="Test\IAccountService.cs" />

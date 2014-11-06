@@ -49,7 +49,7 @@ namespace Core.Models
         public string ROUTECODE { get; set; }
         [MaxLength(40)]
 
-        public string OPCODE { get; set; }
+        public string OpCode { get; set; }
         [MaxLength(40)]
 
         public string RESCODE { get; set; }

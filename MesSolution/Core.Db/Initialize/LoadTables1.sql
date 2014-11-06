@@ -58,3 +58,6 @@ update Mdls set form='FrmGoodNG' where mdlcode='mdlcode3';
 
     
   update Items set Model_MODELCODE='modelcode1';
+  update Route2Op set routeCode='routecode1',seq=Route2OpID where Route2OpID<6;
+
+update Route2Op set routeCode='routecode2',seq=Route2OpID where Route2OpID>=6;

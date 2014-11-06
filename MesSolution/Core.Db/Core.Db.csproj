@@ -75,6 +75,7 @@
     <Compile Include="Repositories\Impl\MoRepository.cs" />
     <Compile Include="Repositories\Impl\OpRepository.cs" />
     <Compile Include="Repositories\Impl\ResRepository.cs" />
+    <Compile Include="Repositories\Impl\Route2OpRepository.cs" />
     <Compile Include="Repositories\Impl\RouteRepository.cs" />
     <Compile Include="Repositories\Impl\SimulationReportRepository.cs" />
     <Compile Include="Repositories\Impl\SimulationRepository.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="Repositories\Impl\RoleRepository.cs" />
     <Compile Include="Repositories\IOpRepository.cs" />
     <Compile Include="Repositories\IResRepository.cs" />
+    <Compile Include="Repositories\IRoute2OpRepository.cs" />
     <Compile Include="Repositories\IRouteRepository.cs" />
     <Compile Include="Repositories\ISimulationReportRepository.cs" />
     <Compile Include="Repositories\ISimulationRepository.cs" />

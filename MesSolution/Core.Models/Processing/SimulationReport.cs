@@ -126,7 +126,7 @@ namespace Core.Models
             MTIME=simulation.MTIME;
             MUSER=simulation.MUSER;
             NGTIMES=simulation.NGTIMES;
-            OPCODE=simulation.OPCODE;
+            OPCODE=simulation.OpCode;
             PALLETCODE=simulation.PALLETCODE;
             PRODUCTSTATUS=simulation.PRODUCTSTATUS;
             RCARD=simulation.RCARD;

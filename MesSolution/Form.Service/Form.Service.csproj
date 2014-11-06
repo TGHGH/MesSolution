@@ -50,6 +50,7 @@
     <Compile Include="IMoRcardFormService.cs" />
     <Compile Include="IOpFormService.cs" />
     <Compile Include="IResFormService.cs" />
+    <Compile Include="IRoute2OpFormService.cs" />
     <Compile Include="IRouteFormService.cs" />
     <Compile Include="ISimulationFormService.cs" />
     <Compile Include="ISimulationReportFormService.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="OpFormService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResFormService.cs" />
+    <Compile Include="Route2OpFormService.cs" />
     <Compile Include="RouteFormService.cs" />
     <Compile Include="SimulationFormService.cs" />
     <Compile Include="SimulationReportFormService.cs" />

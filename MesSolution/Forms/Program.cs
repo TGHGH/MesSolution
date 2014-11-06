@@ -13,8 +13,8 @@ namespace Forms
 {
     static class Program
     {
-        public static AggregateCatalog catalog;
-        public static CompositionContainer _container;
+        public static AggregateCatalog programCatalog;
+        public static CompositionContainer programContainer;
         public static string usercode;
         public static string rescode;
         /// <summary>
@@ -26,18 +26,18 @@ namespace Forms
             try
             {
                
-                catalog = new AggregateCatalog();
-                catalog.Catalogs.Add(new DirectoryCatalog(Directory.GetCurrentDirectory()));
-                catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
-                _container = new CompositionContainer(catalog);
+                programCatalog = new AggregateCatalog();
+                programCatalog.Catalogs.Add(new DirectoryCatalog(Directory.GetCurrentDirectory()));
+                programCatalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
+                programContainer = new CompositionContainer(programCatalog);
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.ThreadException += new ThreadExceptionEventHandler(Program.otherException);
-                Application.Run(_container.GetExportedValue<FrmMain>());
+                Application.Run(programContainer.GetExportedValue<FrmMain>());
             }
             catch (Exception e)
             {
-                _container.GetExportedValue<FrmMain>().richTextBox1.AppendText("\n" + e.Message);
+                programContainer.GetExportedValue<FrmMain>().richTextBox1.AppendText("\n" + e.Message);
                 string logStr = string.Concat(new string[]
 				{
 					DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss"),
@@ -55,7 +55,7 @@ namespace Forms
             if (e.Exception.Source.Trim() != "Infragistics.Win.UltraWinGrid.v3.2" && e.Exception.Source.Trim() != "Infragistics.Win.UltraWinExplorerBar.v3.2")
             {
                 //    Application.GetInfoForm().Add("$CS_System_Error:" + e.Exception.Message);
-                _container.GetExportedValue<FrmMain>().richTextBox1.AppendText("\n" + e.Exception.Message);
+                programContainer.GetExportedValue<FrmMain>().richTextBox1.AppendText("\n" + e.Exception.Message);
                 string logStr = string.Concat(new string[]
 				{
 					DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss"),

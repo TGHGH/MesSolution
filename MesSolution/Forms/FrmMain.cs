@@ -50,7 +50,7 @@ namespace Forms
             frm.ShowDialog();//显示Form2窗体           
           //  MdlInitialize();
             this.WindowState = FormWindowState.Maximized;
-            FormLogin formLogin = Program._container.GetExportedValue<FormLogin>();
+            FormLogin formLogin = Program.programContainer.GetExportedValue<FormLogin>();
             formLogin.TopLevel = false;
             formLogin.Dock = DockStyle.Fill;
             formLogin.Show();
@@ -73,9 +73,9 @@ namespace Forms
         }
 
         public void MdlInitialize() 
-        {        
-           
-            
+        {
+
+            treeView1.Nodes.Clear();
             TreeNode tn1 = new TreeNode("0");
             Mdl mdl = mdls.Single(m => m.parentcode == "0");
             tn1.Tag = mdl;
@@ -115,14 +115,14 @@ namespace Forms
             switch (mdl.form)
             {
                 case "FormLogin":
-                    FormLogin formLogin = Program._container.GetExportedValue<FormLogin>();
+                    FormLogin formLogin = Program.programContainer.GetExportedValue<FormLogin>();
                     formLogin.TopLevel = false;
                     formLogin.Dock = DockStyle.Fill;
                     formLogin.Show();
                     this.panel4.Controls.Add(formLogin);
                     break;
                 case "FrmGoodNG":
-                    FrmGoodNG frmGoodNG = Program._container.GetExportedValue<FrmGoodNG>();
+                    FrmGoodNG frmGoodNG = Program.programContainer.GetExportedValue<FrmGoodNG>();
                     frmGoodNG.TopLevel = false;
                     frmGoodNG.Dock = DockStyle.Fill;
                     frmGoodNG.Show();

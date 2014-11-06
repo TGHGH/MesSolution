@@ -75,10 +75,18 @@ namespace Forms
             {
                 if (tetMo.Text.Length != 0)
                 {
-                    using (CompositionContainer _container = new CompositionContainer(catalog))
+                    using (CompositionContainer testContainer = new CompositionContainer(catalog))
                     {
-                        OperationResult operationResult = _container.GetExportedValue<IFrmGoodNGService>().CardGoMo(tetMo.Text, txtLength.Text, txtPrefix.Text,txtRuningCard.Text , Program.rescode, Program.usercode);
-                        richTextBox1.AppendText("\n" + operationResult.Message);
+                        OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNGService>().CardGoMo(tetMo.Text, txtLength.Text, txtPrefix.Text,txtRuningCard.Text , Program.rescode, Program.usercode);
+                        richTextBox1.AppendText(operationResult.Message+"\n");
+                    }
+                }
+                else
+                {
+                    using (CompositionContainer testContainer = new CompositionContainer(catalog))
+                    {
+                        OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNGService>().ActionGood(Program.usercode, Program.rescode, txtRuningCard.Text);
+                        richTextBox1.AppendText(operationResult.Message + "\n");
                     }
                 }
             } 
