@@ -37,6 +37,6 @@ namespace Core.Models
         public virtual ICollection<Route> Routes { get; set; }
         public virtual ICollection<Res> Reses { get; set; }
 
-        public virtual Route2Op route2Op { get; set; }
+    //    public virtual Route2Op route2Op { get; set; }
     }
 }

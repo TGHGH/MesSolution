@@ -43,7 +43,7 @@ namespace Presentation.Consoles
             //初始化数据库，如果存在且模型改变，删除重新建
 
             DatabaseInitializer.DropCreateDatabaseIfModelChanges();
-            InfialData();
+           // InfialData();
 
             //初始化MEF组合容器
             catalog = new AggregateCatalog();
@@ -410,24 +410,7 @@ namespace Presentation.Consoles
         private static void Method17()
         {
             
-        }
-        private static void InfialData()
-        {
-            ProcessStartInfo info = new ProcessStartInfo("sqlcmd", @" -S . -i ../../../Core.Db/Initialize/LoadTables1.sql");
-            //禁用OS Shell  
-            info.UseShellExecute = false;
-            //禁止弹出新窗口  
-         //   info.CreateNoWindow = true;
-            //隐藏windows style  
-         //   info.WindowStyle = ProcessWindowStyle.Hidden;
-            //标准输出  
-            info.RedirectStandardOutput = true;
-
-            Process proc = new Process();
-            proc.StartInfo = info;
-            //启动进程  
-            proc.Start();  
-        }
+        }      
          
 
         #endregion

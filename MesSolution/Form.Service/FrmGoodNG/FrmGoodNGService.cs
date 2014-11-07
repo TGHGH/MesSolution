@@ -33,6 +33,8 @@ namespace FormApplication.Service
         public IRouteFormService routeFormService { get; set; }
         [Import]
         public IRoute2OpFormService route2OpFormService { get;set; }
+        [Import]
+        public IOpFormService opFormService { get; set; }
 
         public OperationResult FindSnCheck(string moString)
         {
@@ -239,13 +241,11 @@ namespace FormApplication.Service
             }
             //throw new Exception("产品维修中");
            // List<Route2Op> list = route2OpFormService.Route2Ops().Where(r => r.routeCodes == lastSimulation.ROUTECODE).ToList();
-             //  int nowOp= route2OpFormService.Route2Ops().SingleOrDefault(r => r.routes.routeCode == lastSimulation.ROUTECODE && r.opCode == lastSimulation.OpCode).seq;
+               int nowOp= route2OpFormService.Route2Ops().SingleOrDefault(r => r.routeCode == lastSimulation.ROUTECODE && r.opCode == lastSimulation.OpCode).seq;
              //  int nowOp = route2OpFormService.Route2Ops().Where(r => r.routes.Where(a => a.ROUTECODE == lastSimulation.ROUTECODE)).Where(r => r.ops.Where(b => b.OPCODE == lastSimulation.OpCode)).FirstOrDefault().seq;
            // int nowOp = route2OpFormService.Route2Ops().Where(r => {  r.routes.Where(a => a.ROUTECODE == lastSimulation.ROUTECODE)}).Where(r => r.ops.Where(b => b.OPCODE == lastSimulation.OpCode)).FirstOrDefault().seq;
-           // Route2Op nowOp=from r in route2OpFormService.Route2Ops() where (r.routes.SingleOrDefault(a=>a.ROUTECODE==lastSimulation.ROUTECODE)).where(r.ops.SingleOrDefault(o=>o.OPCODE==lastSimulation.OpCode)) select r;
-            Route2Op nextOp = ((Route)routeFormService.FindEntity(lastSimulation.ROUTECODE).AppendData).Ops.Where(r => r.routeCode == lastSimulation.ROUTECODE && r.seq > nowOp).OrderBy(r => r.seq).FirstOrDefault();
-               //route2OpFormService.Route2Ops().Where(r => r.routeCode == lastSimulation.ROUTECODE && r.seq > nowOp).OrderBy(r=>r.seq).FirstOrDefault();
-                      
+               Route2Op nextOp = route2OpFormService.Route2Ops().Where(r => r.routeCode == lastSimulation.ROUTECODE && r.seq > nowOp).OrderBy(r => r.seq).FirstOrDefault();
+          
             if (nextOp.opCode!=res.Op.OPCODE)
             {
                 operationResult.Message = "当前工序为" + res.Op.OPCODE + ",产品下道工序为" + nextOp.opCode;

@@ -1,6 +1,7 @@
 ﻿using Component.Tools;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -46,6 +47,24 @@ namespace Core.Db.Initialize
                 list.Add(entity);
             }
             return list;
+        }
+
+        public static void InfialData()
+        {
+            ProcessStartInfo info = new ProcessStartInfo("sqlcmd", @" -S . -i ../../../Core.Db/Initialize/LoadTables1.sql");
+            //禁用OS Shell  
+            info.UseShellExecute = false;
+            //禁止弹出新窗口  
+            //   info.CreateNoWindow = true;
+            //隐藏windows style  
+            //   info.WindowStyle = ProcessWindowStyle.Hidden;
+            //标准输出  
+            info.RedirectStandardOutput = true;
+
+            Process proc = new Process();
+            proc.StartInfo = info;
+            //启动进程  
+            proc.Start();
         }
     }
 }

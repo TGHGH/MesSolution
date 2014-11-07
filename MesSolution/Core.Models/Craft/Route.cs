@@ -41,6 +41,6 @@ namespace Core.Models
         public virtual ICollection<Item> Items { get; set; }
         public virtual ICollection<Mo> Moes { get; set; }
 
-        public virtual Route2Op route2Op { get; set; }
+    //    public virtual Route2Op route2Op { get; set; }
     }
 }

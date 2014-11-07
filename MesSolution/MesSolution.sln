@@ -61,7 +61,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auto", "Auto\Auto.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Forms", "Forms\Forms.csproj", "{24F693D1-A520-4308-9E37-5EC9C3AC2B2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestForm.Service", "UnitTestForm.Service\UnitTestForm.Service.csproj", "{4793102D-86A3-4658-9BA1-F1EF374A4769}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Form.ServiceUnitTest", "UnitTestForm.Service\Form.ServiceUnitTest.csproj", "{4793102D-86A3-4658-9BA1-F1EF374A4769}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

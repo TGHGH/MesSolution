@@ -61,31 +61,11 @@ namespace GMF.Demo.Core.Data.Initialize
             Initialize<Simulation>.Infial(num).ForEach(u => context.Set<Simulation>().Add(u));
             Initialize<SimulationReport>.Infial(num).ForEach(u => context.Set<SimulationReport>().Add(u));
             Initialize<Model>.Infial(num).ForEach(u => context.Set<Model>().Add(u));
-            Initialize<Route2Op>.Infial(num).ForEach(u => context.Set<Route2Op>().Add(u));
-            //List<UserGroup> userGroups = new List<UserGroup>
-            //{
-            //    new UserGroup{usergroupcode="usergroupcode1",usergroupdesc="usergroupdesc1",usergrouptype="usergrouptype1",muser="muser1",mdate=DateTime.Now,eattribute1="eattribute1"},
-            //    new UserGroup{usergroupcode="usergroupcode2",usergroupdesc="usergroupdesc2",usergrouptype="usergrouptype2",muser="muser2",mdate=DateTime.Now,eattribute1="eattribute2"}
-            //};
-            //DbSet<UserGroup> userGroup = context.Set<UserGroup>();
-            //userGroups.ForEach(u => userGroup.Add(u));
-            //var userGroupList = userSet.Find("65128044").UserGroups;
-            //userGroupList.Add(userGroup.First());
+            Initialize<Route2Op>.Infial(num).ForEach(u => context.Set<Route2Op>().Add(u));      
             
             context.Configuration.AutoDetectChangesEnabled = true;
             context.SaveChanges();
-
-
-            //UserGroup userGroup = context.Set<UserGroup>().Find("usergroupcode1");
-            //User user = context.Set<User>().Find("usercode1");
-            //Res res = context.Set<Res>().Find("RESCODE1");
-            //User user2 = context.Set<User>().Find("usercode2");
-            //Res res2 = context.Set<Res>().Find("RESCODE2");
-            //userGroup.Users.Add(user);
-            //userGroup.Users.Add(user2);
-            //userGroup.Ress.Add(res);
-            //userGroup.Ress.Add(res2);
-            //context.SaveChanges();
+            Initialize<User>.InfialData();
         }
       
      
