@@ -54,6 +54,8 @@
     <Compile Include="IRoute2OpService.cs" />
     <Compile Include="ISimulationReportService.cs" />
     <Compile Include="ISimulationService.cs" />
+    <Compile Include="ITsErrorCodeService.cs" />
+    <Compile Include="ITsService.cs" />
     <Compile Include="MoRcardService.cs" />
     <Compile Include="Privage\IItem2SnCheckService.cs" />
     <Compile Include="Privage\Impl\Item2SnCheckService.cs" />
@@ -80,6 +82,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Privage\Impl\UserService.cs" />
     <Compile Include="Privage\Impl\UserGroupService.cs" />
+    <Compile Include="TsErrorCodeService.cs" />
+    <Compile Include="TsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Component.Data\Component.Data.csproj">

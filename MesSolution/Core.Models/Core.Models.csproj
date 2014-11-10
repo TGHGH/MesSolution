@@ -119,7 +119,6 @@
     <Compile Include="Ts\Ec.cs" />
     <Compile Include="Ts\Ec2OpRework.cs" />
     <Compile Include="Ts\Ecg.cs" />
-    <Compile Include="Ts\Ecg2Ec.cs" />
     <Compile Include="Ts\EcItem2Route.cs" />
     <Compile Include="Ts\Ecs.cs" />
     <Compile Include="Ts\Ecsg.cs" />

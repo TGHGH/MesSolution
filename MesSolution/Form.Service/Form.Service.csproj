@@ -56,6 +56,8 @@
     <Compile Include="ISimulationReportFormService.cs" />
     <Compile Include="Item2SnCheckFormService.cs" />
     <Compile Include="ItemFormService.cs" />
+    <Compile Include="ITsErrorCodeFormService.cs" />
+    <Compile Include="ITsFormService.cs" />
     <Compile Include="IUserGroupFormService.cs" />
     <Compile Include="IUserFormService.cs" />
     <Compile Include="FrmGoodNG\FrmGoodNGService.cs" />
@@ -68,6 +70,8 @@
     <Compile Include="RouteFormService.cs" />
     <Compile Include="SimulationFormService.cs" />
     <Compile Include="SimulationReportFormService.cs" />
+    <Compile Include="TsErrorCodeFormService.cs" />
+    <Compile Include="TsFormService.cs" />
     <Compile Include="UserGroupFormService.cs" />
     <Compile Include="UserFormService.cs" />
   </ItemGroup>

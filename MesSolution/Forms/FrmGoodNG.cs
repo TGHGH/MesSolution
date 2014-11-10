@@ -20,13 +20,11 @@ namespace Forms
     [Export]
     public partial class FrmGoodNG : Form
     {
-        public AggregateCatalog catalog;
+      
         public FrmGoodNG()
         {
             InitializeComponent();
-            catalog = new AggregateCatalog();
-            catalog.Catalogs.Add(new DirectoryCatalog(Directory.GetCurrentDirectory()));
-            catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
+          
           
         }
 
@@ -45,7 +43,7 @@ namespace Forms
         {
             if (e.KeyChar == '\r')
             {
-                using (CompositionContainer container = new CompositionContainer(catalog))
+                using (CompositionContainer container = new CompositionContainer(Program.programCatalog))
                 {                   
                     OperationResult operationResult = container.GetExportedValue<IFrmGoodNGService>().FindSnCheck(tetMo.Text);
                     if (operationResult.ResultType == OperationResultType.Success)
@@ -75,7 +73,7 @@ namespace Forms
             {
                 if (tetMo.Text.Length != 0)
                 {
-                    using (CompositionContainer testContainer = new CompositionContainer(catalog))
+                    using (CompositionContainer testContainer = new CompositionContainer(Program.programCatalog))
                     {
                         OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNGService>().CardGoMo(tetMo.Text, txtLength.Text, txtPrefix.Text,txtRuningCard.Text , Program.rescode, Program.usercode);
                         richTextBox1.AppendText(operationResult.Message+"\n");
@@ -83,11 +81,18 @@ namespace Forms
                 }
                 else
                 {
-                    using (CompositionContainer testContainer = new CompositionContainer(catalog))
-                    {
-                        OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNGService>().ActionGood(Program.usercode, Program.rescode, txtRuningCard.Text);
-                        richTextBox1.AppendText(operationResult.Message + "\n");
-                    }
+                    if (radioButtonGood.Checked)
+                        using (CompositionContainer testContainer = new CompositionContainer(Program.programCatalog))
+                        {
+                            OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNGService>().ActionGood(Program.usercode, Program.rescode, txtRuningCard.Text);
+                            richTextBox1.AppendText(operationResult.Message + "\n");
+                        }
+                    else
+                        using (CompositionContainer testContainer = new CompositionContainer(Program.programCatalog))
+                        {
+                            OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNGService>().ActionNG( txtRuningCard.Text,Program.usercode, Program.rescode,"AUTONG","AUTONG");
+                            richTextBox1.AppendText(operationResult.Message + "\n");
+                        }                        ;
                 }
             } 
         }

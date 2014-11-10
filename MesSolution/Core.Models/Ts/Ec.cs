@@ -9,13 +9,14 @@
 
 namespace Core.Models
 {
+    using Component.Tools;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("TBLEC")]
-    public partial class Ec
+    public partial class Ec:Entity
     {
         [Key,MaxLength(40)]
         public string ECODE { get; set; }

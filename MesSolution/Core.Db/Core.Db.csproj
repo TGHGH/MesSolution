@@ -79,6 +79,8 @@
     <Compile Include="Repositories\Impl\RouteRepository.cs" />
     <Compile Include="Repositories\Impl\SimulationReportRepository.cs" />
     <Compile Include="Repositories\Impl\SimulationRepository.cs" />
+    <Compile Include="Repositories\Impl\TsErrorCodeRepository.cs" />
+    <Compile Include="Repositories\Impl\TsRepository.cs" />
     <Compile Include="Repositories\Impl\UserGroupRepository.cs" />
     <Compile Include="Repositories\Impl\UserRepository.cs" />
     <Compile Include="Repositories\Impl\RoleRepository.cs" />
@@ -88,6 +90,8 @@
     <Compile Include="Repositories\IRouteRepository.cs" />
     <Compile Include="Repositories\ISimulationReportRepository.cs" />
     <Compile Include="Repositories\ISimulationRepository.cs" />
+    <Compile Include="Repositories\ITsErrorCodeRepository.cs" />
+    <Compile Include="Repositories\ITsRepository.cs" />
     <Compile Include="Repositories\IUserGroupRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\IRoleRepository.cs" />

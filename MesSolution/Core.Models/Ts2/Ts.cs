@@ -9,16 +9,17 @@
 
 namespace Core.Models
 {
+    using Component.Tools;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    [Table("TBLTS")]
-    public partial class Ts
+  
+    public partial class Ts:Entity
     {
-        [Key,MaxLength(40)]
-        public string TSID { get; set; }
+      
+        public Int64 TSID { get; set; }
         [MaxLength(40),Required]
         public string RCARD { get; set; }
         [Required]

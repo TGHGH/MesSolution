@@ -9,14 +9,16 @@
 
 namespace Core.Models
 {
+    using Component.Tools;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    [Table("TBLTSERRORCODE")]
-    public partial class  TsErrorCode
+  
+    public partial class  TsErrorCode:Entity
     {
+        public Int64 TsErrorCodeID { get; set; }
         [MaxLength(40),Required]
         public string ECODE { get; set; }
         [MaxLength(40), Required]

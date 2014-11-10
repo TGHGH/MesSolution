@@ -93,6 +93,10 @@ namespace Core.Db.Context
         public DbSet<Simulation> simulations { get; set; }
         public DbSet<SimulationReport> simulationreports { get; set; }
 
+        public DbSet<Ts> tses { get; set; }
+
+        public DbSet<TsErrorCode> tsErrorCodes { get; set; }
+
 
         #endregion
 

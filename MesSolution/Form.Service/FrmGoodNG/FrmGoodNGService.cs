@@ -4,7 +4,6 @@ using Core.Service;
 using FormApplication.Models;
 using System;
 using System.Collections.Generic;
-//using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -35,6 +34,10 @@ namespace FormApplication.Service
         public IRoute2OpFormService route2OpFormService { get;set; }
         [Import]
         public IOpFormService opFormService { get; set; }
+        [Import]
+        public ITsFormService tsFormService { get; set; }
+        [Import]
+        public ITsErrorCodeFormService tsErrorCodeFormService { get; set; }
 
         public OperationResult FindSnCheck(string moString)
         {
@@ -240,18 +243,15 @@ namespace FormApplication.Service
                 }              
             }
             //throw new Exception("产品维修中");
-           // List<Route2Op> list = route2OpFormService.Route2Ops().Where(r => r.routeCodes == lastSimulation.ROUTECODE).ToList();
-               int nowOp= route2OpFormService.Route2Ops().SingleOrDefault(r => r.routeCode == lastSimulation.ROUTECODE && r.opCode == lastSimulation.OpCode).seq;
-             //  int nowOp = route2OpFormService.Route2Ops().Where(r => r.routes.Where(a => a.ROUTECODE == lastSimulation.ROUTECODE)).Where(r => r.ops.Where(b => b.OPCODE == lastSimulation.OpCode)).FirstOrDefault().seq;
-           // int nowOp = route2OpFormService.Route2Ops().Where(r => {  r.routes.Where(a => a.ROUTECODE == lastSimulation.ROUTECODE)}).Where(r => r.ops.Where(b => b.OPCODE == lastSimulation.OpCode)).FirstOrDefault().seq;
-               Route2Op nextOp = route2OpFormService.Route2Ops().Where(r => r.routeCode == lastSimulation.ROUTECODE && r.seq > nowOp).OrderBy(r => r.seq).FirstOrDefault();
           
+            int nowOp= route2OpFormService.Route2Ops().SingleOrDefault(r => r.routeCode == lastSimulation.ROUTECODE && r.opCode == lastSimulation.OpCode).seq;        
+            Route2Op nextOp = route2OpFormService.Route2Ops().Where(r => r.routeCode == lastSimulation.ROUTECODE && r.seq > nowOp).OrderBy(r => r.seq).FirstOrDefault();          
             if (nextOp.opCode!=res.Op.OPCODE)
             {
                 operationResult.Message = "当前工序为" + res.Op.OPCODE + ",产品下道工序为" + nextOp.opCode;
                 return operationResult;                
             }
-            operationResult.Message =card+ "采集成功";
+            operationResult.Message =card+ "检测成功";
             operationResult.ResultType = OperationResultType.Success;
             return operationResult;
         }
@@ -281,6 +281,118 @@ namespace FormApplication.Service
             {
                 simulationReportFormService.AddEntity(new SimulationReport(lastSimulation));
             }
+            operationResult.Message = card + "采集成功";
+            return operationResult;
+        }
+        public OperationResult ActionNGCheck(string card, string usercode, string rescode, string selectedEcg, string selectedEc)
+        {
+            ActionNGModel model = new ActionNGModel { userCode = usercode, resCode = rescode, card = card ,selectedEc=selectedEc,selectedEcg=selectedEc};
+            Validator.ValidateObject(model, new ValidationContext(model));
+            OperationResult operationResult = new OperationResult(OperationResultType.Error);
+            Simulation simulation = simulationFormService.Simulations().SingleOrDefault(s=>s.RCARD==card);
+            if (simulation == null)
+            {
+                operationResult.Message = card + "该产品没有归属工单";
+                return operationResult;
+            }
+            Res res = resFormService.Ress().SingleOrDefault(r => r.RESCODE == rescode);
+            if (res != null)
+            {
+                if (res.Op == null)
+                {
+                    operationResult.Message = rescode + "该资源岗位没有归属工序";
+                    return operationResult;
+                }
+            }
+
+            int nowOp = route2OpFormService.Route2Ops().SingleOrDefault(r => r.routeCode == simulation.ROUTECODE && r.opCode == simulation.OpCode).seq;
+            Route2Op nextOp = route2OpFormService.Route2Ops().Where(r => r.routeCode == simulation.ROUTECODE && r.seq > nowOp).OrderBy(r => r.seq).FirstOrDefault();
+            if (nextOp.opCode != res.Op.OPCODE)
+            {
+                operationResult.Message = "当前工序为" + res.Op.OPCODE + ",产品下道工序为" + nextOp.opCode;
+                return operationResult;
+            }
+            operationResult.Message = card + "检测成功";
+            operationResult.ResultType = OperationResultType.Success;
+            return operationResult;           
+          
+        }
+
+        public OperationResult ActionNG(string card, string usercode, string rescode, string selectedEcg, string selectedEc)
+        {
+            OperationResult operationResult = ActionNGCheck(card,usercode,rescode,selectedEcg,selectedEc);
+            if (operationResult.ResultType == OperationResultType.Error)
+                return operationResult;
+            //TBLSIMULATION
+            Simulation simulation = simulationFormService.Simulations().SingleOrDefault(s => s.RCARD == card);
+            DateTime dt = DateTime.Now;
+            simulation.LOTNO = null;
+            simulation.PRODUCTSTATUS = "NG";
+            simulation.LACTION = "NG";
+            simulation.ACTIONLIST += "NG;";
+            simulation.NGTIMES += 1;
+            simulation.MUSER =usercode;
+            simulation.MDATE = Convert.ToInt32("" + dt.Year + dt.Day);
+            simulation.MTIME = Convert.ToInt32("" + dt.Hour + dt.Minute + dt.Second);
+            //TBLTS
+            Ts ts = new Ts();
+           // ts.TSID = card + DateTime.Now.ToString();
+            ts.RCARD = card;
+            ts.RCARDSEQ = 1;//固定
+            ts.TCARD = card;
+            ts.TCARDSEQ = 1;//固定
+            ts.SCARD = card;
+            ts.SCARDSEQ = 1;//固定
+            ts.CARDTYPE = "cardtype_product";//固定
+            ts.MODELCODE = simulation.MODELCODE;
+            ts.ITEMCODE = simulation.ITEMCODE;
+            ts.ITEMCODE = simulation.MOCODE;
+            ts.FRMROUTECODE = simulation.ROUTECODE;
+            ts.FRMOPCODE = simulation.OpCode;
+            ts.FRMSEGCODE = "ZJ";
+            ts.FRMSSCODE = "A1";
+            ts.CRESCODE = rescode;
+            ts.SHIFTTYPECODE = "OS";
+            ts.SHIFTCODE = "OS1";
+            ts.TPCODE = "OS1-01";
+            ts.SHIFTDAY = 20140624;
+            ts.FRMUSER = usercode;
+            ts.FRMDATE = Convert.ToInt32("" + dt.Year + dt.Day);
+            ts.FRMTIME = Convert.ToInt32("" + dt.Hour + dt.Minute + dt.Second);
+            ts.FRMINPUTTYPE = "tssource_onwip";
+            ts.TSTIMES += 1;
+            ts.TSSTATUS = "tsstatus_new";
+            ts.TSDATE = 0;
+            ts.TSTIMES = 0;
+            ts.CONFIRMTIME = 0;
+            ts.CONFIRMDATE = 0;
+            ts.TRANSSTATUS = "none";
+            ts.MUSER = usercode;
+            ts.MDATE = Convert.ToInt32("" + dt.Year + dt.Day);
+            ts.MTIME = Convert.ToInt32("" + dt.Hour + dt.Minute + dt.Second);
+            ts.FRMMONTH = dt.Month;
+            ts.FRMWEEK = dt.DayOfYear / 7 + 1;
+            ts.FRMOUTROUTECODE = simulation.ROUTECODE;
+            ts.MOSEQ = simulation.MOSEQ;
+            ts.TSREPAIRMDATE = 0;
+            ts.TSREPAIRMTIME = 0;
+            //TBLTSERRORCODE
+            TsErrorCode tsErrorCode = new TsErrorCode();
+            tsErrorCode.ECODE = selectedEc;
+            tsErrorCode.ECGCODE = selectedEcg;
+            tsErrorCode.TSID = ts.TSID+"";
+            tsErrorCode.RCARD = card;
+            tsErrorCode.RCARDSEQ = 1;
+            tsErrorCode.MODELCODE = simulation.MODELCODE;
+            tsErrorCode.ITEMCODE = simulation.ITEMCODE;
+            tsErrorCode.MOCODE = simulation.MOCODE;
+            tsErrorCode.MUSER = usercode;
+            tsErrorCode.MDATE = Convert.ToInt32("" + dt.Year + dt.Day);
+            tsErrorCode.MTIME = Convert.ToInt32("" + dt.Hour + dt.Minute + dt.Second);
+            tsErrorCode.MOSEQ = simulation.MOSEQ;
+
+            tsFormService.AddEntity(ts, false);
+            tsErrorCodeFormService.AddEntity(tsErrorCode);
             operationResult.Message = card + "采集成功";
             return operationResult;
         }

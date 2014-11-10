@@ -22,18 +22,15 @@ namespace Forms
     [Export]
     public partial class FormLogin : Form
     {
-        public AggregateCatalog catalog;
+      
         public FormLogin()
         {
-            InitializeComponent();
-            catalog = new AggregateCatalog();
-            catalog.Catalogs.Add(new DirectoryCatalog(Directory.GetCurrentDirectory()));
-            catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
+            InitializeComponent();        
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            using (CompositionContainer container = new CompositionContainer(catalog))
+            using (CompositionContainer container = new CompositionContainer(Program.programCatalog))
             {
                 LoginModel loginModel = new LoginModel();   
                 loginModel.Account = textBox1.Text;
