@@ -36,5 +36,8 @@ namespace Core.Models
         public int MTIME { get; set; }
         [MaxLength(40)]
         public string EATTRIBUTE1 { get; set; }
+        public virtual ICollection<Ec> ecs { get; set; }
+
+        public virtual ICollection<Model> models { get; set; }
     }
 }

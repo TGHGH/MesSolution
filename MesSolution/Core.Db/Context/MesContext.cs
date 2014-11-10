@@ -93,6 +93,16 @@ namespace Core.Db.Context
         public DbSet<Simulation> simulations { get; set; }
         public DbSet<SimulationReport> simulationreports { get; set; }
 
+        //Ts
+        public DbSet<Duty> duties { get; set; }
+        public DbSet<Ec> ecs { get; set; }
+        public DbSet<Ecg> ecgs { get; set; }
+        public DbSet<Ecs> ecses { get; set; }
+        public DbSet<Ecsg> ecsgs { get; set; }
+        public DbSet<Solution> solutions { get; set; }
+
+
+        //Ts2
         public DbSet<Ts> tses { get; set; }
 
         public DbSet<TsErrorCode> tsErrorCodes { get; set; }

@@ -9,12 +9,13 @@
 
 namespace Core.Models
 {
+    using Component.Tools;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     [Table("TBLECSG")]
-    public partial class Ecsg
+    public partial class Ecsg:Entity
     {
         [Key,MaxLength(40)]
         public string ECSGCODE { get; set; }
@@ -28,5 +29,9 @@ namespace Core.Models
         public int MTIME { get; set; }
         [MaxLength(100)]
         public string EATTRIBUTE1 { get; set; }
+
+        public virtual ICollection<Ecs> ecses { get; set; }
+
+        public virtual ICollection<Model> models { get; set; }
     }
 }

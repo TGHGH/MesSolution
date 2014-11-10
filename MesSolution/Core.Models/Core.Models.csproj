@@ -117,16 +117,9 @@
     <Compile Include="Ts2\TsSplitItem.cs" />
     <Compile Include="Ts\Duty.cs" />
     <Compile Include="Ts\Ec.cs" />
-    <Compile Include="Ts\Ec2OpRework.cs" />
     <Compile Include="Ts\Ecg.cs" />
-    <Compile Include="Ts\EcItem2Route.cs" />
     <Compile Include="Ts\Ecs.cs" />
     <Compile Include="Ts\Ecsg.cs" />
-    <Compile Include="Ts\Ecsg2Ecs.cs" />
-    <Compile Include="Ts\Model2Ecg.cs" />
-    <Compile Include="Ts\Model2Ecs.cs" />
-    <Compile Include="Ts\Model2Ecsg.cs" />
-    <Compile Include="Ts\Model2Solution.cs" />
     <Compile Include="Ts\Solution.cs" />
     <Compile Include="Ts\TSErrorInfo.cs" />
   </ItemGroup>

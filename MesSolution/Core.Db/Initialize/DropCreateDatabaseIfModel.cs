@@ -61,7 +61,14 @@ namespace GMF.Demo.Core.Data.Initialize
             Initialize<Simulation>.Infial(num).ForEach(u => context.Set<Simulation>().Add(u));
             Initialize<SimulationReport>.Infial(num).ForEach(u => context.Set<SimulationReport>().Add(u));
             Initialize<Model>.Infial(num).ForEach(u => context.Set<Model>().Add(u));
-            Initialize<Route2Op>.Infial(num).ForEach(u => context.Set<Route2Op>().Add(u));      
+            Initialize<Route2Op>.Infial(num).ForEach(u => context.Set<Route2Op>().Add(u));
+
+            Initialize<Duty>.Infial(num).ForEach(u => context.Set<Duty>().Add(u));
+            Initialize<Ec>.Infial(num).ForEach(u => context.Set<Ec>().Add(u));
+            Initialize<Ecg>.Infial(num).ForEach(u => context.Set<Ecg>().Add(u));
+            Initialize<Ecs>.Infial(num).ForEach(u => context.Set<Ecs>().Add(u));
+            Initialize<Ecsg>.Infial(num).ForEach(u => context.Set<Ecsg>().Add(u));
+            Initialize<Solution>.Infial(num).ForEach(u => context.Set<Solution>().Add(u));
             
             context.Configuration.AutoDetectChangesEnabled = true;
             context.SaveChanges();

@@ -30,5 +30,7 @@ namespace Core.Models
         public int MTIME { get; set; }
         [MaxLength(40)]
         public string EATTRIBUTE1 { get; set; }
+
+        public virtual Ecg ecg { get; set; }
     }
 }

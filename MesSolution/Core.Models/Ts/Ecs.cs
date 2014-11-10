@@ -9,25 +9,28 @@
 
 namespace Core.Models
 {
+    using Component.Tools;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("TBLECS")]
-    public partial class Ecs
+    public partial class Ecs:Entity
     {
         [Key,MaxLength(40)]
-        public string ECSCODE { get; set; }
+        public string ecscode { get; set; }
         [MaxLength(100)]
-        public string ECSDESC { get; set; }
+        public string ecsdesc { get; set; }
         [MaxLength(40),Required]
-        public string MUSER { get; set; }
+        public string muser { get; set; }
         [Required]
         public int MDATE { get; set; }
         [Required]
         public int MTIME { get; set; }
         [MaxLength(40)]
         public string EATTRIBUTE1 { get; set; }
+
+        public virtual Ecsg ecsg { get; set; }
     }
 }

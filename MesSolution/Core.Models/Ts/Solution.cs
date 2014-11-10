@@ -9,13 +9,14 @@
 
 namespace Core.Models
 {
+    using Component.Tools;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("TBLSOLUTION")]
-    public partial class Solution
+    public partial class Solution:Entity
     {
         [Key,MaxLength(40)]
         public string SOLCODE { get; set; }
@@ -31,5 +32,7 @@ namespace Core.Models
         public int MTIME { get; set; }
         [MaxLength(40)]
         public string EATTRIBUTE1 { get; set; }
+
+        public virtual ICollection<Model> models { get; set; }
     }
 }

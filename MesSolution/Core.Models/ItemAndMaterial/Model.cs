@@ -43,5 +43,9 @@ namespace Core.Models
         
         public virtual ICollection<Item> Items { get; set; }
         public virtual Org Org { get; set; }
+
+        public virtual ICollection<Ecg> ecgs { get; set; }
+        public virtual ICollection<Ecsg> ecsgs { get; set; }
+        public virtual ICollection<Solution> solutions { get; set; }
     }
 }

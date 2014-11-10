@@ -9,25 +9,26 @@
 
 namespace Core.Models
 {
+    using Component.Tools;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("TBLDUTY")]
-    public partial class Duty
+    public partial class Duty:Entity
     {
         [Key,MaxLength(40)]
-        public string DUTYCODE { get; set; }
+        public string dutycode { get; set; }
         [MaxLength(100)]
-        public string DUTYDESC { get; set; }
+        public string dutydesc { get; set; }
         [MaxLength(40),Required]
-        public string MUSER { get; set; }
+        public string muser { get; set; }
         [Required]
-        public int MDATE { get; set; }
+        public int mdate { get; set; }
         [Required]
-        public int MTIME { get; set; }
+        public int mtime { get; set; }
         [MaxLength(40)]
-        public string EATTRIBUTE1 { get; set; }
+        public string eattribute1 { get; set; }
     }
 }
