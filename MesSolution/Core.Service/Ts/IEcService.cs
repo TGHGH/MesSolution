@@ -9,10 +9,10 @@ namespace Core.Service
 
 	public interface IEcService
 	{
-		 OperationResult AddEntity(Ec ec,bool isSave=true);
+		 OperationResult AddEntity(ErrorCode ec,bool isSave=true);
 		 OperationResult DeleteEntity(string key,bool isSave=true);
 		 OperationResult FindEntity(string key);
-		 OperationResult UpdateEntity(Ec ec,bool isSave=true);
-		 IQueryable<Ec>Ecs( );
+		 OperationResult UpdateEntity(ErrorCode ec,bool isSave=true);
+		 IQueryable<ErrorCode>Ecs( );
 	}
 }

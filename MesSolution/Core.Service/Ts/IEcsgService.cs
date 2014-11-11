@@ -9,10 +9,10 @@ namespace Core.Service
 
 	public interface IEcsgService
 	{
-		 OperationResult AddEntity(Ecsg ecsg,bool isSave=true);
+		 OperationResult AddEntity(ErrorCodeSeasonGroup ecsg,bool isSave=true);
 		 OperationResult DeleteEntity(string key,bool isSave=true);
 		 OperationResult FindEntity(string key);
-		 OperationResult UpdateEntity(Ecsg ecsg,bool isSave=true);
-		 IQueryable<Ecsg>Ecsgs( );
+		 OperationResult UpdateEntity(ErrorCodeSeasonGroup ecsg,bool isSave=true);
+		 IQueryable<ErrorCodeSeasonGroup>Ecsgs( );
 	}
 }

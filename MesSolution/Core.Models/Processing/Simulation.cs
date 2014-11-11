@@ -14,7 +14,7 @@ namespace Core.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    [Table("TBLSIMULATION")]
+
     public partial class Simulation:Entity
     {        
         public Int64 SimulationId { get; set; }

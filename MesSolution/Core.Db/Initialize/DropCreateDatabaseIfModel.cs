@@ -65,10 +65,10 @@ namespace GMF.Demo.Core.Data.Initialize
 
             //Ts
             Initialize<Duty>.Infial(num).ForEach(u => context.Set<Duty>().Add(u));
-            Initialize<Ec>.Infial(num).ForEach(u => context.Set<Ec>().Add(u));
-            Initialize<Ecg>.Infial(num).ForEach(u => context.Set<Ecg>().Add(u));
-            Initialize<Ecs>.Infial(num).ForEach(u => context.Set<Ecs>().Add(u));
-            Initialize<Ecsg>.Infial(num).ForEach(u => context.Set<Ecsg>().Add(u));
+            Initialize<ErrorCode>.Infial(num).ForEach(u => context.Set<ErrorCode>().Add(u));
+            Initialize<ErrorCodeGroup>.Infial(num).ForEach(u => context.Set<ErrorCodeGroup>().Add(u));
+            Initialize<ErrorCodeSeason>.Infial(num).ForEach(u => context.Set<ErrorCodeSeason>().Add(u));
+            Initialize<ErrorCodeSeasonGroup>.Infial(num).ForEach(u => context.Set<ErrorCodeSeasonGroup>().Add(u));
             Initialize<Solution>.Infial(num).ForEach(u => context.Set<Solution>().Add(u));
 
             //Ts2

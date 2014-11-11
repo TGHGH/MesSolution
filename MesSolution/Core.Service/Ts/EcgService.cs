@@ -10,11 +10,11 @@ namespace Core.Service
 	{
 		[Import]
 		protected IEcgRepository ecgRepository { get; set; } 
-		public IQueryable<Ecg> Ecgs()
+		public IQueryable<ErrorCodeGroup> Ecgs()
 		{
 			return ecgRepository.Entities;
 		}
-		public virtual OperationResult AddEntity(Ecg ecg,bool isSave=true)
+		public virtual OperationResult AddEntity(ErrorCodeGroup ecg,bool isSave=true)
 		{
 			return ecgRepository.Insert(ecg,isSave);
 		}
@@ -27,7 +27,7 @@ namespace Core.Service
 			PublicHelper.CheckArgument(key, "ecg");
 			return ecgRepository.GetByKey(key);
 		}
-		public virtual OperationResult UpdateEntity(Ecg ecg,bool isSave=true)
+		public virtual OperationResult UpdateEntity(ErrorCodeGroup ecg,bool isSave=true)
 		{
 			return ecgRepository.Update(ecg,isSave);
 		}

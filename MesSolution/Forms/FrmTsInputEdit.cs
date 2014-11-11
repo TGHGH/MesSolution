@@ -24,5 +24,10 @@ namespace Forms
         {
 
         }
+
+        private void TBoxSN_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
     }
 }

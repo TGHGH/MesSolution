@@ -9,7 +9,7 @@ namespace Core.Db.Repositories
 {
 
 	[Export(typeof(IEcsRepository))]
-	public class EcsRepository : EFRepositoryBase<Ecs>,IEcsRepository
+	public class EcsRepository : EFRepositoryBase<ErrorCodeSeason>,IEcsRepository
 	{
 	}
 }

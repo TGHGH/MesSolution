@@ -21,7 +21,7 @@ namespace UnitTestForm.Service
         [TestMethod]
         public void TestGoToMo()
         {
-            DatabaseInitializer.DropCreateDatabaseIfModelChanges();
+           
             AggregateCatalog catalog;
             catalog = new AggregateCatalog();
             catalog.Catalogs.Add(new DirectoryCatalog(Directory.GetCurrentDirectory()));

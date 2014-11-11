@@ -7,7 +7,7 @@ using Core.Models;
 namespace Core.Db.Repositories
 {
 
-	public interface IEcRepository : IRepository<Ec>
+	public interface IEcRepository : IRepository<ErrorCode>
 	{
 	}
 }

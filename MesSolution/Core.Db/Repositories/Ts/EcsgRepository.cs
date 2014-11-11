@@ -9,7 +9,7 @@ namespace Core.Db.Repositories
 {
 
 	[Export(typeof(IEcsgRepository))]
-	public class EcsgRepository : EFRepositoryBase<Ecsg>,IEcsgRepository
+	public class EcsgRepository : EFRepositoryBase<ErrorCodeSeasonGroup>,IEcsgRepository
 	{
 	}
 }

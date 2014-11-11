@@ -15,23 +15,23 @@ namespace Core.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    [Table("TBLSOLUTION")]
+   
     public partial class Solution:Entity
     {
         [Key,MaxLength(40)]
-        public string SOLCODE { get; set; }
+        public string solcode { get; set; }
         [MaxLength(100)]
-        public string SOLDESC { get; set; }
+        public string soldesc { get; set; }
         [MaxLength(100)]
-        public string SOLIMP { get; set; }
+        public string solimp { get; set; }
         [MaxLength(40),Required]
-        public string MUSER { get; set; }
+        public string muser { get; set; }
         [Required]
-        public int MDATE { get; set; }
+        public int mdate { get; set; }
         [Required]
-        public int MTIME { get; set; }
+        public int mtime { get; set; }
         [MaxLength(40)]
-        public string EATTRIBUTE1 { get; set; }
+        public string eattribute1 { get; set; }
 
         public virtual ICollection<Model> models { get; set; }
     }

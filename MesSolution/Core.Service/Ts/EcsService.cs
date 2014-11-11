@@ -10,11 +10,11 @@ namespace Core.Service
 	{
 		[Import]
 		protected IEcsRepository ecsRepository { get; set; } 
-		public IQueryable<Ecs> Ecss()
+		public IQueryable<ErrorCodeSeason> Ecss()
 		{
 			return ecsRepository.Entities;
 		}
-		public virtual OperationResult AddEntity(Ecs ecs,bool isSave=true)
+		public virtual OperationResult AddEntity(ErrorCodeSeason ecs,bool isSave=true)
 		{
 			return ecsRepository.Insert(ecs,isSave);
 		}
@@ -27,7 +27,7 @@ namespace Core.Service
 			PublicHelper.CheckArgument(key, "ecs");
 			return ecsRepository.GetByKey(key);
 		}
-		public virtual OperationResult UpdateEntity(Ecs ecs,bool isSave=true)
+		public virtual OperationResult UpdateEntity(ErrorCodeSeason ecs,bool isSave=true)
 		{
 			return ecsRepository.Update(ecs,isSave);
 		}

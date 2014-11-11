@@ -14,23 +14,24 @@ namespace Core.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-
-    [Table("TBLEC")]
-    public partial class Ec:Entity
+    
+    public partial class ErrorCodeSeasonGroup:Entity
     {
         [Key,MaxLength(40)]
-        public string ECODE { get; set; }
+        public string ecsgcode { get; set; }
         [MaxLength(100)]
-        public string ECDESC { get; set; }
+        public string ecsgdesc { get; set; }
         [MaxLength(40),Required]
-        public string MUSER { get; set; }
+        public string muser { get; set; }
         [Required]
-        public int MDATE { get; set; }
+        public int mdate { get; set; }
         [Required]
-        public int MTIME { get; set; }
-        [MaxLength(40)]
-        public string EATTRIBUTE1 { get; set; }
+        public int mtime { get; set; }
+        [MaxLength(100)]
+        public string eattribute1 { get; set; }
 
-        public virtual Ecg ecg { get; set; }
+        public virtual ICollection<ErrorCodeSeason> ecses { get; set; }
+
+        public virtual ICollection<Model> models { get; set; }
     }
 }

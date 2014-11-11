@@ -15,7 +15,7 @@ namespace Core.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    [Table("TBLDUTY")]
+   
     public partial class Duty:Entity
     {
         [Key,MaxLength(40)]

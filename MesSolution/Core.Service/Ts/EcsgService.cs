@@ -10,11 +10,11 @@ namespace Core.Service
 	{
 		[Import]
 		protected IEcsgRepository ecsgRepository { get; set; } 
-		public IQueryable<Ecsg> Ecsgs()
+		public IQueryable<ErrorCodeSeasonGroup> Ecsgs()
 		{
 			return ecsgRepository.Entities;
 		}
-		public virtual OperationResult AddEntity(Ecsg ecsg,bool isSave=true)
+		public virtual OperationResult AddEntity(ErrorCodeSeasonGroup ecsg,bool isSave=true)
 		{
 			return ecsgRepository.Insert(ecsg,isSave);
 		}
@@ -27,7 +27,7 @@ namespace Core.Service
 			PublicHelper.CheckArgument(key, "ecsg");
 			return ecsgRepository.GetByKey(key);
 		}
-		public virtual OperationResult UpdateEntity(Ecsg ecsg,bool isSave=true)
+		public virtual OperationResult UpdateEntity(ErrorCodeSeasonGroup ecsg,bool isSave=true)
 		{
 			return ecsgRepository.Update(ecsg,isSave);
 		}

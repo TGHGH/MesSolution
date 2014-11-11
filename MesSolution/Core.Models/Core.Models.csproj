@@ -116,10 +116,10 @@
     <Compile Include="Ts2\TsItem.cs" />
     <Compile Include="Ts2\TsSplitItem.cs" />
     <Compile Include="Ts\Duty.cs" />
-    <Compile Include="Ts\Ec.cs" />
-    <Compile Include="Ts\Ecg.cs" />
-    <Compile Include="Ts\Ecs.cs" />
-    <Compile Include="Ts\Ecsg.cs" />
+    <Compile Include="Ts\ErrorCode.cs" />
+    <Compile Include="Ts\ErrorCodeGroup.cs" />
+    <Compile Include="Ts\ErrorCodeSeason.cs" />
+    <Compile Include="Ts\ErrorCodeSeasonGroup.cs" />
     <Compile Include="Ts\Solution.cs" />
     <Compile Include="Ts\TSErrorInfo.cs" />
   </ItemGroup>

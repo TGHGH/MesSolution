@@ -101,7 +101,7 @@
             this.TBoxSN.Name = "TBoxSN";
             this.TBoxSN.Size = new System.Drawing.Size(124, 21);
             this.TBoxSN.TabIndex = 3;
-        //    this.TBoxSN.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBoxSN_KeyPress);
+            this.TBoxSN.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TBoxSN_KeyPress);
             // 
             // BtnErrInfo
             // 
@@ -138,7 +138,6 @@
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(121, 496);
             this.treeView1.TabIndex = 1;
-        //    this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
             // panel2
             // 
@@ -428,7 +427,6 @@
             this.BtnAdd.TabIndex = 21;
             this.BtnAdd.Text = "添加";
             this.BtnAdd.UseVisualStyleBackColor = true;
-           // this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
             // BtnDelete
             // 
@@ -438,7 +436,6 @@
             this.BtnDelete.TabIndex = 22;
             this.BtnDelete.Text = "删除";
             this.BtnDelete.UseVisualStyleBackColor = true;
-          //  this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // BtnSave
             // 
@@ -448,7 +445,6 @@
             this.BtnSave.TabIndex = 23;
             this.BtnSave.Text = "保存";
             this.BtnSave.UseVisualStyleBackColor = true;
-         //   this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // BtnCancel
             // 
@@ -458,7 +454,6 @@
             this.BtnCancel.TabIndex = 24;
             this.BtnCancel.Text = "取消";
             this.BtnCancel.UseVisualStyleBackColor = true;
-         //   this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
             // BtnQuit
             // 

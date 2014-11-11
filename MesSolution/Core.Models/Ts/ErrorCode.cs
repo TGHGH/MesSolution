@@ -15,22 +15,22 @@ namespace Core.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    [Table("TBLECS")]
-    public partial class Ecs:Entity
+  
+    public partial class ErrorCode:Entity
     {
         [Key,MaxLength(40)]
-        public string ecscode { get; set; }
+        public string ecode { get; set; }
         [MaxLength(100)]
-        public string ecsdesc { get; set; }
+        public string ecdesc { get; set; }
         [MaxLength(40),Required]
         public string muser { get; set; }
         [Required]
-        public int MDATE { get; set; }
+        public int mdate { get; set; }
         [Required]
-        public int MTIME { get; set; }
+        public int mtime { get; set; }
         [MaxLength(40)]
-        public string EATTRIBUTE1 { get; set; }
+        public string eattribute1 { get; set; }
 
-        public virtual Ecsg ecsg { get; set; }
+        public virtual ErrorCodeGroup ecg { get; set; }
     }
 }

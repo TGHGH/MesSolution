@@ -95,10 +95,10 @@ namespace Core.Db.Context
 
         //Ts
         public DbSet<Duty> duties { get; set; }
-        public DbSet<Ec> ecs { get; set; }
-        public DbSet<Ecg> ecgs { get; set; }
-        public DbSet<Ecs> ecses { get; set; }
-        public DbSet<Ecsg> ecsgs { get; set; }
+        public DbSet<ErrorCode> ecs { get; set; }
+        public DbSet<ErrorCodeGroup> ecgs { get; set; }
+        public DbSet<ErrorCodeSeason> ecses { get; set; }
+        public DbSet<ErrorCodeSeasonGroup> ecsgs { get; set; }
         public DbSet<Solution> solutions { get; set; }
 
 

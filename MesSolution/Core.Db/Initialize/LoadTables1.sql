@@ -1,4 +1,4 @@
-﻿USE [MesTest]
+﻿USE [Mes]
 insert into UserUserGroups
  values('usercode1','usergroupcode1'); 
 insert into UserUserGroups
@@ -33,17 +33,18 @@ update Mdls set form='FrmGoodNG' where mdlcode='mdlcode3';
 
   
   update Moes set Route_ROUTECODE='routecode1',MOSTATUS='mostatus_open',ISCONINPUT=1,MOPLANQTY=10;
+   
 
-  insert into RouteOps values('routecode1','opcode1');
-  insert into RouteOps values('routecode1','opcode2');
-  insert into RouteOps values('routecode1','opcode3');
-  insert into RouteOps values('routecode1','opcode4');
-  insert into RouteOps values('routecode1','opcode5');
-  insert into RouteOps values('routecode2','opcode1');
-  insert into RouteOps values('routecode2','opcode2');
-  insert into RouteOps values('routecode2','opcode3');
-  insert into RouteOps values('routecode2','opcode4');
-  insert into RouteOps values('routecode2','opcode5');
+  insert into OpRoutes(Route_ROUTECODE,Op_OPCODE) values('routecode1','opcode1');
+  insert into OpRoutes(Route_ROUTECODE,Op_OPCODE) values('routecode1','opcode2');
+  insert into OpRoutes(Route_ROUTECODE,Op_OPCODE) values('routecode1','opcode3');
+  insert into OpRoutes(Route_ROUTECODE,Op_OPCODE) values('routecode1','opcode4');
+  insert into OpRoutes(Route_ROUTECODE,Op_OPCODE) values('routecode1','opcode5');
+  insert into OpRoutes(Route_ROUTECODE,Op_OPCODE) values('routecode2','opcode1');
+  insert into OpRoutes(Route_ROUTECODE,Op_OPCODE) values('routecode2','opcode2');
+  insert into OpRoutes(Route_ROUTECODE,Op_OPCODE) values('routecode2','opcode3');
+  insert into OpRoutes(Route_ROUTECODE,Op_OPCODE) values('routecode2','opcode4');
+  insert into OpRoutes(Route_ROUTECODE,Op_OPCODE) values('routecode2','opcode5');
 
   update res set Op_OPCODE='opcode1' where RESCODE='rescode1';
   update res set Op_OPCODE='opcode2' where RESCODE='rescode2';
@@ -57,7 +58,9 @@ update Mdls set form='FrmGoodNG' where mdlcode='mdlcode3';
   update res set Op_OPCODE='opcode10' where RESCODE='rescode10';
 
     
-  update Items set Model_MODELCODE='modelcode1';
-  update Route2Op set routeCode='routecode1',seq=Route2OpID where Route2OpID<6;
+update Items set Model_MODELCODE='modelcode1';
+update Route2Op set routeCode='routecode1',seq=Route2OpID where Route2OpID<6;
 
 update Route2Op set routeCode='routecode2',seq=Route2OpID where Route2OpID>=6;
+update ErrorCodes set ecg_ecgcode='ecgcode1' ;
+update ErrorCodeSeasons set ecsg_ecsgcode='ecsgcode1' ;

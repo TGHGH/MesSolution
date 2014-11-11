@@ -7,7 +7,7 @@ using Core.Models;
 namespace Core.Db.Repositories
 {
 
-	public interface IEcsgRepository : IRepository<Ecsg>
+	public interface IEcsgRepository : IRepository<ErrorCodeSeasonGroup>
 	{
 	}
 }
