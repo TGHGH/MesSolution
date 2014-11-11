@@ -83,7 +83,7 @@ namespace GMF.Demo.Core.Data.Initialize
             
             context.Configuration.AutoDetectChangesEnabled = true;
             context.SaveChanges();
-            Initialize<User>.InfialData();          
+         //   Initialize<User>.InfialData();          
         }
       
      
