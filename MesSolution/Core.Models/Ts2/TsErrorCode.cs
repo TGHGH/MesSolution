@@ -18,15 +18,16 @@ namespace Core.Models
   
     public partial class  TsErrorCode:Entity
     {
+
         public Int64 TsErrorCodeID { get; set; }
         [MaxLength(40),Required]
         public string ECODE { get; set; }
         [MaxLength(40), Required]
 
         public string ECGCODE { get; set; }
-        [MaxLength(40), Required]
+        [Required]
 
-        public string TSID { get; set; }
+        public Int64 TSID { get; set; }
         [MaxLength(40)]
 
         public string RCARD { get; set; }

@@ -41,10 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActionNGModel.cs" />
-    <Compile Include="ActionGoodModel.cs" />
-    <Compile Include="GoMoModel.cs" />
-    <Compile Include="LoginModel.cs" />
+    <Compile Include="FrmGoodNG\ActionNGModel.cs" />
+    <Compile Include="FrmGoodNG\ActionGoodModel.cs" />
+    <Compile Include="FrmGoodNG\GoMoModel.cs" />
+    <Compile Include="FormLogin\LoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

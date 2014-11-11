@@ -63,12 +63,23 @@ namespace GMF.Demo.Core.Data.Initialize
             Initialize<Model>.Infial(num).ForEach(u => context.Set<Model>().Add(u));
             Initialize<Route2Op>.Infial(num).ForEach(u => context.Set<Route2Op>().Add(u));
 
+            //Ts
             Initialize<Duty>.Infial(num).ForEach(u => context.Set<Duty>().Add(u));
             Initialize<Ec>.Infial(num).ForEach(u => context.Set<Ec>().Add(u));
             Initialize<Ecg>.Infial(num).ForEach(u => context.Set<Ecg>().Add(u));
             Initialize<Ecs>.Infial(num).ForEach(u => context.Set<Ecs>().Add(u));
             Initialize<Ecsg>.Infial(num).ForEach(u => context.Set<Ecsg>().Add(u));
             Initialize<Solution>.Infial(num).ForEach(u => context.Set<Solution>().Add(u));
+
+            //Ts2
+            Initialize<Ts>.Infial(num).ForEach(u => context.Set<Ts>().Add(u));
+            Initialize<TsErrorCause>.Infial(num).ForEach(u => context.Set<TsErrorCause>().Add(u));
+            Initialize<TsErrorCause2Com>.Infial(num).ForEach(u => context.Set<TsErrorCause2Com>().Add(u));
+            Initialize<TsErrorCause2Loc>.Infial(num).ForEach(u => context.Set<TsErrorCause2Loc>().Add(u));
+            Initialize<TsErrorCode>.Infial(num).ForEach(u => context.Set<TsErrorCode>().Add(u));
+            Initialize<TsErrorCode2Loc>.Infial(num).ForEach(u => context.Set<TsErrorCode2Loc>().Add(u));
+            Initialize<TsItem>.Infial(num).ForEach(u => context.Set<TsItem>().Add(u));
+            Initialize<TsSplitItem>.Infial(num).ForEach(u => context.Set<TsSplitItem>().Add(u));
             
             context.Configuration.AutoDetectChangesEnabled = true;
             context.SaveChanges();

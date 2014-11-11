@@ -44,36 +44,60 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FrmGoodNG\IFrmGoodNGService.cs" />
-    <Compile Include="IItem2SnCheckFormService.cs" />
-    <Compile Include="IItemFormService.cs" />
-    <Compile Include="IMoFormService.cs" />
-    <Compile Include="IMoRcardFormService.cs" />
-    <Compile Include="IOpFormService.cs" />
-    <Compile Include="IResFormService.cs" />
-    <Compile Include="IRoute2OpFormService.cs" />
-    <Compile Include="IRouteFormService.cs" />
-    <Compile Include="ISimulationFormService.cs" />
-    <Compile Include="ISimulationReportFormService.cs" />
-    <Compile Include="Item2SnCheckFormService.cs" />
-    <Compile Include="ItemFormService.cs" />
-    <Compile Include="ITsErrorCodeFormService.cs" />
-    <Compile Include="ITsFormService.cs" />
-    <Compile Include="IUserGroupFormService.cs" />
-    <Compile Include="IUserFormService.cs" />
+    <Compile Include="Service\IItem2SnCheckFormService.cs" />
+    <Compile Include="Service\IItemFormService.cs" />
+    <Compile Include="Service\IMoFormService.cs" />
+    <Compile Include="Service\IMoRcardFormService.cs" />
+    <Compile Include="Service\IOpFormService.cs" />
+    <Compile Include="Service\IResFormService.cs" />
+    <Compile Include="Service\IRoute2OpFormService.cs" />
+    <Compile Include="Service\IRouteFormService.cs" />
+    <Compile Include="Service\ISimulationFormService.cs" />
+    <Compile Include="Service\ISimulationReportFormService.cs" />
+    <Compile Include="Service\Item2SnCheckFormService.cs" />
+    <Compile Include="Service\ItemFormService.cs" />
+    <Compile Include="Service\Ts2\ITsErrorCause2ComFormService.cs" />
+    <Compile Include="Service\Ts2\ITsErrorCause2LocFormService.cs" />
+    <Compile Include="Service\Ts2\ITsErrorCauseFormService.cs" />
+    <Compile Include="Service\Ts2\ITsErrorCode2LocFormService.cs" />
+    <Compile Include="Service\Ts2\ITsErrorCodeFormService.cs" />
+    <Compile Include="Service\Ts2\ITsFormService.cs" />
+    <Compile Include="Service\Ts2\ITsItemFormService.cs" />
+    <Compile Include="Service\Ts2\ITsSplitItemFormService.cs" />
+    <Compile Include="Service\IUserGroupFormService.cs" />
+    <Compile Include="Service\IUserFormService.cs" />
     <Compile Include="FrmGoodNG\FrmGoodNGService.cs" />
-    <Compile Include="MoFormService.cs" />
-    <Compile Include="MoRcardFormService.cs" />
-    <Compile Include="OpFormService.cs" />
+    <Compile Include="Service\MoFormService.cs" />
+    <Compile Include="Service\MoRcardFormService.cs" />
+    <Compile Include="Service\OpFormService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ResFormService.cs" />
-    <Compile Include="Route2OpFormService.cs" />
-    <Compile Include="RouteFormService.cs" />
-    <Compile Include="SimulationFormService.cs" />
-    <Compile Include="SimulationReportFormService.cs" />
-    <Compile Include="TsErrorCodeFormService.cs" />
-    <Compile Include="TsFormService.cs" />
-    <Compile Include="UserGroupFormService.cs" />
-    <Compile Include="UserFormService.cs" />
+    <Compile Include="Service\ResFormService.cs" />
+    <Compile Include="Service\Route2OpFormService.cs" />
+    <Compile Include="Service\RouteFormService.cs" />
+    <Compile Include="Service\SimulationFormService.cs" />
+    <Compile Include="Service\SimulationReportFormService.cs" />
+    <Compile Include="Service\Ts2\TsErrorCause2ComFormService.cs" />
+    <Compile Include="Service\Ts2\TsErrorCause2LocFormService.cs" />
+    <Compile Include="Service\Ts2\TsErrorCauseFormService.cs" />
+    <Compile Include="Service\Ts2\TsErrorCode2LocFormService.cs" />
+    <Compile Include="Service\Ts2\TsErrorCodeFormService.cs" />
+    <Compile Include="Service\Ts2\TsFormService.cs" />
+    <Compile Include="Service\Ts2\TsItemFormService.cs" />
+    <Compile Include="Service\Ts2\TsSplitItemFormService.cs" />
+    <Compile Include="Service\Ts\DutyFormService.cs" />
+    <Compile Include="Service\Ts\EcFormService.cs" />
+    <Compile Include="Service\Ts\EcgFormService.cs" />
+    <Compile Include="Service\Ts\EcsFormService.cs" />
+    <Compile Include="Service\Ts\EcsgFormService.cs" />
+    <Compile Include="Service\Ts\IDutyFormService.cs" />
+    <Compile Include="Service\Ts\IEcFormService.cs" />
+    <Compile Include="Service\Ts\IEcgFormService.cs" />
+    <Compile Include="Service\Ts\IEcsFormService.cs" />
+    <Compile Include="Service\Ts\IEcsgFormService.cs" />
+    <Compile Include="Service\Ts\ISolutionFormService.cs" />
+    <Compile Include="Service\Ts\SolutionFormService.cs" />
+    <Compile Include="Service\UserGroupFormService.cs" />
+    <Compile Include="Service\UserFormService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Component.Tools\Component.Tools.csproj">
@@ -92,6 +116,9 @@
       <Project>{2ff18615-ab59-4bed-b8e6-f24782f7d695}</Project>
       <Name>Form.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="FrmTsInputEdit\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

@@ -33,7 +33,7 @@ namespace Forms
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.ThreadException += new ThreadExceptionEventHandler(Program.otherException);
-                Application.Run(programContainer.GetExportedValue<FrmMain>());
+                Application.Run(programContainer.GetExportedValue<FrmTsInputEdit>());
             }
             catch (Exception e)
             {

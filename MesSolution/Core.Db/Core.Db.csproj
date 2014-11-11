@@ -79,8 +79,14 @@
     <Compile Include="Repositories\Impl\RouteRepository.cs" />
     <Compile Include="Repositories\Impl\SimulationReportRepository.cs" />
     <Compile Include="Repositories\Impl\SimulationRepository.cs" />
-    <Compile Include="Repositories\Impl\TsErrorCodeRepository.cs" />
-    <Compile Include="Repositories\Impl\TsRepository.cs" />
+    <Compile Include="Repositories\Ts2\TsErrorCause2ComRepository.cs" />
+    <Compile Include="Repositories\Ts2\TsErrorCause2LocRepository.cs" />
+    <Compile Include="Repositories\Ts2\TsErrorCauseRepository.cs" />
+    <Compile Include="Repositories\Ts2\TsErrorCode2LocRepository.cs" />
+    <Compile Include="Repositories\Ts2\TsErrorCodeRepository.cs" />
+    <Compile Include="Repositories\Ts2\TsItemRepository.cs" />
+    <Compile Include="Repositories\Ts2\TsRepository.cs" />
+    <Compile Include="Repositories\Ts2\TsSplitItemRepository.cs" />
     <Compile Include="Repositories\Impl\UserGroupRepository.cs" />
     <Compile Include="Repositories\Impl\UserRepository.cs" />
     <Compile Include="Repositories\Impl\RoleRepository.cs" />
@@ -90,11 +96,29 @@
     <Compile Include="Repositories\IRouteRepository.cs" />
     <Compile Include="Repositories\ISimulationReportRepository.cs" />
     <Compile Include="Repositories\ISimulationRepository.cs" />
-    <Compile Include="Repositories\ITsErrorCodeRepository.cs" />
-    <Compile Include="Repositories\ITsRepository.cs" />
+    <Compile Include="Repositories\Ts2\ITsErrorCause2ComRepository.cs" />
+    <Compile Include="Repositories\Ts2\ITsErrorCause2LocRepository.cs" />
+    <Compile Include="Repositories\Ts2\ITsErrorCauseRepository.cs" />
+    <Compile Include="Repositories\Ts2\ITsErrorCode2LocRepository.cs" />
+    <Compile Include="Repositories\Ts2\ITsErrorCodeRepository.cs" />
+    <Compile Include="Repositories\Ts2\ITsItemRepository.cs" />
+    <Compile Include="Repositories\Ts2\ITsRepository.cs" />
+    <Compile Include="Repositories\Ts2\ITsSplitItemRepository.cs" />
     <Compile Include="Repositories\IUserGroupRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\IRoleRepository.cs" />
+    <Compile Include="Repositories\Ts\DutyRepository.cs" />
+    <Compile Include="Repositories\Ts\EcgRepository.cs" />
+    <Compile Include="Repositories\Ts\EcRepository.cs" />
+    <Compile Include="Repositories\Ts\EcsgRepository.cs" />
+    <Compile Include="Repositories\Ts\EcsRepository.cs" />
+    <Compile Include="Repositories\Ts\IDutyRepository.cs" />
+    <Compile Include="Repositories\Ts\IEcgRepository.cs" />
+    <Compile Include="Repositories\Ts\IEcRepository.cs" />
+    <Compile Include="Repositories\Ts\IEcsgRepository.cs" />
+    <Compile Include="Repositories\Ts\IEcsRepository.cs" />
+    <Compile Include="Repositories\Ts\ISolutionRepository.cs" />
+    <Compile Include="Repositories\Ts\SolutionRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Component.Data\Component.Data.csproj">
@@ -116,6 +140,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Initialize\LoadTables1.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Repositories\Craft\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

@@ -50,12 +50,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ts\DutyService.cs" />
+    <Compile Include="Ts\EcgService.cs" />
+    <Compile Include="Ts\EcService.cs" />
+    <Compile Include="Ts\EcsgService.cs" />
+    <Compile Include="Ts\EcsService.cs" />
+    <Compile Include="Ts\IDutyService.cs" />
+    <Compile Include="Ts\IEcgService.cs" />
+    <Compile Include="Ts\IEcService.cs" />
+    <Compile Include="Ts\IEcsgService.cs" />
+    <Compile Include="Ts\IEcsService.cs" />
     <Compile Include="IMoRcardService.cs" />
     <Compile Include="IRoute2OpService.cs" />
     <Compile Include="ISimulationReportService.cs" />
     <Compile Include="ISimulationService.cs" />
-    <Compile Include="ITsErrorCodeService.cs" />
-    <Compile Include="ITsService.cs" />
+    <Compile Include="Ts\ISolutionService.cs" />
+    <Compile Include="Ts2\ITsErrorCause2ComService.cs" />
+    <Compile Include="Ts2\ITsErrorCause2LocService.cs" />
+    <Compile Include="Ts2\ITsErrorCauseService.cs" />
+    <Compile Include="Ts2\ITsErrorCode2LocService.cs" />
+    <Compile Include="Ts2\ITsErrorCodeService.cs" />
+    <Compile Include="Ts2\ITsItemService.cs" />
+    <Compile Include="Ts2\ITsService.cs" />
+    <Compile Include="Ts2\ITsSplitItemService.cs" />
     <Compile Include="MoRcardService.cs" />
     <Compile Include="Privage\IItem2SnCheckService.cs" />
     <Compile Include="Privage\Impl\Item2SnCheckService.cs" />
@@ -76,14 +93,21 @@
     <Compile Include="Route2OpService.cs" />
     <Compile Include="SimulationReportService.cs" />
     <Compile Include="SimulationService.cs" />
+    <Compile Include="Ts\SolutionService.cs" />
     <Compile Include="Test\IAccountService.cs" />
     <Compile Include="Test\Impl\AccountService.cs" />
     <Compile Include="CoreServiceBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Privage\Impl\UserService.cs" />
     <Compile Include="Privage\Impl\UserGroupService.cs" />
-    <Compile Include="TsErrorCodeService.cs" />
-    <Compile Include="TsService.cs" />
+    <Compile Include="Ts2\TsErrorCause2ComService.cs" />
+    <Compile Include="Ts2\TsErrorCause2LocService.cs" />
+    <Compile Include="Ts2\TsErrorCauseService.cs" />
+    <Compile Include="Ts2\TsErrorCode2LocService.cs" />
+    <Compile Include="Ts2\TsErrorCodeService.cs" />
+    <Compile Include="Ts2\TsItemService.cs" />
+    <Compile Include="Ts2\TsService.cs" />
+    <Compile Include="Ts2\TsSplitItemService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Component.Data\Component.Data.csproj">

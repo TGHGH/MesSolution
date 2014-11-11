@@ -18,9 +18,13 @@ namespace Auto
 
             //Console.WriteLine(ToFirstLower("UserGroup"));
            // writeFile("Mdl");
-           // writeFileBLL("UserGroup2Res");
-            writeFile("Ts");
-            writeFile("TsErrorCode");          
+           // writeFileBLL("UserGroup2Res");         
+            writeFile("Duty");
+            writeFile("Ec");
+            writeFile("Ecg");
+            writeFile("Ecs");
+            writeFile("Ecsg");
+            writeFile("Solution");     
           
         }
         # region  writeFile自动生成DAL文件

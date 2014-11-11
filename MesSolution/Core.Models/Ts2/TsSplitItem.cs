@@ -9,16 +9,18 @@
 
 namespace Core.Models
 {
+    using Component.Tools;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    [Table("TBLTSSPLITITEM")]
-    public partial class  TsSplitItem
+    
+    public partial class  TsSplitItem:Entity
     {
-        [MaxLength(40),Required]
-        public string TSID { get; set; }
+        public Int64 TsSplitItemID { get; set; }
+        [Required]
+        public Int64 TSID { get; set; }
         [Required]
         public int ITEMSEQ { get; set; }
         [MaxLength(40), Required]

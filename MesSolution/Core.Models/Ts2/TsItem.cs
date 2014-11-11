@@ -9,16 +9,18 @@
 
 namespace Core.Models
 {
+    using Component.Tools;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    [Table("TBLTSITEM")]
-    public partial class  TsItem
+   
+    public partial class  TsItem:Entity
     {
-        [MaxLength(40),Required]
-        public string TSID { get; set; }
+        public Int64 TsItemID { get; set; }
+        [Required]
+        public Int64 TSID { get; set; }
         [Required]
         public int ITEMSEQ { get; set; }
         [MaxLength(40), Required]

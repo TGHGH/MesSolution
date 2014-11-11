@@ -15,12 +15,13 @@ namespace UnitTestForm.Service
     {
         public UnitTestIFrmGoodNGService()
         {
-            DatabaseInitializer.DropCreateDatabaseIfModelChanges();
+           
         }
 
         [TestMethod]
         public void TestGoToMo()
         {
+            DatabaseInitializer.DropCreateDatabaseIfModelChanges();
             AggregateCatalog catalog;
             catalog = new AggregateCatalog();
             catalog.Catalogs.Add(new DirectoryCatalog(Directory.GetCurrentDirectory()));

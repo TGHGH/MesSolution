@@ -9,14 +9,16 @@
 
 namespace Core.Models
 {
+    using Component.Tools;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    [Table("TBLTSERRORCAUSE")]
-    public partial class TsErrorCause
+   
+    public partial class TsErrorCause:Entity
     {
+        public Int64 TsErrorCauseID { get; set; }
         [MaxLength(40),Required]
         public string ECODE { get; set; }
         [MaxLength(40), Required]
@@ -25,9 +27,9 @@ namespace Core.Models
         [MaxLength(40), Required]
 
         public string ECGCODE { get; set; }
-        [MaxLength(40), Required]
+        [Required]
 
-        public string TSID { get; set; }
+        public Int64 TSID { get; set; }
         [MaxLength(40), Required]
 
         public string RCARD { get; set; }

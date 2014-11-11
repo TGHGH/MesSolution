@@ -9,14 +9,17 @@
 
 namespace Core.Models
 {
+    using Component.Tools;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    [Table("TBLTSERRORCAUSE2COM")]
-    public partial class  TsErrorCause2Com
+    
+    public partial class  TsErrorCause2Com:Entity
     {
+        public Int64 TsErrorCause2ComID { get; set; }
+
         [MaxLength(40),Required]
         public string ECSCODE { get; set; }
         [MaxLength(40), Required]
@@ -25,9 +28,9 @@ namespace Core.Models
         [MaxLength(40), Required]
 
         public string ECODE { get; set; }
-        [MaxLength(40), Required]
+        [Required]
 
-        public string TSID { get; set; }
+        public Int64 TSID { get; set; }
         [MaxLength(40), Required]
 
         public string ECSGCODE { get; set; }

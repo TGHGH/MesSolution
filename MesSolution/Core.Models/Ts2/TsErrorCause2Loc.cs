@@ -9,14 +9,16 @@
 
 namespace Core.Models
 {
+    using Component.Tools;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    [Table("TBLTSERRORCAUSE2LOC")]
-    public partial class  TsErrorCause2Loc
+  
+    public partial class  TsErrorCause2Loc:Entity
     {
+        public Int64 TsErrorCause2LocID { get; set; }
         [MaxLength(40),Required]
         public string ECSCODE { get; set; }
         [MaxLength(40), Required]
@@ -31,9 +33,9 @@ namespace Core.Models
         [MaxLength(40), Required]
 
         public string AB { get; set; }
-        [MaxLength(40), Required]
+        [Required]
 
-        public string TSID { get; set; }
+        public Int64 TSID { get; set; }
         [MaxLength(40), Required]
 
         public string SUBELOC { get; set; }

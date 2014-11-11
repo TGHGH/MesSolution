@@ -9,6 +9,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 
+
 namespace FormApplication.Service
 {
     [Export(typeof(IFrmGoodNGService))]
@@ -334,6 +335,10 @@ namespace FormApplication.Service
             simulation.MUSER =usercode;
             simulation.MDATE = Convert.ToInt32("" + dt.Year + dt.Day);
             simulation.MTIME = Convert.ToInt32("" + dt.Hour + dt.Minute + dt.Second);
+
+            //tblsimulationreport
+            SimulationReport simulationReport = new SimulationReport(simulation);
+
             //TBLTS
             Ts ts = new Ts();
            // ts.TSID = card + DateTime.Now.ToString();
@@ -380,7 +385,7 @@ namespace FormApplication.Service
             TsErrorCode tsErrorCode = new TsErrorCode();
             tsErrorCode.ECODE = selectedEc;
             tsErrorCode.ECGCODE = selectedEcg;
-            tsErrorCode.TSID = ts.TSID+"";
+            tsErrorCode.TSID = ts.TSID;
             tsErrorCode.RCARD = card;
             tsErrorCode.RCARDSEQ = 1;
             tsErrorCode.MODELCODE = simulation.MODELCODE;
@@ -390,7 +395,18 @@ namespace FormApplication.Service
             tsErrorCode.MDATE = Convert.ToInt32("" + dt.Year + dt.Day);
             tsErrorCode.MTIME = Convert.ToInt32("" + dt.Hour + dt.Minute + dt.Second);
             tsErrorCode.MOSEQ = simulation.MOSEQ;
+            //update tbllot
+            //delete from tbllot2card
 
+            //insert into tblonwip
+
+            //update      tblrptre allineqty
+            //insert into tblrptre secg
+            //insert into tblrptre allineecqty
+            //insert into tblrpthisopqty
+
+
+            simulationReportFormService.AddEntity(simulationReport, false);
             tsFormService.AddEntity(ts, false);
             tsErrorCodeFormService.AddEntity(tsErrorCode);
             operationResult.Message = card + "采集成功";

@@ -104,8 +104,13 @@ namespace Core.Db.Context
 
         //Ts2
         public DbSet<Ts> tses { get; set; }
-
+        public DbSet<TsErrorCause> tsErrorCauses { get; set; }
+        public DbSet<TsErrorCause2Com> tsErrorCause2Coms { get; set; }
+        public DbSet<TsErrorCause2Loc> tsErrorCause2Locs { get; set; }
         public DbSet<TsErrorCode> tsErrorCodes { get; set; }
+        public DbSet<TsErrorCode2Loc> tsErrorCode2Locs { get; set; }
+        public DbSet<TsItem> tsItems { get; set; }
+        public DbSet<TsSplitItem> tsSplitItems { get; set; }
 
 
         #endregion
