@@ -1,4 +1,4 @@
-﻿USE [Mes]
+﻿USE [MesTest]
 insert into UserUserGroups
  values('usercode1','usergroupcode1'); 
 insert into UserUserGroups

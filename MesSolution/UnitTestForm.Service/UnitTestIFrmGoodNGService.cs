@@ -13,9 +13,9 @@ namespace UnitTestForm.Service
     [TestClass]
     public class UnitTestIFrmGoodNGService
     {
-        public UnitTestIFrmGoodNGService()
+        static UnitTestIFrmGoodNGService()
         {
-           
+            DatabaseInitializer.DropCreateDatabaseIfModelChanges();
         }
 
         [TestMethod]

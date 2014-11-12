@@ -30,5 +30,7 @@ namespace Core.Models
         public int mtime { get; set; }
         [MaxLength(40)]
         public string eattribute1 { get; set; }
+
+        public virtual ICollection<TsErrorCause> tsErrorCause { get; set; }
     }
 }

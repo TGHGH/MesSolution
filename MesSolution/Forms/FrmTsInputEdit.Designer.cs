@@ -427,6 +427,7 @@
             this.BtnAdd.TabIndex = 21;
             this.BtnAdd.Text = "添加";
             this.BtnAdd.UseVisualStyleBackColor = true;
+            this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
             // BtnDelete
             // 

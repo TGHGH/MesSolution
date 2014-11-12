@@ -21,146 +21,148 @@ namespace Core.Models
       
         public Int64 TSID { get; set; }
         [MaxLength(40),Required]
-        public string RCARD { get; set; }
+        public string rcard { get; set; }
         [Required]
-        public int RCARDSEQ { get; set; }
+        public int rcardseq { get; set; }
         [MaxLength(40)]
 
-        public string TCARD { get; set; }
+        public string tcard { get; set; }
         [Required]
-        public int TCARDSEQ { get; set; }
+        public int tcardseq { get; set; }
         [MaxLength(40)]
 
-        public string SCARD { get; set; }
+        public string scard { get; set; }
         [Required]
-        public int SCARDSEQ { get; set; }
+        public int scardseq { get; set; }
         [MaxLength(40), Required]
 
-        public string CARDTYPE { get; set; }
+        public string cardtype { get; set; }
         [MaxLength(40)]
 
-        public string RRCARD { get; set; }
+        public string rrcard { get; set; }
         [MaxLength(40), Required]
 
-        public string MODELCODE { get; set; }
+        public string modelcode { get; set; }
         [MaxLength(40), Required]
 
-        public string ITEMCODE { get; set; }
+        public string itemcode { get; set; }
         [MaxLength(40)]
 
-        public string MOCODE { get; set; }
+        public string mocode { get; set; }
         [MaxLength(40)]
 
-        public string FRMROUTECODE { get; set; }
+        public string frmroutecode { get; set; }
         [MaxLength(40)]
 
-        public string FRMOPCODE { get; set; }
+        public string frmopcode { get; set; }
         [MaxLength(40)]
 
-        public string FRMSEGCODE { get; set; }
+        public string frmsegcode { get; set; }
         [MaxLength(40)]
 
-        public string FRMSSCODE { get; set; }
+        public string frmsscode { get; set; }
         [MaxLength(40)]
 
-        public string FRMRESCODE { get; set; }
+        public string frmrescode { get; set; }
         [MaxLength(40),Required]
 
-        public string SHIFTTYPECODE { get; set; }
+        public string shifttypecode { get; set; }
         [MaxLength(40), Required]
 
-        public string SHIFTCODE { get; set; }
+        public string shiftcode { get; set; }
         [MaxLength(40), Required]
 
-        public string TPCODE { get; set; }
+        public string tpcode { get; set; }
         [Required]
-        public int SHIFTDAY { get; set; }
+        public int shiftday { get; set; }
         [MaxLength(40), Required]
 
-        public string FRMUSER { get; set; }
+        public string frmuser { get; set; }
         [MaxLength(100)]
 
-        public string FRMMEMO { get; set; }
+        public string frmmemo { get; set; }
         [Required]
-        public int FRMDATE { get; set; }
+        public int frmdate { get; set; }
         [Required]
-        public int FRMTIME { get; set; }
+        public int frmtime { get; set; }
         [MaxLength(40), Required]
 
-        public string FRMINPUTTYPE { get; set; }
+        public string frminputtype { get; set; }
         [Required]
-        public int TSTIMES { get; set; }
+        public int tstimes { get; set; }
         [MaxLength(40),Required]        
-        public string TSSTATUS { get; set; }
+        public string tsstatus { get; set; }
         [MaxLength(40)]
 
-        public string TSUSER { get; set; }
-        public Nullable<int> TSDATE { get; set; }
-        public Nullable<int> TSTIME { get; set; }
+        public string tsuser { get; set; }
+        public Nullable<int> tsdate { get; set; }
+        public Nullable<int> tstime { get; set; }
         [MaxLength(100)]
 
-        public string TSMEMO { get; set; }
+        public string tsmemo { get; set; }
         [MaxLength(40)]
 
-        public string CRESCODE { get; set; }
+        public string crescode { get; set; }
         [MaxLength(40)]
 
-        public string COPCODE { get; set; }
+        public string copcode { get; set; }
         [MaxLength(40)]
 
-        public string CONFIRMUSER { get; set; }
-        public Nullable<int> CONFIRMTIME { get; set; }
-        public Nullable<int> CONFIRMDATE { get; set; }
+        public string confirmuser { get; set; }
+        public Nullable<int> confirmtime { get; set; }
+        public Nullable<int> confirmdate { get; set; }
         [MaxLength(40)]
 
-        public string REFMOCODE { get; set; }
+        public string refmocode { get; set; }
         [MaxLength(40)]
 
-        public string REFROUTECODE { get; set; }
+        public string refroutecode { get; set; }
         [MaxLength(40)]
 
-        public string REFOPCODE { get; set; }
+        public string refopcode { get; set; }
         [MaxLength(40)]
 
-        public string REFRESCODE { get; set; }
+        public string refrescode { get; set; }
         [MaxLength(40),Required]
 
-        public string TRANSSTATUS { get; set; }
+        public string transstatus { get; set; }
         [MaxLength(100)]
 
-        public string TFFULLPATH { get; set; }
+        public string tffullpath { get; set; }
         [MaxLength(40),Required]
 
-        public string MUSER { get; set; }
+        public string muser { get; set; }
         [Required]
-        public int MDATE { get; set; }
+        public int mdate { get; set; }
         [Required]
-        public int MTIME { get; set; }
+        public int mtime { get; set; }
         [MaxLength(40)]
 
-        public string EATTRIBUTE1 { get; set; }
+        public string eattribute1 { get; set; }
         [MaxLength(40)]
 
-        public string TSRESCODE { get; set; }
+        public string tsrescode { get; set; }
         [MaxLength(200)]
 
-        public string SCRAPCAUSE { get; set; }
-        public Nullable<int> FRMMONTH { get; set; }
-        public Nullable<int> FRMWEEK { get; set; }
+        public string scrapcause { get; set; }
+        public Nullable<int> frmmonth { get; set; }
+        public Nullable<int> frmweek { get; set; }
         [MaxLength(40)]
 
-        public string RMABILLCODE { get; set; }
+        public string rmabillcode { get; set; }
         [MaxLength(40)]
 
-        public string FRMOUTROUTECODE { get; set; }
-        public Nullable<int> MOSEQ { get; set; }
+        public string frmoutroutecode { get; set; }
+        public Nullable<int> moseq { get; set; }
         [MaxLength(40)]
 
-        public string TSTYPE { get; set; }
+        public string tstype { get; set; }
         [MaxLength(40)]
 
-        public string TSREPAIRUSER { get; set; }
-        public Nullable<int> TSREPAIRMDATE { get; set; }
-        public Nullable<int> TSREPAIRMTIME { get; set; }
+        public string tsrepairuser { get; set; }
+        public Nullable<int> tsrepairmdate { get; set; }
+        public Nullable<int> tsrepairmtime { get; set; }
+
+        public virtual ICollection<TsErrorCode> tsErrorCodes { get; set; }
     }
 }

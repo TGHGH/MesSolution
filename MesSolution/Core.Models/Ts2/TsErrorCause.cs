@@ -20,58 +20,61 @@ namespace Core.Models
     {
         public Int64 TsErrorCauseID { get; set; }
         [MaxLength(40),Required]
-        public string ECODE { get; set; }
+        public string ecode { get; set; }
         [MaxLength(40), Required]
 
-        public string ECSCODE { get; set; }
+        public string ecscode { get; set; }
         [MaxLength(40), Required]
 
-        public string ECGCODE { get; set; }
+        public string ecgcode { get; set; }
+        
+        [MaxLength(40), Required]
+
+        public string rcard { get; set; }
         [Required]
-
-        public Int64 TSID { get; set; }
+        public int rcardseq { get; set; }
         [MaxLength(40), Required]
 
-        public string RCARD { get; set; }
-        [Required]
-        public int RCARDSEQ { get; set; }
+        public string modelcode { get; set; }
         [MaxLength(40), Required]
 
-        public string MODELCODE { get; set; }
-        [MaxLength(40), Required]
-
-        public string ITEMCODE { get; set; }
+        public string itemcode { get; set; }
         [MaxLength(40)]
-        public string MOCODE { get; set; }
+        public string mocode { get; set; }
         [MaxLength(40), Required]
 
-        public string RRESCODE { get; set; }
+        public string rrescode { get; set; }
         [MaxLength(40), Required]
 
-        public string ROPCODE { get; set; }
+        public string ropcode { get; set; }
         [MaxLength(40)]
 
-        public string SOLCODE { get; set; }
+        public string solcode { get; set; }
         [MaxLength(40), Required]
 
-        public string DUTYCODE { get; set; }
+        public string dutycode { get; set; }
         [MaxLength(100)]
 
-        public string SOLMEMO { get; set; }
+        public string solmemo { get; set; }
         [MaxLength(40), Required]
 
-        public string MUSER { get; set; }
+        public string muser { get; set; }
         [Required]
-        public int MDATE { get; set; }
+        public int mdate { get; set; }
         [Required]
-        public int MTIME { get; set; }
+        public int mtime { get; set; }
         [MaxLength(40)]
 
-        public string EATTRIBUTE1 { get; set; }
-        public Nullable<int> SHIFTDAY { get; set; }
+        public string eattribute1 { get; set; }
+        public Nullable<int> shiftday { get; set; }
         [MaxLength(40), Required]
 
-        public string ECSGCODE { get; set; }
-        public Nullable<int> MOSEQ { get; set; }
+        public string ecsgcode { get; set; }
+        public Nullable<int> moseq { get; set; }
+
+        public virtual TsErrorCode tsErrorCode { get; set; }
+        public virtual ErrorCodeSeason errorCodeSeason { get; set; }
+        public virtual Duty duty { get; set; }
+        public virtual Solution solution { get; set; }
     }
 }

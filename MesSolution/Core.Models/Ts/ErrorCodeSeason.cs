@@ -32,5 +32,6 @@ namespace Core.Models
         public string eattribute1 { get; set; }
 
         public virtual ErrorCodeSeasonGroup ecsg { get; set; }
+        public virtual ICollection<TsErrorCause> tsErrorCause { get; set; }
     }
 }

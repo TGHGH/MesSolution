@@ -21,36 +21,37 @@ namespace Core.Models
 
         public Int64 TsErrorCodeID { get; set; }
         [MaxLength(40),Required]
-        public string ECODE { get; set; }
+        public string ecode { get; set; }
         [MaxLength(40), Required]
 
-        public string ECGCODE { get; set; }
-        [Required]
+        public string ecgcode { get; set; }
+       
+        [MaxLength(40)]
+        public string rcard { get; set; }
+        public Nullable<int> rcardseq { get; set; }
+        [MaxLength(40), Required]
 
-        public Int64 TSID { get; set; }
+        public string modelcode { get; set; }
+        [MaxLength(40), Required]
+
+        public string itemcode { get; set; }
         [MaxLength(40)]
 
-        public string RCARD { get; set; }
-        public Nullable<int> RCARDSEQ { get; set; }
+        public string mocode { get; set; }
         [MaxLength(40), Required]
 
-        public string MODELCODE { get; set; }
-        [MaxLength(40), Required]
-
-        public string ITEMCODE { get; set; }
+        public string muser { get; set; }
+        [Required]
+        public int mdate { get; set; }
+        [Required]
+        public int mtime { get; set; }
         [MaxLength(40)]
 
-        public string MOCODE { get; set; }
-        [MaxLength(40), Required]
+        public string eattribute1 { get; set; }
+        public Nullable<int> moseq { get; set; }
 
-        public string MUSER { get; set; }
-        [Required]
-        public int MDATE { get; set; }
-        [Required]
-        public int MTIME { get; set; }
-        [MaxLength(40)]
-
-        public string EATTRIBUTE1 { get; set; }
-        public Nullable<int> MOSEQ { get; set; }
+        public virtual Ts ts { get; set; }
+        public virtual ICollection<TsErrorCause> tsErrorCauses { get; set; }
+        public virtual ErrorCode errorCode { get; set; }
     }
 }

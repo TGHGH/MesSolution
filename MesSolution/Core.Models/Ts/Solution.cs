@@ -34,5 +34,6 @@ namespace Core.Models
         public string eattribute1 { get; set; }
 
         public virtual ICollection<Model> models { get; set; }
+        public virtual ICollection<TsErrorCause> tsErrorCauses { get; set; }
     }
 }
