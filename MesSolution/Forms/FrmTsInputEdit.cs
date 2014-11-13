@@ -1,9 +1,13 @@
-﻿using Forms.Helper;
+﻿using Component.Tools;
+using Core.Models;
+using FormApplication.Service;
+using Forms.Helper;
 //using MESModel3;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Hosting;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -163,7 +167,34 @@ namespace Forms
         {
             if (e.KeyChar == ('\r'))
             {
-
+                using (CompositionContainer testContainer = new CompositionContainer(Program.programCatalog))
+                {
+                    OperationResult operationResult = testContainer.GetExportedValue<IFrmTsInputEditService>().ActionNGConfirm(TBoxSN.Text);                    
+                    Program.programContainer.GetExportedValue<FrmMain>().richTextBox1.AppendText(operationResult.Message + "\r");
+                    if (operationResult.ResultType == OperationResultType.Success)
+                    {
+                        treeView1.Nodes.Clear();
+                        Ts ts=(Ts)operationResult.AppendData;
+                        TreeNode tn1 = new TreeNode();
+                        tn1.Tag = ts;
+                        tn1.Text = "TSID：" + ts.TSID;
+                        foreach (var tserrorcode in ts.tsErrorCodes)
+                        {
+                            TreeNode tn2 = new TreeNode();
+                            tn2.Tag = tserrorcode;
+                            tn2.Text = tserrorcode.errorCode.ecdesc;
+                            foreach (var tserrorcause in tserrorcode.tsErrorCauses)
+                            {
+                                TreeNode tn3 = new TreeNode();
+                                tn3.Tag = tserrorcause;
+                                tn3.Text = tserrorcause.errorCodeSeason.ecsdesc;
+                                tn2.Nodes.Add(tn3);
+                            }
+                            tn1.Nodes.Add(tn2);
+                        }
+                        treeView1.Nodes.Add(tn1);
+                    }
+                }
             }
         }
 

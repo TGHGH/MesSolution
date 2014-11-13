@@ -8,6 +8,7 @@ update Mdls set parentcode='mdlcode1';
 update Mdls set parentcode='0' where mdlcode='mdlcode1';
 update Mdls set form='FormLogin' where mdlcode='mdlcode2';
 update Mdls set form='FrmGoodNG' where mdlcode='mdlcode3';
+update Mdls set form='FrmTsInputEdit' where mdlcode='mdlcode4';
 
  insert into MdlUserGroups values('mdlcode1','usergroupcode1');   
  insert into MdlUserGroups values('mdlcode2','usergroupcode1');   
@@ -64,4 +65,10 @@ update Route2Op set routeCode='routecode1',seq=Route2OpID where Route2OpID<6;
 update Route2Op set routeCode='routecode2',seq=Route2OpID where Route2OpID>=6;
 update ErrorCodes set ecg_ecgcode='ecgcode1' ;
 update ErrorCodeSeasons set ecsg_ecsgcode='ecsgcode1' ;
- update ErrorCodes set ecode='AUTONG' where ecode='ecode10'
+update ErrorCodes set ecode='AUTONG' where ecode='ecode10';
+update TsErrorCodes set ts_TSID=1 where TsErrorCodeID<3;
+update TsErrorCauses set tsErrorCode_TsErrorCodeID=1 where TsErrorCauseID<3;
+update TsErrorCauses set tsErrorCode_TsErrorCodeID=2 where TsErrorCauseID>8
+update Ts set tsstatus='tsstatus_new';
+update TsErrorCodes set errorCode_ecode='ecode1' where TsErrorCodeID=1;
+update TsErrorCodes set errorCode_ecode='ecode2' where TsErrorCodeID=2;;

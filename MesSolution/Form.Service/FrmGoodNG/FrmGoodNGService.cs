@@ -368,7 +368,8 @@ namespace FormApplication.Service
             ts.frmtime = Convert.ToInt32("" + dt.Hour + dt.Minute + dt.Second);
             ts.frminputtype = "tssource_onwip";
             ts.tstimes += 1;
-            ts.tsstatus = TsStatus.NEW;
+            //ts.tsstatus = TsStatus.NEW;
+            ts.tsstatus = "tsstatus_new";
             ts.tsdate = 0;
             ts.tstimes = 0;
             ts.confirmtime = 0;

@@ -496,6 +496,8 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.panel1);
+            this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmTsInputEdit";
             this.Text = "FrmTsInputEdit";
             this.Load += new System.EventHandler(this.FrmTsInputEdit_Load);

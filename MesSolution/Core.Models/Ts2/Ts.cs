@@ -18,8 +18,8 @@ namespace Core.Models
     
     public enum TsStatus
     {
-        NEW=1,
-        CONFIRM=2
+        NEW,
+        CONFIRM
     }
     public partial class Ts:Entity
     {
@@ -96,7 +96,7 @@ namespace Core.Models
         [Required]
         public int tstimes { get; set; }
         [MaxLength(40),Required]
-        public TsStatus tsstatus { get; set; }
+        public string tsstatus { get; set; }
         [MaxLength(40)]
 
         public string tsuser { get; set; }

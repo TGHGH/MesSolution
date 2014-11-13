@@ -28,16 +28,21 @@ namespace FormApplication.Service
                 operationResult.Message = "该产品没有登记不良品";
                 return operationResult;
             }
-            if (ts.tsstatus !=TsStatus.NEW || ts.tsstatus != TsStatus.CONFIRM)
+            if (!(ts.tsstatus.Equals("tsstatus_new") || ts.tsstatus.Equals( "tsstatus_confirm")))
             {
                 operationResult.Message = "该产品状态不对";
                 return operationResult;
             }
+           
             foreach (var ter in ts.tsErrorCodes.ToList())
             {
                 ter.tsErrorCauses.ToList();
             }
-
+            ts.tsstatus = "tsstatus_confirm";
+            tsFormService.UpdateEntity(ts);
+            operationResult.ResultType = OperationResultType.Success;
+            operationResult.Message = "确认成功";
+            operationResult.AppendData = ts;
             return operationResult;
         }
     }

@@ -127,6 +127,13 @@ namespace Forms
                     frmGoodNG.Dock = DockStyle.Fill;
                     frmGoodNG.Show();
                     this.panel4.Controls.Add(frmGoodNG);
+                    break;
+                case "FrmTsInputEdit":
+                    FrmTsInputEdit frmTsInputEdit = Program.programContainer.GetExportedValue<FrmTsInputEdit>();
+                    frmTsInputEdit.TopLevel = false;
+                    frmTsInputEdit.Dock = DockStyle.Fill;
+                    frmTsInputEdit.Show();
+                    this.panel4.Controls.Add(frmTsInputEdit);
                     break;  
             }            
             
