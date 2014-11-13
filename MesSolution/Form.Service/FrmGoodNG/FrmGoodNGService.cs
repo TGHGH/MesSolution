@@ -39,6 +39,8 @@ namespace FormApplication.Service
         public ITsFormService tsFormService { get; set; }
         [Import]
         public ITsErrorCodeFormService tsErrorCodeFormService { get; set; }
+        [Import]
+        public IEcFormService ecFormService { get; set; }
 
         public OperationResult FindSnCheck(string moString)
         {
@@ -366,7 +368,7 @@ namespace FormApplication.Service
             ts.frmtime = Convert.ToInt32("" + dt.Hour + dt.Minute + dt.Second);
             ts.frminputtype = "tssource_onwip";
             ts.tstimes += 1;
-            ts.tsstatus = "tsstatus_new";
+            ts.tsstatus = TsStatus.NEW;
             ts.tsdate = 0;
             ts.tstimes = 0;
             ts.confirmtime = 0;
@@ -383,7 +385,7 @@ namespace FormApplication.Service
             ts.tsrepairmtime = 0;
             //TBLTSERRORCODE
             TsErrorCode tsErrorCode = new TsErrorCode();
-            tsErrorCode.ecode = selectedEc;
+            tsErrorCode.ecode2 = selectedEc;
             tsErrorCode.ecgcode = selectedEcg;
             tsErrorCode.ts = ts;
             tsErrorCode.rcard = card;
@@ -395,6 +397,9 @@ namespace FormApplication.Service
             tsErrorCode.mdate = Convert.ToInt32("" + dt.Year + dt.Day);
             tsErrorCode.mtime = Convert.ToInt32("" + dt.Hour + dt.Minute + dt.Second);
             tsErrorCode.moseq = simulation.MOSEQ;
+          //  tsErrorCode.errorCode = ecFormService.Ecs().FirstOrDefault(e => e.ecode == selectedEc);
+
+
             //update tbllot
             //delete from tbllot2card
 

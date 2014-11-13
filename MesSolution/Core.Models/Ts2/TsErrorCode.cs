@@ -21,7 +21,7 @@ namespace Core.Models
 
         public Int64 TsErrorCodeID { get; set; }
         [MaxLength(40),Required]
-        public string ecode { get; set; }
+        public string ecode2 { get; set; }
         [MaxLength(40), Required]
 
         public string ecgcode { get; set; }

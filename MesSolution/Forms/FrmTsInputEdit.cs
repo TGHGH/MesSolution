@@ -161,7 +161,10 @@ namespace Forms
 
         private void TBoxSN_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (e.KeyChar == ('\r'))
+            {
 
+            }
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)

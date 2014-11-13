@@ -1,4 +1,4 @@
-﻿USE [MesTest]
+﻿USE [Mes]
 insert into UserUserGroups
  values('usercode1','usergroupcode1'); 
 insert into UserUserGroups
@@ -64,3 +64,4 @@ update Route2Op set routeCode='routecode1',seq=Route2OpID where Route2OpID<6;
 update Route2Op set routeCode='routecode2',seq=Route2OpID where Route2OpID>=6;
 update ErrorCodes set ecg_ecgcode='ecgcode1' ;
 update ErrorCodeSeasons set ecsg_ecsgcode='ecsgcode1' ;
+ update ErrorCodes set ecode='AUTONG' where ecode='ecode10'

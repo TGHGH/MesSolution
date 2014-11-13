@@ -104,6 +104,7 @@ namespace Core.Db.Context
 
         //Ts2
         public DbSet<Ts> tses { get; set; }
+
         public DbSet<TsErrorCause> tsErrorCauses { get; set; }
         public DbSet<TsErrorCause2Com> tsErrorCause2Coms { get; set; }
         public DbSet<TsErrorCause2Loc> tsErrorCause2Locs { get; set; }

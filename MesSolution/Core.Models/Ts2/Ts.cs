@@ -15,7 +15,12 @@ namespace Core.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-  
+    
+    public enum TsStatus
+    {
+        NEW=1,
+        CONFIRM=2
+    }
     public partial class Ts:Entity
     {
       
@@ -90,8 +95,8 @@ namespace Core.Models
         public string frminputtype { get; set; }
         [Required]
         public int tstimes { get; set; }
-        [MaxLength(40),Required]        
-        public string tsstatus { get; set; }
+        [MaxLength(40),Required]
+        public TsStatus tsstatus { get; set; }
         [MaxLength(40)]
 
         public string tsuser { get; set; }
