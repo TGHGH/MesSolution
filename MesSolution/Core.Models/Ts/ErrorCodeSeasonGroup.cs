@@ -33,5 +33,9 @@ namespace Core.Models
         public virtual ICollection<ErrorCodeSeason> ecses { get; set; }
 
         public virtual ICollection<Model> models { get; set; }
+        public override string ToString()
+        {
+            return ecsgdesc;
+        }
     }
 }

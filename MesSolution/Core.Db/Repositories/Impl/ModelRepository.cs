@@ -8,8 +8,8 @@ using Core.Models;
 namespace Core.Db.Repositories
 {
 
-	[Export(typeof(ITsErrorCause2ComRepository))]
-	public class TsErrorCause2ComRepository : EFRepositoryBase<TsErrorCause2Com>,ITsErrorCause2ComRepository
+	[Export(typeof(IModelRepository))]
+	public class ModelRepository : EFRepositoryBase<Model>,IModelRepository
 	{
 	}
 }

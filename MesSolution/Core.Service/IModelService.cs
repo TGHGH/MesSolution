@@ -7,12 +7,12 @@ using Core.Models;
 namespace Core.Service
 {
 
-	public interface IErrorComService
+	public interface IModelService
 	{
-		 OperationResult AddEntity(ErrorCom tsErrorCause2Com,bool isSave=true);
+		 OperationResult AddEntity(Model model,bool isSave=true);
 		 OperationResult DeleteEntity(string key,bool isSave=true);
 		 OperationResult FindEntity(string key);
-		 OperationResult UpdateEntity(ErrorCom tsErrorCause2Com,bool isSave=true);
-		 IQueryable<ErrorCom>TsErrorCause2Coms( );
+		 OperationResult UpdateEntity(Model model,bool isSave=true);
+		 IQueryable<Model>Models( );
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using Component.Tools;
 using Core.Models;
+using FormApplication.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -14,6 +15,14 @@ namespace FormApplication.Service
     {
         [Import]
         public ITsFormService tsFormService { get; set; }
+        [Import]
+        public ISimulationFormService simulationFormService { get; set; }
+        [Import]
+        public IModelFormService modelFormService { get; set; }
+        [Import]
+        public IDutyFormService dutyFormService { get; set; }
+        [Import]
+        public IEcsgFormService ecsgFormService { get; set; }
         public OperationResult ActionNGConfirm(string card)
         {
             OperationResult operationResult = new OperationResult(OperationResultType.Error);
@@ -37,12 +46,46 @@ namespace FormApplication.Service
             foreach (var ter in ts.tsErrorCodes.ToList())
             {
                 ter.tsErrorCauses.ToList();
+                ter.errorCode.ToString();
+                ter.errorCode.ecg.ToString();
             }
             ts.tsstatus = "tsstatus_confirm";
             tsFormService.UpdateEntity(ts);
             operationResult.ResultType = OperationResultType.Success;
             operationResult.Message = "确认成功";
             operationResult.AppendData = ts;
+            return operationResult;
+        }
+
+        public OperationResult TsErrorCauseEdit(string card)
+        {
+            OperationResult operationResult = new OperationResult(OperationResultType.Error);
+            if (card == null)
+            {
+                operationResult.Message = "条码不能为空";
+                return operationResult;
+            }
+            Simulation simulation = simulationFormService.Simulations().SingleOrDefault(s => s.RCARD == card);
+            if (simulation == null)
+            {
+                operationResult.Message = "条码不存在";
+                return operationResult;
+            }
+            Model model = modelFormService.Models().SingleOrDefault(m => m.MODELCODE == simulation.MODELCODE);
+            TsErrorCauseSelectCollection tsErrorCauseSelect=new TsErrorCauseSelectCollection();
+            tsErrorCauseSelect.errorComs = model.errorComs.ToList();
+            tsErrorCauseSelect.solutions = model.solutions.ToList();
+            tsErrorCauseSelect.errorCodeSeasonGroups = model.ecsgs.ToList();
+            tsErrorCauseSelect.Duties = dutyFormService.Dutys().ToList();
+            operationResult.AppendData = tsErrorCauseSelect;
+            operationResult.ResultType = OperationResultType.Success;
+            return operationResult;
+        }
+
+        public OperationResult GetErrorCodeSeasonByGroup(string GroupCode)
+        {
+            OperationResult operationResult = new OperationResult(OperationResultType.Success);
+            operationResult.AppendData= ecsgFormService.Ecsgs().SingleOrDefault(e => e.ecsgcode == GroupCode).ecses.ToList();
             return operationResult;
         }
     }

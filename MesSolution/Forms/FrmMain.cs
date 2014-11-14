@@ -107,36 +107,41 @@ namespace Forms
         }
 
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            if (((TreeView)sender).SelectedNode == null)
-                return;
-            Mdl mdl=(Mdl)((TreeView)sender).SelectedNode.Tag;
-            this.panel4.Controls.Clear();
-            switch (mdl.form)
-            {
-                case "FormLogin":
-                    FormLogin formLogin = Program.programContainer.GetExportedValue<FormLogin>();
-                    formLogin.TopLevel = false;
-                    formLogin.Dock = DockStyle.Fill;
-                    formLogin.Show();
-                    this.panel4.Controls.Add(formLogin);
-                    break;
-                case "FrmGoodNG":
-                    FrmGoodNG frmGoodNG = Program.programContainer.GetExportedValue<FrmGoodNG>();
-                    frmGoodNG.TopLevel = false;
-                    frmGoodNG.Dock = DockStyle.Fill;
-                    frmGoodNG.Show();
-                    this.panel4.Controls.Add(frmGoodNG);
-                    break;
-                case "FrmTsInputEdit":
-                    FrmTsInputEdit frmTsInputEdit = Program.programContainer.GetExportedValue<FrmTsInputEdit>();
-                    frmTsInputEdit.TopLevel = false;
-                    frmTsInputEdit.Dock = DockStyle.Fill;
-                    frmTsInputEdit.Show();
-                    this.panel4.Controls.Add(frmTsInputEdit);
-                    break;  
-            }            
+        {                
             
+        }
+
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if (e.Node.Tag is Mdl)
+            {
+                Mdl mdl = (Mdl)e.Node.Tag;
+                this.panel4.Controls.Clear();
+                switch (mdl.form)
+                {
+                    case "FormLogin":
+                        FormLogin formLogin = Program.programContainer.GetExportedValue<FormLogin>();
+                        formLogin.TopLevel = false;
+                        formLogin.Dock = DockStyle.Fill;
+                        formLogin.Show();
+                        this.panel4.Controls.Add(formLogin);
+                        break;
+                    case "FrmGoodNG":
+                        FrmGoodNG frmGoodNG = Program.programContainer.GetExportedValue<FrmGoodNG>();
+                        frmGoodNG.TopLevel = false;
+                        frmGoodNG.Dock = DockStyle.Fill;
+                        frmGoodNG.Show();
+                        this.panel4.Controls.Add(frmGoodNG);
+                        break;
+                    case "FrmTsInputEdit":
+                        FrmTsInputEdit frmTsInputEdit = Program.programContainer.GetExportedValue<FrmTsInputEdit>();
+                        frmTsInputEdit.TopLevel = false;
+                        frmTsInputEdit.Dock = DockStyle.Fill;
+                        frmTsInputEdit.Show();
+                        this.panel4.Controls.Add(frmTsInputEdit);
+                        break;
+                }   
+            }
         }
     }
 }

@@ -72,3 +72,37 @@ update TsErrorCauses set tsErrorCode_TsErrorCodeID=2 where TsErrorCauseID>8
 update Ts set tsstatus='tsstatus_new';
 update TsErrorCodes set errorCode_ecode='ecode1' where TsErrorCodeID=1;
 update TsErrorCodes set errorCode_ecode='ecode2' where TsErrorCodeID=2;;
+
+
+insert into SolutionModels values('solcode1','modelcode1');
+insert into SolutionModels values('solcode2','modelcode1');
+insert into SolutionModels values('solcode3','modelcode1');
+insert into SolutionModels values('solcode4','modelcode1');
+insert into SolutionModels values('solcode5','modelcode1');
+insert into SolutionModels values('solcode6','modelcode1');
+insert into SolutionModels values('solcode7','modelcode1');
+insert into SolutionModels values('solcode8','modelcode1');
+insert into SolutionModels values('solcode9','modelcode1');
+insert into SolutionModels values('solcode10','modelcode1');
+
+insert into ErrorComModels values(1,'modelcode1');
+insert into ErrorComModels values(2,'modelcode1');
+insert into ErrorComModels values(3,'modelcode1');
+insert into ErrorComModels values(4,'modelcode1');
+insert into ErrorComModels values(5,'modelcode1');
+insert into ErrorComModels values(6,'modelcode1');
+insert into ErrorComModels values(7,'modelcode1');
+insert into ErrorComModels values(8,'modelcode1');
+insert into ErrorComModels values(9,'modelcode1');
+insert into ErrorComModels values(10,'modelcode1');
+
+insert into ModelErrorCodeSeasonGroups values('modelcode1','ecsgcode1');
+insert into ModelErrorCodeSeasonGroups values('modelcode1','ecsgcode2');
+insert into ModelErrorCodeSeasonGroups values('modelcode1','ecsgcode3');
+insert into ModelErrorCodeSeasonGroups values('modelcode1','ecsgcode4');
+insert into ModelErrorCodeSeasonGroups values('modelcode1','ecsgcode5');
+insert into ModelErrorCodeSeasonGroups values('modelcode1','ecsgcode6');
+insert into ModelErrorCodeSeasonGroups values('modelcode1','ecsgcode7');
+insert into ModelErrorCodeSeasonGroups values('modelcode1','ecsgcode8');
+insert into ModelErrorCodeSeasonGroups values('modelcode1','ecsgcode9');
+insert into ModelErrorCodeSeasonGroups values('modelcode1','ecsgcode10');

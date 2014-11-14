@@ -15,26 +15,28 @@ namespace Core.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-   
-    public partial class Duty:Entity
+    
+    public partial class  ErrorCom:Entity
     {
-        [Key,MaxLength(40)]
-        public string dutycode { get; set; }
-        [MaxLength(100)]
-        public string dutydesc { get; set; }
-        [MaxLength(40),Required]
+        public Int64 ErrorComID { get; set; }
+
+        
+        [MaxLength(40), Required]
+        public string errorComponent { get; set; }     
+
+ 
+        [MaxLength(40), Required]
         public string muser { get; set; }
         [Required]
         public int mdate { get; set; }
         [Required]
         public int mtime { get; set; }
-        [MaxLength(40)]
-        public string eattribute1 { get; set; }
-
         public virtual ICollection<TsErrorCause> tsErrorCause { get; set; }
+        public virtual ICollection<Model> models { get; set; }
+
         public override string ToString()
         {
-            return dutydesc;
+            return errorComponent;
         }
     }
 }

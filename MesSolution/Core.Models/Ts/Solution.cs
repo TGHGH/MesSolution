@@ -35,5 +35,9 @@ namespace Core.Models
 
         public virtual ICollection<Model> models { get; set; }
         public virtual ICollection<TsErrorCause> tsErrorCauses { get; set; }
+        public override string ToString()
+        {
+            return soldesc;
+        }
     }
 }

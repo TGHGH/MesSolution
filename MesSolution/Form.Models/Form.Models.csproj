@@ -46,6 +46,17 @@
     <Compile Include="FrmGoodNG\GoMoModel.cs" />
     <Compile Include="FormLogin\LoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FrmTsInputEdit\TsErrorCauseSelect.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Component.Tools\Component.Tools.csproj">
+      <Project>{c9152aed-dcbb-41b3-9177-2eb90e155be3}</Project>
+      <Name>Component.Tools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core.Models\Core.Models.csproj">
+      <Project>{95901119-0a36-4fe7-9884-5bbf08e92db0}</Project>
+      <Name>Core.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

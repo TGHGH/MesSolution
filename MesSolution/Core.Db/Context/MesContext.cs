@@ -106,7 +106,7 @@ namespace Core.Db.Context
         public DbSet<Ts> tses { get; set; }
 
         public DbSet<TsErrorCause> tsErrorCauses { get; set; }
-        public DbSet<TsErrorCause2Com> tsErrorCause2Coms { get; set; }
+        public DbSet<ErrorCom> tsErrorCause2Coms { get; set; }
         public DbSet<TsErrorCause2Loc> tsErrorCause2Locs { get; set; }
         public DbSet<TsErrorCode> tsErrorCodes { get; set; }
         public DbSet<TsErrorCode2Loc> tsErrorCode2Locs { get; set; }
@@ -195,16 +195,16 @@ namespace Core.Db.Context
                     }
                 }                
             }
-            return base.SaveChanges();  //返回普通的上下文SaveChanges方法
-            //try
-            //{
-            //    return base.SaveChanges();  //返回普通的上下文SaveChanges方法
-            //}
-            //catch (DbEntityValidationException e)
-            //{
-            //    DisplayErrors(e.EntityValidationErrors);
-            //}
-            //return 0;
+            //return base.SaveChanges();  //返回普通的上下文SaveChanges方法
+            try
+            {
+                return base.SaveChanges();  //返回普通的上下文SaveChanges方法
+            }
+            catch (DbEntityValidationException e)
+            {
+                DisplayErrors(e.EntityValidationErrors);
+            }
+            return 0;
         }
         private IEnumerable<string> GetKeyPropertyNames(object entity)
         {

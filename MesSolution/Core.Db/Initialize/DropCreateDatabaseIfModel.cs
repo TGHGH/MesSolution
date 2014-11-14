@@ -74,7 +74,7 @@ namespace GMF.Demo.Core.Data.Initialize
             //Ts2
             Initialize<Ts>.Infial(num).ForEach(u => context.Set<Ts>().Add(u));
             Initialize<TsErrorCause>.Infial(num).ForEach(u => context.Set<TsErrorCause>().Add(u));
-            Initialize<TsErrorCause2Com>.Infial(num).ForEach(u => context.Set<TsErrorCause2Com>().Add(u));
+            Initialize<ErrorCom>.Infial(num).ForEach(u => context.Set<ErrorCom>().Add(u));
             Initialize<TsErrorCause2Loc>.Infial(num).ForEach(u => context.Set<TsErrorCause2Loc>().Add(u));
             Initialize<TsErrorCode>.Infial(num).ForEach(u => context.Set<TsErrorCode>().Add(u));
             Initialize<TsErrorCode2Loc>.Infial(num).ForEach(u => context.Set<TsErrorCode2Loc>().Add(u));

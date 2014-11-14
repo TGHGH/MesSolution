@@ -76,5 +76,7 @@ namespace Core.Models
         public virtual ErrorCodeSeason errorCodeSeason { get; set; }
         public virtual Duty duty { get; set; }
         public virtual Solution solution { get; set; }
+
+        public virtual ErrorCom errorCom { get; set; }
     }
 }

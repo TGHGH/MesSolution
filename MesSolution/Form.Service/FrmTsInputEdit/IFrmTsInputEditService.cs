@@ -10,5 +10,7 @@ namespace FormApplication.Service
     public interface IFrmTsInputEditService
     {
         OperationResult ActionNGConfirm(string card);
+        OperationResult TsErrorCauseEdit(string card);
+        OperationResult GetErrorCodeSeasonByGroup(string GroupCode);
     }
 }

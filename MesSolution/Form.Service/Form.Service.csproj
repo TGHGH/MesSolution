@@ -46,6 +46,8 @@
     <Compile Include="FrmGoodNG\IFrmGoodNGService.cs" />
     <Compile Include="FrmTsInputEdit\FrmTsInputEditService.cs" />
     <Compile Include="FrmTsInputEdit\IFrmTsInputEditService.cs" />
+    <Compile Include="Service\IModelFormService.cs" />
+    <Compile Include="Service\ModelFormService.cs" />
     <Compile Include="Service\IItem2SnCheckFormService.cs" />
     <Compile Include="Service\IItemFormService.cs" />
     <Compile Include="Service\IMoFormService.cs" />

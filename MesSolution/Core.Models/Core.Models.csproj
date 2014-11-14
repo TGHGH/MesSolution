@@ -109,7 +109,7 @@
     <Compile Include="Privage\UserGroup.cs" />
     <Compile Include="Ts2\Ts.cs" />
     <Compile Include="Ts2\TsErrorCause.cs" />
-    <Compile Include="Ts2\TsErrorCause2Com.cs" />
+    <Compile Include="Ts\ErrorCom.cs" />
     <Compile Include="Ts2\TsErrorCause2Loc.cs" />
     <Compile Include="Ts2\TsErrorCode.cs" />
     <Compile Include="Ts2\TsErrorCode2Loc.cs" />
@@ -121,7 +121,6 @@
     <Compile Include="Ts\ErrorCodeSeason.cs" />
     <Compile Include="Ts\ErrorCodeSeasonGroup.cs" />
     <Compile Include="Ts\Solution.cs" />
-    <Compile Include="Ts\TSErrorInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Component.Tools\Component.Tools.csproj">

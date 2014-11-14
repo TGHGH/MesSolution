@@ -6,15 +6,15 @@ using Core.Models;
 namespace Core.Service
 {
 
-	public abstract class TsErrorCause2ComService : CoreServiceBase,ITsErrorCause2ComService
+	public abstract class TsErrorCause2ComService : CoreServiceBase,IErrorComService
 	{
 		[Import]
-		protected ITsErrorCause2ComRepository tsErrorCause2ComRepository { get; set; } 
-		public IQueryable<TsErrorCause2Com> TsErrorCause2Coms()
+		protected IErrorComRepository tsErrorCause2ComRepository { get; set; } 
+		public IQueryable<ErrorCom> TsErrorCause2Coms()
 		{
 			return tsErrorCause2ComRepository.Entities;
 		}
-		public virtual OperationResult AddEntity(TsErrorCause2Com tsErrorCause2Com,bool isSave=true)
+		public virtual OperationResult AddEntity(ErrorCom tsErrorCause2Com,bool isSave=true)
 		{
 			return tsErrorCause2ComRepository.Insert(tsErrorCause2Com,isSave);
 		}
@@ -27,7 +27,7 @@ namespace Core.Service
 			PublicHelper.CheckArgument(key, "tsErrorCause2Com");
 			return tsErrorCause2ComRepository.GetByKey(key);
 		}
-		public virtual OperationResult UpdateEntity(TsErrorCause2Com tsErrorCause2Com,bool isSave=true)
+		public virtual OperationResult UpdateEntity(ErrorCom tsErrorCause2Com,bool isSave=true)
 		{
 			return tsErrorCause2ComRepository.Update(tsErrorCause2Com,isSave);
 		}

@@ -1,5 +1,6 @@
 ﻿using Component.Tools;
 using Core.Models;
+using FormApplication.Models;
 using FormApplication.Service;
 using Forms.Helper;
 //using MESModel3;
@@ -52,9 +53,7 @@ namespace Forms
             this.RBoxLocationSelected.Clear();
             this.RBoxLocation.Clear();
             this.RBoxErrorCopSelected.Clear();
-            this.RBoxErrorCop.Clear();
-         //   this._locationHelper.Clear();
-         //   this._partHelper.Clear();
+            this.RBoxErrorCop.Clear();   
         }
         private ErrorInfoEditStatus TSEditStatus
         {
@@ -70,6 +69,7 @@ namespace Forms
                 {
                     this.TBoxErrorCodeGroupDesc.Text = string.Empty;
                     this.TBoxErrorCodeDesc.Text = string.Empty;
+
                     this.CBoxErrorCause.Text = string.Empty;
                     this.CBoxErrorCause.Enabled = false;
                     this.CBoxErrorCauseGroup.Enabled = false;
@@ -77,8 +77,10 @@ namespace Forms
                     this.CBoxDuty.Enabled = false;
                     this.CBoxSolution.Enabled = false;
                     this.RBoxPremunition.ReadOnly = true;
+
                     this.enableEditLocation(false);
                     this.enableEditPart(false);
+
                     this.BtnAdd.Enabled = false;
                     this.BtnAddInfo.Enabled = false;
                     this.BtnDelete.Enabled = false;
@@ -95,15 +97,15 @@ namespace Forms
                     this.CBoxDuty.Enabled = false;
                     this.CBoxSolution.Enabled = false;
                     this.RBoxPremunition.ReadOnly = true;
+
                     this.enableEditLocation(false);
                     this.enableEditPart(false);
+
                     this.BtnAdd.Enabled = true;
                     this.BtnAddInfo.Enabled = false;
                     this.BtnDelete.Enabled = false;
                     this.BtnSave.Enabled = true;
-                    this.BtnCancel.Enabled = true;
-                    //    this.btnViewSmart.Enabled = true;
-                 //   this.status = "enabled";
+                    this.BtnCancel.Enabled = true;          
                 }
                 if (this._errInfoStatus == ErrorInfoEditStatus.AddErrorCause)
                 {
@@ -118,6 +120,7 @@ namespace Forms
                 }
                 if (this._errInfoStatus == ErrorInfoEditStatus.UpdateErrorCause)
                 {
+                    
                     this.TBoxErrorComponent.ReadOnly = true;
                     this.CBoxErrorCauseGroup.Enabled = false;
                     this.CBoxErrorCause.Enabled = false;
@@ -201,6 +204,52 @@ namespace Forms
         private void BtnAdd_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void BtnQuit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if (e.Node.Tag is Ts)
+            {
+                Program.programContainer.GetExportedValue<FrmMain>().richTextBox1.AppendText(e.Node.Text + "\r");
+            }
+            if (e.Node.Tag is TsErrorCode)
+            {
+                TsErrorCode te = (TsErrorCode)e.Node.Tag;
+                this.TBoxErrorCodeGroupDesc.Text = te.errorCode.ecg.ecgdesc;
+                this.TBoxErrorCodeDesc.Text = te.errorCode.ecdesc;                
+            }
+            if (e.Node.Tag is TsErrorCause)
+            {
+                TsErrorCause tc = (TsErrorCause)e.Node.Tag;
+                this.TBoxErrorCodeGroupDesc.Text = tc.tsErrorCode.errorCode.ecg.ecgdesc;
+                this.TBoxErrorCodeDesc.Text = tc.tsErrorCode.errorCode.ecdesc;
+                BtnAddInfo.Enabled = true;
+            }
+        }
+
+        private void BtnAddInfo_Click(object sender, EventArgs e)
+        {
+            FrmTsInputEdit_TsErrorCause frm = Program.programContainer.GetExportedValue<FrmTsInputEdit_TsErrorCause>();
+            using (CompositionContainer testContainer = new CompositionContainer(Program.programCatalog))
+            {
+                OperationResult operationResult = testContainer.GetExportedValue<IFrmTsInputEditService>().TsErrorCauseEdit(((Ts)treeView1.Nodes[0].Tag).rcard);
+                if (operationResult.ResultType == OperationResultType.Success)
+                {
+                    TsErrorCauseSelectCollection tsErrorCauseSelectCollection = (TsErrorCauseSelectCollection)operationResult.AppendData;
+                  
+                    frm.listBox1.Items.AddRange(tsErrorCauseSelectCollection.errorComs.ToArray());
+                    frm.listBox2.Items.AddRange(tsErrorCauseSelectCollection.errorCodeSeasonGroups.ToArray());
+                    frm.listBox4.Items.AddRange(tsErrorCauseSelectCollection.Duties.ToArray());
+                    frm.listBox5.Items.AddRange(tsErrorCauseSelectCollection.solutions.ToArray());
+                    frm.ShowDialog();
+                }
+            }
+           
         }
     }
 }

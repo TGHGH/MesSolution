@@ -47,5 +47,7 @@ namespace Core.Models
         public virtual ICollection<ErrorCodeGroup> ecgs { get; set; }
         public virtual ICollection<ErrorCodeSeasonGroup> ecsgs { get; set; }
         public virtual ICollection<Solution> solutions { get; set; }
+
+        public virtual ICollection<ErrorCom> errorComs { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace Core.Service
 	public abstract class EcsgService : CoreServiceBase,IEcsgService
 	{
 		[Import]
-		protected IEcsgRepository ecsgRepository { get; set; } 
+		protected IErrorCodeSeasonGroupRepository ecsgRepository { get; set; } 
 		public IQueryable<ErrorCodeSeasonGroup> Ecsgs()
 		{
 			return ecsgRepository.Entities;

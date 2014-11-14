@@ -50,6 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IModelService.cs" />
+    <Compile Include="ModelService.cs" />
     <Compile Include="Ts\DutyService.cs" />
     <Compile Include="Ts\EcgService.cs" />
     <Compile Include="Ts\EcService.cs" />

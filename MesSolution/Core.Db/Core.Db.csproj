@@ -63,6 +63,7 @@
     <Compile Include="Repositories\IMdlRepository.cs" />
     <Compile Include="Repositories\IMemberExtendRepository.cs" />
     <Compile Include="Repositories\IMemberRepository.cs" />
+    <Compile Include="Repositories\IModelRepository.cs" />
     <Compile Include="Repositories\IMoRcardRepository.cs" />
     <Compile Include="Repositories\IMoRepository.cs" />
     <Compile Include="Repositories\Impl\Item2SnCheckRepository.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Repositories\Impl\MdlRepository.cs" />
     <Compile Include="Repositories\Impl\MemberExtendRepository.cs" />
     <Compile Include="Repositories\Impl\MemberRepository.cs" />
+    <Compile Include="Repositories\Impl\ModelRepository.cs" />
     <Compile Include="Repositories\Impl\MoRcardRepository.cs" />
     <Compile Include="Repositories\Impl\MoRepository.cs" />
     <Compile Include="Repositories\Impl\OpRepository.cs" />
@@ -79,7 +81,7 @@
     <Compile Include="Repositories\Impl\RouteRepository.cs" />
     <Compile Include="Repositories\Impl\SimulationReportRepository.cs" />
     <Compile Include="Repositories\Impl\SimulationRepository.cs" />
-    <Compile Include="Repositories\Ts2\TsErrorCause2ComRepository.cs" />
+    <Compile Include="Repositories\Ts\IErrorComRepository.cs" />
     <Compile Include="Repositories\Ts2\TsErrorCause2LocRepository.cs" />
     <Compile Include="Repositories\Ts2\TsErrorCauseRepository.cs" />
     <Compile Include="Repositories\Ts2\TsErrorCode2LocRepository.cs" />
@@ -110,7 +112,7 @@
     <Compile Include="Repositories\Ts\DutyRepository.cs" />
     <Compile Include="Repositories\Ts\EcgRepository.cs" />
     <Compile Include="Repositories\Ts\EcRepository.cs" />
-    <Compile Include="Repositories\Ts\EcsgRepository.cs" />
+    <Compile Include="Repositories\Ts\ErrorCodeSeasonGroupRepository.cs" />
     <Compile Include="Repositories\Ts\EcsRepository.cs" />
     <Compile Include="Repositories\Ts\IDutyRepository.cs" />
     <Compile Include="Repositories\Ts\IEcgRepository.cs" />

@@ -1,4 +1,5 @@
 using System;using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using Component.Data;
@@ -7,7 +8,8 @@ using Core.Models;
 namespace Core.Db.Repositories
 {
 
-	public interface IErrorCodeSeasonGroupRepository : IRepository<ErrorCodeSeasonGroup>
+	[Export(typeof(IErrorComRepository))]
+	public class TsErrorCause2ComRepository : EFRepositoryBase<ErrorCom>,IErrorComRepository
 	{
 	}
 }

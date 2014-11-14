@@ -4,7 +4,7 @@ using System;
 namespace FormApplication.Service
 {
 
-	public interface IErrorComFormService : IErrorComService
+	public interface IModelFormService : IModelService
 	{
 
 	}

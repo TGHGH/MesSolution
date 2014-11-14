@@ -5,8 +5,8 @@ using System.ComponentModel.Composition;
 namespace FormApplication.Service
 {
 
-	[Export(typeof(IErrorComFormService))]
-	public class TsErrorCause2ComFormService : TsErrorCause2ComService ,IErrorComFormService
+	[Export(typeof(IModelFormService))]
+	public class ModelFormService : ModelService ,IModelFormService
 	{
 
 	}

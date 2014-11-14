@@ -7,7 +7,7 @@ using Core.Models;
 namespace Core.Db.Repositories
 {
 
-	public interface ITsErrorCause2ComRepository : IRepository<TsErrorCause2Com>
+	public interface IErrorComRepository : IRepository<ErrorCom>
 	{
 	}
 }
