@@ -3,7 +3,6 @@ using Core.Models;
 using FormApplication.Models;
 using FormApplication.Service;
 using Forms.Helper;
-//using MESModel3;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,6 +23,7 @@ namespace Forms
         private ErrorInfoEditStatus _errInfoStatus;
         public TsErrorCause tec { get; set; }
         public Ts ts { get; set; }
+        public CompositionContainer tsCompositionContainer { get; set; }
         public class FormStatus
         {
             public static string Update = "Update";
@@ -39,13 +39,13 @@ namespace Forms
         }
 
         private void clearErrorInfo()
-        {           
+        {
             this.RBoxPremunition.Text = string.Empty;
             this.TBoxErrorComponent.Text = string.Empty;
             this.RBoxLocationSelected.Clear();
             this.RBoxLocation.Clear();
             this.RBoxErrorCopSelected.Clear();
-            this.RBoxErrorCop.Clear();   
+            this.RBoxErrorCop.Clear();
         }
         private ErrorInfoEditStatus TSEditStatus
         {
@@ -79,7 +79,7 @@ namespace Forms
                     this.BtnSave.Enabled = false;
                     this.BtnCancel.Enabled = false;
                     // this.btnViewSmart.Enabled = false;
-                 //   this.status = "enabled";
+                    //   this.status = "enabled";
                 }
                 if (this._errInfoStatus == ErrorInfoEditStatus.UpdateErrorCode)
                 {
@@ -97,7 +97,7 @@ namespace Forms
                     this.BtnAddInfo.Enabled = false;
                     this.BtnDelete.Enabled = false;
                     this.BtnSave.Enabled = true;
-                    this.BtnCancel.Enabled = true;          
+                    this.BtnCancel.Enabled = true;
                 }
                 if (this._errInfoStatus == ErrorInfoEditStatus.AddErrorCause)
                 {
@@ -108,11 +108,11 @@ namespace Forms
                     this.BtnSave.Enabled = true;
                     this.BtnCancel.Enabled = true;
                     //    this.btnViewSmart.Enabled = true;
-                 //   this.status = "enabled";
+                    //   this.status = "enabled";
                 }
                 if (this._errInfoStatus == ErrorInfoEditStatus.UpdateErrorCause)
                 {
-                    
+
                     this.TBoxErrorComponent.ReadOnly = true;
                     this.CBoxErrorCauseGroup.Enabled = false;
                     this.CBoxErrorCause.Enabled = false;
@@ -127,7 +127,7 @@ namespace Forms
                     this.BtnSave.Enabled = true;
                     this.BtnCancel.Enabled = true;
                     //  this.btnViewSmart.Enabled = false;
-                 //   this.status = "disabled";
+                    //   this.status = "disabled";
                 }
             }
         }
@@ -147,12 +147,12 @@ namespace Forms
             this.RBoxErrorCopSelected.Enabled = enable;
             this.RBoxErrorCop.Enabled = enable;
         }
-       
+
         public FrmTsInputEdit()
         {
             InitializeComponent();
-                    
-            
+
+
         }
 
         private void FrmTsInputEdit_Load(object sender, EventArgs e)
@@ -164,33 +164,31 @@ namespace Forms
         {
             if (e.KeyChar == ('\r'))
             {
-                using (CompositionContainer testContainer = new CompositionContainer(Program.programCatalog))
+                tsCompositionContainer = new CompositionContainer(Program.programCatalog);
+                OperationResult operationResult = tsCompositionContainer.GetExportedValue<IFrmTsInputEditService>().ActionNGConfirm(TBoxSN.Text);
+                Program.programContainer.GetExportedValue<FrmMain>().richTextBox1.AppendText(operationResult.Message + "\r");
+                if (operationResult.ResultType == OperationResultType.Success)
                 {
-                    OperationResult operationResult = testContainer.GetExportedValue<IFrmTsInputEditService>().ActionNGConfirm(TBoxSN.Text);                    
-                    Program.programContainer.GetExportedValue<FrmMain>().richTextBox1.AppendText(operationResult.Message + "\r");
-                    if (operationResult.ResultType == OperationResultType.Success)
+                    treeView1.Nodes.Clear();
+                    ts = (Ts)operationResult.AppendData;
+                    TreeNode tn1 = new TreeNode();
+                    tn1.Tag = ts;
+                    tn1.Text = "TSID：" + ts.TSID;
+                    foreach (var tserrorcode in ts.tsErrorCodes)
                     {
-                        treeView1.Nodes.Clear();
-                        ts=(Ts)operationResult.AppendData;
-                        TreeNode tn1 = new TreeNode();
-                        tn1.Tag = ts;
-                        tn1.Text = "TSID：" + ts.TSID;
-                        foreach (var tserrorcode in ts.tsErrorCodes)
+                        TreeNode tn2 = new TreeNode();
+                        tn2.Tag = tserrorcode;
+                        tn2.Text = tserrorcode.errorCode.ecdesc;
+                        foreach (var tserrorcause in tserrorcode.tsErrorCauses)
                         {
-                            TreeNode tn2 = new TreeNode();
-                            tn2.Tag = tserrorcode;
-                            tn2.Text = tserrorcode.errorCode.ecdesc;
-                            foreach (var tserrorcause in tserrorcode.tsErrorCauses)
-                            {
-                                TreeNode tn3 = new TreeNode();
-                                tn3.Tag = tserrorcause;
-                                tn3.Text = tserrorcause.errorCodeSeason.ecsdesc;
-                                tn2.Nodes.Add(tn3);
-                            }
-                            tn1.Nodes.Add(tn2);
+                            TreeNode tn3 = new TreeNode();
+                            tn3.Tag = tserrorcause;
+                            tn3.Text = tserrorcause.errorCodeSeason.ecsdesc;
+                            tn2.Nodes.Add(tn3);
                         }
-                        treeView1.Nodes.Add(tn1);
+                        tn1.Nodes.Add(tn2);
                     }
+                    treeView1.Nodes.Add(tn1);
                 }
             }
         }
@@ -216,7 +214,7 @@ namespace Forms
                 TsErrorCode te = (TsErrorCode)e.Node.Tag;
                 this.TBoxErrorCodeGroupDesc.Text = te.errorCode.ecg.ecgdesc;
                 this.TBoxErrorCodeDesc.Text = te.errorCode.ecdesc;
-            
+
                 this.CBoxDuty.Text = "";
                 this.CBoxSolution.Text = "";
                 this.CBoxErrorCause.Text = "";
@@ -227,7 +225,7 @@ namespace Forms
             if (e.Node.Tag is TsErrorCause)
             {
                 tec = (TsErrorCause)e.Node.Tag;
-                BindFresh();          
+                BindFresh();
                 BtnAddInfo.Enabled = true;
             }
         }
@@ -252,7 +250,7 @@ namespace Forms
         }
 
         private void BtnAddInfo_Click(object sender, EventArgs e)
-        {          
+        {
             FrmTsInputEdit_TsErrorCause frm = Program.programContainer.GetExportedValue<FrmTsInputEdit_TsErrorCause>();
             using (CompositionContainer testContainer = new CompositionContainer(Program.programCatalog))
             {
@@ -266,6 +264,7 @@ namespace Forms
                     frm.listBox5.DataSource = tsErrorCauseSelectCollection.solutions;
                     frm.textBox1.Text = TBoxErrorCodeGroupDesc.Text;
                     frm.textBox2.Text = TBoxErrorCodeDesc.Text;
+                    frm.richTextBox1.Text = RBoxPremunition.Text;
                     int index_listBoxe1 = frm.listBox1.FindString(tec.errorCom.errorComponent);
                     if (index_listBoxe1 == -1)
                         MessageBox.Show("Item is not available in ListBox1");
@@ -289,19 +288,16 @@ namespace Forms
                         MessageBox.Show("Item is not available in ListBox5");
                     else
                         frm.listBox5.SetSelected(index_listBoxe5, true);
-                    
-                    
                     frm.ShowDialog();
                 }
-            }           
+            }
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            using (CompositionContainer testContainer = new CompositionContainer(Program.programCatalog))
-            {
-                OperationResult operationResult = testContainer.GetExportedValue<IFrmTsInputEditService>().SaveTs(ts);
-            }
+            OperationResult operationResult = tsCompositionContainer.GetExportedValue<IFrmTsInputEditService>().SaveTs(ts);
+            Program.programContainer.GetExportedValue<FrmMain>().richTextBox1.AppendText(operationResult.Message + "\r");
+
         }
     }
 }

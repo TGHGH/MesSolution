@@ -195,16 +195,16 @@ namespace Core.Db.Context
                     }
                 }                
             }
-            //return base.SaveChanges();  //返回普通的上下文SaveChanges方法
-            try
-            {
-                return base.SaveChanges();  //返回普通的上下文SaveChanges方法
-            }
-            catch (DbEntityValidationException e)
-            {
-                DisplayErrors(e.EntityValidationErrors);
-            }
-            return 0;
+            return base.SaveChanges();  //返回普通的上下文SaveChanges方法
+            //try
+            //{
+            //    return base.SaveChanges();  //返回普通的上下文SaveChanges方法
+            //}
+            //catch (DbEntityValidationException e)
+            //{
+            //    DisplayErrors(e.EntityValidationErrors);
+            //}
+            //return 0;
         }
         private IEnumerable<string> GetKeyPropertyNames(object entity)
         {

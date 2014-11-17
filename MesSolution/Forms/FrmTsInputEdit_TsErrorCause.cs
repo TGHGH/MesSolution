@@ -43,10 +43,10 @@ namespace Forms
         private void button1_Click(object sender, EventArgs e)
         {
             TsErrorCause tec= Program.programContainer.GetExportedValue<FrmTsInputEdit>().tec;
-            tec.errorCom =(ErrorCom) listBox1.SelectedItem;
-            tec.errorCodeSeason =(ErrorCodeSeason) listBox3.SelectedItem;
+            //tec.errorCom =(ErrorCom) listBox1.SelectedItem;
+            //tec.errorCodeSeason =(ErrorCodeSeason) listBox3.SelectedItem;
             tec.duty = (Duty)listBox4.SelectedItem;
-            tec.solution =(Solution) listBox5.SelectedItem;
+            //tec.solution =(Solution) listBox5.SelectedItem;
             tec.solmemo = richTextBox1.Text;
             Program.programContainer.GetExportedValue<FrmTsInputEdit>().BindFresh();
             this.Hide();
