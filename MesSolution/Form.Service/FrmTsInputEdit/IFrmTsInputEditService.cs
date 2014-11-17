@@ -1,4 +1,5 @@
 ﻿using Component.Tools;
+using Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,6 @@ namespace FormApplication.Service
         OperationResult ActionNGConfirm(string card);
         OperationResult TsErrorCauseEdit(string card);
         OperationResult GetErrorCodeSeasonByGroup(string GroupCode);
+        OperationResult SaveTs(Ts ts);
     }
 }

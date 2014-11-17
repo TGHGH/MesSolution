@@ -37,6 +37,11 @@
             this.LabSN = new System.Windows.Forms.Label();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.CBoxSolution = new System.Windows.Forms.TextBox();
+            this.CBoxDuty = new System.Windows.Forms.TextBox();
+            this.CBoxErrorCauseGroup = new System.Windows.Forms.TextBox();
+            this.CBoxErrorCause = new System.Windows.Forms.TextBox();
+            this.splitter1 = new System.Windows.Forms.Splitter();
             this.BtnAddInfo = new System.Windows.Forms.Button();
             this.RBoxPremunition = new System.Windows.Forms.RichTextBox();
             this.TBoxErrorComponent = new System.Windows.Forms.TextBox();
@@ -70,11 +75,6 @@
             this.BtnCancel = new System.Windows.Forms.Button();
             this.BtnQuit = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.splitter1 = new System.Windows.Forms.Splitter();
-            this.CBoxErrorCause = new System.Windows.Forms.TextBox();
-            this.CBoxErrorCauseGroup = new System.Windows.Forms.TextBox();
-            this.CBoxDuty = new System.Windows.Forms.TextBox();
-            this.CBoxSolution = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -171,6 +171,46 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(657, 186);
             this.panel2.TabIndex = 2;
+            // 
+            // CBoxSolution
+            // 
+            this.CBoxSolution.Enabled = false;
+            this.CBoxSolution.Location = new System.Drawing.Point(111, 111);
+            this.CBoxSolution.Name = "CBoxSolution";
+            this.CBoxSolution.Size = new System.Drawing.Size(182, 23);
+            this.CBoxSolution.TabIndex = 17;
+            // 
+            // CBoxDuty
+            // 
+            this.CBoxDuty.Enabled = false;
+            this.CBoxDuty.Location = new System.Drawing.Point(417, 62);
+            this.CBoxDuty.Name = "CBoxDuty";
+            this.CBoxDuty.Size = new System.Drawing.Size(175, 23);
+            this.CBoxDuty.TabIndex = 16;
+            // 
+            // CBoxErrorCauseGroup
+            // 
+            this.CBoxErrorCauseGroup.Enabled = false;
+            this.CBoxErrorCauseGroup.Location = new System.Drawing.Point(111, 62);
+            this.CBoxErrorCauseGroup.Name = "CBoxErrorCauseGroup";
+            this.CBoxErrorCauseGroup.Size = new System.Drawing.Size(182, 23);
+            this.CBoxErrorCauseGroup.TabIndex = 15;
+            // 
+            // CBoxErrorCause
+            // 
+            this.CBoxErrorCause.Enabled = false;
+            this.CBoxErrorCause.Location = new System.Drawing.Point(417, 15);
+            this.CBoxErrorCause.Name = "CBoxErrorCause";
+            this.CBoxErrorCause.Size = new System.Drawing.Size(175, 23);
+            this.CBoxErrorCause.TabIndex = 14;
+            // 
+            // splitter1
+            // 
+            this.splitter1.Location = new System.Drawing.Point(0, 0);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(3, 186);
+            this.splitter1.TabIndex = 13;
+            this.splitter1.TabStop = false;
             // 
             // BtnAddInfo
             // 
@@ -461,6 +501,7 @@
             this.BtnSave.TabIndex = 23;
             this.BtnSave.Text = "保存";
             this.BtnSave.UseVisualStyleBackColor = true;
+            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // BtnCancel
             // 
@@ -487,46 +528,6 @@
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // splitter1
-            // 
-            this.splitter1.Location = new System.Drawing.Point(0, 0);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(3, 186);
-            this.splitter1.TabIndex = 13;
-            this.splitter1.TabStop = false;
-            // 
-            // CBoxErrorCause
-            // 
-            this.CBoxErrorCause.Enabled = false;
-            this.CBoxErrorCause.Location = new System.Drawing.Point(417, 15);
-            this.CBoxErrorCause.Name = "CBoxErrorCause";
-            this.CBoxErrorCause.Size = new System.Drawing.Size(175, 23);
-            this.CBoxErrorCause.TabIndex = 14;
-            // 
-            // CBoxErrorCauseGroup
-            // 
-            this.CBoxErrorCauseGroup.Enabled = false;
-            this.CBoxErrorCauseGroup.Location = new System.Drawing.Point(111, 62);
-            this.CBoxErrorCauseGroup.Name = "CBoxErrorCauseGroup";
-            this.CBoxErrorCauseGroup.Size = new System.Drawing.Size(182, 23);
-            this.CBoxErrorCauseGroup.TabIndex = 15;
-            // 
-            // CBoxDuty
-            // 
-            this.CBoxDuty.Enabled = false;
-            this.CBoxDuty.Location = new System.Drawing.Point(417, 62);
-            this.CBoxDuty.Name = "CBoxDuty";
-            this.CBoxDuty.Size = new System.Drawing.Size(175, 23);
-            this.CBoxDuty.TabIndex = 16;
-            // 
-            // CBoxSolution
-            // 
-            this.CBoxSolution.Enabled = false;
-            this.CBoxSolution.Location = new System.Drawing.Point(111, 111);
-            this.CBoxSolution.Name = "CBoxSolution";
-            this.CBoxSolution.Size = new System.Drawing.Size(182, 23);
-            this.CBoxSolution.TabIndex = 17;
             // 
             // FrmTsInputEdit
             // 

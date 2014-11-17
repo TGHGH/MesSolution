@@ -23,6 +23,8 @@ namespace FormApplication.Service
         public IDutyFormService dutyFormService { get; set; }
         [Import]
         public IEcsgFormService ecsgFormService { get; set; }
+     
+      
         public OperationResult ActionNGConfirm(string card)
         {
             OperationResult operationResult = new OperationResult(OperationResultType.Error);
@@ -92,6 +94,12 @@ namespace FormApplication.Service
         {
             OperationResult operationResult = new OperationResult(OperationResultType.Success);
             operationResult.AppendData= ecsgFormService.Ecsgs().SingleOrDefault(e => e.ecsgcode == GroupCode).ecses.ToList();
+            return operationResult;
+        }
+
+        public OperationResult SaveTs(Ts ts)
+        {
+            OperationResult operationResult=tsFormService.UpdateEntity(ts);
             return operationResult;
         }
     }

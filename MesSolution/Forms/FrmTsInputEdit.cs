@@ -22,6 +22,8 @@ namespace Forms
     public partial class FrmTsInputEdit : Form
     {
         private ErrorInfoEditStatus _errInfoStatus;
+        public TsErrorCause tec { get; set; }
+        public Ts ts { get; set; }
         public class FormStatus
         {
             public static string Update = "Update";
@@ -37,17 +39,7 @@ namespace Forms
         }
 
         private void clearErrorInfo()
-        {
-            //if (this.CBoxErrorCauseGroup.Items.Count > 0)
-            //{
-            //    this.CBoxErrorCauseGroup.SelectedIndex = 0;
-            //}
-            //if (this.CBoxErrorCause.Items.Count > 0)
-            //{
-            //    this.CBoxErrorCause.SelectedIndex = 0;
-            //}
-            //this.CBoxDuty.SelectedIndex = -1;
-            //this.CBoxSolution.SelectedIndex = -1;
+        {           
             this.RBoxPremunition.Text = string.Empty;
             this.TBoxErrorComponent.Text = string.Empty;
             this.RBoxLocationSelected.Clear();
@@ -158,7 +150,9 @@ namespace Forms
        
         public FrmTsInputEdit()
         {
-            InitializeComponent();        
+            InitializeComponent();
+                    
+            
         }
 
         private void FrmTsInputEdit_Load(object sender, EventArgs e)
@@ -177,7 +171,7 @@ namespace Forms
                     if (operationResult.ResultType == OperationResultType.Success)
                     {
                         treeView1.Nodes.Clear();
-                        Ts ts=(Ts)operationResult.AppendData;
+                        ts=(Ts)operationResult.AppendData;
                         TreeNode tn1 = new TreeNode();
                         tn1.Tag = ts;
                         tn1.Text = "TSID：" + ts.TSID;
@@ -232,22 +226,33 @@ namespace Forms
             }
             if (e.Node.Tag is TsErrorCause)
             {
-                TsErrorCause tc = (TsErrorCause)e.Node.Tag;
-                this.TBoxErrorCodeGroupDesc.Text = tc.tsErrorCode.errorCode.ecg.ecgdesc;
-                this.TBoxErrorCodeDesc.Text = tc.tsErrorCode.errorCode.ecdesc;
-
-                this.CBoxDuty.Text=tc.duty.dutydesc;
-                this.CBoxSolution.Text = tc.solution.soldesc;
-                this.CBoxErrorCause.Text = tc.errorCodeSeason.ecsdesc;
-                this.CBoxErrorCauseGroup.Text = tc.errorCodeSeason.ecsg.ecsgdesc;
-                this.TBoxErrorComponent.Text = tc.errorCom.errorComponent;
-                RBoxPremunition.Text = tc.solmemo;
+                tec = (TsErrorCause)e.Node.Tag;
+                BindFresh();          
                 BtnAddInfo.Enabled = true;
             }
         }
+        public void BindFresh()
+        {
+            TBoxErrorCodeGroupDesc.DataBindings.Clear();
+            TBoxErrorCodeDesc.DataBindings.Clear();
+            CBoxDuty.DataBindings.Clear();
+            CBoxSolution.DataBindings.Clear();
+            CBoxErrorCause.DataBindings.Clear();
+            CBoxErrorCauseGroup.DataBindings.Clear();
+            TBoxErrorComponent.DataBindings.Clear();
+            RBoxPremunition.DataBindings.Clear();
+            TBoxErrorCodeGroupDesc.DataBindings.Add("Text", tec.tsErrorCode.errorCode.ecg, "ecgdesc");
+            TBoxErrorCodeDesc.DataBindings.Add("Text", tec.tsErrorCode.errorCode, "ecdesc");
+            CBoxDuty.DataBindings.Add("Text", tec.duty, "dutydesc");
+            CBoxSolution.DataBindings.Add("Text", tec.solution, "soldesc");
+            CBoxErrorCause.DataBindings.Add("Text", tec.errorCodeSeason, "ecsdesc");
+            CBoxErrorCauseGroup.DataBindings.Add("Text", tec.errorCodeSeason.ecsg, "ecsgdesc");
+            TBoxErrorComponent.DataBindings.Add("Text", tec.errorCom, "errorComponent");
+            RBoxPremunition.DataBindings.Add("Text", tec, "solmemo");
+        }
 
         private void BtnAddInfo_Click(object sender, EventArgs e)
-        {
+        {          
             FrmTsInputEdit_TsErrorCause frm = Program.programContainer.GetExportedValue<FrmTsInputEdit_TsErrorCause>();
             using (CompositionContainer testContainer = new CompositionContainer(Program.programCatalog))
             {
@@ -255,15 +260,48 @@ namespace Forms
                 if (operationResult.ResultType == OperationResultType.Success)
                 {
                     TsErrorCauseSelectCollection tsErrorCauseSelectCollection = (TsErrorCauseSelectCollection)operationResult.AppendData;
-                  
-                    frm.listBox1.Items.AddRange(tsErrorCauseSelectCollection.errorComs.ToArray());
-                    frm.listBox2.Items.AddRange(tsErrorCauseSelectCollection.errorCodeSeasonGroups.ToArray());
-                    frm.listBox4.Items.AddRange(tsErrorCauseSelectCollection.Duties.ToArray());
-                    frm.listBox5.Items.AddRange(tsErrorCauseSelectCollection.solutions.ToArray());
+                    frm.listBox1.DataSource = tsErrorCauseSelectCollection.errorComs;
+                    frm.listBox2.DataSource = tsErrorCauseSelectCollection.errorCodeSeasonGroups;
+                    frm.listBox4.DataSource = tsErrorCauseSelectCollection.Duties;
+                    frm.listBox5.DataSource = tsErrorCauseSelectCollection.solutions;
+                    frm.textBox1.Text = TBoxErrorCodeGroupDesc.Text;
+                    frm.textBox2.Text = TBoxErrorCodeDesc.Text;
+                    int index_listBoxe1 = frm.listBox1.FindString(tec.errorCom.errorComponent);
+                    if (index_listBoxe1 == -1)
+                        MessageBox.Show("Item is not available in ListBox1");
+                    else
+                        frm.listBox1.SetSelected(index_listBoxe1, true);
+
+                    int index_listBoxe2 = frm.listBox2.FindString(tec.errorCodeSeason.ecsg.ecsgdesc);
+                    if (index_listBoxe2 == -1)
+                        MessageBox.Show("Item is not available in ListBox2");
+                    else
+                        frm.listBox2.SetSelected(index_listBoxe2, true);
+
+                    int index_listBoxe4 = frm.listBox4.FindString(tec.duty.dutydesc);
+                    if (index_listBoxe4 == -1)
+                        MessageBox.Show("Item is not available in ListBox4");
+                    else
+                        frm.listBox4.SetSelected(index_listBoxe4, true);
+
+                    int index_listBoxe5 = frm.listBox5.FindString(tec.solution.soldesc);
+                    if (index_listBoxe5 == -1)
+                        MessageBox.Show("Item is not available in ListBox5");
+                    else
+                        frm.listBox5.SetSelected(index_listBoxe5, true);
+                    
+                    
                     frm.ShowDialog();
                 }
+            }           
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            using (CompositionContainer testContainer = new CompositionContainer(Program.programCatalog))
+            {
+                OperationResult operationResult = testContainer.GetExportedValue<IFrmTsInputEditService>().SaveTs(ts);
             }
-           
         }
     }
 }
