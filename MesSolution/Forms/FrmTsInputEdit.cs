@@ -38,16 +38,16 @@ namespace Forms
 
         private void clearErrorInfo()
         {
-            if (this.CBoxErrorCauseGroup.Items.Count > 0)
-            {
-                this.CBoxErrorCauseGroup.SelectedIndex = 0;
-            }
-            if (this.CBoxErrorCause.Items.Count > 0)
-            {
-                this.CBoxErrorCause.SelectedIndex = 0;
-            }
-            this.CBoxDuty.SelectedIndex = -1;
-            this.CBoxSolution.SelectedIndex = -1;
+            //if (this.CBoxErrorCauseGroup.Items.Count > 0)
+            //{
+            //    this.CBoxErrorCauseGroup.SelectedIndex = 0;
+            //}
+            //if (this.CBoxErrorCause.Items.Count > 0)
+            //{
+            //    this.CBoxErrorCause.SelectedIndex = 0;
+            //}
+            //this.CBoxDuty.SelectedIndex = -1;
+            //this.CBoxSolution.SelectedIndex = -1;
             this.RBoxPremunition.Text = string.Empty;
             this.TBoxErrorComponent.Text = string.Empty;
             this.RBoxLocationSelected.Clear();
@@ -221,13 +221,27 @@ namespace Forms
             {
                 TsErrorCode te = (TsErrorCode)e.Node.Tag;
                 this.TBoxErrorCodeGroupDesc.Text = te.errorCode.ecg.ecgdesc;
-                this.TBoxErrorCodeDesc.Text = te.errorCode.ecdesc;                
+                this.TBoxErrorCodeDesc.Text = te.errorCode.ecdesc;
+            
+                this.CBoxDuty.Text = "";
+                this.CBoxSolution.Text = "";
+                this.CBoxErrorCause.Text = "";
+                this.CBoxErrorCauseGroup.Text = "";
+                this.TBoxErrorComponent.Text = "";
+                RBoxPremunition.Text = "";
             }
             if (e.Node.Tag is TsErrorCause)
             {
                 TsErrorCause tc = (TsErrorCause)e.Node.Tag;
                 this.TBoxErrorCodeGroupDesc.Text = tc.tsErrorCode.errorCode.ecg.ecgdesc;
                 this.TBoxErrorCodeDesc.Text = tc.tsErrorCode.errorCode.ecdesc;
+
+                this.CBoxDuty.Text=tc.duty.dutydesc;
+                this.CBoxSolution.Text = tc.solution.soldesc;
+                this.CBoxErrorCause.Text = tc.errorCodeSeason.ecsdesc;
+                this.CBoxErrorCauseGroup.Text = tc.errorCodeSeason.ecsg.ecsgdesc;
+                this.TBoxErrorComponent.Text = tc.errorCom.errorComponent;
+                RBoxPremunition.Text = tc.solmemo;
                 BtnAddInfo.Enabled = true;
             }
         }

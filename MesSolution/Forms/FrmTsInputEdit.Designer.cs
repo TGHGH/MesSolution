@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.TBoxMemo = new System.Windows.Forms.TextBox();
             this.TBoxSN = new System.Windows.Forms.TextBox();
@@ -38,10 +39,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.BtnAddInfo = new System.Windows.Forms.Button();
             this.RBoxPremunition = new System.Windows.Forms.RichTextBox();
-            this.CBoxDuty = new System.Windows.Forms.ComboBox();
-            this.CBoxErrorCause = new System.Windows.Forms.ComboBox();
-            this.CBoxSolution = new System.Windows.Forms.ComboBox();
-            this.CBoxErrorCauseGroup = new System.Windows.Forms.ComboBox();
             this.TBoxErrorComponent = new System.Windows.Forms.TextBox();
             this.LabPremunition = new System.Windows.Forms.Label();
             this.LabSolution = new System.Windows.Forms.Label();
@@ -72,6 +69,12 @@
             this.BtnSave = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
             this.BtnQuit = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.splitter1 = new System.Windows.Forms.Splitter();
+            this.CBoxErrorCause = new System.Windows.Forms.TextBox();
+            this.CBoxErrorCauseGroup = new System.Windows.Forms.TextBox();
+            this.CBoxDuty = new System.Windows.Forms.TextBox();
+            this.CBoxSolution = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -149,12 +152,13 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.CBoxSolution);
+            this.panel2.Controls.Add(this.CBoxDuty);
+            this.panel2.Controls.Add(this.CBoxErrorCauseGroup);
+            this.panel2.Controls.Add(this.CBoxErrorCause);
+            this.panel2.Controls.Add(this.splitter1);
             this.panel2.Controls.Add(this.BtnAddInfo);
             this.panel2.Controls.Add(this.RBoxPremunition);
-            this.panel2.Controls.Add(this.CBoxDuty);
-            this.panel2.Controls.Add(this.CBoxErrorCause);
-            this.panel2.Controls.Add(this.CBoxSolution);
-            this.panel2.Controls.Add(this.CBoxErrorCauseGroup);
             this.panel2.Controls.Add(this.TBoxErrorComponent);
             this.panel2.Controls.Add(this.LabPremunition);
             this.panel2.Controls.Add(this.LabSolution);
@@ -187,46 +191,6 @@
             this.RBoxPremunition.Size = new System.Drawing.Size(175, 42);
             this.RBoxPremunition.TabIndex = 11;
             this.RBoxPremunition.Text = "";
-            // 
-            // CBoxDuty
-            // 
-            this.CBoxDuty.Enabled = false;
-            this.CBoxDuty.FormattingEnabled = true;
-            this.CBoxDuty.Location = new System.Drawing.Point(417, 62);
-            this.CBoxDuty.Margin = new System.Windows.Forms.Padding(4);
-            this.CBoxDuty.Name = "CBoxDuty";
-            this.CBoxDuty.Size = new System.Drawing.Size(175, 22);
-            this.CBoxDuty.TabIndex = 10;
-            // 
-            // CBoxErrorCause
-            // 
-            this.CBoxErrorCause.Enabled = false;
-            this.CBoxErrorCause.FormattingEnabled = true;
-            this.CBoxErrorCause.Location = new System.Drawing.Point(417, 17);
-            this.CBoxErrorCause.Margin = new System.Windows.Forms.Padding(4);
-            this.CBoxErrorCause.Name = "CBoxErrorCause";
-            this.CBoxErrorCause.Size = new System.Drawing.Size(175, 22);
-            this.CBoxErrorCause.TabIndex = 9;
-            // 
-            // CBoxSolution
-            // 
-            this.CBoxSolution.Enabled = false;
-            this.CBoxSolution.FormattingEnabled = true;
-            this.CBoxSolution.Location = new System.Drawing.Point(111, 111);
-            this.CBoxSolution.Margin = new System.Windows.Forms.Padding(4);
-            this.CBoxSolution.Name = "CBoxSolution";
-            this.CBoxSolution.Size = new System.Drawing.Size(182, 22);
-            this.CBoxSolution.TabIndex = 8;
-            // 
-            // CBoxErrorCauseGroup
-            // 
-            this.CBoxErrorCauseGroup.Enabled = false;
-            this.CBoxErrorCauseGroup.FormattingEnabled = true;
-            this.CBoxErrorCauseGroup.Location = new System.Drawing.Point(111, 62);
-            this.CBoxErrorCauseGroup.Margin = new System.Windows.Forms.Padding(4);
-            this.CBoxErrorCauseGroup.Name = "CBoxErrorCauseGroup";
-            this.CBoxErrorCauseGroup.Size = new System.Drawing.Size(182, 22);
-            this.CBoxErrorCauseGroup.TabIndex = 7;
             // 
             // TBoxErrorComponent
             // 
@@ -280,7 +244,7 @@
             // LabErrorCause
             // 
             this.LabErrorCause.AutoSize = true;
-            this.LabErrorCause.Location = new System.Drawing.Point(321, 24);
+            this.LabErrorCause.Location = new System.Drawing.Point(321, 18);
             this.LabErrorCause.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabErrorCause.Name = "LabErrorCause";
             this.LabErrorCause.Size = new System.Drawing.Size(63, 14);
@@ -519,6 +483,51 @@
             this.BtnQuit.UseVisualStyleBackColor = true;
             this.BtnQuit.Click += new System.EventHandler(this.BtnQuit_Click);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // splitter1
+            // 
+            this.splitter1.Location = new System.Drawing.Point(0, 0);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(3, 186);
+            this.splitter1.TabIndex = 13;
+            this.splitter1.TabStop = false;
+            // 
+            // CBoxErrorCause
+            // 
+            this.CBoxErrorCause.Enabled = false;
+            this.CBoxErrorCause.Location = new System.Drawing.Point(417, 15);
+            this.CBoxErrorCause.Name = "CBoxErrorCause";
+            this.CBoxErrorCause.Size = new System.Drawing.Size(175, 23);
+            this.CBoxErrorCause.TabIndex = 14;
+            // 
+            // CBoxErrorCauseGroup
+            // 
+            this.CBoxErrorCauseGroup.Enabled = false;
+            this.CBoxErrorCauseGroup.Location = new System.Drawing.Point(111, 62);
+            this.CBoxErrorCauseGroup.Name = "CBoxErrorCauseGroup";
+            this.CBoxErrorCauseGroup.Size = new System.Drawing.Size(182, 23);
+            this.CBoxErrorCauseGroup.TabIndex = 15;
+            // 
+            // CBoxDuty
+            // 
+            this.CBoxDuty.Enabled = false;
+            this.CBoxDuty.Location = new System.Drawing.Point(417, 62);
+            this.CBoxDuty.Name = "CBoxDuty";
+            this.CBoxDuty.Size = new System.Drawing.Size(175, 23);
+            this.CBoxDuty.TabIndex = 16;
+            // 
+            // CBoxSolution
+            // 
+            this.CBoxSolution.Enabled = false;
+            this.CBoxSolution.Location = new System.Drawing.Point(111, 111);
+            this.CBoxSolution.Name = "CBoxSolution";
+            this.CBoxSolution.Size = new System.Drawing.Size(182, 23);
+            this.CBoxSolution.TabIndex = 17;
+            // 
             // FrmTsInputEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -577,10 +586,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button BtnAddInfo;
         private System.Windows.Forms.RichTextBox RBoxPremunition;
-        private System.Windows.Forms.ComboBox CBoxDuty;
-        private System.Windows.Forms.ComboBox CBoxErrorCause;
-        private System.Windows.Forms.ComboBox CBoxSolution;
-        private System.Windows.Forms.ComboBox CBoxErrorCauseGroup;
         private System.Windows.Forms.TextBox TBoxErrorComponent;
         private System.Windows.Forms.Label LabPremunition;
         private System.Windows.Forms.Label LabSolution;
@@ -611,5 +616,11 @@
         private System.Windows.Forms.Button BtnSave;
         private System.Windows.Forms.Button BtnCancel;
         private System.Windows.Forms.Button BtnQuit;
+        private System.Windows.Forms.TextBox CBoxSolution;
+        private System.Windows.Forms.TextBox CBoxDuty;
+        private System.Windows.Forms.TextBox CBoxErrorCauseGroup;
+        private System.Windows.Forms.TextBox CBoxErrorCause;
+        private System.Windows.Forms.Splitter splitter1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }

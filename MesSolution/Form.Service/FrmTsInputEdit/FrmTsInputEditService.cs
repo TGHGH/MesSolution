@@ -45,7 +45,13 @@ namespace FormApplication.Service
            
             foreach (var ter in ts.tsErrorCodes.ToList())
             {
-                ter.tsErrorCauses.ToList();
+                foreach (var tc in ter.tsErrorCauses.ToList())
+                {
+                    var a= tc.solution;
+                    var b = tc.duty;
+                    var c = tc.errorCodeSeason.ecsg;
+                    var d = tc.errorCom;
+                }
                 ter.errorCode.ToString();
                 ter.errorCode.ecg.ToString();
             }
