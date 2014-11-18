@@ -170,7 +170,7 @@ namespace Forms
             }
         }
 
-        private void TreeFresh(Ts tsTest)
+        public void TreeFresh(Ts tsTest)
         {
             treeView1.Nodes.Clear();           
             TreeNode tn1 = new TreeNode();
@@ -191,6 +191,11 @@ namespace Forms
                 tn1.Nodes.Add(tn2);
             }
             treeView1.Nodes.Add(tn1);
+            treeView1.ExpandAll();
+        }
+        public void TreeFresh()
+        {
+            TreeFresh(ts);
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)
@@ -206,8 +211,15 @@ namespace Forms
                     frm.listBox2.DataSource = tsErrorCauseSelectCollection.errorCodeSeasonGroups;
                     frm.listBox4.DataSource = tsErrorCauseSelectCollection.Duties;
                     frm.listBox5.DataSource = tsErrorCauseSelectCollection.solutions;
+                    frm.listBox1.SelectedItem = null;
+                   // frm.listBox2.SelectedItem = null;
+                    frm.listBox4.SelectedItem = null;
+                    frm.listBox5.SelectedItem = null;
+                    frm.tsErrorCode = (TsErrorCode)treeView1.SelectedNode.Tag;
+                    frm.formStatus = Forms.FrmTsInputEdit_TsErrorCause.Status.ADD;
+                    frm.ShowDialog();
                 }
-                frm.ShowDialog();
+               
             }
         }
 
@@ -220,6 +232,7 @@ namespace Forms
         {
             if (e.Node.Tag is Ts)
             {
+                BtnAddInfo.Enabled = true;
                 Program.programContainer.GetExportedValue<FrmMain>().richTextBox1.AppendText(e.Node.Text + "\r");
             }
             if (e.Node.Tag is TsErrorCode)
@@ -227,13 +240,14 @@ namespace Forms
                 TsErrorCode te = (TsErrorCode)e.Node.Tag;
                 ClearText();
                 TBoxErrorCodeGroupDesc.Text = te.errorCode.ecg.ecgdesc;
-                TBoxErrorCodeDesc.Text = te.errorCode.ecdesc;               
+                TBoxErrorCodeDesc.Text = te.errorCode.ecdesc;
+                BtnAddInfo.Enabled = true;
             }
             if (e.Node.Tag is TsErrorCause)
             {
                 tec = (TsErrorCause)e.Node.Tag;
                 BindFresh();
-                BtnAddInfo.Enabled = true;
+                BtnAddInfo.Enabled = false;
             }
         }
         public void BindFresh()

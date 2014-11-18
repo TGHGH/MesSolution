@@ -107,4 +107,5 @@ insert into ModelErrorCodeSeasonGroups values('modelcode1','ecsgcode8');
 insert into ModelErrorCodeSeasonGroups values('modelcode1','ecsgcode9');
 insert into ModelErrorCodeSeasonGroups values('modelcode1','ecsgcode10');
 
-update TsErrorCauses set errorCom_ErrorComID=TsErrorCauseID;
+update TsErrorCauses set errorCom_ErrorComID=TsErrorCauseID;  
+update TsErrorCauses set duty_dutycode='dutycode1',solution_solcode='solcode1',errorCodeSeason_ecscode='ecscode1' 

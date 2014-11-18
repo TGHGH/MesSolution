@@ -19,42 +19,8 @@ namespace Core.Models
     public partial class TsErrorCause:Entity
     {
         public Int64 TsErrorCauseID { get; set; }
-        [MaxLength(40),Required]
-        public string ecode { get; set; }
-        [MaxLength(40), Required]
-
-        public string ecscode { get; set; }
-        [MaxLength(40), Required]
-
-        public string ecgcode { get; set; }
-        
-        [MaxLength(40), Required]
-
-        public string rcard { get; set; }
-        [Required]
-        public int rcardseq { get; set; }
-        [MaxLength(40), Required]
-
-        public string modelcode { get; set; }
-        [MaxLength(40), Required]
-
-        public string itemcode { get; set; }
-        [MaxLength(40)]
-        public string mocode { get; set; }
-        [MaxLength(40), Required]
-
-        public string rrescode { get; set; }
-        [MaxLength(40), Required]
-
-        public string ropcode { get; set; }
-        [MaxLength(40)]
-
-        public string solcode { get; set; }
-        [MaxLength(40), Required]
-
-        public string dutycode { get; set; }
+      
         [MaxLength(100)]
-
         public string solmemo { get; set; }
         [MaxLength(40), Required]
 
@@ -63,20 +29,13 @@ namespace Core.Models
         public int mdate { get; set; }
         [Required]
         public int mtime { get; set; }
-        [MaxLength(40)]
-
-        public string eattribute1 { get; set; }
-        public Nullable<int> shiftday { get; set; }
-        [MaxLength(40), Required]
-
-        public string ecsgcode { get; set; }
-        public Nullable<int> moseq { get; set; }
+      
+        public Nullable<int> shiftday { get; set; }       
 
         public virtual TsErrorCode tsErrorCode { get; set; }
         public virtual ErrorCodeSeason errorCodeSeason { get; set; }
         public virtual Duty duty { get; set; }
         public virtual Solution solution { get; set; }
-
         public virtual ErrorCom errorCom { get; set; }
     }
 }
