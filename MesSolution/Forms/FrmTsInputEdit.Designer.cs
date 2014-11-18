@@ -149,6 +149,7 @@
             this.treeView1.Size = new System.Drawing.Size(126, 578);
             this.treeView1.TabIndex = 1;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+            this.treeView1.DoubleClick += new System.EventHandler(this.treeView1_DoubleClick);
             // 
             // panel2
             // 
@@ -214,6 +215,7 @@
             // 
             // BtnAddInfo
             // 
+            this.BtnAddInfo.Enabled = false;
             this.BtnAddInfo.Location = new System.Drawing.Point(17, 160);
             this.BtnAddInfo.Margin = new System.Windows.Forms.Padding(4);
             this.BtnAddInfo.Name = "BtnAddInfo";
@@ -225,6 +227,7 @@
             // 
             // RBoxPremunition
             // 
+            this.RBoxPremunition.Enabled = false;
             this.RBoxPremunition.Location = new System.Drawing.Point(417, 111);
             this.RBoxPremunition.Margin = new System.Windows.Forms.Padding(4);
             this.RBoxPremunition.Name = "RBoxPremunition";
@@ -512,6 +515,7 @@
             this.BtnCancel.TabIndex = 24;
             this.BtnCancel.Text = "取消";
             this.BtnCancel.UseVisualStyleBackColor = true;
+            this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
             // BtnQuit
             // 
@@ -561,7 +565,6 @@
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmTsInputEdit";
             this.Text = "FrmTsInputEdit";
