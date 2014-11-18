@@ -68,6 +68,10 @@ namespace Forms
             tec.duty = (Duty)listBox4.SelectedItem;
             tec.solution = (Solution)listBox5.SelectedItem;
             tec.solmemo = richTextBox1.Text;
+            tec.muser = "123";
+            DateTime dt = DateTime.Now;
+            tec.mtime = Convert.ToInt32(dt.Hour.ToString() + dt.Minute + dt.Second);
+            tec.mdate = Convert.ToInt32(dt.Year.ToString() + dt.Month + dt.Day);
             Program.programContainer.GetExportedValue<FrmTsInputEdit>().BindFresh();
             this.Hide();
         }
