@@ -83,6 +83,7 @@ namespace FormApplication.Service
             TsErrorCauseSelectCollection tsErrorCauseSelect=new TsErrorCauseSelectCollection();
             tsErrorCauseSelect.errorComs = model.errorComs.ToList();
             tsErrorCauseSelect.solutions = model.solutions.ToList();
+            tsErrorCauseSelect.errorCodeGroups = model.ecgs.ToList();
             tsErrorCauseSelect.errorCodeSeasonGroups = model.ecsgs.ToList();
             tsErrorCauseSelect.Duties = dutyFormService.Dutys().ToList();
             operationResult.AppendData = tsErrorCauseSelect;

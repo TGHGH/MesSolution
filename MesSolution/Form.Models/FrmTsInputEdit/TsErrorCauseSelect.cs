@@ -13,5 +13,6 @@ namespace FormApplication.Models
         public ICollection<Solution> solutions { get; set; }
         public ICollection<ErrorCodeSeasonGroup> errorCodeSeasonGroups { get; set; }
         public ICollection<Duty> Duties { get; set; }
+        public ICollection<ErrorCodeGroup> errorCodeGroups { get; set; }
     }
 }

@@ -494,6 +494,7 @@
             this.BtnDelete.TabIndex = 22;
             this.BtnDelete.Text = "删除";
             this.BtnDelete.UseVisualStyleBackColor = true;
+            this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // BtnSave
             // 

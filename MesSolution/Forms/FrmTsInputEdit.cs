@@ -19,133 +19,15 @@ namespace Forms
 {
     [Export]
     public partial class FrmTsInputEdit : Form
-    {
-        private ErrorInfoEditStatus _errInfoStatus;
+    {      
         public TsErrorCause tec { get; set; }
         public Ts ts { get; set; }
-        public CompositionContainer tsCompositionContainer { get; set; }
-      
-        private enum ErrorInfoEditStatus
-        {
-            DoNothing,
-            UpdateErrorCode,
-            AddErrorCause,
-            UpdateErrorCause
-        }
-
-        private void clearErrorInfo()
-        {
-            this.RBoxPremunition.Text = string.Empty;
-            this.TBoxErrorComponent.Text = string.Empty;
-            this.RBoxLocationSelected.Clear();
-            this.RBoxLocation.Clear();
-            this.RBoxErrorCopSelected.Clear();
-            this.RBoxErrorCop.Clear();
-        }
-        private ErrorInfoEditStatus TSEditStatus
-        {
-            get
-            {
-                return this._errInfoStatus;
-            }
-            set
-            {
-                this._errInfoStatus = value;
-                this.clearErrorInfo();
-                if (this._errInfoStatus == ErrorInfoEditStatus.DoNothing)
-                {
-                    this.TBoxErrorCodeGroupDesc.Text = string.Empty;
-                    this.TBoxErrorCodeDesc.Text = string.Empty;
-                    this.CBoxErrorCause.Text = string.Empty;
-                    this.CBoxErrorCause.Enabled = false;
-                    this.CBoxErrorCauseGroup.Enabled = false;
-                    this.CBoxErrorCause.Enabled = false;
-                    this.CBoxDuty.Enabled = false;
-                    this.CBoxSolution.Enabled = false;
-                    this.RBoxPremunition.ReadOnly = true;
-
-                    this.enableEditLocation(false);
-                    this.enableEditPart(false);
-
-                    this.BtnAdd.Enabled = false;
-                    this.BtnAddInfo.Enabled = false;
-                    this.BtnDelete.Enabled = false;
-                    this.BtnSave.Enabled = false;
-                    this.BtnCancel.Enabled = false;
-                    // this.btnViewSmart.Enabled = false;
-                    //   this.status = "enabled";
-                }
-                if (this._errInfoStatus == ErrorInfoEditStatus.UpdateErrorCode)
-                {
-                    this.TBoxErrorComponent.ReadOnly = true;
-                    this.CBoxErrorCauseGroup.Enabled = false;
-                    this.CBoxErrorCause.Enabled = false;
-                    this.CBoxDuty.Enabled = false;
-                    this.CBoxSolution.Enabled = false;
-                    this.RBoxPremunition.ReadOnly = true;
-
-                    this.enableEditLocation(false);
-                    this.enableEditPart(false);
-
-                    this.BtnAdd.Enabled = true;
-                    this.BtnAddInfo.Enabled = false;
-                    this.BtnDelete.Enabled = false;
-                    this.BtnSave.Enabled = true;
-                    this.BtnCancel.Enabled = true;
-                }
-                if (this._errInfoStatus == ErrorInfoEditStatus.AddErrorCause)
-                {
-                    this.BtnAddInfo.Enabled = true;
-                    this.enableEditLocation(true);
-                    this.enableEditPart(true);
-                    this.BtnDelete.Enabled = false;
-                    this.BtnSave.Enabled = true;
-                    this.BtnCancel.Enabled = true;
-                    //    this.btnViewSmart.Enabled = true;
-                    //   this.status = "enabled";
-                }
-                if (this._errInfoStatus == ErrorInfoEditStatus.UpdateErrorCause)
-                {
-
-                    this.TBoxErrorComponent.ReadOnly = true;
-                    this.CBoxErrorCauseGroup.Enabled = false;
-                    this.CBoxErrorCause.Enabled = false;
-                    this.CBoxDuty.Enabled = false;
-                    this.CBoxSolution.Enabled = false;
-                    this.RBoxPremunition.ReadOnly = true;
-                    this.enableEditLocation(true);
-                    this.enableEditPart(true);
-                    this.BtnAdd.Enabled = false;
-                    this.BtnAddInfo.Enabled = true;
-                    this.BtnDelete.Enabled = true;
-                    this.BtnSave.Enabled = true;
-                    this.BtnCancel.Enabled = true;
-                    //  this.btnViewSmart.Enabled = false;
-                    //   this.status = "disabled";
-                }
-            }
-        }
-        private void enableEditLocation(bool enable)
-        {
-            this.BtnDeleteLocationSelected.Enabled = enable;
-            this.BtnAddErrLocation.Enabled = enable;
-            this.TBoxErrorLocation.Enabled = enable;
-            this.RBoxLocationSelected.Enabled = enable;
-            this.RBoxLocation.Enabled = enable;
-        }
-        private void enableEditPart(bool enable)
-        {
-            this.BtnDeleteErrCopSelected.Enabled = enable;
-            this.BtnAddErrCop.Enabled = enable;
-            this.TBoxErrorCop.Enabled = enable;
-            this.RBoxErrorCopSelected.Enabled = enable;
-            this.RBoxErrorCop.Enabled = enable;
-        }
+        public CompositionContainer tsCompositionContainer { get; set; }     
+       
 
         public FrmTsInputEdit()
         {
             InitializeComponent();
-
 
         }
 
@@ -200,6 +82,25 @@ namespace Forms
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
+            if (treeView1.SelectedNode.Tag is Ts)
+            {
+                FrmTsInputEdit_TsErrorCode frm = Program.programContainer.GetExportedValue<FrmTsInputEdit_TsErrorCode>();
+                OperationResult operationResult = tsCompositionContainer.GetExportedValue<IFrmTsInputEditService>().TsErrorCauseEdit(((Ts)treeView1.Nodes[0].Tag).rcard);
+                if (operationResult.ResultType == OperationResultType.Success)
+                {
+                    TsErrorCauseSelectCollection tsErrorCauseSelectCollection = (TsErrorCauseSelectCollection)operationResult.AppendData;
+                    frm.listBox1.DataSource = tsErrorCauseSelectCollection.errorCodeGroups;
+                  
+                    frm.listBox1.SelectedItem = null;
+                    // frm.listBox2.SelectedItem = null;
+                    frm.listBox4.SelectedItem = null;
+                    frm.listBox5.SelectedItem = null;
+                    frm.tsErrorCode = (TsErrorCode)treeView1.SelectedNode.Tag;
+                    frm.formStatus = Forms.FrmTsInputEdit_TsErrorCause.Status.ADD;
+                    frm.ShowDialog();
+                }
+
+            }
             if (treeView1.SelectedNode.Tag is TsErrorCode)
             {
                 FrmTsInputEdit_TsErrorCause frm = Program.programContainer.GetExportedValue<FrmTsInputEdit_TsErrorCause>();
@@ -241,13 +142,13 @@ namespace Forms
                 ClearText();
                 TBoxErrorCodeGroupDesc.Text = te.errorCode.ecg.ecgdesc;
                 TBoxErrorCodeDesc.Text = te.errorCode.ecdesc;
-                BtnAddInfo.Enabled = true;
+              //  BtnAddInfo.Enabled = true;
             }
             if (e.Node.Tag is TsErrorCause)
             {
                 tec = (TsErrorCause)e.Node.Tag;
                 BindFresh();
-                BtnAddInfo.Enabled = false;
+              //  BtnAddInfo.Enabled = false;
             }
         }
         public void BindFresh()
@@ -317,6 +218,7 @@ namespace Forms
                     MessageBox.Show("Item is not available in ListBox5");
                 else
                     frm.listBox5.SetSelected(index_listBoxe5, true);
+                frm.formStatus = Forms.FrmTsInputEdit_TsErrorCause.Status.UPDATE;
                 frm.ShowDialog();
             }
 
@@ -326,18 +228,39 @@ namespace Forms
         {
             OperationResult operationResult = tsCompositionContainer.GetExportedValue<IFrmTsInputEditService>().SaveTs(ts);
             Program.programContainer.GetExportedValue<FrmMain>().richTextBox1.AppendText(operationResult.Message + "\r");
-
+            tsCompositionContainer = null;
+            ClearText();
+            treeView1.Nodes.Clear();
+            TBoxSN.Clear();
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)
         {
             tsCompositionContainer = null;
             ClearText();
+            treeView1.Nodes.Clear();
+            TBoxSN.Clear();
         }
 
         private void treeView1_DoubleClick(object sender, EventArgs e)
         {
             BtnAddInfo_Click(this, null);
+        }
+
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode.Tag is TsErrorCause)
+            {
+                TsErrorCause tec = (TsErrorCause)treeView1.SelectedNode.Tag;
+                tec.tsErrorCode.tsErrorCauses.Remove(tec);
+                TreeFresh();
+            }
+            if (treeView1.SelectedNode.Tag is TsErrorCode)
+            {
+                TsErrorCode tc = (TsErrorCode)treeView1.SelectedNode.Tag;
+                tc.ts.tsErrorCodes.Remove(tc);
+                TreeFresh();
+            }
         }
     }
 }
