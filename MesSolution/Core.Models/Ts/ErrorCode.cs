@@ -33,5 +33,9 @@ namespace Core.Models
 
         public virtual ErrorCodeGroup ecg { get; set; }
         public virtual ICollection<TsErrorCode> tsErrorCode { get; set; }
+        public override string ToString()
+        {
+            return ecdesc;
+        }
     }
 }

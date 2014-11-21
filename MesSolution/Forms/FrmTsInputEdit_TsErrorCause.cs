@@ -35,10 +35,12 @@ namespace Forms
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             ErrorCodeSeasonGroup errorCodeSeasonGroup = (ErrorCodeSeasonGroup)listBox2.SelectedItem;
-
-            OperationResult operationResult = Program.programContainer.GetExportedValue<FrmTsInputEdit>().tsCompositionContainer.GetExportedValue<IFrmTsInputEditService>().GetErrorCodeSeasonByGroup(errorCodeSeasonGroup.ecsgcode);
-            List<ErrorCodeSeason> list = (List<ErrorCodeSeason>)operationResult.AppendData;
-            listBox3.DataSource = list;
+            if (errorCodeSeasonGroup!=null)
+            listBox3.DataSource = errorCodeSeasonGroup.ecses.ToList();
+            listBox3.SelectedItem = null;
+            //OperationResult operationResult = Program.programContainer.GetExportedValue<FrmTsInputEdit>().tsCompositionContainer.GetExportedValue<IFrmTsInputEditService>().GetErrorCodeSeasonByGroup(errorCodeSeasonGroup.ecsgcode);
+            //List<ErrorCodeSeason> list = (List<ErrorCodeSeason>)operationResult.AppendData;
+            //listBox3.DataSource = list;
             TsErrorCause tec = Program.programContainer.GetExportedValue<FrmTsInputEdit>().tec;
             if (tec != null)
             {

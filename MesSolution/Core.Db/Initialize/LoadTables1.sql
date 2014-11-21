@@ -107,5 +107,16 @@ insert into ModelErrorCodeSeasonGroups values('modelcode1','ecsgcode8');
 insert into ModelErrorCodeSeasonGroups values('modelcode1','ecsgcode9');
 insert into ModelErrorCodeSeasonGroups values('modelcode1','ecsgcode10');
 
+insert into ErrorCodeGroupModels values('ecgcode1','modelcode1');
+insert into ErrorCodeGroupModels values('ecgcode2','modelcode1');
+insert into ErrorCodeGroupModels values('ecgcode3','modelcode1');
+insert into ErrorCodeGroupModels values('ecgcode4','modelcode1');
+insert into ErrorCodeGroupModels values('ecgcode5','modelcode1');
+insert into ErrorCodeGroupModels values('ecgcode6','modelcode1');
+insert into ErrorCodeGroupModels values('ecgcode7','modelcode1');
+insert into ErrorCodeGroupModels values('ecgcode8','modelcode1');
+insert into ErrorCodeGroupModels values('ecgcode9','modelcode1');
+insert into ErrorCodeGroupModels values('ecgcode10','modelcode1');
+
 update TsErrorCauses set errorCom_ErrorComID=TsErrorCauseID;  
 update TsErrorCauses set duty_dutycode='dutycode1',solution_solcode='solcode1',errorCodeSeason_ecscode='ecscode1' 

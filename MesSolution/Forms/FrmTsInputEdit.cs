@@ -93,10 +93,7 @@ namespace Forms
                   
                     frm.listBox1.SelectedItem = null;
                     // frm.listBox2.SelectedItem = null;
-                    frm.listBox4.SelectedItem = null;
-                    frm.listBox5.SelectedItem = null;
-                    frm.tsErrorCode = (TsErrorCode)treeView1.SelectedNode.Tag;
-                    frm.formStatus = Forms.FrmTsInputEdit_TsErrorCause.Status.ADD;
+                 
                     frm.ShowDialog();
                 }
 
@@ -113,7 +110,7 @@ namespace Forms
                     frm.listBox4.DataSource = tsErrorCauseSelectCollection.Duties;
                     frm.listBox5.DataSource = tsErrorCauseSelectCollection.solutions;
                     frm.listBox1.SelectedItem = null;
-                   // frm.listBox2.SelectedItem = null;
+                    frm.listBox2.SelectedItem = null;
                     frm.listBox4.SelectedItem = null;
                     frm.listBox5.SelectedItem = null;
                     frm.tsErrorCode = (TsErrorCode)treeView1.SelectedNode.Tag;

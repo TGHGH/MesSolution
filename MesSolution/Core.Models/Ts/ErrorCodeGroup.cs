@@ -36,5 +36,11 @@ namespace Core.Models
         public int mtime { get; set; }
         [MaxLength(40)]
         public string eattribute1 { get; set; }
+        public virtual ICollection<ErrorCode> errorCodes { get; set; }
+        public virtual ICollection<Model> models { get; set; }
+        public override string ToString()
+        {
+            return ecgdesc;
+        }
     }
 }
