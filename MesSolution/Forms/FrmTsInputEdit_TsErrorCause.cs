@@ -75,7 +75,9 @@ namespace Forms
             tec.mtime = Convert.ToInt32(dt.Hour.ToString() + dt.Minute + dt.Second);
             tec.mdate = Convert.ToInt32(dt.Year.ToString() + dt.Month + dt.Day);
             Program.programContainer.GetExportedValue<FrmTsInputEdit>().BindFresh();
+            formStatus = Status.NOTHING;
             this.Hide();
+            
         }
 
         private void AddTsErrorCause()
@@ -91,8 +93,15 @@ namespace Forms
             tec.mtime = Convert.ToInt32(dt.Hour.ToString() + dt.Minute + dt.Second);
             tec.mdate = Convert.ToInt32(dt.Year.ToString() + dt.Month + dt.Day);
             tec.shiftday = Convert.ToInt32(dt.Year.ToString() + dt.Month + dt.Day);
+            if (tsErrorCode.tsErrorCauses == null)
+            {
+                tsErrorCode.tsErrorCauses = new List<TsErrorCause>();
+                tsErrorCode.tsErrorCauses.Add(tec);
+            }
+            else
             tsErrorCode.tsErrorCauses.Add(tec);
             Program.programContainer.GetExportedValue<FrmTsInputEdit>().TreeFresh();
+            formStatus = Status.NOTHING;
             this.Hide();
         }
     }

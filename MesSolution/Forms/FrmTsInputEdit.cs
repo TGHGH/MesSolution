@@ -22,6 +22,7 @@ namespace Forms
     {      
         public TsErrorCause tec { get; set; }
         public Ts ts { get; set; }
+        
         public CompositionContainer tsCompositionContainer { get; set; }     
        
 
@@ -63,13 +64,17 @@ namespace Forms
                 TreeNode tn2 = new TreeNode();
                 tn2.Tag = tserrorcode;
                 tn2.Text = tserrorcode.errorCode.ecdesc;
-                foreach (var tserrorcause in tserrorcode.tsErrorCauses)
+                if (tserrorcode.tsErrorCauses != null)
                 {
-                    TreeNode tn3 = new TreeNode();
-                    tn3.Tag = tserrorcause;
-                    tn3.Text = tserrorcause.errorCodeSeason.ecsdesc;
-                    tn2.Nodes.Add(tn3);
+                    foreach (var tserrorcause in tserrorcode.tsErrorCauses)
+                    {
+                        TreeNode tn3 = new TreeNode();
+                        tn3.Tag = tserrorcause;
+                        tn3.Text = tserrorcause.errorCodeSeason.ecsdesc;
+                        tn2.Nodes.Add(tn3);
+                    }
                 }
+                
                 tn1.Nodes.Add(tn2);
             }
             treeView1.Nodes.Add(tn1);
@@ -82,6 +87,7 @@ namespace Forms
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
+           
             if (treeView1.SelectedNode.Tag is Ts)
             {
                 FrmTsInputEdit_TsErrorCode frm = Program.programContainer.GetExportedValue<FrmTsInputEdit_TsErrorCode>();
@@ -89,14 +95,13 @@ namespace Forms
                 if (operationResult.ResultType == OperationResultType.Success)
                 {
                     TsErrorCauseSelectCollection tsErrorCauseSelectCollection = (TsErrorCauseSelectCollection)operationResult.AppendData;
-                    frm.listBox1.DataSource = tsErrorCauseSelectCollection.errorCodeGroups;
-                  
-                    frm.listBox1.SelectedItem = null;
-                    // frm.listBox2.SelectedItem = null;
-                 
+                    frm.listBox1.DataSource = tsErrorCauseSelectCollection.errorCodeGroups;                  
+                    frm.listBox1.SelectedItem = null;                   
+                    frm.formStatus = Forms.FrmTsInputEdit_TsErrorCode.Status.ADD;
                     frm.ShowDialog();
+                    return;
                 }
-
+                
             }
             if (treeView1.SelectedNode.Tag is TsErrorCode)
             {

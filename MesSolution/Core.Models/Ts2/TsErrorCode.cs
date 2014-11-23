@@ -20,35 +20,14 @@ namespace Core.Models
     {
 
         public Int64 TsErrorCodeID { get; set; }
-        [MaxLength(40),Required]
-        public string ecode2 { get; set; }
-        [MaxLength(40), Required]
-
-        public string ecgcode { get; set; }
        
-        [MaxLength(40)]
-        public string rcard { get; set; }
-        public Nullable<int> rcardseq { get; set; }
-        [MaxLength(40), Required]
-
-        public string modelcode { get; set; }
-        [MaxLength(40), Required]
-
-        public string itemcode { get; set; }
-        [MaxLength(40)]
-
-        public string mocode { get; set; }
         [MaxLength(40), Required]
 
         public string muser { get; set; }
         [Required]
         public int mdate { get; set; }
         [Required]
-        public int mtime { get; set; }
-        [MaxLength(40)]
-
-        public string eattribute1 { get; set; }
-        public Nullable<int> moseq { get; set; }
+        public int mtime { get; set; }       
 
         public virtual Ts ts { get; set; }
         public virtual ICollection<TsErrorCause> tsErrorCauses { get; set; }

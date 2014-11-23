@@ -386,18 +386,18 @@ namespace FormApplication.Service
             ts.tsrepairmtime = 0;
             //TBLTSERRORCODE
             TsErrorCode tsErrorCode = new TsErrorCode();
-            tsErrorCode.ecode2 = selectedEc;
-            tsErrorCode.ecgcode = selectedEcg;
+           // tsErrorCode.ecode2 = selectedEc;
+           // tsErrorCode.ecgcode = selectedEcg;
             tsErrorCode.ts = ts;
-            tsErrorCode.rcard = card;
-            tsErrorCode.rcardseq = 1;
-            tsErrorCode.modelcode = simulation.MODELCODE;
-            tsErrorCode.itemcode = simulation.ITEMCODE;
-            tsErrorCode.mocode = simulation.MOCODE;
+          //  tsErrorCode.rcard = card;
+          //  tsErrorCode.rcardseq = 1;
+          //  tsErrorCode.modelcode = simulation.MODELCODE;
+          //  tsErrorCode.itemcode = simulation.ITEMCODE;
+          //  tsErrorCode.mocode = simulation.MOCODE;
             tsErrorCode.muser = usercode;
             tsErrorCode.mdate = Convert.ToInt32("" + dt.Year + dt.Day);
             tsErrorCode.mtime = Convert.ToInt32("" + dt.Hour + dt.Minute + dt.Second);
-            tsErrorCode.moseq = simulation.MOSEQ;
+         //   tsErrorCode.moseq = simulation.MOSEQ;
           //  tsErrorCode.errorCode = ecFormService.Ecs().FirstOrDefault(e => e.ecode == selectedEc);
 
 
