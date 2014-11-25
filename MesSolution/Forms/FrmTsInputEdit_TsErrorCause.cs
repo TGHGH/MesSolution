@@ -100,6 +100,7 @@ namespace Forms
             }
             else
             tsErrorCode.tsErrorCauses.Add(tec);
+            tec.tsErrorCode = tsErrorCode;
             Program.programContainer.GetExportedValue<FrmTsInputEdit>().TreeFresh();
             formStatus = Status.NOTHING;
             this.Hide();

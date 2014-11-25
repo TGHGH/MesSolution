@@ -77,6 +77,7 @@ namespace Forms
             tc.mtime = Convert.ToInt32(dt.Hour.ToString() + dt.Minute + dt.Second);
             tc.mdate = Convert.ToInt32(dt.Year.ToString() + dt.Month + dt.Day);
             Program.programContainer.GetExportedValue<FrmTsInputEdit>().ts.tsErrorCodes.Add(tc);
+            tc.ts = Program.programContainer.GetExportedValue<FrmTsInputEdit>().ts;
             Program.programContainer.GetExportedValue<FrmTsInputEdit>().TreeFresh();
             formStatus = Status.NOTHING;
             this.Hide();
