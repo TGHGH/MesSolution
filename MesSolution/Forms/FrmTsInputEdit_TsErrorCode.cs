@@ -46,11 +46,11 @@ namespace Forms
         private void button1_Click(object sender, EventArgs e)
         {
             if (formStatus == Status.UPDATE)
-                UpdateTsErrorCause();
+                UpdateTsErrorCode();
             if (formStatus == Status.ADD)
-                AddTsErrorCause();
+                AddTsErrorCode();
         }
-        private void UpdateTsErrorCause()
+        private void UpdateTsErrorCode()
         {
             //TsErrorCause tec = Program.programContainer.GetExportedValue<FrmTsInputEdit>().tec;
             //tec.errorCom = (ErrorCom)listBox1.SelectedItem;
@@ -68,7 +68,7 @@ namespace Forms
 
         }
 
-        private void AddTsErrorCause()
+        private void AddTsErrorCode()
         {
             TsErrorCode tc = new TsErrorCode();
             tc.errorCode=(ErrorCode)listBox2.SelectedItem;          
