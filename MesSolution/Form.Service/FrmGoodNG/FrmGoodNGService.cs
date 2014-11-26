@@ -245,6 +245,7 @@ namespace FormApplication.Service
                     return operationResult;       
                 }              
             }
+            
             //throw new Exception("²úÆ·Î¬ÐÞÖÐ");
           
             int nowOp= route2OpFormService.Route2Ops().SingleOrDefault(r => r.routeCode == lastSimulation.ROUTECODE && r.opCode == lastSimulation.OpCode).seq;        

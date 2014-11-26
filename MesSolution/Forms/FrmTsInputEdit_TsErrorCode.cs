@@ -32,14 +32,24 @@ namespace Forms
 
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-          
+           
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             ErrorCodeGroup errorCodeGroup = (ErrorCodeGroup)listBox1.SelectedItem;
-            if (errorCodeGroup!=null)
-            listBox2.DataSource = errorCodeGroup.errorCodes.ToList();
+            if (errorCodeGroup != null)
+                listBox2.DataSource = errorCodeGroup.errorCodes.ToList();
+            listBox2.SelectedItem = null;
+            TsErrorCode tsErrorCode = Program.programContainer.GetExportedValue<FrmTsInputEdit>().currentTsErrorCode;
+            if (tsErrorCode != null)
+            {
+                int index_listBoxe2 = listBox2.FindString(tsErrorCode.errorCode.ecdesc);
+                if (index_listBoxe2 == -1)
+                    MessageBox.Show("Item is not available in ListBox2");
+                else
+                    listBox2.SetSelected(index_listBoxe2, true);
+            }
           
         }
 
@@ -52,32 +62,28 @@ namespace Forms
         }
         private void UpdateTsErrorCode()
         {
-            //TsErrorCause tec = Program.programContainer.GetExportedValue<FrmTsInputEdit>().tec;
-            //tec.errorCom = (ErrorCom)listBox1.SelectedItem;
-            //tec.errorCodeSeason = (ErrorCodeSeason)listBox3.SelectedItem;
-            //tec.duty = (Duty)listBox4.SelectedItem;
-            //tec.solution = (Solution)listBox5.SelectedItem;
-            //tec.solmemo = richTextBox1.Text;
-            //tec.muser = "123";
-            //DateTime dt = DateTime.Now;
-            //tec.mtime = Convert.ToInt32(dt.Hour.ToString() + dt.Minute + dt.Second);
-            //tec.mdate = Convert.ToInt32(dt.Year.ToString() + dt.Month + dt.Day);
-            //Program.programContainer.GetExportedValue<FrmTsInputEdit>().BindFresh();
-            //formStatus = Status.NOTHING;
-            //this.Hide();
+            TsErrorCode currentTsErrorCode = Program.programContainer.GetExportedValue<FrmTsInputEdit>().currentTsErrorCode;
+            currentTsErrorCode.errorCode = (ErrorCode)listBox2.SelectedItem;
+            currentTsErrorCode.muser = Program.usercode;
+            DateTime dt = DateTime.Now;
+            currentTsErrorCode.mtime = Convert.ToInt32(dt.Hour.ToString() + dt.Minute + dt.Second);
+            currentTsErrorCode.mdate = Convert.ToInt32(dt.Year.ToString() + dt.Month + dt.Day);            
+            Program.programContainer.GetExportedValue<FrmTsInputEdit>().TreeFresh();
+            formStatus = Status.NOTHING;
+            this.Hide();
 
         }
 
         private void AddTsErrorCode()
         {
             TsErrorCode tc = new TsErrorCode();
-            tc.errorCode=(ErrorCode)listBox2.SelectedItem;          
-            tc.muser = "123";
+            tc.errorCode=(ErrorCode)listBox2.SelectedItem;
+            tc.muser = Program.usercode;
             DateTime dt = DateTime.Now;
             tc.mtime = Convert.ToInt32(dt.Hour.ToString() + dt.Minute + dt.Second);
             tc.mdate = Convert.ToInt32(dt.Year.ToString() + dt.Month + dt.Day);
-            Program.programContainer.GetExportedValue<FrmTsInputEdit>().ts.tsErrorCodes.Add(tc);
-            tc.ts = Program.programContainer.GetExportedValue<FrmTsInputEdit>().ts;
+            Program.programContainer.GetExportedValue<FrmTsInputEdit>().currentTs.tsErrorCodes.Add(tc);
+            tc.ts = Program.programContainer.GetExportedValue<FrmTsInputEdit>().currentTs;
             Program.programContainer.GetExportedValue<FrmTsInputEdit>().TreeFresh();
             formStatus = Status.NOTHING;
             this.Hide();

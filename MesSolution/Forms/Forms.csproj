@@ -80,6 +80,12 @@
     <Compile Include="FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmTsComplete.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTsComplete.Designer.cs">
+      <DependentUpon>FrmTsComplete.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmTsInputEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +104,12 @@
     <Compile Include="FrmTsInputEdit_TsErrorCode.Designer.cs">
       <DependentUpon>FrmTsInputEdit_TsErrorCode.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmTsScrap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTsScrap.Designer.cs">
+      <DependentUpon>FrmTsScrap.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormLogin.resx">
@@ -112,6 +124,9 @@
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmTsComplete.resx">
+      <DependentUpon>FrmTsComplete.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmTsInputEdit.resx">
       <DependentUpon>FrmTsInputEdit.cs</DependentUpon>
     </EmbeddedResource>
@@ -120,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmTsInputEdit_TsErrorCode.resx">
       <DependentUpon>FrmTsInputEdit_TsErrorCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmTsScrap.resx">
+      <DependentUpon>FrmTsScrap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

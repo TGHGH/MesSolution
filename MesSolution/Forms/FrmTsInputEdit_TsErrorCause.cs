@@ -41,7 +41,7 @@ namespace Forms
             //OperationResult operationResult = Program.programContainer.GetExportedValue<FrmTsInputEdit>().tsCompositionContainer.GetExportedValue<IFrmTsInputEditService>().GetErrorCodeSeasonByGroup(errorCodeSeasonGroup.ecsgcode);
             //List<ErrorCodeSeason> list = (List<ErrorCodeSeason>)operationResult.AppendData;
             //listBox3.DataSource = list;
-            TsErrorCause tec = Program.programContainer.GetExportedValue<FrmTsInputEdit>().tec;
+            TsErrorCause tec = Program.programContainer.GetExportedValue<FrmTsInputEdit>().currentTsErrorCause;
             if (tec != null)
             {
                 int index_listBoxe3 = listBox3.FindString(tec.errorCodeSeason.ecsdesc);
@@ -64,13 +64,13 @@ namespace Forms
 
         private void UpdateTsErrorCause()
         {
-            TsErrorCause tec = Program.programContainer.GetExportedValue<FrmTsInputEdit>().tec;
+            TsErrorCause tec = Program.programContainer.GetExportedValue<FrmTsInputEdit>().currentTsErrorCause;
             tec.errorCom = (ErrorCom)listBox1.SelectedItem;
             tec.errorCodeSeason = (ErrorCodeSeason)listBox3.SelectedItem;
             tec.duty = (Duty)listBox4.SelectedItem;
             tec.solution = (Solution)listBox5.SelectedItem;
             tec.solmemo = richTextBox1.Text;
-            tec.muser = "123";
+            tec.muser = Program.usercode;
             DateTime dt = DateTime.Now;
             tec.mtime = Convert.ToInt32(dt.Hour.ToString() + dt.Minute + dt.Second);
             tec.mdate = Convert.ToInt32(dt.Year.ToString() + dt.Month + dt.Day);
@@ -88,7 +88,7 @@ namespace Forms
             tec.duty = (Duty)listBox4.SelectedItem;
             tec.solution = (Solution)listBox5.SelectedItem;
             tec.solmemo = richTextBox1.Text;
-            tec.muser = "123";
+            tec.muser = Program.usercode;
             DateTime dt = DateTime.Now;
             tec.mtime = Convert.ToInt32(dt.Hour.ToString() + dt.Minute + dt.Second);
             tec.mdate = Convert.ToInt32(dt.Year.ToString() + dt.Month + dt.Day);
