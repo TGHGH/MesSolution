@@ -37,6 +37,10 @@ namespace Core.Models
         public virtual ICollection<Route> Routes { get; set; }
         public virtual ICollection<Res> Reses { get; set; }
 
+        public override string ToString()
+        {
+            return OPCODE;
+        }
     //    public virtual Route2Op route2Op { get; set; }
     }
 }

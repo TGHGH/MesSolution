@@ -23,7 +23,9 @@ namespace FormApplication.Service
         public IDutyFormService dutyFormService { get; set; }
         [Import]
         public IEcsgFormService ecsgFormService { get; set; }
-     
+
+        [Import]
+        public IItemFormService itemFormService { get; set; }
       
         public OperationResult ActionNGConfirm(string card)
         {
@@ -102,6 +104,66 @@ namespace FormApplication.Service
         {
             OperationResult operationResult=tsFormService.UpdateEntity(ts);
             return operationResult;
+        }
+
+        public OperationResult TsCompleteCheck(string card)
+        {
+            OperationResult operationResult = new OperationResult(OperationResultType.Error);
+            if (card == null)
+            {
+                operationResult.Message = "条码不能为空";
+                return operationResult;
+            }
+            Ts ts = tsFormService.Tss().Where(t => t.rcard == card).OrderByDescending(t => t.TSID).FirstOrDefault();
+            if (ts == null)
+            {
+                operationResult.Message = "该产品没有登记不良品";
+                return operationResult;
+            }
+            if (!ts.tsstatus.Equals("tsstatus_confirm"))
+            {
+                operationResult.Message = "该产品状态不对";
+                return operationResult;
+            }
+
+            foreach (var ter in ts.tsErrorCodes.ToList())
+            {
+
+                if (ter.tsErrorCauses.Count == 0)
+                {
+                    operationResult.Message = "该产品维修中";
+                    return operationResult;
+                }
+                            
+            }
+            Item item = (Item)itemFormService.FindEntity(ts.itemcode).AppendData;
+            if (item == null)
+            {
+                operationResult.Message = "该产品不存在";
+                return operationResult;
+            }
+            List<Route> list = item.Routes.ToList();
+            foreach(var route in list)
+            {
+                route.Ops.ToList();
+            }
+            TsCompleteModel tsCompleteModel = new TsCompleteModel();
+            tsCompleteModel.ts = ts;
+            tsCompleteModel.list = list;
+            operationResult.ResultType = OperationResultType.Success;
+            operationResult.Message = "检测成功";
+            operationResult.AppendData = tsCompleteModel;            
+            return operationResult;
+        }
+
+        public OperationResult TsCompleteConfirm(TsCompleteModel tsCompleteModel)
+        {
+            OperationResult operationResult = new OperationResult(OperationResultType.Error);
+            tsCompleteModel.ts.refmocode = tsCompleteModel.moString;
+            tsCompleteModel.ts.refopcode = tsCompleteModel.opString;
+            tsCompleteModel.ts.refroutecode = tsCompleteModel.routeString;
+            tsCompleteModel.ts.tsstatus = "tsstatus_complete";
+            return SaveTs(tsCompleteModel.ts);
         }
     }
 }

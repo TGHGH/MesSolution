@@ -41,6 +41,11 @@ namespace Core.Models
         public virtual ICollection<Item> Items { get; set; }
         public virtual ICollection<Mo> Moes { get; set; }
 
+        public override string ToString()
+        {
+            return ROUTECODE;
+        }
+
     //    public virtual Route2Op route2Op { get; set; }
     }
 }

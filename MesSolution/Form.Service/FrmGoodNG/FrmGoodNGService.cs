@@ -356,7 +356,7 @@ namespace FormApplication.Service
             ts.itemcode = simulation.ITEMCODE;
             ts.itemcode = simulation.MOCODE;
             ts.frmroutecode = simulation.ROUTECODE;
-            ts.frmopcode = simulation.OpCode;
+            ts.frmopcode = resFormService.Ress().SingleOrDefault().Op.OPCODE;
             ts.frmsegcode = "ZJ";
             ts.frmsscode = "A1";
             ts.crescode = rescode;
@@ -386,20 +386,12 @@ namespace FormApplication.Service
             ts.tsrepairmdate = 0;
             ts.tsrepairmtime = 0;
             //TBLTSERRORCODE
-            TsErrorCode tsErrorCode = new TsErrorCode();
-           // tsErrorCode.ecode2 = selectedEc;
-           // tsErrorCode.ecgcode = selectedEcg;
-            tsErrorCode.ts = ts;
-          //  tsErrorCode.rcard = card;
-          //  tsErrorCode.rcardseq = 1;
-          //  tsErrorCode.modelcode = simulation.MODELCODE;
-          //  tsErrorCode.itemcode = simulation.ITEMCODE;
-          //  tsErrorCode.mocode = simulation.MOCODE;
+            TsErrorCode tsErrorCode = new TsErrorCode();          
+            tsErrorCode.ts = ts;       
             tsErrorCode.muser = usercode;
             tsErrorCode.mdate = Convert.ToInt32("" + dt.Year + dt.Day);
             tsErrorCode.mtime = Convert.ToInt32("" + dt.Hour + dt.Minute + dt.Second);
-         //   tsErrorCode.moseq = simulation.MOSEQ;
-          //  tsErrorCode.errorCode = ecFormService.Ecs().FirstOrDefault(e => e.ecode == selectedEc);
+         
 
 
             //update tbllot

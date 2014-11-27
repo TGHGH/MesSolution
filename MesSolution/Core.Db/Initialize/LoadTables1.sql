@@ -60,6 +60,8 @@ update Mdls set form='FrmTsInputEdit' where mdlcode='mdlcode4';
 
     
 update Items set Model_MODELCODE='modelcode1';
+insert into RouteItems values('routecode1','itemcode1');
+insert into RouteItems values('routecode2','itemcode1');
 update Route2Op set routeCode='routecode1',seq=Route2OpID where Route2OpID<6;
 
 update Route2Op set routeCode='routecode2',seq=Route2OpID where Route2OpID>=6;
