@@ -405,7 +405,8 @@ namespace Presentation.Consoles
 
         private static void Method16()
         {
-            _container.GetExportedValue<DbContext>().Set<User>().Find("usercode1");
+            _container.GetExportedValue<DbContext>().Set<User>().Find("usercode1").userStatus = Core.Models.User.UserStatus.U;
+            _container.GetExportedValue<DbContext>().SaveChanges();
         }
         private static void Method17()
         {

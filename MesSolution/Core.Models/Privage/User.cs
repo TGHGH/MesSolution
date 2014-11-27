@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Core.Models
 {
+    
     public class User:Entity
     {
         [Key,MaxLength(40)]
@@ -34,7 +35,13 @@ namespace Core.Models
         [MaxLength(40)]
         public string userstat { get; set; }
 
+        public UserStatus userStatus { get; set; }
         public virtual ICollection<UserGroup> UserGroups { get; set; }
-       
+
+        public enum UserStatus
+        {
+            ADD = 1,
+            U = 2
+        }
     }
 }

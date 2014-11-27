@@ -15,9 +15,18 @@ namespace Core.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-   
+    public enum MoStatus
+    {
+        
+        INITIAL=0,
+        RELEASE = 1,
+        OPEN = 2,
+        CLOSE = 3,
+        PEND = 4
+    }
     public partial class Mo:Entity
     {
+        
         [Key,MaxLength(40)]
         public string MoCode { get; set; }
         [MaxLength(100)]
@@ -74,8 +83,8 @@ namespace Core.Models
         public string MOUSER { get; set; }
         [Required]
         public int MODOWNDATE { get; set; }
-        [MaxLength(40),Required]
-        public string MOSTATUS { get; set; }
+       
+        public MoStatus MOSTATUS { get; set; }
         [MaxLength(40), Required]
 
         public string MOVER { get; set; }

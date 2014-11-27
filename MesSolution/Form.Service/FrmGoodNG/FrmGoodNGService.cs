@@ -69,7 +69,7 @@ namespace FormApplication.Service
                 operationResult.Message = moString + "工单不存在！";
                 return operationResult;
             }
-            if (!(mo.MOSTATUS == "mostatus_release" || mo.MOSTATUS == "mostatus_open"))
+            if (!(mo.MOSTATUS == MoStatus.RELEASE || mo.MOSTATUS == MoStatus.OPEN))
             {
                 operationResult.Message = moString + "工单状态错误";
                 return operationResult;
