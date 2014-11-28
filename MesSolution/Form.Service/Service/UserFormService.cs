@@ -1,7 +1,7 @@
 ﻿using Component.Tools;
 using Core.Models;
 using Core.Service;
-using FormApplication.Models;
+using Frm.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FormApplication.Service
+namespace Frm.Service
 {
     [Export(typeof(IUserFormService))]
     public class UserFormService:UserService,IUserFormService

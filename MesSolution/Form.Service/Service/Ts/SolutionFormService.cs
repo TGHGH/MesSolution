@@ -2,7 +2,7 @@ using Core.Service;
 using System;
 using System.ComponentModel.Composition;
 
-namespace FormApplication.Service
+namespace Frm.Service
 {
 
 	[Export(typeof(ISolutionFormService))]

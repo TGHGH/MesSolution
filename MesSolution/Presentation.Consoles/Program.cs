@@ -11,7 +11,7 @@ using Component.Tools;
 using Core.Db.Repositories;
 using Core.Models;
 //using Application.Site;
-using FormApplication.Service;
+using Frm.Service;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using GMF.Demo.Core.Data.Initialize;
@@ -19,7 +19,7 @@ using Component.Data;
 using Core.Db.Context;
 using System.Data.Entity.Validation;
 using System.Data.Entity.SqlServer;
-using FormApplication.Models;
+using Frm.Models;
 using System.Diagnostics;
 
 

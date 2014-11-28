@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.ComponentModel.Composition;
-using FormApplication.Service;
+using Frm.Service;
 using Component.Tools;
 using System.ComponentModel.Composition.Hosting;
 using System.IO;

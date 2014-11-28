@@ -1,6 +1,6 @@
 ﻿using Component.Tools;
 using System;
-namespace FormApplication.Service
+namespace Frm.Service
 {
     public interface IFrmGoodNGService
     {

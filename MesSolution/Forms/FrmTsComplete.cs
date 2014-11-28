@@ -1,7 +1,7 @@
 ﻿using Component.Tools;
 using Core.Models;
-using FormApplication.Models;
-using FormApplication.Service;
+using Frm.Models;
+using Frm.Service;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

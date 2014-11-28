@@ -7,7 +7,7 @@ using System;
 //using System.Text;
 //using System.Threading.Tasks;
 
-namespace FormApplication.Service
+namespace Frm.Service
 {
     public interface IUserGroupFormService:IUserGroupService
     {

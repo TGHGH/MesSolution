@@ -8,7 +8,7 @@ using System.ComponentModel.Composition;
 //using System.Text;
 //using System.Threading.Tasks;
 
-namespace FormApplication.Service
+namespace Frm.Service
 {
     [Export(typeof(IUserGroupFormService))]
     public class UserGroupFormService:UserGroupService,IUserGroupFormService

@@ -6,7 +6,7 @@ using System.Text;
 
 
 
-namespace FormApplication.Models
+namespace Frm.Models
 {
     /// <summary>
     /// 用户登录模型

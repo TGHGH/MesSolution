@@ -1,7 +1,7 @@
 using Component.Tools;
 using Core.Models;
 using Core.Service;
-using FormApplication.Models;
+using Frm.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -10,7 +10,7 @@ using System.Linq;
 
 
 
-namespace FormApplication.Service
+namespace Frm.Service
 {
     [Export(typeof(IFrmGoodNGService))]
     public class FrmGoodNGService :IFrmGoodNGService  
