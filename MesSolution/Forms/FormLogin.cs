@@ -17,7 +17,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Forms
+namespace Frms
 {
     [Export]
     public partial class FormLogin : Form
@@ -42,7 +42,7 @@ namespace Forms
                 {
                     frmMain.mdls = (List<Mdl>)operationResult.AppendData;
                     frmMain.MdlInitialize();                
-                    frmMain.richTextBox1.AppendText("登录成功！"+"\n");
+                    frmMain.richTextBox1.AppendText(Properties.Resources.String_FrmLogin_LoginSuccess+"\n");
                     Program.usercode = loginModel.Account;
                     Program.rescode  = loginModel.ResCode;
                 }

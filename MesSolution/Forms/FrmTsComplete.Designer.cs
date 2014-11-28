@@ -1,4 +1,4 @@
-﻿namespace Forms
+﻿namespace Frms
 {
     partial class FrmTsComplete
     {

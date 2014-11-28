@@ -15,7 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Forms
+namespace Frms
 {
     [Export]
     public partial class FrmGoodNG : Form

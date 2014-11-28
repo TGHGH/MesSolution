@@ -2,7 +2,7 @@
 using Core.Models;
 using FormApplication.Models;
 using FormApplication.Service;
-using Forms.Helper;
+using Frms.Helper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Forms
+namespace Frms
 {
     [Export]
     public partial class FrmTsInputEdit : Form
@@ -98,7 +98,7 @@ namespace Forms
                     TsErrorCauseSelectCollection tsErrorCauseSelectCollection = (TsErrorCauseSelectCollection)operationResult.AppendData;
                     frm.listBox1.DataSource = tsErrorCauseSelectCollection.errorCodeGroups;                  
                     frm.listBox1.SelectedItem = null;                   
-                    frm.formStatus = Forms.FrmTsInputEdit_TsErrorCode.Status.ADD;
+                    frm.formStatus = Frms.FrmTsInputEdit_TsErrorCode.Status.ADD;
                     frm.ShowDialog();
                     return;
                 }
@@ -120,7 +120,7 @@ namespace Forms
                     frm.listBox4.SelectedItem = null;
                     frm.listBox5.SelectedItem = null;
                     frm.tsErrorCode = (TsErrorCode)treeView1.SelectedNode.Tag;
-                    frm.formStatus = Forms.FrmTsInputEdit_TsErrorCause.Status.ADD;
+                    frm.formStatus = Frms.FrmTsInputEdit_TsErrorCause.Status.ADD;
                     frm.ShowDialog();
                 }
                
@@ -247,7 +247,7 @@ namespace Forms
                         MessageBox.Show("Item is not available in ListBox5");
                     else
                         frm.listBox5.SetSelected(index_listBoxe5, true);
-                    frm.formStatus = Forms.FrmTsInputEdit_TsErrorCause.Status.UPDATE;
+                    frm.formStatus = Frms.FrmTsInputEdit_TsErrorCause.Status.UPDATE;
                     frm.ShowDialog();
                 }
             }
@@ -264,7 +264,7 @@ namespace Forms
                         MessageBox.Show("Item is not available in ListBox1");
                     else
                         frm.listBox1.SetSelected(index_listBoxe1, true);
-                    frm.formStatus = Forms.FrmTsInputEdit_TsErrorCode.Status.UPDATE;
+                    frm.formStatus = Frms.FrmTsInputEdit_TsErrorCode.Status.UPDATE;
                     frm.ShowDialog();
                 }
             }

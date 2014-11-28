@@ -69,5 +69,14 @@ namespace Forms.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   查找类似 登录成功！ 的本地化字符串。
+        /// </summary>
+        public static string String_FrmLogin_LoginSuccess {
+            get {
+                return ResourceManager.GetString("String_FrmLogin_LoginSuccess", resourceCulture);
+            }
+        }
     }
 }

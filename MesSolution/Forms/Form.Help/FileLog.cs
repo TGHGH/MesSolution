@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Forms.Helper
+namespace Frms.Helper
 {
     public class FileLog
     {

@@ -13,7 +13,7 @@ using System.ComponentModel.Composition.Hosting;
 using System.IO;
 using System.Reflection;
 
-namespace Forms
+namespace Frms
 {
     [Export]
     public partial class FrmMain : Form
