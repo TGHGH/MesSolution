@@ -26,7 +26,8 @@ namespace Forms
         private void FormStart_Load(object sender, EventArgs e)
         {
             this.FormBorderStyle = FormBorderStyle.None;//设置启动窗体为无标题栏窗体
-            this.BackgroundImage = Image.FromFile("start.jpg");//设置启动窗体的背景图片
+           // this.BackgroundImage = Image.FromFile("start.jpg");//设置启动窗体的背景图片
+            this.BackgroundImage =Properties.Resources.start;//设置启动窗体的背景图片
             this.BackgroundImageLayout = ImageLayout.Stretch;//设置图片自动适应窗体大小
             using (CompositionContainer _container = new CompositionContainer(Program.programCatalog))
             {
