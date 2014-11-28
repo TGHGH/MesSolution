@@ -1,6 +1,6 @@
 ﻿namespace Frms
 {
-    partial class FormStart
+    partial class FrmStart
     {
         /// <summary>
         /// Required designer variable.

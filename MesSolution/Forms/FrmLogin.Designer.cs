@@ -1,6 +1,6 @@
 ﻿namespace Frms
 {
-    partial class FormLogin
+    partial class FrmLogin
     {
         /// <summary>
         /// 必需的设计器变量。

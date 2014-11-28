@@ -15,10 +15,10 @@ using System.Windows.Forms;
 
 namespace Frms
 {
-    public partial class FormStart :Form
+    public partial class FrmStart :Form
     {
      
-        public FormStart()
+        public FrmStart()
         {
             InitializeComponent();        
         }

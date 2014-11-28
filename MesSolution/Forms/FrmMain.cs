@@ -45,12 +45,12 @@ namespace Frms
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            FormStart frm = new FormStart();//实例化Form2窗体对象
+            FrmStart frm = new FrmStart();//实例化Form2窗体对象
             frm.StartPosition = FormStartPosition.CenterScreen;//设置窗体居中显示
             frm.ShowDialog();//显示Form2窗体           
           //  MdlInitialize();
             this.WindowState = FormWindowState.Maximized;
-            FormLogin formLogin = Program.programContainer.GetExportedValue<FormLogin>();
+            FrmLogin formLogin = Program.programContainer.GetExportedValue<FrmLogin>();
             formLogin.TopLevel = false;
             formLogin.Dock = DockStyle.Fill;
             formLogin.Show();
@@ -120,7 +120,7 @@ namespace Frms
                 switch (mdl.form)
                 {
                     case "FormLogin":
-                        FormLogin formLogin = Program.programContainer.GetExportedValue<FormLogin>();
+                        FrmLogin formLogin = Program.programContainer.GetExportedValue<FrmLogin>();
                         formLogin.TopLevel = false;
                         formLogin.Dock = DockStyle.Fill;
                         formLogin.Show();
