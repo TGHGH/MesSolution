@@ -64,7 +64,7 @@
             // txtRuningCard
             // 
             this.txtRuningCard.Location = new System.Drawing.Point(215, 309);
-            this.txtRuningCard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtRuningCard.Margin = new System.Windows.Forms.Padding(4);
             this.txtRuningCard.Name = "txtRuningCard";
             this.txtRuningCard.Size = new System.Drawing.Size(317, 26);
             this.txtRuningCard.TabIndex = 1;
@@ -74,7 +74,7 @@
             // 
             this.checkBoxMo.AutoSize = true;
             this.checkBoxMo.Location = new System.Drawing.Point(8, 27);
-            this.checkBoxMo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxMo.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxMo.Name = "checkBoxMo";
             this.checkBoxMo.Size = new System.Drawing.Size(123, 20);
             this.checkBoxMo.TabIndex = 2;
@@ -86,7 +86,7 @@
             // 
             this.checkBoxLength.AutoSize = true;
             this.checkBoxLength.Location = new System.Drawing.Point(8, 59);
-            this.checkBoxLength.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxLength.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxLength.Name = "checkBoxLength";
             this.checkBoxLength.Size = new System.Drawing.Size(139, 20);
             this.checkBoxLength.TabIndex = 3;
@@ -97,7 +97,7 @@
             // 
             this.checkBoxPrefix.AutoSize = true;
             this.checkBoxPrefix.Location = new System.Drawing.Point(8, 96);
-            this.checkBoxPrefix.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxPrefix.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxPrefix.Name = "checkBoxPrefix";
             this.checkBoxPrefix.Size = new System.Drawing.Size(107, 20);
             this.checkBoxPrefix.TabIndex = 4;
@@ -108,7 +108,7 @@
             // 
             this.tetMo.Enabled = false;
             this.tetMo.Location = new System.Drawing.Point(217, 20);
-            this.tetMo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tetMo.Margin = new System.Windows.Forms.Padding(4);
             this.tetMo.Name = "tetMo";
             this.tetMo.Size = new System.Drawing.Size(132, 26);
             this.tetMo.TabIndex = 5;
@@ -118,7 +118,7 @@
             // 
             this.txtLength.Enabled = false;
             this.txtLength.Location = new System.Drawing.Point(217, 56);
-            this.txtLength.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtLength.Margin = new System.Windows.Forms.Padding(4);
             this.txtLength.Name = "txtLength";
             this.txtLength.Size = new System.Drawing.Size(132, 26);
             this.txtLength.TabIndex = 6;
@@ -127,7 +127,7 @@
             // 
             this.txtPrefix.Enabled = false;
             this.txtPrefix.Location = new System.Drawing.Point(217, 97);
-            this.txtPrefix.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPrefix.Margin = new System.Windows.Forms.Padding(4);
             this.txtPrefix.Name = "txtPrefix";
             this.txtPrefix.Size = new System.Drawing.Size(132, 26);
             this.txtPrefix.TabIndex = 7;
@@ -147,9 +147,9 @@
             this.groupBox1.Controls.Add(this.txtLength);
             this.groupBox1.Controls.Add(this.checkBoxPrefix);
             this.groupBox1.Location = new System.Drawing.Point(-3, 4);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(627, 133);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
@@ -164,9 +164,9 @@
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Location = new System.Drawing.Point(5, 145);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(619, 87);
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
@@ -175,7 +175,7 @@
             // txtMo2
             // 
             this.txtMo2.Location = new System.Drawing.Point(473, 36);
-            this.txtMo2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtMo2.Margin = new System.Windows.Forms.Padding(4);
             this.txtMo2.Name = "txtMo2";
             this.txtMo2.Size = new System.Drawing.Size(132, 26);
             this.txtMo2.TabIndex = 3;
@@ -183,7 +183,7 @@
             // txtItem
             // 
             this.txtItem.Location = new System.Drawing.Point(141, 36);
-            this.txtItem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtItem.Margin = new System.Windows.Forms.Padding(4);
             this.txtItem.Name = "txtItem";
             this.txtItem.Size = new System.Drawing.Size(132, 26);
             this.txtItem.TabIndex = 2;
@@ -213,7 +213,7 @@
             this.radioButtonGood.AutoSize = true;
             this.radioButtonGood.Checked = true;
             this.radioButtonGood.Location = new System.Drawing.Point(93, 257);
-            this.radioButtonGood.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButtonGood.Margin = new System.Windows.Forms.Padding(4);
             this.radioButtonGood.Name = "radioButtonGood";
             this.radioButtonGood.Size = new System.Drawing.Size(58, 20);
             this.radioButtonGood.TabIndex = 12;
@@ -225,7 +225,7 @@
             // 
             this.radioButtonNG.AutoSize = true;
             this.radioButtonNG.Location = new System.Drawing.Point(281, 257);
-            this.radioButtonNG.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButtonNG.Margin = new System.Windows.Forms.Padding(4);
             this.radioButtonNG.Name = "radioButtonNG";
             this.radioButtonNG.Size = new System.Drawing.Size(74, 20);
             this.radioButtonNG.TabIndex = 13;
@@ -239,7 +239,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox1.AutoWordSelection = true;
             this.richTextBox1.Location = new System.Drawing.Point(5, 345);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(4);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(617, 80);
             this.richTextBox1.TabIndex = 14;
@@ -260,7 +260,7 @@
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmGoodNG";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

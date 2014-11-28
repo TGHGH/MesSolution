@@ -7,8 +7,8 @@
     <ProjectGuid>{24F693D1-A520-4308-9E37-5EC9C3AC2B2C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Forms</RootNamespace>
-    <AssemblyName>Forms</AssemblyName>
+    <RootNamespace>Frms</RootNamespace>
+    <AssemblyName>Frms</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>

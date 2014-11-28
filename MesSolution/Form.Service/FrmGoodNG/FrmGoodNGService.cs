@@ -45,8 +45,8 @@ namespace Frm.Service
         public OperationResult FindSnCheck(string moString)
         {
             if (moString == null)
-                return new OperationResult(OperationResultType.Error, "工单号不能为空");
-
+                return new OperationResult(OperationResultType.Error,StringMessage.String_FrmGoodNGService_MoCanNotNull);
+            
             OperationResult operationResult = moFormService.FindEntity(moString);
             if (operationResult.ResultType == OperationResultType.Success)
             {
@@ -66,29 +66,29 @@ namespace Frm.Service
             Mo mo =(Mo) moFormService.FindEntity(moString).AppendData;
             if (mo == null)
             {
-                operationResult.Message = moString + "工单不存在！";
+                operationResult.Message = moString +StringMessage.String_FrmGoodNGService_MoNotExit;
                 return operationResult;
             }
             if (!(mo.MOSTATUS == MoStatus.RELEASE || mo.MOSTATUS == MoStatus.OPEN))
             {
-                operationResult.Message = moString + "工单状态错误";
+                operationResult.Message = moString + StringMessage.String_FrmGoodNGService_MoStatusError;
                 return operationResult;
             }
             if (mo.Route == null)
             {
-                operationResult.Message = moString + "工单没有途程";
+                operationResult.Message = moString + StringMessage.String_FrmGoodNGService_MoDontHaveRoute;
                 return operationResult;
             }
             MoRcard moRcard = moRcardFormService.MoRcards().SingleOrDefault(r => r.MoCode == mo.MoCode && r.MoCardStart == card);
             if (moRcard != null)
             {
-                operationResult.Message = card + "该产品已属于该工单";
+                operationResult.Message = card + StringMessage.String_FrmGoodNGService_SnHadInMo;
                 return operationResult;
             }
 
             if (mo.Route.Ops.First().Reses.SingleOrDefault(r => r.RESCODE == rescode) == null)
             {
-                operationResult.Message = rescode + "该资源不属于该工单的第一道工序";
+                operationResult.Message = rescode + StringMessage.String_FrmGoodNGService_ResNotFirst;
                 return operationResult;
             }
             Simulation lastSimulation = simulationFormService.Simulations().SingleOrDefault(r => r.MOCODE == mo.MoCode && r.RCARD == card);
@@ -96,7 +96,7 @@ namespace Frm.Service
             {
                 if (lastSimulation.ISCOM == "0")
                 {
-                    operationResult.Message = card + "此为在制品，不能归属工单";
+                    operationResult.Message = card + StringMessage.String_FrmGoodNGService_SnIsRunning;
                     return operationResult;
                 }
             }
@@ -104,7 +104,7 @@ namespace Frm.Service
             Item item = itemFormService.Items().SingleOrDefault(i => i.ITEMCODE == mo.ITEMCODE);
             if (item.CHKITEMOP == null || item.CHKITEMOP.Trim().Length == 0)
             {
-                operationResult.Message = item.ITEMCODE + "该产品没有维护产生送检批工序";
+                operationResult.Message = item.ITEMCODE + StringMessage.String_FrmGoodNGService_LotNotOp;
                 return operationResult;
 
             }
@@ -112,12 +112,12 @@ namespace Frm.Service
             {
                 if (mo.MOPLANQTY - mo.MOINPUTQTY + mo.OFFMOQTY - mo.IDMERGERULE <= 0)
                 {
-                    operationResult.Message = mo.MoCode + "该工单已满";
+                    operationResult.Message = mo.MoCode + StringMessage.String_FrmGoodNGService_MoEnough;
                     return operationResult;
                 }
             }
             operationResult.ResultType = OperationResultType.Success;
-            operationResult.Message = card + "检测成功";
+            operationResult.Message = card + StringMessage.String_FrmGoodNGService_CheckSuccess;
             return operationResult;
         }
 
@@ -217,7 +217,7 @@ namespace Frm.Service
                 simulationFormService.UpdateEntity(nowSimulation);
 
             operationResult.ResultType = OperationResultType.Success;
-            operationResult.Message = card + "采集成功";
+            operationResult.Message = card +StringMessage.String_FrmGoodNGService_CollectSuccess;
             return operationResult;
         }
         public OperationResult ActionGoodCheck(string usercode, string rescode, string card)
@@ -228,12 +228,12 @@ namespace Frm.Service
             Simulation lastSimulation = simulationFormService.Simulations().SingleOrDefault(s=>s.RCARD==card);
             if (lastSimulation == null)
             {
-                operationResult.Message =card+ "该产品没有归属工单";
+                operationResult.Message = card +StringMessage.String_FrmGoodNGService_SnHadNotInMo;
                 return operationResult;
             }
             if (lastSimulation.ISCOM == "1")
             {
-                operationResult.Message = card + "产品已完工";
+                operationResult.Message = card +StringMessage.String_FrmGoodNGService_SnHadFinish;
                 return operationResult;           
             }
             Res res = resFormService.Ress().SingleOrDefault(r=>r.RESCODE==rescode);
@@ -241,7 +241,7 @@ namespace Frm.Service
             {
                 if (res.Op == null)
                 {
-                    operationResult.Message = rescode + "该资源岗位没有归属工序";
+                    operationResult.Message = rescode +StringMessage.String_FrmGoodNGService_ResNotOp;
                     return operationResult;       
                 }              
             }
@@ -252,10 +252,10 @@ namespace Frm.Service
             Route2Op nextOp = route2OpFormService.Route2Ops().Where(r => r.routeCode == lastSimulation.ROUTECODE && r.seq > nowOp).OrderBy(r => r.seq).FirstOrDefault();          
             if (nextOp.opCode!=res.Op.OPCODE)
             {
-                operationResult.Message = "当前工序为" + res.Op.OPCODE + ",产品下道工序为" + nextOp.opCode;
+                operationResult.Message =StringMessage.String_FrmGoodNGService_NowOp + res.Op.OPCODE + StringMessage.String_FrmGoodNGService_NextOp + nextOp.opCode;
                 return operationResult;                
             }
-            operationResult.Message =card+ "检测成功";
+            operationResult.Message = card +StringMessage.String_FrmGoodNGService_CheckSuccess;
             operationResult.ResultType = OperationResultType.Success;
             return operationResult;
         }
@@ -285,7 +285,7 @@ namespace Frm.Service
             {
                 simulationReportFormService.AddEntity(new SimulationReport(lastSimulation));
             }
-            operationResult.Message = card + "采集成功";
+            operationResult.Message = card +StringMessage.String_FrmGoodNGService_CollectSuccess;
             return operationResult;
         }
         public OperationResult ActionNGCheck(string card, string usercode, string rescode, string selectedEcg, string selectedEc)
@@ -296,7 +296,7 @@ namespace Frm.Service
             Simulation simulation = simulationFormService.Simulations().SingleOrDefault(s=>s.RCARD==card);
             if (simulation == null)
             {
-                operationResult.Message = card + "该产品没有归属工单";
+                operationResult.Message = card + StringMessage.String_FrmGoodNGService_SnHadNotInMo;
                 return operationResult;
             }
             Res res = resFormService.Ress().SingleOrDefault(r => r.RESCODE == rescode);
@@ -304,7 +304,7 @@ namespace Frm.Service
             {
                 if (res.Op == null)
                 {
-                    operationResult.Message = rescode + "该资源岗位没有归属工序";
+                    operationResult.Message = rescode + StringMessage.String_FrmGoodNGService_ResNotOp;
                     return operationResult;
                 }
             }
@@ -313,10 +313,10 @@ namespace Frm.Service
             Route2Op nextOp = route2OpFormService.Route2Ops().Where(r => r.routeCode == simulation.ROUTECODE && r.seq > nowOp).OrderBy(r => r.seq).FirstOrDefault();
             if (nextOp.opCode != res.Op.OPCODE)
             {
-                operationResult.Message = "当前工序为" + res.Op.OPCODE + ",产品下道工序为" + nextOp.opCode;
+                operationResult.Message = StringMessage.String_FrmGoodNGService_NowOp + res.Op.OPCODE + StringMessage.String_FrmGoodNGService_NextOp + nextOp.opCode;
                 return operationResult;
             }
-            operationResult.Message = card + "检测成功";
+            operationResult.Message = card + StringMessage.String_FrmGoodNGService_CheckSuccess;
             operationResult.ResultType = OperationResultType.Success;
             return operationResult;           
           
@@ -356,7 +356,7 @@ namespace Frm.Service
             ts.itemcode = simulation.ITEMCODE;
             ts.itemcode = simulation.MOCODE;
             ts.frmroutecode = simulation.ROUTECODE;
-            ts.frmopcode = resFormService.Ress().SingleOrDefault().Op.OPCODE;
+            ts.frmopcode = resFormService.Ress().SingleOrDefault(r => r.RESCODE == rescode).Op.OPCODE;
             ts.frmsegcode = "ZJ";
             ts.frmsscode = "A1";
             ts.crescode = rescode;
@@ -408,7 +408,7 @@ namespace Frm.Service
             simulationReportFormService.AddEntity(simulationReport, false);
             tsFormService.AddEntity(ts, false);
             tsErrorCodeFormService.AddEntity(tsErrorCode);
-            operationResult.Message = card + "采集成功";
+            operationResult.Message = card +StringMessage.String_FrmGoodNGService_CollectSuccess;
             return operationResult;
         }
     }

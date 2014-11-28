@@ -41,8 +41,8 @@ namespace Frms
                 if (operationResult.ResultType == OperationResultType.Success)
                 {
                     frmMain.mdls = (List<Mdl>)operationResult.AppendData;
-                    frmMain.MdlInitialize();                
-                    frmMain.richTextBox1.AppendText(Properties.Resources.String_FrmLogin_LoginSuccess+"\n");
+                    frmMain.MdlInitialize();
+                    frmMain.richTextBox1.AppendText(StringMessage.String_FrmLogin_LoginSuccess + "\n");
                     Program.usercode = loginModel.Account;
                     Program.rescode  = loginModel.ResCode;
                 }

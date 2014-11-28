@@ -1,4 +1,4 @@
-﻿USE [Mes]
+﻿USE [MesTest]
 insert into UserUserGroups
  values('usercode1','usergroupcode1'); 
 insert into UserUserGroups
@@ -33,7 +33,7 @@ update Mdls set form='FrmTsInputEdit' where mdlcode='mdlcode4';
   insert into UserGroupRes values('usergroupcode1','rescode10');
 
   
-  update Moes set Route_ROUTECODE='routecode1',MOSTATUS='mostatus_open',ISCONINPUT=1,MOPLANQTY=10;
+  update Moes set Route_ROUTECODE='routecode1',MOSTATUS=1,ISCONINPUT=1,MOPLANQTY=10;
    
 
   insert into OpRoutes(Route_ROUTECODE,Op_OPCODE) values('routecode1','opcode1');
