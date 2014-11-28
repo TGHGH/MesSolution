@@ -116,9 +116,9 @@
       <Project>{97b4cc5d-5069-4ed5-932b-19bf87478e57}</Project>
       <Name>Core.Service</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Form.Models\Form.Models.csproj">
+    <ProjectReference Include="..\Form.Models\Frm.Models.csproj">
       <Project>{2ff18615-ab59-4bed-b8e6-f24782f7d695}</Project>
-      <Name>Form.Models</Name>
+      <Name>Frm.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

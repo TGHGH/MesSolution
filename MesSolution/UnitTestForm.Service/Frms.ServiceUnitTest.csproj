@@ -84,9 +84,9 @@
       <Project>{740d2be6-d542-42b1-955d-376afae8676f}</Project>
       <Name>Core.Db</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Form.Service\Form.Service.csproj">
+    <ProjectReference Include="..\Form.Service\Frm.Service.csproj">
       <Project>{8e44ef54-d6b1-4f95-818b-372debd4e1cd}</Project>
-      <Name>Form.Service</Name>
+      <Name>Frm.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
