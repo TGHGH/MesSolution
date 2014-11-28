@@ -15,6 +15,14 @@ namespace Component.Tools
             #endregion
         #endregion
 
+        #region Frm.Models
+            #region GoMoModel
+        //GoMoModel
+        public static string String_GoMoModel_SnLengthError = "SN长度防呆错误";
+        public static string String_GoMoModel_SnPrefixError = "SN前码防呆错误";
+            #endregion
+        #endregion
+
         #region Frm.Service
             #region FrmGoodNGService
         //FrmLogin

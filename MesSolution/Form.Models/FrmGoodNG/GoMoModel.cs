@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Component.Tools;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -31,9 +32,9 @@ namespace Frm.Models
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (!card.StartsWith(prefixString))
-                yield return new ValidationResult("前码不对", new[] { "prefixString" });
+                yield return new ValidationResult(StringMessage.String_GoMoModel_SnPrefixError, new[] { "prefixString" });
             if (!card.Length.ToString().Equals(lengthString))
-                yield return new ValidationResult("长度不对", new[] { "lengthString" });
+                yield return new ValidationResult(StringMessage.String_GoMoModel_SnLengthError, new[] { "lengthString" });
         }
     }
 }
