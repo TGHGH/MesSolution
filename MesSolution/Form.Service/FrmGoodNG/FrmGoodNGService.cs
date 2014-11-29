@@ -104,9 +104,8 @@ namespace Frm.Service
             Item item = itemFormService.Items().SingleOrDefault(i => i.ITEMCODE == mo.ITEMCODE);
             if (item.CHKITEMOP == null || item.CHKITEMOP.Trim().Length == 0)
             {
-                operationResult.Message = item.ITEMCODE + StringMessage.String_FrmGoodNGService_LotNotOp;
+                operationResult.Message = StringMessage.String_FrmGoodNGService_LotNotOp;
                 return operationResult;
-
             }
             if (mo.ISCONINPUT == 1)
             {

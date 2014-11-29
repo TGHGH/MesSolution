@@ -33,7 +33,9 @@ update Mdls set form='FrmTsInputEdit' where mdlcode='mdlcode4';
   insert into UserGroupRes values('usergroupcode1','rescode10');
 
   
-  update Moes set Route_ROUTECODE='routecode1',MOSTATUS=1,ISCONINPUT=1,MOPLANQTY=10;
+  update Moes set Route_ROUTECODE='routecode1',MOSTATUS=1,ISCONINPUT=1,MOPLANQTY=10 ;
+  update Moes set MOSTATUS=0 Where mocode='mocode2';
+  update Moes set Route_ROUTECODE=null where MoCode='mocode3';
    
 
   insert into OpRoutes(Route_ROUTECODE,Op_OPCODE) values('routecode1','opcode1');
@@ -60,6 +62,7 @@ update Mdls set form='FrmTsInputEdit' where mdlcode='mdlcode4';
 
     
 update Items set Model_MODELCODE='modelcode1';
+update Items set CHKITEMOP=NULL where ITEMCODE='itemcode4';
 insert into RouteItems values('routecode1','itemcode1');
 insert into RouteItems values('routecode2','itemcode1');
 update Route2Op set routeCode='routecode1',seq=Route2OpID where Route2OpID<6;
