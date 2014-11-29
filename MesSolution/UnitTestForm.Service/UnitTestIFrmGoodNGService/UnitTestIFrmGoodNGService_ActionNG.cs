@@ -24,7 +24,7 @@ namespace UnitTestForm.Service.UnitTestIFrmGoodNGService
             string rescode = "rescode1";
             string rescode2 = "rescode2";
             string leng = "11";
-           // string prefix = "2014";
+            string prefix = "2014";
             string ecg = "AUTONG";
             string ec = "AUTONG";
 
