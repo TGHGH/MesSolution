@@ -117,42 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="backgroundWorker1.TrayLocation" type="System.Drawing.Point, System.Drawing">
-    <value>17, 17</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.TrayHeight" type="System.Int32, mscorlib">
-    <value>25</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="checkBoxMo.Text" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="checkBoxLength.Text" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="checkBoxPrefix.Text" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value></value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>用户名</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value></value>
+    <value>密码</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value></value>
+    <value>资源</value>
   </data>
-  <data name="radioButtonGood.Text" xml:space="preserve">
-    <value></value>
+  <data name="button1.Text" xml:space="preserve">
+    <value>登录</value>
   </data>
-  <data name="radioButtonNG.Text" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value></value>
+  <data name="button2.Text" xml:space="preserve">
+    <value>退出</value>
   </data>
 </root>

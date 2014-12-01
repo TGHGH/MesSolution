@@ -117,42 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="backgroundWorker1.TrayLocation" type="System.Drawing.Point, System.Drawing">
-    <value>17, 17</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.TrayHeight" type="System.Int32, mscorlib">
-    <value>25</value>
-  </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>1</value>
+    <value>MoInfomation</value>
   </data>
   <data name="checkBoxMo.Text" xml:space="preserve">
-    <value></value>
+    <value>Mo</value>
   </data>
   <data name="checkBoxLength.Text" xml:space="preserve">
-    <value></value>
+    <value>SnLength</value>
   </data>
   <data name="checkBoxPrefix.Text" xml:space="preserve">
-    <value></value>
+    <value>SnPrefix</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
-    <value></value>
+    <value>ItemInfomation</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value></value>
+    <value>Item</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value></value>
+    <value>Mo</value>
   </data>
   <data name="radioButtonGood.Text" xml:space="preserve">
-    <value></value>
+    <value>Good</value>
   </data>
   <data name="radioButtonNG.Text" xml:space="preserve">
-    <value></value>
+    <value>NG</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value></value>
+    <value>SN</value>
   </data>
 </root>

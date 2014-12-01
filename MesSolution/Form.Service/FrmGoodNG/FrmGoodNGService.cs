@@ -1,57 +1,53 @@
-using Component.Tools;
-using Core.Models;
-using Core.Service;
-using Frm.Models;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using Component.Tools;
+using Core.Models;
+using Frm.Models;
 
-
-
-namespace Frm.Service
+namespace Frm.Service.FrmGoodNG
 {
-    [Export(typeof(IFrmGoodNGService))]
-    public class FrmGoodNGService :IFrmGoodNGService  
+    [Export(typeof(IFrmGoodNgService))]
+    public class FrmGoodNgService :IFrmGoodNgService  
 	{
         [Import]
-        public IMoFormService moFormService { get; set; }
+        public IMoFormService MoFormService { get; set; }
         [Import]
-        public IItem2SnCheckFormService item2SnCheckFormService { get; set; }
+        public IItem2SnCheckFormService Item2SnCheckFormService { get; set; }
         [Import]
-        public IMoRcardFormService moRcardFormService { get; set; }
+        public IMoRcardFormService MoRcardFormService { get; set; }
         [Import]
-        public ISimulationFormService simulationFormService { get; set; }
+        public ISimulationFormService SimulationFormService { get; set; }
         [Import]
-        public IItemFormService itemFormService { get; set; }
+        public IItemFormService ItemFormService { get; set; }
         [Import]
-        public ISimulationReportFormService simulationReportFormService { get; set; }
+        public ISimulationReportFormService SimulationReportFormService { get; set; }
         [Import]
-        public IResFormService resFormService { get; set; }
+        public IResFormService ResFormService { get; set; }
         [Import]
-        public IRouteFormService routeFormService { get; set; }
+        public IRouteFormService RouteFormService { get; set; }
         [Import]
-        public IRoute2OpFormService route2OpFormService { get;set; }
+        public IRoute2OpFormService Route2OpFormService { get;set; }
         [Import]
-        public IOpFormService opFormService { get; set; }
+        public IOpFormService OpFormService { get; set; }
         [Import]
-        public ITsFormService tsFormService { get; set; }
+        public ITsFormService TsFormService { get; set; }
         [Import]
-        public ITsErrorCodeFormService tsErrorCodeFormService { get; set; }
+        public ITsErrorCodeFormService TsErrorCodeFormService { get; set; }
         [Import]
-        public IEcFormService ecFormService { get; set; }
+        public IEcFormService EcFormService { get; set; }
 
         public OperationResult FindSnCheck(string moString)
         {
             if (moString == null)
                 return new OperationResult(OperationResultType.Error,StringMessage.String_FrmGoodNGService_MoCanNotNull);
             
-            OperationResult operationResult = moFormService.FindEntity(moString);
+            OperationResult operationResult = MoFormService.FindEntity(moString);
             if (operationResult.ResultType == OperationResultType.Success)
             {
                 Mo mo = (Mo)operationResult.AppendData;
-                Item2SnCheck item2SnCheck = item2SnCheckFormService.Item2SnChecks().SingleOrDefault(i => i.ITEMCODE == mo.ITEMCODE);
+                Item2SnCheck item2SnCheck = Item2SnCheckFormService.Item2SnChecks().SingleOrDefault(i => i.ITEMCODE == mo.ITEMCODE);
                 operationResult.AppendData = item2SnCheck;
             }
             return operationResult;
@@ -63,7 +59,7 @@ namespace Frm.Service
             Validator.ValidateObject(model, new ValidationContext(model));
             OperationResult operationResult = new OperationResult(OperationResultType.Error);
 
-            Mo mo =(Mo) moFormService.FindEntity(moString).AppendData;
+            Mo mo =(Mo) MoFormService.FindEntity(moString).AppendData;
             if (mo == null)
             {
                 operationResult.Message = moString +StringMessage.String_FrmGoodNGService_MoNotExit;
@@ -79,7 +75,7 @@ namespace Frm.Service
                 operationResult.Message = moString + StringMessage.String_FrmGoodNGService_MoDontHaveRoute;
                 return operationResult;
             }
-            MoRcard moRcard = moRcardFormService.MoRcards().SingleOrDefault(r => r.MoCode == mo.MoCode && r.MoCardStart == card);
+            MoRcard moRcard = MoRcardFormService.MoRcards().SingleOrDefault(r => r.MoCode == mo.MoCode && r.MoCardStart == card);
             if (moRcard != null)
             {
                 operationResult.Message = card + StringMessage.String_FrmGoodNGService_SnHadInMo;
@@ -91,7 +87,7 @@ namespace Frm.Service
                 operationResult.Message = rescode + StringMessage.String_FrmGoodNGService_ResNotFirst;
                 return operationResult;
             }
-            Simulation lastSimulation = simulationFormService.Simulations().SingleOrDefault(r => r.MOCODE == mo.MoCode && r.RCARD == card);
+            Simulation lastSimulation = SimulationFormService.Simulations().SingleOrDefault(r => r.MOCODE == mo.MoCode && r.RCARD == card);
             if (lastSimulation != null)
             {
                 if (lastSimulation.ISCOM == "0")
@@ -101,7 +97,7 @@ namespace Frm.Service
                 }
             }
 
-            Item item = itemFormService.Items().SingleOrDefault(i => i.ITEMCODE == mo.ITEMCODE);
+            Item item = ItemFormService.Items().SingleOrDefault(i => i.ITEMCODE == mo.ITEMCODE);
             if (item.CHKITEMOP == null || item.CHKITEMOP.Trim().Length == 0)
             {
                 operationResult.Message = StringMessage.String_FrmGoodNGService_LotNotOp;
@@ -122,21 +118,21 @@ namespace Frm.Service
 
         public OperationResult CardGoMo(string moString, string lengthString, string prefixString, string card, string rescode, string usercode)
         {
-            bool Tbag = false;
+            bool tbag = false;
 
             OperationResult operationResult = CardGoMoCheck(moString, lengthString, prefixString, card, rescode, usercode);
 
             if (operationResult.ResultType == OperationResultType.Error)
                 return operationResult;
 
-            Mo mo = (Mo)moFormService.FindEntity(moString).AppendData;
-            Simulation nowSimulation = simulationFormService.Simulations().SingleOrDefault(s => s.RCARD == card && s.MOCODE == mo.MoCode);
+            Mo mo = (Mo)MoFormService.FindEntity(moString).AppendData;
+            Simulation nowSimulation = SimulationFormService.Simulations().SingleOrDefault(s => s.RCARD == card && s.MOCODE == mo.MoCode);
             SimulationReport simulationReport = new SimulationReport();
-            Item item = itemFormService.Items().SingleOrDefault(i => i.ITEMCODE == mo.ITEMCODE);
+            Item item = ItemFormService.Items().SingleOrDefault(i => i.ITEMCODE == mo.ITEMCODE);
             if (nowSimulation == null)
             {
                 nowSimulation = new Simulation();
-                Tbag = true;
+                tbag = true;
             }
             MoRcard moRcard = new MoRcard();
 
@@ -207,13 +203,13 @@ namespace Frm.Service
             moRcard.Muser = usercode;
             moRcard.MoSeq = mo.MOSEQ;
 
-            moFormService.UpdateEntity(mo, false);
-            simulationReportFormService.AddEntity(simulationReport, false);
-            moRcardFormService.AddEntity(moRcard, false);
-            if (Tbag)
-                simulationFormService.AddEntity(nowSimulation);
+            MoFormService.UpdateEntity(mo, false);
+            SimulationReportFormService.AddEntity(simulationReport, false);
+            MoRcardFormService.AddEntity(moRcard, false);
+            if (tbag)
+                SimulationFormService.AddEntity(nowSimulation);
             else
-                simulationFormService.UpdateEntity(nowSimulation);
+                SimulationFormService.UpdateEntity(nowSimulation);
 
             operationResult.ResultType = OperationResultType.Success;
             operationResult.Message = card +StringMessage.String_FrmGoodNGService_CollectSuccess;
@@ -224,7 +220,7 @@ namespace Frm.Service
             ActionGoodModel model = new ActionGoodModel { userCode = usercode, resCode = rescode, card = card };
             Validator.ValidateObject(model, new ValidationContext(model));
             OperationResult operationResult = new OperationResult(OperationResultType.Error);
-            Simulation lastSimulation = simulationFormService.Simulations().SingleOrDefault(s=>s.RCARD==card);
+            Simulation lastSimulation = SimulationFormService.Simulations().SingleOrDefault(s=>s.RCARD==card);
             if (lastSimulation == null)
             {
                 operationResult.Message = card +StringMessage.String_FrmGoodNGService_SnHadNotInMo;
@@ -235,7 +231,7 @@ namespace Frm.Service
                 operationResult.Message = card +StringMessage.String_FrmGoodNGService_SnHadFinish;
                 return operationResult;           
             }
-            Res res = resFormService.Ress().SingleOrDefault(r=>r.RESCODE==rescode);
+            Res res = ResFormService.Ress().SingleOrDefault(r=>r.RESCODE==rescode);
             if (res != null)
             {
                 if (res.Op == null)
@@ -247,8 +243,8 @@ namespace Frm.Service
             
             //throw new Exception("产品维修中");
           
-            int nowOp= route2OpFormService.Route2Ops().SingleOrDefault(r => r.routeCode == lastSimulation.ROUTECODE && r.opCode == lastSimulation.OpCode).seq;        
-            Route2Op nextOp = route2OpFormService.Route2Ops().Where(r => r.routeCode == lastSimulation.ROUTECODE && r.seq > nowOp).OrderBy(r => r.seq).FirstOrDefault();          
+            int nowOp= Route2OpFormService.Route2Ops().SingleOrDefault(r => r.routeCode == lastSimulation.ROUTECODE && r.opCode == lastSimulation.OpCode).seq;        
+            Route2Op nextOp = Route2OpFormService.Route2Ops().Where(r => r.routeCode == lastSimulation.ROUTECODE && r.seq > nowOp).OrderBy(r => r.seq).FirstOrDefault();          
             if (nextOp.opCode!=res.Op.OPCODE)
             {
                 operationResult.Message =StringMessage.String_FrmGoodNGService_NowOp + res.Op.OPCODE + StringMessage.String_FrmGoodNGService_NextOp + nextOp.opCode;
@@ -264,41 +260,41 @@ namespace Frm.Service
             OperationResult operationResult = ActionGoodCheck(usercode, rescode, card);
             if (operationResult.ResultType ==OperationResultType.Error)
                 return operationResult;
-            Simulation lastSimulation = simulationFormService.Simulations().SingleOrDefault(s => s.RCARD == card);
-            Res res = (Res)resFormService.FindEntity(rescode).AppendData;
+            Simulation lastSimulation = SimulationFormService.Simulations().SingleOrDefault(s => s.RCARD == card);
+            Res res = (Res)ResFormService.FindEntity(rescode).AppendData;
             lastSimulation.OpCode = res.Op.OPCODE;
             lastSimulation.LACTION = "Good";
             lastSimulation.ACTIONLIST = "Good";
             lastSimulation.MUSER = usercode;
-            int nowOp = route2OpFormService.Route2Ops().SingleOrDefault(r => r.routeCode == lastSimulation.ROUTECODE && r.opCode == lastSimulation.OpCode).seq;
-            Route2Op nextOp = route2OpFormService.Route2Ops().Where(r => r.routeCode == lastSimulation.ROUTECODE&&r.seq>nowOp ).OrderByDescending(r => r.seq).FirstOrDefault();
+            int nowOp = Route2OpFormService.Route2Ops().SingleOrDefault(r => r.routeCode == lastSimulation.ROUTECODE && r.opCode == lastSimulation.OpCode).seq;
+            Route2Op nextOp = Route2OpFormService.Route2Ops().Where(r => r.routeCode == lastSimulation.ROUTECODE&&r.seq>nowOp ).OrderByDescending(r => r.seq).FirstOrDefault();
             //是最后一道工序
             if (nextOp.opCode == res.Op.OPCODE)
             {
                 lastSimulation.ISCOM = "1";                
-                Mo mo =(Mo) moFormService.FindEntity(lastSimulation.MOCODE).AppendData;
+                Mo mo =(Mo) MoFormService.FindEntity(lastSimulation.MOCODE).AppendData;
                 mo.MOACTQTY += 1;
-                simulationReportFormService.AddEntity(new SimulationReport(lastSimulation));
+                SimulationReportFormService.AddEntity(new SimulationReport(lastSimulation));
             }
             else
             {
-                simulationReportFormService.AddEntity(new SimulationReport(lastSimulation));
+                SimulationReportFormService.AddEntity(new SimulationReport(lastSimulation));
             }
             operationResult.Message = card +StringMessage.String_FrmGoodNGService_CollectSuccess;
             return operationResult;
         }
-        public OperationResult ActionNGCheck(string card, string usercode, string rescode, string selectedEcg, string selectedEc)
+        public OperationResult ActionNgCheck(string card, string usercode, string rescode, string selectedEcg, string selectedEc)
         {
             ActionNGModel model = new ActionNGModel { userCode = usercode, resCode = rescode, card = card ,selectedEc=selectedEc,selectedEcg=selectedEc};
             Validator.ValidateObject(model, new ValidationContext(model));
             OperationResult operationResult = new OperationResult(OperationResultType.Error);
-            Simulation simulation = simulationFormService.Simulations().SingleOrDefault(s=>s.RCARD==card);
+            Simulation simulation = SimulationFormService.Simulations().SingleOrDefault(s=>s.RCARD==card);
             if (simulation == null)
             {
                 operationResult.Message = card + StringMessage.String_FrmGoodNGService_SnHadNotInMo;
                 return operationResult;
             }
-            Res res = resFormService.Ress().SingleOrDefault(r => r.RESCODE == rescode);
+            Res res = ResFormService.Ress().SingleOrDefault(r => r.RESCODE == rescode);
             if (res != null)
             {
                 if (res.Op == null)
@@ -308,8 +304,8 @@ namespace Frm.Service
                 }
             }
 
-            int nowOp = route2OpFormService.Route2Ops().SingleOrDefault(r => r.routeCode == simulation.ROUTECODE && r.opCode == simulation.OpCode).seq;
-            Route2Op nextOp = route2OpFormService.Route2Ops().Where(r => r.routeCode == simulation.ROUTECODE && r.seq > nowOp).OrderBy(r => r.seq).FirstOrDefault();
+            int nowOp = Route2OpFormService.Route2Ops().SingleOrDefault(r => r.routeCode == simulation.ROUTECODE && r.opCode == simulation.OpCode).seq;
+            Route2Op nextOp = Route2OpFormService.Route2Ops().Where(r => r.routeCode == simulation.ROUTECODE && r.seq > nowOp).OrderBy(r => r.seq).FirstOrDefault();
             if (nextOp.opCode != res.Op.OPCODE)
             {
                 operationResult.Message = StringMessage.String_FrmGoodNGService_NowOp + res.Op.OPCODE + StringMessage.String_FrmGoodNGService_NextOp + nextOp.opCode;
@@ -321,13 +317,13 @@ namespace Frm.Service
           
         }
 
-        public OperationResult ActionNG(string card, string usercode, string rescode, string selectedEcg, string selectedEc)
+        public OperationResult ActionNg(string card, string usercode, string rescode, string selectedEcg, string selectedEc)
         {
-            OperationResult operationResult = ActionNGCheck(card,usercode,rescode,selectedEcg,selectedEc);
+            OperationResult operationResult = ActionNgCheck(card,usercode,rescode,selectedEcg,selectedEc);
             if (operationResult.ResultType == OperationResultType.Error)
                 return operationResult;
             //TBLSIMULATION
-            Simulation simulation = simulationFormService.Simulations().SingleOrDefault(s => s.RCARD == card);
+            Simulation simulation = SimulationFormService.Simulations().SingleOrDefault(s => s.RCARD == card);
             DateTime dt = DateTime.Now;
             simulation.LOTNO = null;
             simulation.PRODUCTSTATUS = "NG";
@@ -355,7 +351,7 @@ namespace Frm.Service
             ts.itemcode = simulation.ITEMCODE;
             ts.itemcode = simulation.MOCODE;
             ts.frmroutecode = simulation.ROUTECODE;
-            ts.frmopcode = resFormService.Ress().SingleOrDefault(r => r.RESCODE == rescode).Op.OPCODE;
+            ts.frmopcode = ResFormService.Ress().SingleOrDefault(r => r.RESCODE == rescode).Op.OPCODE;
             ts.frmsegcode = "ZJ";
             ts.frmsscode = "A1";
             ts.crescode = rescode;
@@ -404,9 +400,9 @@ namespace Frm.Service
             //insert into tblrpthisopqty
 
 
-            simulationReportFormService.AddEntity(simulationReport, false);
-            tsFormService.AddEntity(ts, false);
-            tsErrorCodeFormService.AddEntity(tsErrorCode);
+            SimulationReportFormService.AddEntity(simulationReport, false);
+            TsFormService.AddEntity(ts, false);
+            TsErrorCodeFormService.AddEntity(tsErrorCode);
             operationResult.Message = card +StringMessage.String_FrmGoodNGService_CollectSuccess;
             return operationResult;
         }

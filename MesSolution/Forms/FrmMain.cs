@@ -4,8 +4,10 @@ using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Core.Models;
@@ -18,20 +20,53 @@ namespace Frms
     [Export]
     public partial class FrmMain : Form
     {
-        public List<Mdl> mdls { get; set; }
-        public AggregateCatalog catalog;
+        public List<Mdl> Mdls { get; set; }
+        public AggregateCatalog Catalog;
        // public CompositionContainer _container;
         public FrmMain()
         {
             InitializeComponent();
-            catalog = new AggregateCatalog();
-            catalog.Catalogs.Add(new DirectoryCatalog(Directory.GetCurrentDirectory()));
-            catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
+            Catalog = new AggregateCatalog();
+            Catalog.Catalogs.Add(new DirectoryCatalog(Directory.GetCurrentDirectory()));
+            Catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
         //    _container = new CompositionContainer(catalog);
             
         }
-        
 
+        /// <summary>
+        /// 应用资源
+        /// ApplyResources 的第一个参数为要设置的控件
+        ///                  第二个参数为在资源文件中的ID，默认为控件的名称
+        /// </summary>
+        private void ApplyResource(Type t)
+        {
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+            var res = new ComponentResourceManager(t);
+            ApplyResource2(res,this.Controls);
+           
+
+            ////菜单
+            //foreach (ToolStripMenuItem item in this.menuStrip1.Items)
+            //{
+            //    res.ApplyResources(item, item.Name);
+            //    foreach (ToolStripMenuItem subItem in item.DropDownItems)
+            //    {
+            //        res.ApplyResources(subItem, subItem.Name);
+            //    }
+            //}
+
+            //Caption
+           // res.ApplyResources(this, "$this");
+        }
+
+        private void ApplyResource2(ComponentResourceManager res,Control.ControlCollection cc)
+        {
+            foreach (Control ctl in cc)
+            {
+                res.ApplyResources(ctl, ctl.Name);
+                ApplyResource2(res, ctl.Controls);
+            }
+        }
         private void button1_Click(object sender, EventArgs e)
         {            
            
@@ -45,16 +80,17 @@ namespace Frms
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            FrmStart frm = new FrmStart();//实例化Form2窗体对象
+            var frm = new FrmStart();//实例化Form2窗体对象
             frm.StartPosition = FormStartPosition.CenterScreen;//设置窗体居中显示
             frm.ShowDialog();//显示Form2窗体           
           //  MdlInitialize();
             this.WindowState = FormWindowState.Maximized;
-            FrmLogin formLogin = Program.programContainer.GetExportedValue<FrmLogin>();
+            var formLogin = Program.programContainer.GetExportedValue<FrmLogin>();
             formLogin.TopLevel = false;
             formLogin.Dock = DockStyle.Fill;
             formLogin.Show();
             this.panel4.Controls.Add(formLogin);
+            ApplyResource(this.GetType());
         }
 
         private void FrmMain_FormClosed(object sender, FormClosedEventArgs e)
@@ -77,7 +113,7 @@ namespace Frms
 
             treeView1.Nodes.Clear();
             TreeNode tn1 = new TreeNode("0");
-            Mdl mdl = mdls.Single(m => m.parentcode == "0");
+            Mdl mdl = Mdls.Single(m => m.parentcode == "0");
             tn1.Tag = mdl;
             tn1.Text = mdl.form;      
             treeView1.Nodes.Add(tn1);
@@ -89,10 +125,10 @@ namespace Frms
 
         public void Bind(TreeNode node)
         {
-            List<Mdl> drs = mdls.FindAll(m => m.parentcode == ((Mdl)node.Tag).mdlcode);
+            List<Mdl> drs = Mdls.FindAll(m => m.parentcode == ((Mdl)node.Tag).mdlcode);
             foreach (Mdl dr in drs)
             {
-                TreeNode n = new TreeNode();
+                var n = new TreeNode();
                 n.Tag = dr;
                 n.Text = dr.form;                
                 node.Nodes.Add(n);
@@ -125,6 +161,7 @@ namespace Frms
                         formLogin.Dock = DockStyle.Fill;
                         formLogin.Show();
                         this.panel4.Controls.Add(formLogin);
+                        ApplyResource(typeof (FrmLogin));
                         break;
                     case "FrmGoodNG":
                         FrmGoodNG frmGoodNG = Program.programContainer.GetExportedValue<FrmGoodNG>();
@@ -132,6 +169,7 @@ namespace Frms
                         frmGoodNG.Dock = DockStyle.Fill;
                         frmGoodNG.Show();
                         this.panel4.Controls.Add(frmGoodNG);
+                        ApplyResource(typeof(FrmGoodNG));
                         break;
                     case "FrmTsInputEdit":
                         FrmTsInputEdit frmTsInputEdit = Program.programContainer.GetExportedValue<FrmTsInputEdit>();
@@ -139,9 +177,15 @@ namespace Frms
                         frmTsInputEdit.Dock = DockStyle.Fill;
                         frmTsInputEdit.Show();
                         this.panel4.Controls.Add(frmTsInputEdit);
+                        ApplyResource(typeof(FrmTsInputEdit));
                         break;
                 }   
             }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+           
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Frm.Service.FrmGoodNG;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.ComponentModel.Composition.Hosting;
 using System.IO;
@@ -9,33 +9,33 @@ using Component.Tools;
 namespace UnitTestForm.Service.UnitTestIFrmGoodNGService
 {
     [TestClass]
-    public class UnitTestIFrmGoodNGService_ActionNG:UnitTestBase
+    public class UnitTestIFrmGoodNgServiceActionNg:UnitTestBase
     {      
         [TestMethod]
-        public void ActionNG()
+        public void ActionNg()
         {
-            AggregateCatalog catalog;
-            catalog = new AggregateCatalog();
+            var catalog = new AggregateCatalog();
             catalog.Catalogs.Add(new DirectoryCatalog(Directory.GetCurrentDirectory()));
             catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
-            string mocode = "mocode1";
-            string usercode = "usercode1";
-            string card = "20141107003";
-            string rescode = "rescode1";
-            string rescode2 = "rescode2";
-            string leng = "11";
-            string prefix = "2014";
-            string ecg = "AUTONG";
-            string ec = "AUTONG";
-
-            using (CompositionContainer testContainer = new CompositionContainer(catalog))
+            const string mocode = "mocode1";
+            const string usercode = "usercode1";
+            const string card = "20141107003";
+            const string rescode = "rescode1";
+            const string rescode2 = "rescode2";
+            const string leng = "11";
+            const string prefix = "2014";
+            const string ecg = "AUTONG";
+            const string ec = "AUTONG";
+            
+            
+            using (var testContainer = new CompositionContainer(catalog))
             {
-                testContainer.GetExportedValue<IFrmGoodNGService>().CardGoMo(mocode, leng, prefix, card, rescode, usercode);
+                testContainer.GetExportedValue<IFrmGoodNgService>().CardGoMo(mocode, leng, prefix, card, rescode, usercode);
 
             }
-            using (CompositionContainer testContainer = new CompositionContainer(catalog))
+            using (var testContainer = new CompositionContainer(catalog))
             {
-                OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNGService>().ActionNG(card, usercode, rescode2, ecg, ec);
+                OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNgService>().ActionNg(card, usercode, rescode2, ecg, ec);
                 Assert.IsTrue(operationResult.ResultType == OperationResultType.Success);
             }
 

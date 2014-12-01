@@ -14,6 +14,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Frm.Service.FrmGoodNG;
 
 namespace Frms
 {
@@ -45,7 +46,7 @@ namespace Frms
             {
                 using (CompositionContainer container = new CompositionContainer(Program.programCatalog))
                 {                   
-                    OperationResult operationResult = container.GetExportedValue<IFrmGoodNGService>().FindSnCheck(tetMo.Text);
+                    OperationResult operationResult = container.GetExportedValue<IFrmGoodNgService>().FindSnCheck(tetMo.Text);
                     if (operationResult.ResultType == OperationResultType.Success)
                     {
                         if (operationResult.AppendData != null)
@@ -75,7 +76,7 @@ namespace Frms
                 {
                     using (CompositionContainer testContainer = new CompositionContainer(Program.programCatalog))
                     {
-                        OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNGService>().CardGoMo(tetMo.Text, txtLength.Text, txtPrefix.Text,txtRuningCard.Text , Program.rescode, Program.usercode);
+                        OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNgService>().CardGoMo(tetMo.Text, txtLength.Text, txtPrefix.Text,txtRuningCard.Text , Program.rescode, Program.usercode);
                         richTextBox1.AppendText(operationResult.Message+"\n");
                     }
                 }
@@ -84,13 +85,13 @@ namespace Frms
                     if (radioButtonGood.Checked)
                         using (CompositionContainer testContainer = new CompositionContainer(Program.programCatalog))
                         {
-                            OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNGService>().ActionGood(Program.usercode, Program.rescode, txtRuningCard.Text);
+                            OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNgService>().ActionGood(Program.usercode, Program.rescode, txtRuningCard.Text);
                             richTextBox1.AppendText(operationResult.Message + "\n");
                         }
                     else
                         using (CompositionContainer testContainer = new CompositionContainer(Program.programCatalog))
                         {
-                            OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNGService>().ActionNG( txtRuningCard.Text,Program.usercode, Program.rescode,"AUTONG","AUTONG");
+                            OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNgService>().ActionNg( txtRuningCard.Text,Program.usercode, Program.rescode,"AUTONG","AUTONG");
                             richTextBox1.AppendText(operationResult.Message + "\n");
                         }                        ;
                 }

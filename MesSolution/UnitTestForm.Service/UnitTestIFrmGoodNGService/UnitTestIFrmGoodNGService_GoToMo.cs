@@ -1,4 +1,5 @@
 ﻿using System;
+using Frm.Service.FrmGoodNG;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.ComponentModel.Composition;
 using Frm.Service;
@@ -13,45 +14,45 @@ namespace UnitTestForm.Service.UnitTestIFrmGoodNGService
     [TestClass]
     public class UnitTestIFrmGoodNGService_GoToMo : UnitTestBase
     {
-        string moString = "mocode1";
-        string lengthString = "11";       
-        string prefixString = "2014";        
-        string card = "20141107001";
-    //    string card2 = "20141107004";
-        string rescode = "rescode1";
-        string usercode = "usercode1";
+        private const string MoString = "mocode1";
+        private const string LengthString = "11";
+        private const string PrefixString = "2014";
+        private const string Card = "20141107001";
+        //    string card2 = "20141107004";
+        private const string rescode = "rescode1";
+        private const string usercode = "usercode1";
 
-        string String_GoMoModel_SnLengthError = "12";
-        string String_GoMoModel_SnPrefixError = "20141106";
-        string String_FrmGoodNGService_MoNotExit = "MoNotExit";
-        string String_FrmGoodNGService_MoStatusError = "mocode2";
-        string String_FrmGoodNGService_MoDontHaveRoute = "mocode3";
-        string String_FrmGoodNGService_ResNotFirst = "rescode2";
-        string String_FrmGoodNGService_LotNotOp = "mocode4";
-        string String_FrmGoodNGService_MoEnough = "mocode5";
+        private const string String_GoMoModel_SnLengthError = "12";
+        private const string String_GoMoModel_SnPrefixError = "20141106";
+        private const string String_FrmGoodNGService_MoNotExit = "MoNotExit";
+        private const string String_FrmGoodNGService_MoStatusError = "mocode2";
+        private const string String_FrmGoodNGService_MoDontHaveRoute = "mocode3";
+        private const string String_FrmGoodNGService_ResNotFirst = "rescode2";
+        private const string String_FrmGoodNGService_LotNotOp = "mocode4";
+        private const string String_FrmGoodNGService_MoEnough = "mocode5";
+
         /// <summary>
         /// String_GoMoModel_SnLengthError = "SN长度防呆错误";
         /// </summary>
         [TestMethod]
         public void GoToMo_SnLengthError()
         {
-            AggregateCatalog catalog;
-            catalog = new AggregateCatalog();
+            var catalog = new AggregateCatalog();
             catalog.Catalogs.Add(new DirectoryCatalog(Directory.GetCurrentDirectory()));
             catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
-            using (CompositionContainer testContainer = new CompositionContainer(catalog))
+            using (var testContainer = new CompositionContainer(catalog))
             {
                 Exception e1=null;
                 try
                 {
-                    OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNGService>().CardGoMo(moString, String_GoMoModel_SnLengthError, prefixString, card, rescode, usercode);
+                    var operationResult = testContainer.GetExportedValue<IFrmGoodNgService>().CardGoMo(MoString, String_GoMoModel_SnLengthError, PrefixString, Card, rescode, usercode);
                 }
                 catch (Exception e)
                 {
                     e1 = e;
                 }
 
-                Assert.IsTrue(e1.Message.Equals(StringMessage.String_GoMoModel_SnLengthError));
+                Assert.IsTrue(e1 != null && e1.Message.Equals(StringMessage.String_GoMoModel_SnLengthError));
             }
 
         }
@@ -61,23 +62,22 @@ namespace UnitTestForm.Service.UnitTestIFrmGoodNGService
         [TestMethod]
         public void GoToMo_SnPrefixError()
         {
-            AggregateCatalog catalog;
-            catalog = new AggregateCatalog();
+            var catalog = new AggregateCatalog();
             catalog.Catalogs.Add(new DirectoryCatalog(Directory.GetCurrentDirectory()));
             catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
-            using (CompositionContainer testContainer = new CompositionContainer(catalog))
+            using (var testContainer = new CompositionContainer(catalog))
             {
                 Exception e1 = null;
                 try
                 {
-                    OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNGService>().CardGoMo(moString, lengthString, String_GoMoModel_SnPrefixError, card, rescode, usercode);
+                    OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNgService>().CardGoMo(MoString, LengthString, String_GoMoModel_SnPrefixError, Card, rescode, usercode);
                 }
                 catch (Exception e)
                 {
                     e1 = e;
                 }
 
-                Assert.IsTrue(e1.Message.Equals(StringMessage.String_GoMoModel_SnPrefixError));
+                Assert.IsTrue(e1 != null && e1.Message.Equals(StringMessage.String_GoMoModel_SnPrefixError));
             }
 
         }
@@ -88,13 +88,12 @@ namespace UnitTestForm.Service.UnitTestIFrmGoodNGService
         [TestMethod]
         public void GoToMo_MoNotExit()
         {
-            AggregateCatalog catalog;
-            catalog = new AggregateCatalog();
+            var catalog = new AggregateCatalog();
             catalog.Catalogs.Add(new DirectoryCatalog(Directory.GetCurrentDirectory()));
             catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
-            using (CompositionContainer testContainer = new CompositionContainer(catalog))
+            using (var testContainer = new CompositionContainer(catalog))
             {
-                OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNGService>().CardGoMo(String_FrmGoodNGService_MoNotExit, lengthString, prefixString, card, rescode, usercode);
+                OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNgService>().CardGoMo(String_FrmGoodNGService_MoNotExit, LengthString, PrefixString, Card, rescode, usercode);
                 Assert.IsTrue(operationResult.Message.Equals(String_FrmGoodNGService_MoNotExit + StringMessage.String_FrmGoodNGService_MoNotExit));
             }
 
@@ -106,13 +105,12 @@ namespace UnitTestForm.Service.UnitTestIFrmGoodNGService
         [TestMethod]
         public void GoToMo_MoStatusError()
         {
-            AggregateCatalog catalog;
-            catalog = new AggregateCatalog();
+            var catalog = new AggregateCatalog();
             catalog.Catalogs.Add(new DirectoryCatalog(Directory.GetCurrentDirectory()));
             catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
-            using (CompositionContainer testContainer = new CompositionContainer(catalog))
+            using (var testContainer = new CompositionContainer(catalog))
             {
-                OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNGService>().CardGoMo(String_FrmGoodNGService_MoStatusError, lengthString, prefixString, card, rescode, usercode);
+                OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNgService>().CardGoMo(String_FrmGoodNGService_MoStatusError, LengthString, PrefixString, Card, rescode, usercode);
                 Assert.IsTrue(operationResult.Message.Equals(String_FrmGoodNGService_MoStatusError + StringMessage.String_FrmGoodNGService_MoStatusError));
             }
 
@@ -124,13 +122,12 @@ namespace UnitTestForm.Service.UnitTestIFrmGoodNGService
         [TestMethod]
         public void GoToMo_MoDontHaveRoute()
         {
-            AggregateCatalog catalog;
-            catalog = new AggregateCatalog();
+            var catalog = new AggregateCatalog();
             catalog.Catalogs.Add(new DirectoryCatalog(Directory.GetCurrentDirectory()));
             catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
-            using (CompositionContainer testContainer = new CompositionContainer(catalog))
+            using (var testContainer = new CompositionContainer(catalog))
             {
-                OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNGService>().CardGoMo(String_FrmGoodNGService_MoDontHaveRoute, lengthString, prefixString, card, rescode, usercode);
+                OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNgService>().CardGoMo(String_FrmGoodNGService_MoDontHaveRoute, LengthString, PrefixString, Card, rescode, usercode);
                 Assert.IsTrue(operationResult.Message.Equals(String_FrmGoodNGService_MoDontHaveRoute + StringMessage.String_FrmGoodNGService_MoDontHaveRoute));
             }
 
@@ -142,13 +139,12 @@ namespace UnitTestForm.Service.UnitTestIFrmGoodNGService
         [TestMethod]
         public void GoToMo_ResNotFirst()
         {
-            AggregateCatalog catalog;
-            catalog = new AggregateCatalog();
+            var catalog = new AggregateCatalog();
             catalog.Catalogs.Add(new DirectoryCatalog(Directory.GetCurrentDirectory()));
             catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
-            using (CompositionContainer testContainer = new CompositionContainer(catalog))
+            using (var testContainer = new CompositionContainer(catalog))
             {
-                OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNGService>().CardGoMo(moString, lengthString, prefixString, card, String_FrmGoodNGService_ResNotFirst, usercode);
+                OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNgService>().CardGoMo(MoString, LengthString, PrefixString, Card, String_FrmGoodNGService_ResNotFirst, usercode);
                 Assert.IsTrue(operationResult.Message.Equals(String_FrmGoodNGService_ResNotFirst + StringMessage.String_FrmGoodNGService_ResNotFirst));
             }
 
@@ -169,13 +165,12 @@ namespace UnitTestForm.Service.UnitTestIFrmGoodNGService
         [TestMethod]
         public void GoToMo_LotNotOp()
         {
-            AggregateCatalog catalog;
-            catalog = new AggregateCatalog();
+            var catalog = new AggregateCatalog();
             catalog.Catalogs.Add(new DirectoryCatalog(Directory.GetCurrentDirectory()));
             catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
-            using (CompositionContainer testContainer = new CompositionContainer(catalog))
+            using (var testContainer = new CompositionContainer(catalog))
             {
-                OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNGService>().CardGoMo(String_FrmGoodNGService_LotNotOp, lengthString, prefixString, card, rescode, usercode);
+                OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNgService>().CardGoMo(String_FrmGoodNGService_LotNotOp, LengthString, PrefixString, Card, rescode, usercode);
                 Assert.IsTrue(operationResult.Message.Equals(StringMessage.String_FrmGoodNGService_LotNotOp));
             }
 
@@ -187,23 +182,22 @@ namespace UnitTestForm.Service.UnitTestIFrmGoodNGService
         [TestMethod]
         public void GoToMo_MoEnough()
         {
-            AggregateCatalog catalog;
-            catalog = new AggregateCatalog();
+            var catalog = new AggregateCatalog();
             catalog.Catalogs.Add(new DirectoryCatalog(Directory.GetCurrentDirectory()));
             catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
             for (int i = 1; i < 11; i++)
             {
                 string testcard = "201411290"+i.ToString().PadLeft(2,'0');
                 
-                using (CompositionContainer testContainer = new CompositionContainer(catalog))
+                using (var testContainer = new CompositionContainer(catalog))
                 {
-                    OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNGService>().CardGoMo(String_FrmGoodNGService_MoEnough, lengthString, prefixString, testcard, rescode, usercode);                    
+                    OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNgService>().CardGoMo(String_FrmGoodNGService_MoEnough, LengthString, PrefixString, testcard, rescode, usercode);                    
                 }
             }
-            using (CompositionContainer testContainer = new CompositionContainer(catalog))
+            using (var testContainer = new CompositionContainer(catalog))
             {
-                string testcard = "20141129011";
-                OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNGService>().CardGoMo(String_FrmGoodNGService_MoEnough, lengthString, prefixString, testcard, rescode, usercode);
+                const string testcard = "20141129011";
+                OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNgService>().CardGoMo(String_FrmGoodNGService_MoEnough, LengthString, PrefixString, testcard, rescode, usercode);
                 Assert.IsTrue(operationResult.Message.Equals(String_FrmGoodNGService_MoEnough + StringMessage.String_FrmGoodNGService_MoEnough));
             }
                 
@@ -211,16 +205,15 @@ namespace UnitTestForm.Service.UnitTestIFrmGoodNGService
 
         [TestMethod]
         public void GoToMo_S_1()
-        {           
-            AggregateCatalog catalog;
-            catalog = new AggregateCatalog();
+        {
+            var catalog = new AggregateCatalog();
             catalog.Catalogs.Add(new DirectoryCatalog(Directory.GetCurrentDirectory()));
             catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
            
-            using (CompositionContainer testContainer = new CompositionContainer(catalog))
+            using (var testContainer = new CompositionContainer(catalog))
             {                
-                OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNGService>().CardGoMo(moString, lengthString, prefixString, card, rescode, usercode);
-                Assert.IsTrue(operationResult.Message.Equals(card + StringMessage.String_FrmGoodNGService_CollectSuccess));                
+                OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNgService>().CardGoMo(MoString, LengthString, PrefixString, Card, rescode, usercode);
+                Assert.IsTrue(operationResult.Message.Equals(Card + StringMessage.String_FrmGoodNGService_CollectSuccess));                
             }     
         }
 
@@ -230,14 +223,13 @@ namespace UnitTestForm.Service.UnitTestIFrmGoodNGService
         [TestMethod]
         public void GoToMo_SnHadInMo()
         {
-            AggregateCatalog catalog;
-            catalog = new AggregateCatalog();
+            var catalog = new AggregateCatalog();
             catalog.Catalogs.Add(new DirectoryCatalog(Directory.GetCurrentDirectory()));
             catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
-            using (CompositionContainer testContainer = new CompositionContainer(catalog))
+            using (var testContainer = new CompositionContainer(catalog))
             {
-                OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNGService>().CardGoMo(moString, lengthString, prefixString, card, rescode, usercode);
-                Assert.IsTrue(operationResult.Message.Equals(card + StringMessage.String_FrmGoodNGService_SnHadInMo));
+                OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNgService>().CardGoMo(MoString, LengthString, PrefixString, Card, rescode, usercode);
+                Assert.IsTrue(operationResult.Message.Equals(Card + StringMessage.String_FrmGoodNGService_SnHadInMo));
             }
 
         }

@@ -1,4 +1,6 @@
-﻿using Component.Tools;
+﻿using System.Globalization;
+using System.Threading;
+using Component.Tools;
 using Core.Models;
 using Frm.Models;
 using Frm.Service;
@@ -40,7 +42,7 @@ namespace Frms
                 FrmMain frmMain = Program.programContainer.GetExportedValue<FrmMain>();
                 if (operationResult.ResultType == OperationResultType.Success)
                 {
-                    frmMain.mdls = (List<Mdl>)operationResult.AppendData;
+                    frmMain.Mdls = (List<Mdl>)operationResult.AppendData;
                     frmMain.MdlInitialize();
                     frmMain.richTextBox1.AppendText(StringMessage.String_FrmLogin_LoginSuccess + "\n");
                     Program.usercode = loginModel.Account;
@@ -63,6 +65,5 @@ namespace Frms
              
         }
 
-    
     }
 }
