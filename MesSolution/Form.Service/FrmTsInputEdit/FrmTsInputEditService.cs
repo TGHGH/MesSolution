@@ -1,14 +1,11 @@
-﻿using Component.Tools;
-using Core.Models;
-using Frm.Models;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Component.Tools;
+using Core.Models;
+using Frm.Models;
 
-namespace Frm.Service
+namespace Frm.Service.FrmTsInputEdit
 {
     [Export(typeof(IFrmTsInputEditService))]
     public class FrmTsInputEditService:IFrmTsInputEditService
@@ -27,7 +24,7 @@ namespace Frm.Service
         [Import]
         public IItemFormService itemFormService { get; set; }
       
-        public OperationResult ActionNGConfirm(string card)
+        public OperationResult ActionNgConfirm(string card)
         {
             OperationResult operationResult = new OperationResult(OperationResultType.Error);
             if (card == null)
@@ -93,10 +90,10 @@ namespace Frm.Service
             return operationResult;
         }
 
-        public OperationResult GetErrorCodeSeasonByGroup(string GroupCode)
+        public OperationResult GetErrorCodeSeasonByGroup(string groupCode)
         {
             OperationResult operationResult = new OperationResult(OperationResultType.Success);
-            operationResult.AppendData= ecsgFormService.Ecsgs().SingleOrDefault(e => e.ecsgcode == GroupCode).ecses.ToList();
+            operationResult.AppendData= ecsgFormService.Ecsgs().SingleOrDefault(e => e.ecsgcode == groupCode).ecses.ToList();
             return operationResult;
         }
 

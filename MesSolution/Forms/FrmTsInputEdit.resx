@@ -117,10 +117,87 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing">
     <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.TrayHeight" type="System.Int32, mscorlib">
     <value>76</value>
-  </metadata>
+  </data>
+  <data name="LabSN.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LabMemo.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="BtnErrInfo.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LabErrorCodeGroupDesc.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LabErrorCodeDesc.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LabErrorComponent.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LabErrorCause.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LabErrorCauseGroup.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LabDuty.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LabSolution.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LabPremunition.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="BtnAddInfo.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LabErrorLocationSelected.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="BtnDeleteLocationSelected.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LabErrorLocation.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="BtnAddErrLocation.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LabErrorCopSelected.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="BtnDeleteErrCopSelected.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="LabCop.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="BtnAddErrCop.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="BtnAdd.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="BtnDelete.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="BtnSave.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="BtnCancel.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="BtnQuit.Text" xml:space="preserve">
+    <value></value>
+  </data>
 </root>

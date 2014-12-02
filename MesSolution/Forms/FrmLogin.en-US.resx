@@ -119,17 +119,17 @@
   </resheader>
   <data name="label1.Text" xml:space="preserve">
     <value>username</value>
-  </data>
+  <comment>用户名</comment></data>
   <data name="label2.Text" xml:space="preserve">
     <value>password</value>
-  </data>
+  <comment>密码</comment></data>
   <data name="label3.Text" xml:space="preserve">
     <value>rescode</value>
-  </data>
+  <comment>资源</comment></data>
   <data name="button1.Text" xml:space="preserve">
     <value>login</value>
-  </data>
+  <comment>登录</comment></data>
   <data name="button2.Text" xml:space="preserve">
     <value>logout</value>
-  </data>
+  <comment>退出</comment></data>
 </root>

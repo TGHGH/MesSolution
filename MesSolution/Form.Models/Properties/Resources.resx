@@ -117,64 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="String_FrmGoodNGService_MoCanNotNull" xml:space="preserve">
-    <value></value>
+  <data name="String_GoMoModel_SnLengthError" xml:space="preserve">
+    <value />
   </data>
-  <data name="String_FrmGoodNGService_MoNotExit" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="String_FrmGoodNGService_MoStatusError" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="String_FrmGoodNGService_MoDontHaveRoute" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="String_FrmGoodNGService_SnHadInMo" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="String_FrmGoodNGService_SnHadNotInMo" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="String_FrmGoodNGService_SnHadFinish" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="String_FrmGoodNGService_ResNotFirst" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="String_FrmGoodNGService_SnIsRunning" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="String_FrmGoodNGService_LotNotOp" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="String_FrmGoodNGService_MoEnough" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="String_FrmGoodNGService_CheckSuccess" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="String_FrmGoodNGService_CollectSuccess" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="String_FrmGoodNGService_ResNotOp" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="String_FrmGoodNGService_NowOp" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="String_FrmGoodNGService_NextOp" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="FrmLogin_Login_UserNotExist" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="FrmLogin_Login_PasswordError" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="FrmLogin_Login_UserNotRes" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="FrmLogin_Login_LoginSuccess" xml:space="preserve">
-    <value></value>
+  <data name="String_GoMoModel_SnPrefixError" xml:space="preserve">
+    <value />
   </data>
 </root>

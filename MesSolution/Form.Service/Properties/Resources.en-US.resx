@@ -118,63 +118,67 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="String_FrmGoodNGService_MoCanNotNull" xml:space="preserve">
-    <value></value>
-  </data>
+    <value>MoCanNotNull</value>
+  <comment>工单号不能为空</comment></data>
   <data name="String_FrmGoodNGService_MoNotExit" xml:space="preserve">
-    <value></value>
-  </data>
+    <value>MoNotExit</value>
+  <comment>工单不存在</comment></data>
   <data name="String_FrmGoodNGService_MoStatusError" xml:space="preserve">
-    <value></value>
-  </data>
+    <value>MoStatusError</value>
+  <comment>工单状态错误</comment></data>
   <data name="String_FrmGoodNGService_MoDontHaveRoute" xml:space="preserve">
-    <value></value>
-  </data>
+    <value>MoDontHaveRoute</value>
+  <comment>工单没有途程</comment></data>
   <data name="String_FrmGoodNGService_SnHadInMo" xml:space="preserve">
-    <value></value>
-  </data>
+    <value>SnHadInMo</value>
+  <comment>已属于该工单</comment></data>
   <data name="String_FrmGoodNGService_SnHadNotInMo" xml:space="preserve">
-    <value></value>
-  </data>
+    <value>SnHadNotInMo</value>
+  <comment>没有归属工单</comment></data>
   <data name="String_FrmGoodNGService_SnHadFinish" xml:space="preserve">
-    <value></value>
-  </data>
+    <value>SnHadFinish</value>
+  <comment>产品已完工</comment></data>
   <data name="String_FrmGoodNGService_ResNotFirst" xml:space="preserve">
-    <value></value>
-  </data>
+    <value>ResNotFirst</value>
+  <comment>该资源不属于该工单的第一道工序</comment></data>
   <data name="String_FrmGoodNGService_SnIsRunning" xml:space="preserve">
-    <value></value>
-  </data>
+    <value>SnIsRunning</value>
+  <comment>此为在制品，不能归属工单</comment></data>
   <data name="String_FrmGoodNGService_LotNotOp" xml:space="preserve">
-    <value></value>
-  </data>
+    <value>LotNotOp</value>
+  <comment>该产品没有维护产生送检批工序</comment></data>
   <data name="String_FrmGoodNGService_MoEnough" xml:space="preserve">
-    <value></value>
-  </data>
+    <value>MoEnough</value>
+  <comment>工单已满</comment></data>
   <data name="String_FrmGoodNGService_CheckSuccess" xml:space="preserve">
-    <value></value>
-  </data>
+    <value>CheckSuccess</value>
+  <comment>检测成功</comment></data>
   <data name="String_FrmGoodNGService_CollectSuccess" xml:space="preserve">
-    <value></value>
-  </data>
+    <value>CollectSuccess</value>
+  <comment>采集成功</comment></data>
   <data name="String_FrmGoodNGService_ResNotOp" xml:space="preserve">
-    <value></value>
-  </data>
+    <value>ResNotOp</value>
+  <comment>该资源岗位没有归属工序</comment></data>
   <data name="String_FrmGoodNGService_NowOp" xml:space="preserve">
-    <value></value>
-  </data>
+    <value>NowOp</value>
+  <comment>当前工序为</comment></data>
   <data name="String_FrmGoodNGService_NextOp" xml:space="preserve">
-    <value></value>
-  </data>
+    <value>NextOp</value>
+  <comment>产品下道工序为</comment></data>
   <data name="FrmLogin_Login_UserNotExist" xml:space="preserve">
-    <value></value>
+    <value>User is not Exist</value>
+    <comment>用户不存在</comment>
   </data>
   <data name="FrmLogin_Login_PasswordError" xml:space="preserve">
-    <value></value>
+    <value>Password Error</value>
+    <comment>密码错误</comment>
   </data>
   <data name="FrmLogin_Login_UserNotRes" xml:space="preserve">
-    <value></value>
+    <value>User don't have the res</value>
+    <comment>用户没有该资源的权限</comment>
   </data>
   <data name="FrmLogin_Login_LoginSuccess" xml:space="preserve">
-    <value></value>
+    <value>LoginSuccess</value>
+    <comment>登录成功</comment>
   </data>
 </root>

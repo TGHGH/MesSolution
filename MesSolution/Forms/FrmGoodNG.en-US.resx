@@ -119,32 +119,32 @@
   </resheader>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>MoInfomation</value>
-  </data>
+  <comment>工单信息设定</comment></data>
   <data name="checkBoxMo.Text" xml:space="preserve">
     <value>Mo</value>
-  </data>
+  <comment>设定归属工单</comment></data>
   <data name="checkBoxLength.Text" xml:space="preserve">
     <value>SnLength</value>
-  </data>
+  <comment>产品序列号长度</comment></data>
   <data name="checkBoxPrefix.Text" xml:space="preserve">
     <value>SnPrefix</value>
-  </data>
+  <comment>序列号前缀</comment></data>
   <data name="groupBox2.Text" xml:space="preserve">
     <value>ItemInfomation</value>
-  </data>
+  <comment>产品信息</comment></data>
   <data name="label2.Text" xml:space="preserve">
     <value>Item</value>
-  </data>
+  <comment>产品</comment></data>
   <data name="label3.Text" xml:space="preserve">
     <value>Mo</value>
-  </data>
+  <comment>工单</comment></data>
   <data name="radioButtonGood.Text" xml:space="preserve">
     <value>Good</value>
-  </data>
+  <comment>良品</comment></data>
   <data name="radioButtonNG.Text" xml:space="preserve">
     <value>NG</value>
-  </data>
+  <comment>不良品</comment></data>
   <data name="label1.Text" xml:space="preserve">
     <value>SN</value>
-  </data>
+  <comment>产品序列号</comment></data>
 </root>

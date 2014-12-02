@@ -5,6 +5,7 @@ using System.Linq;
 using Component.Tools;
 using Core.Models;
 using Frm.Models;
+using Frm.Models.FrmGoodNG;
 
 namespace Frm.Service.FrmGoodNG
 {
@@ -41,7 +42,7 @@ namespace Frm.Service.FrmGoodNG
         public OperationResult FindSnCheck(string moString)
         {
             if (moString == null)
-                return new OperationResult(OperationResultType.Error,StringMessage.String_FrmGoodNGService_MoCanNotNull);
+                return new OperationResult(OperationResultType.Error,Properties.Resources.String_FrmGoodNGService_MoCanNotNull);
             
             OperationResult operationResult = MoFormService.FindEntity(moString);
             if (operationResult.ResultType == OperationResultType.Success)
@@ -55,36 +56,36 @@ namespace Frm.Service.FrmGoodNG
 
         public OperationResult CardGoMoCheck(string moString, string lengthString, string prefixString, string card, string rescode, string usercode)
         {
-            GoMoModel model = new GoMoModel { moString = moString, lengthString = lengthString, prefixString = prefixString, card = card, rescode = rescode, usercode = usercode };
+            GoMoModel model = new GoMoModel { MoString = moString, LengthString = lengthString, PrefixString = prefixString, Card = card, Rescode = rescode, Usercode = usercode };
             Validator.ValidateObject(model, new ValidationContext(model));
             OperationResult operationResult = new OperationResult(OperationResultType.Error);
 
             Mo mo =(Mo) MoFormService.FindEntity(moString).AppendData;
             if (mo == null)
             {
-                operationResult.Message = moString +StringMessage.String_FrmGoodNGService_MoNotExit;
+                operationResult.Message = moString +Properties.Resources.String_FrmGoodNGService_MoNotExit;
                 return operationResult;
             }
             if (!(mo.MOSTATUS == MoStatus.RELEASE || mo.MOSTATUS == MoStatus.OPEN))
             {
-                operationResult.Message = moString + StringMessage.String_FrmGoodNGService_MoStatusError;
+                operationResult.Message = moString + Properties.Resources.String_FrmGoodNGService_MoStatusError;
                 return operationResult;
             }
             if (mo.Route == null)
             {
-                operationResult.Message = moString + StringMessage.String_FrmGoodNGService_MoDontHaveRoute;
+                operationResult.Message = moString + Properties.Resources.String_FrmGoodNGService_MoDontHaveRoute;
                 return operationResult;
             }
             MoRcard moRcard = MoRcardFormService.MoRcards().SingleOrDefault(r => r.MoCode == mo.MoCode && r.MoCardStart == card);
             if (moRcard != null)
             {
-                operationResult.Message = card + StringMessage.String_FrmGoodNGService_SnHadInMo;
+                operationResult.Message = card + Properties.Resources.String_FrmGoodNGService_SnHadInMo;
                 return operationResult;
             }
 
             if (mo.Route.Ops.First().Reses.SingleOrDefault(r => r.RESCODE == rescode) == null)
             {
-                operationResult.Message = rescode + StringMessage.String_FrmGoodNGService_ResNotFirst;
+                operationResult.Message = rescode + Properties.Resources.String_FrmGoodNGService_ResNotFirst;
                 return operationResult;
             }
             Simulation lastSimulation = SimulationFormService.Simulations().SingleOrDefault(r => r.MOCODE == mo.MoCode && r.RCARD == card);
@@ -92,7 +93,7 @@ namespace Frm.Service.FrmGoodNG
             {
                 if (lastSimulation.ISCOM == "0")
                 {
-                    operationResult.Message = card + StringMessage.String_FrmGoodNGService_SnIsRunning;
+                    operationResult.Message = card + Properties.Resources.String_FrmGoodNGService_SnIsRunning;
                     return operationResult;
                 }
             }
@@ -100,19 +101,19 @@ namespace Frm.Service.FrmGoodNG
             Item item = ItemFormService.Items().SingleOrDefault(i => i.ITEMCODE == mo.ITEMCODE);
             if (item.CHKITEMOP == null || item.CHKITEMOP.Trim().Length == 0)
             {
-                operationResult.Message = StringMessage.String_FrmGoodNGService_LotNotOp;
+                operationResult.Message = Properties.Resources.String_FrmGoodNGService_LotNotOp;
                 return operationResult;
             }
             if (mo.ISCONINPUT == 1)
             {
                 if (mo.MOPLANQTY - mo.MOINPUTQTY + mo.OFFMOQTY - mo.IDMERGERULE <= 0)
                 {
-                    operationResult.Message = mo.MoCode + StringMessage.String_FrmGoodNGService_MoEnough;
+                    operationResult.Message = mo.MoCode + Properties.Resources.String_FrmGoodNGService_MoEnough;
                     return operationResult;
                 }
             }
             operationResult.ResultType = OperationResultType.Success;
-            operationResult.Message = card + StringMessage.String_FrmGoodNGService_CheckSuccess;
+            operationResult.Message = card + Properties.Resources.String_FrmGoodNGService_CheckSuccess;
             return operationResult;
         }
 
@@ -212,7 +213,7 @@ namespace Frm.Service.FrmGoodNG
                 SimulationFormService.UpdateEntity(nowSimulation);
 
             operationResult.ResultType = OperationResultType.Success;
-            operationResult.Message = card +StringMessage.String_FrmGoodNGService_CollectSuccess;
+            operationResult.Message = card +Properties.Resources.String_FrmGoodNGService_CollectSuccess;
             return operationResult;
         }
         public OperationResult ActionGoodCheck(string usercode, string rescode, string card)
@@ -223,12 +224,12 @@ namespace Frm.Service.FrmGoodNG
             Simulation lastSimulation = SimulationFormService.Simulations().SingleOrDefault(s=>s.RCARD==card);
             if (lastSimulation == null)
             {
-                operationResult.Message = card +StringMessage.String_FrmGoodNGService_SnHadNotInMo;
+                operationResult.Message = card +Properties.Resources.String_FrmGoodNGService_SnHadNotInMo;
                 return operationResult;
             }
             if (lastSimulation.ISCOM == "1")
             {
-                operationResult.Message = card +StringMessage.String_FrmGoodNGService_SnHadFinish;
+                operationResult.Message = card +Properties.Resources.String_FrmGoodNGService_SnHadFinish;
                 return operationResult;           
             }
             Res res = ResFormService.Ress().SingleOrDefault(r=>r.RESCODE==rescode);
@@ -236,7 +237,7 @@ namespace Frm.Service.FrmGoodNG
             {
                 if (res.Op == null)
                 {
-                    operationResult.Message = rescode +StringMessage.String_FrmGoodNGService_ResNotOp;
+                    operationResult.Message = rescode +Properties.Resources.String_FrmGoodNGService_ResNotOp;
                     return operationResult;       
                 }              
             }
@@ -247,10 +248,10 @@ namespace Frm.Service.FrmGoodNG
             Route2Op nextOp = Route2OpFormService.Route2Ops().Where(r => r.routeCode == lastSimulation.ROUTECODE && r.seq > nowOp).OrderBy(r => r.seq).FirstOrDefault();          
             if (nextOp.opCode!=res.Op.OPCODE)
             {
-                operationResult.Message =StringMessage.String_FrmGoodNGService_NowOp + res.Op.OPCODE + StringMessage.String_FrmGoodNGService_NextOp + nextOp.opCode;
+                operationResult.Message =Properties.Resources.String_FrmGoodNGService_NowOp + res.Op.OPCODE + Properties.Resources.String_FrmGoodNGService_NextOp + nextOp.opCode;
                 return operationResult;                
             }
-            operationResult.Message = card +StringMessage.String_FrmGoodNGService_CheckSuccess;
+            operationResult.Message = card +Properties.Resources.String_FrmGoodNGService_CheckSuccess;
             operationResult.ResultType = OperationResultType.Success;
             return operationResult;
         }
@@ -280,7 +281,7 @@ namespace Frm.Service.FrmGoodNG
             {
                 SimulationReportFormService.AddEntity(new SimulationReport(lastSimulation));
             }
-            operationResult.Message = card +StringMessage.String_FrmGoodNGService_CollectSuccess;
+            operationResult.Message = card +Properties.Resources.String_FrmGoodNGService_CollectSuccess;
             return operationResult;
         }
         public OperationResult ActionNgCheck(string card, string usercode, string rescode, string selectedEcg, string selectedEc)
@@ -291,7 +292,7 @@ namespace Frm.Service.FrmGoodNG
             Simulation simulation = SimulationFormService.Simulations().SingleOrDefault(s=>s.RCARD==card);
             if (simulation == null)
             {
-                operationResult.Message = card + StringMessage.String_FrmGoodNGService_SnHadNotInMo;
+                operationResult.Message = card + Properties.Resources.String_FrmGoodNGService_SnHadNotInMo;
                 return operationResult;
             }
             Res res = ResFormService.Ress().SingleOrDefault(r => r.RESCODE == rescode);
@@ -299,7 +300,7 @@ namespace Frm.Service.FrmGoodNG
             {
                 if (res.Op == null)
                 {
-                    operationResult.Message = rescode + StringMessage.String_FrmGoodNGService_ResNotOp;
+                    operationResult.Message = rescode + Properties.Resources.String_FrmGoodNGService_ResNotOp;
                     return operationResult;
                 }
             }
@@ -308,10 +309,10 @@ namespace Frm.Service.FrmGoodNG
             Route2Op nextOp = Route2OpFormService.Route2Ops().Where(r => r.routeCode == simulation.ROUTECODE && r.seq > nowOp).OrderBy(r => r.seq).FirstOrDefault();
             if (nextOp.opCode != res.Op.OPCODE)
             {
-                operationResult.Message = StringMessage.String_FrmGoodNGService_NowOp + res.Op.OPCODE + StringMessage.String_FrmGoodNGService_NextOp + nextOp.opCode;
+                operationResult.Message = Properties.Resources.String_FrmGoodNGService_NowOp + res.Op.OPCODE + Properties.Resources.String_FrmGoodNGService_NextOp + nextOp.opCode;
                 return operationResult;
             }
-            operationResult.Message = card + StringMessage.String_FrmGoodNGService_CheckSuccess;
+            operationResult.Message = card + Properties.Resources.String_FrmGoodNGService_CheckSuccess;
             operationResult.ResultType = OperationResultType.Success;
             return operationResult;           
           
@@ -403,7 +404,7 @@ namespace Frm.Service.FrmGoodNG
             SimulationReportFormService.AddEntity(simulationReport, false);
             TsFormService.AddEntity(ts, false);
             TsErrorCodeFormService.AddEntity(tsErrorCode);
-            operationResult.Message = card +StringMessage.String_FrmGoodNGService_CollectSuccess;
+            operationResult.Message = card +Properties.Resources.String_FrmGoodNGService_CollectSuccess;
             return operationResult;
         }
     }

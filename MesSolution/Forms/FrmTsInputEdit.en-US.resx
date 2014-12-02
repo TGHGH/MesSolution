@@ -117,64 +117,79 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="String_FrmGoodNGService_MoCanNotNull" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="String_FrmGoodNGService_MoNotExit" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="String_FrmGoodNGService_MoStatusError" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="String_FrmGoodNGService_MoDontHaveRoute" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="String_FrmGoodNGService_SnHadInMo" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="String_FrmGoodNGService_SnHadNotInMo" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="String_FrmGoodNGService_SnHadFinish" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="String_FrmGoodNGService_ResNotFirst" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="String_FrmGoodNGService_SnIsRunning" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="String_FrmGoodNGService_LotNotOp" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="String_FrmGoodNGService_MoEnough" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="String_FrmGoodNGService_CheckSuccess" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="String_FrmGoodNGService_CollectSuccess" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="String_FrmGoodNGService_ResNotOp" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="String_FrmGoodNGService_NowOp" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="String_FrmGoodNGService_NextOp" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="FrmLogin_Login_UserNotExist" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="FrmLogin_Login_PasswordError" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="FrmLogin_Login_UserNotRes" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="FrmLogin_Login_LoginSuccess" xml:space="preserve">
-    <value></value>
-  </data>
+  <data name="LabSN.Text" xml:space="preserve">
+    <value>SN</value>
+  <comment>产品序列号</comment></data>
+  <data name="LabMemo.Text" xml:space="preserve">
+    <value>Memo</value>
+  <comment>备注</comment></data>
+  <data name="BtnErrInfo.Text" xml:space="preserve">
+    <value>TsCause</value>
+  <comment>维护不良信息</comment></data>
+  <data name="LabErrorCodeGroupDesc.Text" xml:space="preserve">
+    <value>ErrorCodeGroupDesc</value>
+  <comment>不良代码组描述</comment></data>
+  <data name="LabErrorCodeDesc.Text" xml:space="preserve">
+    <value>ErrorCodeDesc</value>
+  <comment>不良代码描述</comment></data>
+  <data name="LabErrorComponent.Text" xml:space="preserve">
+    <value>ErrorComponent</value>
+  <comment>不良组件</comment></data>
+  <data name="LabErrorCause.Text" xml:space="preserve">
+    <value>ErrorCause</value>
+  <comment>不良原因</comment></data>
+  <data name="LabErrorCauseGroup.Text" xml:space="preserve">
+    <value>ErrorCauseGroup</value>
+  <comment>不良原因组</comment></data>
+  <data name="LabDuty.Text" xml:space="preserve">
+    <value>Duty</value>
+  <comment>责任别</comment></data>
+  <data name="LabSolution.Text" xml:space="preserve">
+    <value>Solution</value>
+  <comment>解决方案</comment></data>
+  <data name="LabPremunition.Text" xml:space="preserve">
+    <value>Premunition</value>
+  <comment>预防措施</comment></data>
+  <data name="BtnAddInfo.Text" xml:space="preserve">
+    <value>Select</value>
+  <comment>选择</comment></data>
+  <data name="LabErrorLocationSelected.Text" xml:space="preserve">
+    <value>ErrorLocationSelected</value>
+  <comment>已选不良位置</comment></data>
+  <data name="BtnDeleteLocationSelected.Text" xml:space="preserve">
+    <value>Delete</value>
+  <comment>删除</comment></data>
+  <data name="LabErrorLocation.Text" xml:space="preserve">
+    <value>ErrorLocation</value>
+  <comment>不良位置</comment></data>
+  <data name="BtnAddErrLocation.Text" xml:space="preserve">
+    <value>Add</value>
+  <comment>添加</comment></data>
+  <data name="LabErrorCopSelected.Text" xml:space="preserve">
+    <value>ErrorCopSelected</value>
+  <comment>已选不良零件</comment></data>
+  <data name="BtnDeleteErrCopSelected.Text" xml:space="preserve">
+    <value>Delete</value>
+  <comment>删除</comment></data>
+  <data name="LabCop.Text" xml:space="preserve">
+    <value>Cop</value>
+  <comment>不良零件</comment></data>
+  <data name="BtnAddErrCop.Text" xml:space="preserve">
+    <value>Add</value>
+  <comment>添加</comment></data>
+  <data name="BtnAdd.Text" xml:space="preserve">
+    <value>Add</value>
+  <comment>添加</comment></data>
+  <data name="BtnDelete.Text" xml:space="preserve">
+    <value>Delete</value>
+  <comment>删除</comment></data>
+  <data name="BtnSave.Text" xml:space="preserve">
+    <value>Save</value>
+  <comment>保存</comment></data>
+  <data name="BtnCancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  <comment>取消</comment></data>
+  <data name="BtnQuit.Text" xml:space="preserve">
+    <value>Quit</value>
+  <comment>退出</comment></data>
 </root>

@@ -9,6 +9,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Frm.Models.FrmLogin;
 
 namespace Frm.Service
 {
@@ -24,7 +25,6 @@ namespace Frm.Service
         /// <returns>业务操作结果</returns>
         public OperationResult Login(LoginModel model)
         {
-            PublicHelper.CheckArgument(model, "model");
             Validator.ValidateObject(model, new ValidationContext(model));
             LoginInfo2 loginInfo = new LoginInfo2
             {

@@ -22,6 +22,8 @@ namespace Frms
     {
         public List<Mdl> Mdls { get; set; }
         public AggregateCatalog Catalog;
+        public CultureInfo CultureInfo { get; set; }
+       
        // public CompositionContainer _container;
         public FrmMain()
         {
@@ -29,6 +31,7 @@ namespace Frms
             Catalog = new AggregateCatalog();
             Catalog.Catalogs.Add(new DirectoryCatalog(Directory.GetCurrentDirectory()));
             Catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
+            CultureInfo=new CultureInfo("en-US");
         //    _container = new CompositionContainer(catalog);
             
         }
@@ -40,7 +43,7 @@ namespace Frms
         /// </summary>
         private void ApplyResource(Type t)
         {
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+            Thread.CurrentThread.CurrentUICulture =CultureInfo;
             var res = new ComponentResourceManager(t);
             ApplyResource2(res,this.Controls);
            

@@ -117,64 +117,79 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="String_FrmGoodNGService_MoCanNotNull" xml:space="preserve">
-    <value></value>
+  <data name="LabSN.Text" xml:space="preserve">
+    <value>产品序列号</value>
   </data>
-  <data name="String_FrmGoodNGService_MoNotExit" xml:space="preserve">
-    <value></value>
+  <data name="LabMemo.Text" xml:space="preserve">
+    <value>备注</value>
   </data>
-  <data name="String_FrmGoodNGService_MoStatusError" xml:space="preserve">
-    <value></value>
+  <data name="BtnErrInfo.Text" xml:space="preserve">
+    <value>维护不良信息</value>
   </data>
-  <data name="String_FrmGoodNGService_MoDontHaveRoute" xml:space="preserve">
-    <value></value>
+  <data name="LabErrorCodeGroupDesc.Text" xml:space="preserve">
+    <value>不良代码组描述</value>
   </data>
-  <data name="String_FrmGoodNGService_SnHadInMo" xml:space="preserve">
-    <value></value>
+  <data name="LabErrorCodeDesc.Text" xml:space="preserve">
+    <value>不良代码描述</value>
   </data>
-  <data name="String_FrmGoodNGService_SnHadNotInMo" xml:space="preserve">
-    <value></value>
+  <data name="LabErrorComponent.Text" xml:space="preserve">
+    <value>不良组件</value>
   </data>
-  <data name="String_FrmGoodNGService_SnHadFinish" xml:space="preserve">
-    <value></value>
+  <data name="LabErrorCause.Text" xml:space="preserve">
+    <value>不良原因</value>
   </data>
-  <data name="String_FrmGoodNGService_ResNotFirst" xml:space="preserve">
-    <value></value>
+  <data name="LabErrorCauseGroup.Text" xml:space="preserve">
+    <value>不良原因组</value>
   </data>
-  <data name="String_FrmGoodNGService_SnIsRunning" xml:space="preserve">
-    <value></value>
+  <data name="LabDuty.Text" xml:space="preserve">
+    <value>责任别</value>
   </data>
-  <data name="String_FrmGoodNGService_LotNotOp" xml:space="preserve">
-    <value></value>
+  <data name="LabSolution.Text" xml:space="preserve">
+    <value>解决方案</value>
   </data>
-  <data name="String_FrmGoodNGService_MoEnough" xml:space="preserve">
-    <value></value>
+  <data name="LabPremunition.Text" xml:space="preserve">
+    <value>预防措施</value>
   </data>
-  <data name="String_FrmGoodNGService_CheckSuccess" xml:space="preserve">
-    <value></value>
+  <data name="BtnAddInfo.Text" xml:space="preserve">
+    <value>选择</value>
   </data>
-  <data name="String_FrmGoodNGService_CollectSuccess" xml:space="preserve">
-    <value></value>
+  <data name="LabErrorLocationSelected.Text" xml:space="preserve">
+    <value>已选不良位置</value>
   </data>
-  <data name="String_FrmGoodNGService_ResNotOp" xml:space="preserve">
-    <value></value>
+  <data name="BtnDeleteLocationSelected.Text" xml:space="preserve">
+    <value>删除</value>
   </data>
-  <data name="String_FrmGoodNGService_NowOp" xml:space="preserve">
-    <value></value>
+  <data name="LabErrorLocation.Text" xml:space="preserve">
+    <value>不良位置</value>
   </data>
-  <data name="String_FrmGoodNGService_NextOp" xml:space="preserve">
-    <value></value>
+  <data name="BtnAddErrLocation.Text" xml:space="preserve">
+    <value>添加</value>
   </data>
-  <data name="FrmLogin_Login_UserNotExist" xml:space="preserve">
-    <value></value>
+  <data name="LabErrorCopSelected.Text" xml:space="preserve">
+    <value>已选不良零件</value>
   </data>
-  <data name="FrmLogin_Login_PasswordError" xml:space="preserve">
-    <value></value>
+  <data name="BtnDeleteErrCopSelected.Text" xml:space="preserve">
+    <value>删除</value>
   </data>
-  <data name="FrmLogin_Login_UserNotRes" xml:space="preserve">
-    <value></value>
+  <data name="LabCop.Text" xml:space="preserve">
+    <value>不良零件</value>
   </data>
-  <data name="FrmLogin_Login_LoginSuccess" xml:space="preserve">
-    <value></value>
+  <data name="BtnAddErrCop.Text" xml:space="preserve">
+    <value>添加</value>
+  </data>
+  <data name="BtnAdd.Text" xml:space="preserve">
+    <value>添加</value>
+  </data>
+  <data name="BtnDelete.Text" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="BtnSave.Text" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="BtnCancel.Text" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="BtnQuit.Text" xml:space="preserve">
+    <value>退出</value>
   </data>
 </root>

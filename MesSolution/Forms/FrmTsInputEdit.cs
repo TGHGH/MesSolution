@@ -2,6 +2,7 @@
 using Core.Models;
 using Frm.Models;
 using Frm.Service;
+using Frm.Service.FrmTsInputEdit;
 using Frms.Helper;
 using System;
 using System.Collections.Generic;
@@ -43,7 +44,7 @@ namespace Frms
             if (e.KeyChar == ('\r'))
             {
                 tsCompositionContainer = new CompositionContainer(Program.programCatalog);
-                OperationResult operationResult = tsCompositionContainer.GetExportedValue<IFrmTsInputEditService>().ActionNGConfirm(TBoxSN.Text);
+                OperationResult operationResult = tsCompositionContainer.GetExportedValue<IFrmTsInputEditService>().ActionNgConfirm(TBoxSN.Text);
                 Program.programContainer.GetExportedValue<FrmMain>().richTextBox1.AppendText(operationResult.Message + "\r");
                 if (operationResult.ResultType == OperationResultType.Success)
                 {

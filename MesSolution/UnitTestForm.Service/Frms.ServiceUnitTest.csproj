@@ -65,7 +65,13 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="FrmLogin\FrmLoginTest_Login.cs" />
     <Compile Include="FrmTsInputEdit\FrmTsInputEditServiceTests.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="UnitTestBase.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -89,6 +95,10 @@
       <Project>{740d2be6-d542-42b1-955d-376afae8676f}</Project>
       <Name>Core.Db</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Form.Models\Frm.Models.csproj">
+      <Project>{2FF18615-AB59-4BED-B8E6-F24782F7D695}</Project>
+      <Name>Frm.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Form.Service\Frm.Service.csproj">
       <Project>{8e44ef54-d6b1-4f95-818b-372debd4e1cd}</Project>
       <Name>Frm.Service</Name>
@@ -96,6 +106,14 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.en-US.resx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.zh-CN.resx" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

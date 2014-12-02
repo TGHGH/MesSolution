@@ -1,40 +1,35 @@
-﻿using Component.Tools;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Frm.Models
+namespace Frm.Models.FrmGoodNG
 {
     public class GoMoModel:IValidatableObject
     {
         [Required]
         [Display(Name = "工单号")]
-        public string moString { get; set; }
+        public string MoString { get; set; }
         [Required]
         [Display(Name = "防呆长度")]
-        public string lengthString { get; set; }
+        public string LengthString { get; set; }
         [Required]
         [Display(Name = "防呆前码")]
-        public string prefixString { get; set; }
+        public string PrefixString { get; set; }
         [Required]
         [Display(Name = "产品条码")]
-        public string card { get; set; }
+        public string Card { get; set; }
         [Required]
         [Display(Name = "资源代码")]
-        public string rescode { get; set; }
+        public string Rescode { get; set; }
         [Required]
         [Display(Name = "用户账号")]
-        public string usercode { get; set; }
+        public string Usercode { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            if (!card.StartsWith(prefixString))
-                yield return new ValidationResult(StringMessage.String_GoMoModel_SnPrefixError, new[] { "prefixString" });
-            if (!card.Length.ToString().Equals(lengthString))
-                yield return new ValidationResult(StringMessage.String_GoMoModel_SnLengthError, new[] { "lengthString" });
+            if (!Card.StartsWith(PrefixString))
+                yield return new ValidationResult(Properties.Resources.String_GoMoModel_SnPrefixError, new[] { "prefixString" });
+            if (!Card.Length.ToString().Equals(LengthString))
+                yield return new ValidationResult(Properties.Resources.String_GoMoModel_SnLengthError, new[] { "lengthString" });
         }
     }
 }

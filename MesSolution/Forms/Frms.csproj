@@ -139,7 +139,13 @@
     <EmbeddedResource Include="FrmTsComplete.resx">
       <DependentUpon>FrmTsComplete.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmTsInputEdit.en-US.resx">
+      <DependentUpon>FrmTsInputEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmTsInputEdit.resx">
+      <DependentUpon>FrmTsInputEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmTsInputEdit.zh-CN.resx">
       <DependentUpon>FrmTsInputEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmTsInputEdit_TsErrorCause.resx">
