@@ -38,7 +38,7 @@ namespace Frm.Service.FrmTsInputEdit
                 operationResult.Message = "该产品没有登记不良品";
                 return operationResult;
             }
-            if (!(ts.tsstatus.Equals("tsstatus_new") || ts.tsstatus.Equals( "tsstatus_confirm")))
+            if (!(ts.tsstatus == TsStatus.NEW || ts.tsstatus == TsStatus.CONFIRM))
             {
                 operationResult.Message = "该产品状态不对";
                 return operationResult;
@@ -56,7 +56,7 @@ namespace Frm.Service.FrmTsInputEdit
                 ter.errorCode.ToString();
                 ter.errorCode.ecg.ToString();
             }
-            ts.tsstatus = "tsstatus_confirm";
+            ts.tsstatus = TsStatus.CONFIRM;
             TsFormService.UpdateEntity(ts);
             operationResult.ResultType = OperationResultType.Success;
             operationResult.Message = "确认成功";
@@ -117,7 +117,7 @@ namespace Frm.Service.FrmTsInputEdit
                 operationResult.Message = "该产品没有登记不良品";
                 return operationResult;
             }
-            if (!ts.tsstatus.Equals("tsstatus_confirm"))
+            if (!(ts.tsstatus == TsStatus.CONFIRM))
             {
                 operationResult.Message = "该产品状态不对";
                 return operationResult;
@@ -159,7 +159,7 @@ namespace Frm.Service.FrmTsInputEdit
             tsCompleteModel.ts.refmocode = tsCompleteModel.moString;
             tsCompleteModel.ts.refopcode = tsCompleteModel.opString;
             tsCompleteModel.ts.refroutecode = tsCompleteModel.routeString;
-            tsCompleteModel.ts.tsstatus = "tsstatus_complete";
+            tsCompleteModel.ts.tsstatus = TsStatus.REFLOW;
             return SaveTs(tsCompleteModel.ts);
         }
     }
