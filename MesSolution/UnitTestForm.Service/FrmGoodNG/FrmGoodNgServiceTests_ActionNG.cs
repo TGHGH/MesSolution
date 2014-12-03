@@ -19,7 +19,7 @@ namespace UnitTestForm.Service.UnitTestIFrmGoodNGService
             catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
             const string mocode = "mocode1";
             const string usercode = "usercode1";
-            const string card = "20141107003";
+            const string card = "20141107005";
             const string rescode = "rescode1";
             const string rescode2 = "rescode2";
             const string leng = "11";
@@ -36,7 +36,7 @@ namespace UnitTestForm.Service.UnitTestIFrmGoodNGService
             using (var testContainer = new CompositionContainer(catalog))
             {
                 OperationResult operationResult = testContainer.GetExportedValue<IFrmGoodNgService>().ActionNg(card, usercode, rescode2, ecg, ec);
-                Assert.IsTrue(operationResult.ResultType == OperationResultType.Success);
+                Assert.IsTrue(operationResult.Message.Equals(card +Properties.Resources.String_FrmGoodNGService_CollectSuccess));
             }
 
         }

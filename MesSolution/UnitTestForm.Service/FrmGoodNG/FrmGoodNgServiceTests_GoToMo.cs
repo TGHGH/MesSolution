@@ -1,15 +1,12 @@
 ﻿using System;
-using Frm.Service.FrmGoodNG;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.ComponentModel.Composition;
-using Frm.Service;
-using Component.Tools;
 using System.ComponentModel.Composition.Hosting;
 using System.IO;
 using System.Reflection;
-using GMF.Demo.Core.Data.Initialize;
+using Component.Tools;
+using Frm.Service.FrmGoodNG;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace UnitTestForm.Service.UnitTestIFrmGoodNGService
+namespace UnitTestForm.Service.FrmGoodNG
 {
     [TestClass]
     public class UnitTestIFrmGoodNGService_GoToMo : UnitTestBase

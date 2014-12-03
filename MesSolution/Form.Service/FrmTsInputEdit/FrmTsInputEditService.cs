@@ -11,18 +11,18 @@ namespace Frm.Service.FrmTsInputEdit
     public class FrmTsInputEditService:IFrmTsInputEditService
     {
         [Import]
-        public ITsFormService tsFormService { get; set; }
+        public ITsFormService TsFormService { get; set; }
         [Import]
-        public ISimulationFormService simulationFormService { get; set; }
+        public ISimulationFormService SimulationFormService { get; set; }
         [Import]
-        public IModelFormService modelFormService { get; set; }
+        public IModelFormService ModelFormService { get; set; }
         [Import]
-        public IDutyFormService dutyFormService { get; set; }
+        public IDutyFormService DutyFormService { get; set; }
         [Import]
-        public IEcsgFormService ecsgFormService { get; set; }
+        public IEcsgFormService EcsgFormService { get; set; }
 
         [Import]
-        public IItemFormService itemFormService { get; set; }
+        public IItemFormService ItemFormService { get; set; }
       
         public OperationResult ActionNgConfirm(string card)
         {
@@ -32,7 +32,7 @@ namespace Frm.Service.FrmTsInputEdit
                 operationResult.Message = "条码不能为空";
                 return operationResult;
             }
-            Ts ts=tsFormService.Tss().Where(t => t.rcard == card).OrderByDescending(t => t.TSID).FirstOrDefault();
+            Ts ts=TsFormService.Tss().Where(t => t.rcard == card).OrderByDescending(t => t.TSID).FirstOrDefault();
             if (ts == null)
             {
                 operationResult.Message = "该产品没有登记不良品";
@@ -57,7 +57,7 @@ namespace Frm.Service.FrmTsInputEdit
                 ter.errorCode.ecg.ToString();
             }
             ts.tsstatus = "tsstatus_confirm";
-            tsFormService.UpdateEntity(ts);
+            TsFormService.UpdateEntity(ts);
             operationResult.ResultType = OperationResultType.Success;
             operationResult.Message = "确认成功";
             operationResult.AppendData = ts;
@@ -72,19 +72,19 @@ namespace Frm.Service.FrmTsInputEdit
                 operationResult.Message = "条码不能为空";
                 return operationResult;
             }
-            Simulation simulation = simulationFormService.Simulations().SingleOrDefault(s => s.RCARD == card);
+            Simulation simulation = SimulationFormService.Simulations().SingleOrDefault(s => s.RCARD == card);
             if (simulation == null)
             {
                 operationResult.Message = "条码不存在";
                 return operationResult;
             }
-            Model model = modelFormService.Models().SingleOrDefault(m => m.MODELCODE == simulation.MODELCODE);
+            Model model = ModelFormService.Models().SingleOrDefault(m => m.MODELCODE == simulation.MODELCODE);
             TsErrorCauseSelectCollection tsErrorCauseSelect=new TsErrorCauseSelectCollection();
             tsErrorCauseSelect.errorComs = model.errorComs.ToList();
             tsErrorCauseSelect.solutions = model.solutions.ToList();
             tsErrorCauseSelect.errorCodeGroups = model.ecgs.ToList();
             tsErrorCauseSelect.errorCodeSeasonGroups = model.ecsgs.ToList();
-            tsErrorCauseSelect.Duties = dutyFormService.Dutys().ToList();
+            tsErrorCauseSelect.Duties = DutyFormService.Dutys().ToList();
             operationResult.AppendData = tsErrorCauseSelect;
             operationResult.ResultType = OperationResultType.Success;
             return operationResult;
@@ -93,13 +93,13 @@ namespace Frm.Service.FrmTsInputEdit
         public OperationResult GetErrorCodeSeasonByGroup(string groupCode)
         {
             OperationResult operationResult = new OperationResult(OperationResultType.Success);
-            operationResult.AppendData= ecsgFormService.Ecsgs().SingleOrDefault(e => e.ecsgcode == groupCode).ecses.ToList();
+            operationResult.AppendData= EcsgFormService.Ecsgs().SingleOrDefault(e => e.ecsgcode == groupCode).ecses.ToList();
             return operationResult;
         }
 
         public OperationResult SaveTs(Ts ts)
         {
-            OperationResult operationResult=tsFormService.UpdateEntity(ts);
+            OperationResult operationResult=TsFormService.UpdateEntity(ts);
             return operationResult;
         }
 
@@ -111,7 +111,7 @@ namespace Frm.Service.FrmTsInputEdit
                 operationResult.Message = "条码不能为空";
                 return operationResult;
             }
-            Ts ts = tsFormService.Tss().Where(t => t.rcard == card).OrderByDescending(t => t.TSID).FirstOrDefault();
+            Ts ts = TsFormService.Tss().Where(t => t.rcard == card).OrderByDescending(t => t.TSID).FirstOrDefault();
             if (ts == null)
             {
                 operationResult.Message = "该产品没有登记不良品";
@@ -133,7 +133,7 @@ namespace Frm.Service.FrmTsInputEdit
                 }
                             
             }
-            Item item = (Item)itemFormService.FindEntity(ts.itemcode).AppendData;
+            Item item = (Item)ItemFormService.FindEntity(ts.itemcode).AppendData;
             if (item == null)
             {
                 operationResult.Message = "该产品不存在";

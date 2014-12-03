@@ -18,8 +18,15 @@ namespace Core.Models
     
     public enum TsStatus
     {
-        NEW,
-        CONFIRM
+        NEW=1,
+        CONFIRM=2,
+        TS=3,
+        COMPLETE=4,
+        REFLOW=5 ,
+        SCRAP=6,
+        REPEATING=7, 
+        OFFMO=8, 
+        SPLIT=9
     }
     public partial class Ts:Entity
     {

@@ -350,7 +350,7 @@ namespace Frm.Service.FrmGoodNG
             ts.cardtype = "cardtype_product";//¹Ì¶¨
             ts.modelcode = simulation.MODELCODE;
             ts.itemcode = simulation.ITEMCODE;
-            ts.itemcode = simulation.MOCODE;
+            ts.mocode = simulation.MOCODE;
             ts.frmroutecode = simulation.ROUTECODE;
             ts.frmopcode = ResFormService.Ress().SingleOrDefault(r => r.RESCODE == rescode).Op.OPCODE;
             ts.frmsegcode = "ZJ";
@@ -383,11 +383,12 @@ namespace Frm.Service.FrmGoodNG
             ts.tsrepairmtime = 0;
             //TBLTSERRORCODE
             TsErrorCode tsErrorCode = new TsErrorCode();          
-            tsErrorCode.ts = ts;       
+            tsErrorCode.ts = ts;
+            tsErrorCode.errorCode = (ErrorCode) EcFormService.FindEntity("ecode1").AppendData;
             tsErrorCode.muser = usercode;
             tsErrorCode.mdate = Convert.ToInt32("" + dt.Year + dt.Day);
             tsErrorCode.mtime = Convert.ToInt32("" + dt.Hour + dt.Minute + dt.Second);
-         
+            
 
 
             //update tbllot

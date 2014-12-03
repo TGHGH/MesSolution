@@ -65,6 +65,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="FrmGoodNG\FrmGoodNgServiceTests_FinSnCheck.cs" />
     <Compile Include="FrmLogin\FrmLoginTest_Login.cs" />
     <Compile Include="FrmTsInputEdit\FrmTsInputEditServiceTests.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -75,12 +76,12 @@
     <Compile Include="UnitTestBase.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="UnitTestIFrmGoodNGService\UnitTestIFrmGoodNGService_ActionGood.cs" />
-    <Compile Include="UnitTestIFrmGoodNGService\UnitTestIFrmGoodNGService_ActionNG.cs" />
+    <Compile Include="FrmGoodNG\FrmGoodNgServiceTests_ActionGood.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitTestIFrmGoodNGService\UnitTestIFrmGoodNGService_GoToMo.cs">
+    <Compile Include="FrmGoodNG\FrmGoodNgServiceTests_GoToMo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="FrmGoodNG\FrmGoodNgServiceTests_ActionNG.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -94,6 +95,14 @@
     <ProjectReference Include="..\Core.Db\Core.Db.csproj">
       <Project>{740d2be6-d542-42b1-955d-376afae8676f}</Project>
       <Name>Core.Db</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core.Models\Core.Models.csproj">
+      <Project>{95901119-0A36-4FE7-9884-5BBF08E92DB0}</Project>
+      <Name>Core.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core.Service\Core.Service.csproj">
+      <Project>{97B4CC5D-5069-4ED5-932B-19BF87478E57}</Project>
+      <Name>Core.Service</Name>
     </ProjectReference>
     <ProjectReference Include="..\Form.Models\Frm.Models.csproj">
       <Project>{2FF18615-AB59-4BED-B8E6-F24782F7D695}</Project>
@@ -114,6 +123,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.zh-CN.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UnitTestIFrmGoodNGService\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

@@ -1,13 +1,11 @@
-﻿using System;
+﻿using System.ComponentModel.Composition.Hosting;
+using System.IO;
+using System.Reflection;
+using Component.Tools;
 using Frm.Service.FrmGoodNG;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.ComponentModel.Composition.Hosting;
-using System.IO;
-using Frm.Service;
-using Component.Tools;
-using System.Reflection;
 
-namespace UnitTestForm.Service.UnitTestIFrmGoodNGService
+namespace UnitTestForm.Service.FrmGoodNG
 {
     [TestClass]
     public class UnitTestIFrmGoodNgService_ActionGood:UnitTestBase
