@@ -167,12 +167,12 @@ namespace Frms
                         ApplyResource(typeof (FrmLogin));
                         break;
                     case "FrmGoodNG":
-                        FrmGoodNG frmGoodNG = Program.programContainer.GetExportedValue<FrmGoodNG>();
+                        FrmGoodNg frmGoodNG = Program.programContainer.GetExportedValue<FrmGoodNg>();
                         frmGoodNG.TopLevel = false;
                         frmGoodNG.Dock = DockStyle.Fill;
                         frmGoodNG.Show();
                         this.panel4.Controls.Add(frmGoodNG);
-                        ApplyResource(typeof(FrmGoodNG));
+                        ApplyResource(typeof(FrmGoodNg));
                         break;
                     case "FrmTsInputEdit":
                         FrmTsInputEdit frmTsInputEdit = Program.programContainer.GetExportedValue<FrmTsInputEdit>();
