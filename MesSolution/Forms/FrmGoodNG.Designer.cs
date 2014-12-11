@@ -1,6 +1,6 @@
 ﻿namespace Frms
 {
-    partial class FrmGoodNG
+    partial class FrmGoodNg
     {
         /// <summary>
         /// Required designer variable.
@@ -261,7 +261,7 @@
             this.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "FrmGoodNG";
+            this.Name = "FrmGoodNg";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

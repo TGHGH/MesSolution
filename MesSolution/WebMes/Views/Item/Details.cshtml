@@ -1,0 +1,274 @@
+﻿@model Core.Models.Item
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Item</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ITEMNAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ITEMNAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ITEMDESC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ITEMDESC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ITEMUOM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ITEMUOM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ITEMVER)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ITEMVER)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ITEMTYPE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ITEMTYPE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ITEMCONTROL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ITEMCONTROL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ITEMUSER)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ITEMUSER)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ITEMDATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ITEMDATE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MUSER)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MUSER)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MDATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MDATE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MTIME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MTIME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EATTRIBUTE1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EATTRIBUTE1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ITEMCONFIG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ITEMCONFIG)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ITEMCARTONQTY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ITEMCARTONQTY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ITEMBURNINQTY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ITEMBURNINQTY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ELECTRICCURRENTMINVALUE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ELECTRICCURRENTMINVALUE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ELECTRICCURRENTMAXVALUE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ELECTRICCURRENTMAXVALUE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SHIPBOXCAPACITY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SHIPBOXCAPACITY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PKRULECODE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PKRULECODE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ORGID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ORGID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CHKITEMOP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CHKITEMOP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LOTSIZE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LOTSIZE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PRODUCTCODE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRODUCTCODE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NEEDCHKCARTON)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NEEDCHKCARTON)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NEEDCHKACCESSORY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NEEDCHKACCESSORY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CKDPREFIX)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CKDPREFIX)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CARTONHEIGHT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CARTONHEIGHT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ALLOWHEIGHT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ALLOWHEIGHT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PRINTLABEL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRINTLABEL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AddDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AddDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Timestamp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Timestamp)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ITEMCODE }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

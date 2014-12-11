@@ -1,0 +1,219 @@
+﻿@model IEnumerable<Core.Models.Item>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ITEMNAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ITEMDESC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ITEMUOM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ITEMVER)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ITEMTYPE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ITEMCONTROL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ITEMUSER)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ITEMDATE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MUSER)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MDATE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MTIME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EATTRIBUTE1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ITEMCONFIG)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ITEMCARTONQTY)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ITEMBURNINQTY)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ELECTRICCURRENTMINVALUE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ELECTRICCURRENTMAXVALUE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SHIPBOXCAPACITY)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PKRULECODE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ORGID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CHKITEMOP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LOTSIZE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PRODUCTCODE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NEEDCHKCARTON)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NEEDCHKACCESSORY)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CKDPREFIX)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CARTONHEIGHT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ALLOWHEIGHT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PRINTLABEL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AddDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Timestamp)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ITEMNAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ITEMDESC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ITEMUOM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ITEMVER)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ITEMTYPE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ITEMCONTROL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ITEMUSER)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ITEMDATE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MUSER)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MDATE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MTIME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EATTRIBUTE1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ITEMCONFIG)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ITEMCARTONQTY)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ITEMBURNINQTY)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ELECTRICCURRENTMINVALUE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ELECTRICCURRENTMAXVALUE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SHIPBOXCAPACITY)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PKRULECODE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ORGID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CHKITEMOP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LOTSIZE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PRODUCTCODE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NEEDCHKCARTON)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NEEDCHKACCESSORY)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CKDPREFIX)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CARTONHEIGHT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ALLOWHEIGHT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PRINTLABEL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsDeleted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AddDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Timestamp)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ITEMCODE }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ITEMCODE }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ITEMCODE })
+        </td>
+    </tr>
+}
+
+</table>

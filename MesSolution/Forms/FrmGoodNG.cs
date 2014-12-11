@@ -19,10 +19,10 @@ using Frm.Service.FrmGoodNG;
 namespace Frms
 {
     [Export]
-    public partial class FrmGoodNG : Form
+    public partial class FrmGoodNg : Form
     {
       
-        public FrmGoodNG()
+        public FrmGoodNg()
         {
             InitializeComponent();
           
