@@ -166,11 +166,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201412110923396_AddItem.cs" />
-    <Compile Include="Migrations\201412110923396_AddItem.Designer.cs">
-      <DependentUpon>201412110923396_AddItem.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -251,11 +246,6 @@
       <Project>{95901119-0a36-4fe7-9884-5bbf08e92db0}</Project>
       <Name>Core.Models</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201412110923396_AddItem.resx">
-      <DependentUpon>201412110923396_AddItem.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

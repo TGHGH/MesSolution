@@ -14,7 +14,7 @@ namespace Core.Models
     public class User:Entity
     {
         [Key,MaxLength(40)]
-        [Display(Name = "账号")]
+        
         public string usercode { get; set; }
         [Required,MaxLength(200)]
         public string userpwd { get; set; }

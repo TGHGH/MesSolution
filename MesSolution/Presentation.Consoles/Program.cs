@@ -43,7 +43,7 @@ namespace Presentation.Consoles
             //初始化数据库，如果存在且模型改变，删除重新建
 
             DatabaseInitializer.DropCreateDatabaseIfModelChanges();
-           // InfialData();
+          
 
             //初始化MEF组合容器
             catalog = new AggregateCatalog();
