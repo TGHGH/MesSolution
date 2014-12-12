@@ -1,120 +1,113 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using Core.Models;
 using Core.Db.Context;
-using GMF.Demo.Core.Data.Initialize;
 
 namespace WebMes.Controllers
 {
-    public class ItemController : Controller
+    public class UserController : Controller
     {
-        
         private MesContext db = new MesContext();
 
-        // GET: /Item/
+        // GET: /User/
         public ActionResult Index()
         {
-            DatabaseInitializer.DropCreateDatabaseIfModelChanges();
-            return View(db.Items.ToList());
+            return View(db.Users.ToList());
         }
 
-        // GET: /Item/Details/5
+        // GET: /User/Details/5
         public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Item item = db.Items.Find(id);
-            if (item == null)
+            User user = db.Users.Find(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(item);
+            return View(user);
         }
 
-        // GET: /Item/Create
+        // GET: /User/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: /Item/Create
+        // POST: /User/Create
         // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="ITEMCODE,ITEMNAME,ITEMDESC,ITEMUOM,ITEMVER,ITEMTYPE,ITEMCONTROL,ITEMUSER,ITEMDATE,MUSER,MDATE,MTIME,EATTRIBUTE1,ITEMCONFIG,ITEMCARTONQTY,ITEMBURNINQTY,ELECTRICCURRENTMINVALUE,ELECTRICCURRENTMAXVALUE,SHIPBOXCAPACITY,PKRULECODE,ORGID,CHKITEMOP,LOTSIZE,PRODUCTCODE,NEEDCHKCARTON,NEEDCHKACCESSORY,CKDPREFIX,CARTONHEIGHT,ALLOWHEIGHT,PRINTLABEL,IsDeleted,AddDate,Timestamp")] Item item)
+        public ActionResult Create([Bind(Include="usercode,userpwd,username,usertel,useremail,userdepart,muser,mdate,eattribute1,userstat,userStatus,IsDeleted,AddDate,Timestamp")] User user)
         {
             if (ModelState.IsValid)
             {
-                db.Items.Add(item);
+                db.Users.Add(user);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(item);
+            return View(user);
         }
 
-        // GET: /Item/Edit/5
+        // GET: /User/Edit/5
         public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Item item = db.Items.Find(id);
-            if (item == null)
+            User user = db.Users.Find(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(item);
+            return View(user);
         }
 
-        // POST: /Item/Edit/5
+        // POST: /User/Edit/5
         // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ITEMCODE,ITEMNAME,ITEMDESC,ITEMUOM,ITEMVER,ITEMTYPE,ITEMCONTROL,ITEMUSER,ITEMDATE,MUSER,MDATE,MTIME,EATTRIBUTE1,ITEMCONFIG,ITEMCARTONQTY,ITEMBURNINQTY,ELECTRICCURRENTMINVALUE,ELECTRICCURRENTMAXVALUE,SHIPBOXCAPACITY,PKRULECODE,ORGID,CHKITEMOP,LOTSIZE,PRODUCTCODE,NEEDCHKCARTON,NEEDCHKACCESSORY,CKDPREFIX,CARTONHEIGHT,ALLOWHEIGHT,PRINTLABEL,IsDeleted,AddDate,Timestamp")] Item item)
+        public ActionResult Edit([Bind(Include="usercode,userpwd,username,usertel,useremail,userdepart,muser,mdate,eattribute1,userstat,userStatus,IsDeleted,AddDate,Timestamp")] User user)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(item).State = EntityState.Modified;
+                db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(item);
+            return View(user);
         }
 
-        // GET: /Item/Delete/5
+        // GET: /User/Delete/5
         public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Item item = db.Items.Find(id);
-            if (item == null)
+            User user = db.Users.Find(id);
+            if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(item);
+            return View(user);
         }
 
-        // POST: /Item/Delete/5
+        // POST: /User/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Item item = db.Items.Find(id);
-            db.Items.Remove(item);
+            User user = db.Users.Find(id);
+            db.Users.Remove(user);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

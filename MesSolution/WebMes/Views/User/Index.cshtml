@@ -1,0 +1,105 @@
+﻿@model IEnumerable<Core.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.userpwd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.usertel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.useremail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userdepart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.muser)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.eattribute1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userstat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AddDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Timestamp)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.userpwd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.usertel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.useremail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.userdepart)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.muser)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mdate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.eattribute1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.userstat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.userStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsDeleted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AddDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Timestamp)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.usercode }) |
+            @Html.ActionLink("Details", "Details", new { id=item.usercode }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.usercode })
+        </td>
+    </tr>
+}
+
+</table>

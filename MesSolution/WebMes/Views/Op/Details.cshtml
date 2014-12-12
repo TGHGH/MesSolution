@@ -1,0 +1,98 @@
+﻿@model Core.Models.Op
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Op</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OPDESC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OPDESC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OPCOLLECTION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OPCOLLECTION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OPCONTROL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OPCONTROL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MUSER)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MUSER)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MDATE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MDATE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MTIME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MTIME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EATTRIBUTE1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EATTRIBUTE1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Timestamp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Timestamp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AddDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AddDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OPCODE }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

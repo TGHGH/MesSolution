@@ -1,0 +1,137 @@
+﻿@model Core.Models.User
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>User</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.usercode, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.usercode)
+                @Html.ValidationMessageFor(model => model.usercode)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.userpwd, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.userpwd)
+                @Html.ValidationMessageFor(model => model.userpwd)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.username, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.username)
+                @Html.ValidationMessageFor(model => model.username)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.usertel, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.usertel)
+                @Html.ValidationMessageFor(model => model.usertel)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.useremail, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.useremail)
+                @Html.ValidationMessageFor(model => model.useremail)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.userdepart, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.userdepart)
+                @Html.ValidationMessageFor(model => model.userdepart)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.muser, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.muser)
+                @Html.ValidationMessageFor(model => model.muser)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.mdate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.mdate)
+                @Html.ValidationMessageFor(model => model.mdate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.eattribute1, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.eattribute1)
+                @Html.ValidationMessageFor(model => model.eattribute1)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.userstat, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.userstat)
+                @Html.ValidationMessageFor(model => model.userstat)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.userStatus, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.userStatus)
+                @Html.ValidationMessageFor(model => model.userStatus)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsDeleted, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IsDeleted)
+                @Html.ValidationMessageFor(model => model.IsDeleted)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AddDate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AddDate)
+                @Html.ValidationMessageFor(model => model.AddDate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

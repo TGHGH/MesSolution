@@ -1,0 +1,122 @@
+﻿@model Core.Models.User
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>User</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.userpwd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userpwd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usertel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usertel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.useremail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.useremail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userdepart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userdepart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.muser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.muser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.eattribute1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.eattribute1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userstat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userstat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.userStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.userStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AddDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AddDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Timestamp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Timestamp)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.usercode }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

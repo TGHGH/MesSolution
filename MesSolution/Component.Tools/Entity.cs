@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 
@@ -46,6 +47,18 @@ namespace Component.Tools
         [Timestamp]
         public byte[] Timestamp { get; set; }
 
+        public T Merge<T>(T entity1,T entity2) where T:Entity
+        {
+            Type t = entity2.GetType();
+            foreach (PropertyInfo pi in t.GetProperties())
+            {
+                if (!(pi.GetValue(entity1).Equals(pi.GetValue(entity2)) && pi.GetValue(entity2)!=null))
+                {
+                    pi.SetValue(entity1, pi.GetValue(entity2));
+                }
+            }
+            return entity1;
+        }
         #endregion
     }
 }

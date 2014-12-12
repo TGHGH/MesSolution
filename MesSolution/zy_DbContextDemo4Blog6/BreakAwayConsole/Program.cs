@@ -71,7 +71,7 @@ namespace BreakAwayConsole
             //RemovePrimaryContactReference();
 
             //第三章
-            GetOneEntityToSeeEntityState();
+            //GetOneEntityToSeeEntityState();
             //TestAddDestination();
             //TestAttachDestination();
             //TestUpdateDestination();
@@ -97,7 +97,7 @@ namespace BreakAwayConsole
             //WorkingWithCollectionMethod();
             //ReloadLodging();
             //PrintChangeTrackerEntries();
-            //ConcurrencyDemo();
+            ConcurrencyDemo();
             //TestSaveLogging();
 
             //第五章
@@ -105,7 +105,7 @@ namespace BreakAwayConsole
             //ValidateDestination();
             //ValidatePropertyOnDemand();
             //ValidateTrip();
-            ValidateEverything();
+            //ValidateEverything();
 
             //第六章
             //CreateDuplicateLodging();
@@ -1695,8 +1695,9 @@ namespace BreakAwayConsole
                             where t.Description == "Trip from the database"
                             select t).Single();
                 trip.Description = "Getaway in Vermont";
-                context.Database.ExecuteSqlCommand(@"UPDATE dbo.Trips SET CostUSD = 400 WHERE Description = 'Trip from the database'");                
-                SaveWithConcurrencyResolution(context);
+                context.Database.ExecuteSqlCommand(@"UPDATE dbo.Trips SET CostUSD = 400 WHERE Description = 'Trip from the database'");
+                context.SaveChanges();
+               // SaveWithConcurrencyResolution(context);
             }
         }
         /// <summary>
