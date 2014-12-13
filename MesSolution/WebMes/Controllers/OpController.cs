@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Core.Models;
 using Core.Db.Context;
+using PagedList;
 
 namespace WebMes.Controllers
 {
@@ -16,9 +17,16 @@ namespace WebMes.Controllers
         private MesContext db = new MesContext();
 
         // GET: /Op/
-        public ActionResult Index()
+        public ActionResult Index(int page=1)
         {
-            return View(db.Ops.ToList());
+            const int pageSize = 3;
+            //List<User> users = (from u in db.Users
+            //  orderby u.Id descending
+            //  select u).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            //return View(users);
+            var iUsers = db.Ops.OrderBy(p => p.OPCODE).ToPagedList(page, pageSize);
+            return View(iUsers);
+           // return View(db.Ops.ToList());
         }
 
         // GET: /Op/Details/5
