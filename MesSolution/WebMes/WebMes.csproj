@@ -241,6 +241,7 @@
     <Content Include="Views\Op\Details.cshtml" />
     <Content Include="Views\Op\Edit.cshtml" />
     <Content Include="Views\Op\Index.cshtml" />
+    <Content Include="Views\Shared\_MenuPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

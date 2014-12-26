@@ -7,7 +7,24 @@
     <title>@ViewBag.Title - 我的 ASP.NET 应用程序</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/Site.css")
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type=text/javascript>
+        $(function () {
+            $('#webmenu li').hover(function () {
+                $(this).children('ul').stop(true, true).show('slow');
+            }, function () {
+                $(this).children('ul').stop(true, true).hide('slow');
+            });
 
+            $('#webmenu li').hover(function () {
+                $(this).children('div').stop(true, true).show('slow');
+            }, function () {
+                $(this).children('div').stop(true, true).hide('slow');
+            });
+        });
+    </script>
+  
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -21,11 +38,7 @@
                 @Html.ActionLink("应用程序名称", "Index", "Home", null, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("主页", "Index", "Home")</li>
-                    <li>@Html.ActionLink("关于", "About", "Home")</li>
-                    <li>@Html.ActionLink("联系方式", "Contact", "Home")</li>
-                </ul>
+                @Html.Partial("_MenuPartial")
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
