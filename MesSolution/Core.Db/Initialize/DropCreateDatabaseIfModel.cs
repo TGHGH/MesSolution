@@ -81,9 +81,9 @@ namespace GMF.Demo.Core.Data.Initialize
             Initialize<TsItem>.Infial(num).ForEach(u => context.Set<TsItem>().Add(u));
             Initialize<TsSplitItem>.Infial(num).ForEach(u => context.Set<TsSplitItem>().Add(u));
             
-            context.Configuration.AutoDetectChangesEnabled = true;
+            context.Configuration.AutoDetectChangesEnabled = true;            
             context.SaveChanges();
-            Initialize<User>.InfialData();          
+            Initialize<User>.InfialData(); 
         }
       
      

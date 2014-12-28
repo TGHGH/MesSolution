@@ -42,7 +42,7 @@ namespace Presentation.Consoles
         {
             //初始化数据库，如果存在且模型改变，删除重新建
 
-            DatabaseInitializer.DropCreateDatabaseIfModelChanges();
+            //DatabaseInitializer.DropCreateDatabaseIfModelChanges();
           
 
             //初始化MEF组合容器
@@ -410,7 +410,21 @@ namespace Presentation.Consoles
         }
         private static void Method17()
         {
-            
+            using (var context = new MesContext("MesTest2"))
+            {
+                context.Database.Log = Console.Write;
+                User user =  new User { usercode = "65128044", userpwd = "123", AddDate = DateTime.Now, eattribute1 = "123", IsDeleted = false, mdate = DateTime.Now, muser = "123", userdepart = "123", useremail = "123", username = "lg", userstat = "123", usertel = "123" } ;
+                context.Users.Add(user);
+                //EntityState state = context.Entry(user).State;
+                //if (state == EntityState.Detached)
+                //{
+                //    context.Entry(user).State = EntityState.Added;
+                //}
+                var students = from u in context.Users.Local where u.usercode == "65128044" select u;                
+                var students2 = from u in context.Users where u.usercode == "65128044" select u;
+                students.First();
+               // context.SaveChanges();
+            } 
         }      
          
 

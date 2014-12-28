@@ -74,7 +74,7 @@ update ErrorCodes set ecode='AUTONG' where ecode='ecode10';
 update TsErrorCodes set ts_TSID=1 where TsErrorCodeID<3;
 update TsErrorCauses set tsErrorCode_TsErrorCodeID=1 where TsErrorCauseID<3;
 update TsErrorCauses set tsErrorCode_TsErrorCodeID=2 where TsErrorCauseID>8
-update Ts set tsstatus='tsstatus_new';
+update Ts set tsstatus=1;
 update TsErrorCodes set errorCode_ecode='ecode1' where TsErrorCodeID=1;
 update TsErrorCodes set errorCode_ecode='ecode2' where TsErrorCodeID=2;;
 

@@ -1,0 +1,24 @@
+﻿@model Core.Models.Op
+
+@using (Ajax.BeginForm("Edit", null, new AjaxOptions { HttpMethod = "Post", OnSuccess = "reLoad" }, new { @class = "form-horizontal" }))
+{
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Contact Information</h3>
+    </div>
+    <div class="modal-body">
+        <div class="control-group">
+            @Html.HiddenFor(model => model.OPCODE)
+            @Html.LabelFor(model => model.OPCODE, new { @class = "control-label" })
+            <div class="controls">
+                @Html.EditorFor(model => model.OPCODE)
+                @Html.ValidationMessageFor(model => model.OPCODE)
+            </div>
+        </div>
+       
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">Close</a>
+        <input type="submit" class="btn btn-primary" value="Save" />
+    </div>
+}

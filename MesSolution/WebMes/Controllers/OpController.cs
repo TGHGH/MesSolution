@@ -19,15 +19,22 @@ namespace WebMes.Controllers
         // GET: /Op/
         public ActionResult Index(int page=1)
         {
-            const int pageSize = 3;
-            //List<User> users = (from u in db.Users
-            //  orderby u.Id descending
-            //  select u).Skip((page - 1) * pageSize).Take(pageSize).ToList();
-            //return View(users);
-            var iUsers = db.Ops.OrderBy(p => p.OPCODE).ToPagedList(page, pageSize);
-            return View(iUsers);
-           // return View(db.Ops.ToList());
+            //const int pageSize = 3;          
+            //var ops = db.Ops.OrderBy(p => p.OPCODE).ToPagedList(page, pageSize);
+            //return View(ops); 
+            return View();
         }
+
+        public ActionResult Find(string firstName = "", string lastName = "",int page=1,int pageSize=3)
+        {
+            var result = from contact in db.Ops
+                         where (string.IsNullOrEmpty(firstName) || contact.OPCODE.ToLower().Contains(firstName.ToLower()))
+                             && (string.IsNullOrEmpty(lastName) || contact.OPDESC.ToLower().Contains(lastName.ToLower()))
+                         orderby contact.OPCODE
+                         select contact;      
+            return View("_OpListPartial", result.ToPagedList(page,pageSize));
+        }
+
 
         // GET: /Op/Details/5
         public ActionResult Details(string id)

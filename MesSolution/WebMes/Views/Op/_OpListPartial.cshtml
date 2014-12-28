@@ -1,0 +1,54 @@
+﻿@using Core.Models
+@using PagedList
+@using PagedList.Mvc
+@model IPagedList<Core.Models.Op>
+
+<table class="table">
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Ajax.ActionLink(item.OPCODE, "Edit", new { contactId = item.OPCODE }, new AjaxOptions { OnSuccess = "showDialog", HttpMethod = "Post" })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OPDESC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OPCOLLECTION)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OPCONTROL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MUSER)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MDATE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MTIME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EATTRIBUTE1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Timestamp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDeleted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddDate)               
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.OPCODE }) |
+                @Html.ActionLink("Details", "Details", new { id = item.OPCODE }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.OPCODE })
+                
+            </td>
+        </tr>
+    }
+        
+</table>
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Find", new { page }))
+

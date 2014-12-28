@@ -5,10 +5,10 @@ using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Text;
-
 using Core.Models;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
+using GMF.Demo.Core.Data.Initialize;
 
 
 namespace Core.Db.Context
@@ -25,19 +25,26 @@ namespace Core.Db.Context
         /// <summary>
         ///     初始化一个 使用连接名称为“default”的数据访问上下文类 的新实例
         /// </summary>
-        public MesContext()
-            : base("MesSolution") { }
+        public MesContext(): base("MesSolution") 
+        {
+            LogChangesDuringSave = false;
+            if (LogChangesDuringSave)
+            Database.SetInitializer(new DropCreateDatabaseIfModel());
+        }
 
         /// <summary>
         /// 初始化一个 使用指定数据连接名称或连接串 的数据访问上下文类 的新实例
         /// </summary>
         public MesContext(string nameOrConnectionString)
-            : base(nameOrConnectionString) {  }
+            : base(nameOrConnectionString) 
+        {
+
+        }
 
         #endregion
 
         #region 属性
-
+        
         public DbSet<Role> Roles { get; set; }
 
         public DbSet<Member> Members { get; set; }
@@ -165,8 +172,7 @@ namespace Core.Db.Context
             }
         }
         public override int SaveChanges()
-        {
-            this.LogChangesDuringSave = true;
+        {          
             if (LogChangesDuringSave)  //根据表示判断用重写的SaveChanges方法，还是普通的上下文SaveChanges方法
             {
                 var entries = from e in this.ChangeTracker.Entries()

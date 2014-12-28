@@ -34,7 +34,7 @@ namespace BreakAwayConsole
             //第一章：
             //PrintAllDestinations();   //如需重新生成测试数据：取消注释本方法和【初始化数据】方法
             //PrintAllDestinationsSorted();
-            //FindDestination();
+            FindDestination();
             //PrintDestinationNameOnly();
             //TestFindLocalData();
             //TestGetNewAddedData();
@@ -97,7 +97,7 @@ namespace BreakAwayConsole
             //WorkingWithCollectionMethod();
             //ReloadLodging();
             //PrintChangeTrackerEntries();
-            ConcurrencyDemo();
+            //ConcurrencyDemo();
             //TestSaveLogging();
 
             //第五章

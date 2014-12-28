@@ -8,6 +8,8 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/Site.css")
+    <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/bootstrap-responsive.css")" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script type=text/javascript>
         $(function () {
@@ -23,6 +25,24 @@
                 $(this).children('div').stop(true, true).hide('slow');
             });
         });
+        function renderCustomerList(data) {
+            $("#contactList").html(data);
+        }
+        function showDialog(data) {
+            $("#contactDialog").html(data);
+            $("#contactDialog form")
+                .removeData("validator")
+                .removeData("unobtrusiveValidation");
+            $.validator.unobtrusive.parse($("#contactDialog form"));
+            $("#contactDialog").modal();
+        }
+
+        function reLoad(data) {
+            if (data == "OK") {
+                $("#contactDialog").modal("hide");
+                $(".form-search form").submit();
+            }
+        }
     </script>
   
 </head>
@@ -38,7 +58,7 @@
                 @Html.ActionLink("应用程序名称", "Index", "Home", null, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                @Html.Partial("_MenuPartial")
+              @* @Html.Partial("_MenuPartial") *@  
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
@@ -51,8 +71,8 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/jquery")
+    @Scripts.Render("~/Scripts/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>
