@@ -1,5 +1,10 @@
 ﻿
-@using (Ajax.BeginForm("Find", new AjaxOptions { UpdateTargetId = "contactList" }))
+@using (Ajax.BeginForm("Find", new AjaxOptions { 
+    UpdateTargetId = "contactList" ,
+    InsertionMode=InsertionMode.Replace,
+    HttpMethod="GET",
+    LoadingElementId = "contactList"
+}))
 {
     <fieldset>
         <legend>Maintain Contacts</legend>

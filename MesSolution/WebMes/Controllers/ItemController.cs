@@ -21,6 +21,10 @@ namespace WebMes.Controllers
         public ActionResult Index()
         {
             DatabaseInitializer.DropCreateDatabaseIfModelChanges();
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView(db.Items.ToList());
+            }  
             return View(db.Items.ToList());
         }
 
@@ -36,6 +40,9 @@ namespace WebMes.Controllers
             {
                 return HttpNotFound();
             }
+          
+                return PartialView(item);
+              
             return View(item);
         }
 

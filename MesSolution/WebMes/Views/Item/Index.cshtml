@@ -207,11 +207,16 @@
             @Html.DisplayFor(modelItem => item.Timestamp)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ITEMCODE }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ITEMCODE }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ITEMCODE })
+            @Ajax.ActionLink("Edit", "Edit", new { id = item.ITEMCODE }, new AjaxOptions { UpdateTargetId = "divEdit" }) |
+            @Ajax.ActionLink("Details", "Details", new { id = item.ITEMCODE }, new AjaxOptions { UpdateTargetId = "divEdit" }) |
+            @Ajax.ActionLink("Delete", "Delete", new { id = item.ITEMCODE }, new AjaxOptions { UpdateTargetId = "divEdit" })
         </td>
     </tr>
 }
 
 </table>
+<div id="divEdit"></div>  
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+  
