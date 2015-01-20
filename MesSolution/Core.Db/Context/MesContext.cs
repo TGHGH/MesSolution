@@ -94,7 +94,7 @@ namespace Core.Db.Context
         //Privage
         public DbSet<User> Users { get; set; }
         public DbSet<UserGroup> UserGroups { get; set; }
-        public DbSet<Mdl> Mdls { get; set; }
+        public virtual DbSet<Mdl> Mdls { get; set; }
 
         //Processing
         public DbSet<Simulation> simulations { get; set; }

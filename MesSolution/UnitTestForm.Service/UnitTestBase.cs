@@ -7,10 +7,10 @@ namespace UnitTestForm.Service
     [TestClass]
     public class UnitTestBase
     {
-        //static  UnitTestBase()
-        //{
-        //    DatabaseInitializer.DropCreateDatabaseIfModelChanges();
-        //}
+        static UnitTestBase()
+        {
+          //  DatabaseInitializer.DropCreateDatabaseIfModelChanges();
+        }
       
     }
 }
