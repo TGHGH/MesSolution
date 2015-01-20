@@ -92,8 +92,8 @@ namespace Core.Db.Context
         public DbSet<WorkingError> WorkingErrors { get; set; }
 
         //Privage
-        public DbSet<User> Users { get; set; }
-        public DbSet<UserGroup> UserGroups { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserGroup> UserGroups { get; set; }
         public virtual DbSet<Mdl> Mdls { get; set; }
 
         //Processing
